@@ -3,6 +3,12 @@ diceware
 
 Passphrases you will remember...
 
+|build-status|_
+
+.. |build-status| image:: https://travis-ci.org/ulif/diceware.png?branch=master
+.. _build-status: https://travis-ci.org/ulif/diceware
+
+
 `diceware` is a password generator following the proposals of
 Arnold G. Reinhold on http://diceware.com .
 
