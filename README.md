@@ -1,0 +1,2 @@
+# diceware
+Passphrases to remember
