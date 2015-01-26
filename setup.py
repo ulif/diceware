@@ -42,7 +42,7 @@ setup(
     url="https://github.com/ulif/diceware/",
     packages=['diceware'],
     namespace_packages=[],
-    long_description=read('README.md'),
+    long_description=read('README.rst'),
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Environment :: Console",
