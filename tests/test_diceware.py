@@ -1,5 +1,6 @@
 import os
-from diceware.diceware import SRC_DIR, get_wordlist
+import pytest
+from diceware.diceware import SRC_DIR, get_wordlist, get_wordlist_path
 
 
 class Test_GetWordList(object):
@@ -35,3 +36,24 @@ class Test_GetWordList(object):
         in_file = tmpdir.mkdir("work").join("mywordlist")
         in_file.write("11\ta\t12\n22\t\n\n33\tc")
         assert ['a', 'c'] == get_wordlist(in_file.strpath)
+
+
+class TestDicewareModule(object):
+
+    def test_get_wordlist_path(self):
+        # we can get valid wordlist paths
+        assert os.path.exists(get_wordlist_path('en'))
+        assert not os.path.exists(get_wordlist_path('zz'))
+
+    def test_get_wordlist_path_requires_ascii(self):
+        # non ASCII alphabet chars are not accepted in language specifier
+        with pytest.raises(ValueError) as exc_info:
+            get_wordlist_path('../../tmp')
+        assert exc_info.value.args[0].startswith(
+            'Not a valid language code')
+
+    def test_get_wordlist_path_loweres_country_code(self):
+        # upper case country codes are lowered
+        assert os.path.basename(get_wordlist_path('de')) == 'wordlist_de.asc'
+        assert os.path.basename(get_wordlist_path('De')) == 'wordlist_de.asc'
+        assert os.path.basename(get_wordlist_path('DE')) == 'wordlist_de.asc'
