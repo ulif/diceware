@@ -41,9 +41,9 @@ def get_wordlist_path(lang):
     The `lang` string is a 2-char country code. Invalid codes raise a
     ValueError.
     """
-    basename = 'wordlist_%s.asc' % lang
     if not RE_ASCII_CHARS.match(lang):
         raise ValueError("Not a valid language code: %s" % lang)
+    basename = 'wordlist_%s.txt' % lang
     return os.path.abspath(os.path.join(SRC_DIR, basename.lower()))
 
 
