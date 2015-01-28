@@ -77,3 +77,4 @@ def main(args=1):
     if args is 1:
         args = sys.argv[1:]
     options = handle_options(args)
+    print(get_passphrase(wordnum=options.num))
