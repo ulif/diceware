@@ -41,6 +41,9 @@ setup(
     keywords="diceware password passphrase",
     url="https://github.com/ulif/diceware/",
     packages=['diceware'],
+    package_data={
+        'diceware': ['*.txt', '*.asc'],
+        },
     namespace_packages=[],
     long_description=read('README.rst'),
     classifiers=[
