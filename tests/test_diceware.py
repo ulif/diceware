@@ -12,6 +12,7 @@ def argv_handler(request):
     """This fixture restores sys.argv after tests.
     """
     _argv_stored = sys.argv
+
     def teardown():
         sys.argv = _argv_stored
     request.addfinalizer(teardown)
