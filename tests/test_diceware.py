@@ -7,6 +7,16 @@ from diceware.diceware import (
     )
 
 
+@pytest.fixture(scope="function")
+def argv_handler(request):
+    """This fixture restores sys.argv after tests.
+    """
+    _argv_stored = sys.argv
+    def teardown():
+        sys.argv = _argv_stored
+    request.addfinalizer(teardown)
+
+
 class Test_GetWordList(object):
 
     def test_get_wordlist_en(self):
@@ -105,3 +115,10 @@ class TestDicewareModule(object):
             '  -h, --help         show this help message and exit\n'
             '  -n NUM, --num NUM  number of words to concatenate. Default: 6\n'
             )
+
+    def test_main_argv(self, argv_handler):
+        # main() handles sys.argv if nothing is provided
+        sys.argv = ['diceware', '--help']
+        with pytest.raises(SystemExit) as exc_info:
+            main()
+        assert exc_info.value.code == 0
