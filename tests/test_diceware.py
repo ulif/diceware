@@ -3,6 +3,7 @@ import pytest
 import sys
 from diceware.diceware import (
     SRC_DIR, get_wordlist, get_wordlist_path, get_passphrase, handle_options,
+    main,
     )
 
 
@@ -55,10 +56,16 @@ class TestDicewareModule(object):
         r2 = get_passphrase()
         assert r1 != r2
 
-    def test_handle_options(self, capsys):
+    def test_handle_options(self):
         # we can get help
         with pytest.raises(SystemExit) as exc_info:
             handle_options(['--help'])
+        assert exc_info.value.code == 0
+
+    def test_main(self, capsys):
+        # we can get help
+        with pytest.raises(SystemExit) as exc_info:
+            main(['diceware', '--help'])
         assert exc_info.value.code == 0
         out, err = capsys.readouterr()
         out = out.replace(

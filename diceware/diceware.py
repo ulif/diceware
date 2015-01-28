@@ -1,6 +1,7 @@
 import argparse
 import os
 import re
+import sys
 from random import SystemRandom
 
 
@@ -69,5 +70,7 @@ def get_passphrase(wordnum=6, specials=True, separator='', lang='en',
     return result
 
 
-def main():
-    pass
+def main(args=1):
+    if args is 1:
+        args = sys.argv[1:]
+    options = handle_options(args)
