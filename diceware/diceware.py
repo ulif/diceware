@@ -12,6 +12,7 @@ RE_ASCII_CHARS = re.compile('^[a-zA-Z]{2}$')
 #: Special chars inserted on demand
 SPECIAL_CHARS = "~!#$%^&*()-=+[]\{}:;\"'<>?/0123456789"
 
+
 def get_wordlist(path):
     """Parse file at `path` and build a word list of it.
 
