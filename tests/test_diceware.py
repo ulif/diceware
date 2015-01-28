@@ -79,6 +79,15 @@ class TestDicewareModule(object):
         options = handle_options([])
         assert options.num == 6
 
+    def test_main(self, capsys):
+        # we can get a passphrase
+        main([])  # call with default options in place
+        out, err = capsys.readouterr()
+        assert err == ''               # we got no errors
+        assert out[-1] == '\n'         # output ends with liebreak
+        assert not ('\n' in out[:-1])  # we get one line
+        assert len(out) > 5            # we get at least some chars
+
     def test_main_help(self, capsys):
         # we can get help
         with pytest.raises(SystemExit) as exc_info:
@@ -96,12 +105,3 @@ class TestDicewareModule(object):
             '  -h, --help         show this help message and exit\n'
             '  -n NUM, --num NUM  number of words to concatenate. Default: 6\n'
             )
-
-    def test_main(self, capsys):
-        # we can get a passphrase
-        main([])  # call with default options in place
-        out, err = capsys.readouterr()
-        assert err == ''               # we got no errors
-        assert out[-1] == '\n'         # output ends with liebreak
-        assert not ('\n' in out[:-1])  # we get one line
-        assert len(out) > 5            # we get at least some chars
