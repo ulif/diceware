@@ -1,6 +1,8 @@
 import os
 import pytest
-from diceware.diceware import SRC_DIR, get_wordlist, get_wordlist_path
+from diceware.diceware import (
+    SRC_DIR, get_wordlist, get_wordlist_path, get_passphrase,
+    )
 
 
 class Test_GetWordList(object):
@@ -57,3 +59,9 @@ class TestDicewareModule(object):
         assert os.path.basename(get_wordlist_path('de')) == 'wordlist_de.asc'
         assert os.path.basename(get_wordlist_path('De')) == 'wordlist_de.asc'
         assert os.path.basename(get_wordlist_path('DE')) == 'wordlist_de.asc'
+
+    def test_get_passphrase(self):
+        # we can get passphrases
+        r1 = get_passphrase()
+        r2 = get_passphrase()
+        assert r1 != r2
