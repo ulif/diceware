@@ -99,6 +99,7 @@ class TestDicewareModule(object):
         # defaults are correctly set
         options = handle_options([])
         assert options.num == 6
+        assert options.capitalize is True
 
     def test_main(self, capsys):
         # we can get a passphrase

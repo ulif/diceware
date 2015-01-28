@@ -30,7 +30,7 @@ def handle_options(args):
     cap_group.add_argument(
         '--no-capitalize', action='store_false', dest='capitalize',
         help='Turn off capitalization.')
-    parser.set_defaults(capiltalize=True)
+    parser.set_defaults(capitalize=True)
     args = parser.parse_args(args)
     return args
 
