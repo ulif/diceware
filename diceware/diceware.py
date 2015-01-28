@@ -8,8 +8,9 @@ from random import SystemRandom
 #: The directory in which wordlists are stored
 SRC_DIR = os.path.dirname(__file__)
 
-#: A regular expression matching ASCII chars
-RE_ASCII_CHARS = re.compile('^[a-zA-Z]{2}$')
+#: A regular expression matching 2 consecutive ASCII chars. We
+#: consider this to represent some language/country code.
+RE_LANG_CODE = re.compile('^[a-zA-Z]{2}$')
 
 #: Special chars inserted on demand
 SPECIAL_CHARS = "~!#$%^&*()-=+[]\{}:;\"'<>?/0123456789"
@@ -51,7 +52,7 @@ def get_wordlist_path(lang):
     The `lang` string is a 2-char country code. Invalid codes raise a
     ValueError.
     """
-    if not RE_ASCII_CHARS.match(lang):
+    if not RE_LANG_CODE.match(lang):
         raise ValueError("Not a valid language code: %s" % lang)
     basename = 'wordlist_%s.txt' % lang
     return os.path.abspath(os.path.join(SRC_DIR, basename.lower()))

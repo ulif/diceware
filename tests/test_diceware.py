@@ -2,8 +2,8 @@ import os
 import pytest
 import sys
 from diceware.diceware import (
-    SRC_DIR, get_wordlist, get_wordlist_path, get_passphrase, handle_options,
-    main,
+    SRC_DIR, RE_LANG_CODE, get_wordlist, get_wordlist_path, get_passphrase,
+    handle_options, main,
     )
 
 
@@ -31,6 +31,18 @@ class Test_GetWordList(object):
 
 
 class TestDicewareModule(object):
+
+    def test_re_lang_code(self):
+        # RE_LANG_CODE really works
+        # valid stuff
+        assert RE_LANG_CODE.match('de') is not None
+        assert RE_LANG_CODE.match('DE') is not None
+        assert RE_LANG_CODE.match('vb') is not None
+        # invalid stuff
+        assert RE_LANG_CODE.match('de_DE') is None
+        assert RE_LANG_CODE.match('u1') is None
+        assert RE_LANG_CODE.match('u') is None
+        assert RE_LANG_CODE.match('dea') is None
 
     def test_get_wordlist_path(self):
         # we can get valid wordlist paths
