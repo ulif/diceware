@@ -62,6 +62,11 @@ class TestDicewareModule(object):
             handle_options(['--help'])
         assert exc_info.value.code == 0
 
+    def test_handle_options_defaults(self):
+        # defaults are correctly set
+        options = handle_options([])
+        assert options.num == 6
+
     def test_main(self, capsys):
         # we can get help
         with pytest.raises(SystemExit) as exc_info:
@@ -71,10 +76,11 @@ class TestDicewareModule(object):
         out = out.replace(
             os.path.basename(sys.argv[0]), 'diceware')
         assert out == (
-            'usage: diceware [-h]\n'
+            'usage: diceware [-h] [-n NUM]\n'
             '\n'
             'Create a passphrase\n'
             '\n'
             'optional arguments:\n'
-            '  -h, --help  show this help message and exit\n'
+            '  -h, --help         show this help message and exit\n'
+            '  -n NUM, --num NUM  number of words to concatenate. Default: 6\n'
             )

@@ -19,6 +19,9 @@ def handle_options(args):
     """Handle commandline options.
     """
     parser = argparse.ArgumentParser(description="Create a passphrase")
+    parser.add_argument(
+        '-n', '--num', default=6, type=int,
+        help='number of words to concatenate. Default: 6')
     args = parser.parse_args(args)
     return args
 
