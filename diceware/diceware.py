@@ -23,6 +23,14 @@ def handle_options(args):
     parser.add_argument(
         '-n', '--num', default=6, type=int,
         help='number of words to concatenate. Default: 6')
+    cap_group = parser.add_mutually_exclusive_group()
+    cap_group.add_argument(
+        '-c', '--capitalize', action='store_true',
+        help='Capitalize words. This is the default.')
+    cap_group.add_argument(
+        '--no-capitalize', action='store_false', dest='capitalize',
+        help='Turn off capitalization.')
+    parser.set_defaults(capiltalize=True)
     args = parser.parse_args(args)
     return args
 
@@ -73,4 +81,5 @@ def main(args=1):
     if args is 1:
         args = sys.argv[1:]
     options = handle_options(args)
-    print(get_passphrase(wordnum=options.num))
+    print(get_passphrase(wordnum=options.num,
+                         capitalized=options.capitalize))

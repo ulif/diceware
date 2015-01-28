@@ -78,6 +78,16 @@ class TestDicewareModule(object):
         r2 = get_passphrase()
         assert r1 != r2
 
+    def test_get_passphrase_capitals(self):
+        # by default a passphrase contains upper case chars
+        phrase = get_passphrase()
+        assert phrase.lower() != phrase
+
+    def test_get_passphrase_no_capitals(self):
+        # we can turn capitals off
+        phrase = get_passphrase(capitalized=False)
+        assert phrase.lower() == phrase
+
     def test_handle_options(self):
         # we can get help
         with pytest.raises(SystemExit) as exc_info:
@@ -107,13 +117,15 @@ class TestDicewareModule(object):
         out = out.replace(
             os.path.basename(sys.argv[0]), 'diceware')
         assert out == (
-            'usage: diceware [-h] [-n NUM]\n'
+            'usage: diceware [-h] [-n NUM] [-c | --no-capitalize]\n'
             '\n'
             'Create a passphrase\n'
             '\n'
             'optional arguments:\n'
             '  -h, --help         show this help message and exit\n'
             '  -n NUM, --num NUM  number of words to concatenate. Default: 6\n'
+            '  -c, --capitalize   Capitalize words. This is the default.\n'
+            '  --no-capitalize    Turn off capitalization.\n'
             )
 
     def test_main_argv(self, argv_handler):
