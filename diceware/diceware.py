@@ -30,14 +30,9 @@ def handle_options(args):
 def get_wordlist(path):
     """Parse file at `path` and build a word list of it.
 
-    A wordlist is expected to contain lines of format::
-
-        <NUMS><TAB><WORD>\n
-
-    for instance::
-
-        136512\tTerm
-
+    A wordlist is expected to contain lines of words. Each line a
+    word. Empty lines are ignored. Returns a list of terms (lines)
+    found.
     """
     result = []
     with open(path, 'r') as fd:
