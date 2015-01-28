@@ -26,12 +26,8 @@ def get_wordlist(path):
     """
     result = []
     with open(path, 'r') as fd:
-        for line in fd.readlines():
-            if not '\t' in line:
-                continue
-            term = line.split('\t')[1].strip()
-            if term != '':  # do not accept empty strings
-                result.append(term)
+        result = [line.strip() for line in fd.readlines()
+                  if line.strip() != '']
     return result
 
 
