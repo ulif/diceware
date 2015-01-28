@@ -1,3 +1,4 @@
+import argparse
 import os
 import re
 from random import SystemRandom
@@ -11,6 +12,14 @@ RE_ASCII_CHARS = re.compile('^[a-zA-Z]{2}$')
 
 #: Special chars inserted on demand
 SPECIAL_CHARS = "~!#$%^&*()-=+[]\{}:;\"'<>?/0123456789"
+
+
+def handle_options(args):
+    """Handle commandline options.
+    """
+    parser = argparse.ArgumentParser(description="Create a passphrase")
+    args = parser.parse_args(args)
+    return args
 
 
 def get_wordlist(path):

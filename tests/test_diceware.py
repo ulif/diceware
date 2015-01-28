@@ -1,7 +1,8 @@
 import os
 import pytest
+import sys
 from diceware.diceware import (
-    SRC_DIR, get_wordlist, get_wordlist_path, get_passphrase,
+    SRC_DIR, get_wordlist, get_wordlist_path, get_passphrase, handle_options,
     )
 
 
@@ -53,3 +54,20 @@ class TestDicewareModule(object):
         r1 = get_passphrase()
         r2 = get_passphrase()
         assert r1 != r2
+
+    def test_handle_options(self, capsys):
+        # we can get help
+        with pytest.raises(SystemExit) as exc_info:
+            handle_options(['--help'])
+        assert exc_info.value.code == 0
+        out, err = capsys.readouterr()
+        out = out.replace(
+            os.path.basename(sys.argv[0]), 'diceware')
+        assert out == (
+            'usage: diceware [-h]\n'
+            '\n'
+            'Create a passphrase\n'
+            '\n'
+            'optional arguments:\n'
+            '  -h, --help  show this help message and exit\n'
+            )
