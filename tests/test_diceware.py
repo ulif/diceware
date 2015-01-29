@@ -137,6 +137,7 @@ class TestDicewareModule(object):
         options = handle_options([])
         assert options.num == 6
         assert options.capitalize is True
+        assert options.specials == 1
 
     def test_main(self, capsys):
         # we can get a passphrase
@@ -156,15 +157,17 @@ class TestDicewareModule(object):
         out = out.replace(
             os.path.basename(sys.argv[0]), 'diceware')
         assert out == (
-            'usage: diceware [-h] [-n NUM] [-c | --no-caps]\n'
-            '\n'
-            'Create a passphrase\n'
-            '\n'
-            'optional arguments:\n'
-            '  -h, --help         show this help message and exit\n'
-            '  -n NUM, --num NUM  number of words to concatenate. Default: 6\n'
-            '  -c, --caps         Capitalize words. This is the default.\n'
-            '  --no-caps          Turn off capitalization.\n'
+     'usage: diceware [-h] [-n NUM] [-c | --no-caps] [-s NUM]\n'
+     '\n'
+     'Create a passphrase\n'
+     '\n'
+     'optional arguments:\n'
+     '  -h, --help            show this help message and exit\n'
+     '  -n NUM, --num NUM     number of words to concatenate. Default: 6\n'
+     '  -c, --caps            Capitalize words. This is the default.\n'
+     '  --no-caps             Turn off capitalization.\n'
+     '  -s NUM, --specials NUM\n'
+     '                        Insert NUM special chars into generated word.\n'
             )
 
     def test_main_argv(self, argv_handler):

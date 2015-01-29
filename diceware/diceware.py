@@ -1,5 +1,6 @@
 import argparse
 import os
+import pkg_resources
 import re
 import sys
 from random import SystemRandom
@@ -30,6 +31,9 @@ def handle_options(args):
     cap_group.add_argument(
         '--no-caps', action='store_false', dest='capitalize',
         help='Turn off capitalization.')
+    parser.add_argument(
+        '-s', '--specials', default=1, type=int, metavar='NUM',
+        help="Insert NUM special chars into generated word.")
     parser.set_defaults(capitalize=True)
     args = parser.parse_args(args)
     return args
@@ -76,7 +80,7 @@ def insert_special_char(word, specials=SPECIAL_CHARS, rnd=None):
     return ''.join(char_list)
 
 
-def get_passphrase(wordnum=6, specials=True, separator='', lang='en',
+def get_passphrase(wordnum=6, specialsnum=1, separator='', lang='en',
                    capitalized=True):
     """Get a diceware passphrase.
     """
@@ -86,7 +90,7 @@ def get_passphrase(wordnum=6, specials=True, separator='', lang='en',
     if capitalized:
         words = [x.capitalize() for x in words]
     result = separator.join(words)
-    if specials:
+    for x in range(specialsnum):
         result = insert_special_char(result, rnd=rnd)
     return result
 
@@ -95,5 +99,9 @@ def main(args=1):
     if args is 1:
         args = sys.argv[1:]
     options = handle_options(args)
-    print(get_passphrase(wordnum=options.num,
-                         capitalized=options.capitalize))
+    print(get_passphrase(
+        wordnum=options.num,
+        specialsnum=options.specials,
+        capitalized=options.capitalize
+        )
+    )
