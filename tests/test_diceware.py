@@ -7,6 +7,17 @@ from diceware.diceware import (
     )
 
 
+class FakeRandom(object):
+    # a very, very bad random generator.
+    # Very handy for tests, though :-)
+
+    nums_to_draw = [0] * 100
+
+    def choice(self, elems):
+        num, self.nums_to_draw = self.nums_to_draw[0], self.nums_to_draw[1:]
+        return elems[num]
+
+
 @pytest.fixture(scope="function")
 def argv_handler(request):
     """This fixture restores sys.argv after tests.
@@ -39,18 +50,6 @@ class Test_GetWordList(object):
         in_file = tmpdir.mkdir("work").join("mywordlist")
         in_file.write("\n\na\n\n")
         assert ['a'] == get_wordlist(in_file.strpath)
-
-
-class FakeRandom(object):
-    # a very, very bad random generator.
-    # Very handy for tests, though :-)
-
-    nums_to_draw = [0] * 100
-
-    def choice(self, elems):
-        num, self.nums_to_draw = self.nums_to_draw[0], self.nums_to_draw[1:]
-        result = elems[num]
-        return elems[num]
 
 
 class TestDicewareModule(object):
