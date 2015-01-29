@@ -83,6 +83,14 @@ def insert_special_char(word, specials=SPECIAL_CHARS, rnd=None):
 def get_passphrase(wordnum=6, specialsnum=1, delimiter='', lang='en',
                    capitalized=True):
     """Get a diceware passphrase.
+
+    The passphrase returned will contain `wordnum` words deliimted by
+    `delimiter`.
+
+    If `capitalized` is ``True``, all words will be capitalized.
+
+    The wordlist to pick words from is determined by `lang`,
+    representing a language.
     """
     word_list = get_wordlist(get_wordlist_path(lang))
     rnd = SystemRandom()
