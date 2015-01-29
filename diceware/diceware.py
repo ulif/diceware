@@ -25,10 +25,10 @@ def handle_options(args):
         help='number of words to concatenate. Default: 6')
     cap_group = parser.add_mutually_exclusive_group()
     cap_group.add_argument(
-        '-c', '--capitalize', action='store_true',
+        '-c', '--caps', action='store_true',
         help='Capitalize words. This is the default.')
     cap_group.add_argument(
-        '--no-capitalize', action='store_false', dest='capitalize',
+        '--no-caps', action='store_false', dest='capitalize',
         help='Turn off capitalization.')
     parser.set_defaults(capitalize=True)
     args = parser.parse_args(args)
