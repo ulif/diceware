@@ -80,7 +80,7 @@ def insert_special_char(word, specials=SPECIAL_CHARS, rnd=None):
     return ''.join(char_list)
 
 
-def get_passphrase(wordnum=6, specialsnum=1, separator='', lang='en',
+def get_passphrase(wordnum=6, specialsnum=1, delimiter='', lang='en',
                    capitalized=True):
     """Get a diceware passphrase.
     """
@@ -89,7 +89,7 @@ def get_passphrase(wordnum=6, specialsnum=1, separator='', lang='en',
     words = [rnd.choice(word_list) for x in range(wordnum)]
     if capitalized:
         words = [x.capitalize() for x in words]
-    result = separator.join(words)
+    result = delimiter.join(words)
     for x in range(specialsnum):
         result = insert_special_char(result, rnd=rnd)
     return result
