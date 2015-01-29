@@ -61,6 +61,21 @@ def get_wordlist_path(lang):
     return os.path.abspath(os.path.join(SRC_DIR, basename.lower()))
 
 
+def insert_special_char(word, specials=SPECIAL_CHARS, rnd=None):
+    """Insert a char out of `specials` into `word`.
+
+    `rnd`, if passed in, will be used as a (pseudo) random number
+    generator. We use `.choice()` only.
+
+    Returns the modified word.
+    """
+    if rnd is None:
+        rnd = SystemRandom()
+    char_list = list(word)
+    char_list[rnd.choice(range(len(char_list)))] = rnd.choice(specials)
+    return ''.join(char_list)
+
+
 def get_passphrase(wordnum=6, specials=True, separator='', lang='en',
                    capitalized=True):
     """Get a diceware passphrase.
@@ -71,9 +86,8 @@ def get_passphrase(wordnum=6, specials=True, separator='', lang='en',
     if capitalized:
         words = [x.capitalize() for x in words]
     result = separator.join(words)
-    result = list(result)
-    result[rnd.choice(range(len(result)))] = rnd.choice(SPECIAL_CHARS)
-    result = ''.join(result)
+    if specials:
+        result = insert_special_char(result, rnd=rnd)
     return result
 
 

@@ -2,8 +2,8 @@ import os
 import pytest
 import sys
 from diceware.diceware import (
-    SRC_DIR, RE_LANG_CODE, get_wordlist, get_wordlist_path, get_passphrase,
-    handle_options, main,
+    SRC_DIR, RE_LANG_CODE, SPECIAL_CHARS, get_wordlist, get_wordlist_path,
+    insert_special_char, get_passphrase, handle_options, main,
     )
 
 
@@ -41,6 +41,18 @@ class Test_GetWordList(object):
         assert ['a'] == get_wordlist(in_file.strpath)
 
 
+class FakeRandom(object):
+    # a very, very bad random generator.
+    # Very handy for tests, though :-)
+
+    nums_to_draw = [0] * 100
+
+    def choice(self, elems):
+        num, self.nums_to_draw = self.nums_to_draw[0], self.nums_to_draw[1:]
+        result = elems[num]
+        return elems[num]
+
+
 class TestDicewareModule(object):
 
     def test_re_lang_code(self):
@@ -72,6 +84,32 @@ class TestDicewareModule(object):
         assert os.path.basename(get_wordlist_path('de')) == 'wordlist_de.txt'
         assert os.path.basename(get_wordlist_path('De')) == 'wordlist_de.txt'
         assert os.path.basename(get_wordlist_path('DE')) == 'wordlist_de.txt'
+
+    def test_insert_special_char(self):
+        # we can insert special chars in words.
+        fake_rnd = FakeRandom()
+        result1 = insert_special_char('foo', specials='bar', rnd=fake_rnd)
+        assert result1 == 'boo'
+        fake_rnd.nums_to_draw = [1, 1]
+        result2 = insert_special_char('foo', specials='bar', rnd=fake_rnd)
+        assert result2 == 'fao'
+        fake_rnd.nums_to_draw = [2, 2]
+        result3 = insert_special_char('foo', specials='bar', rnd=fake_rnd)
+        assert result3 == 'for'
+        fake_rnd.nums_to_draw = [0, 0]
+        result4 = insert_special_char('foo', rnd=fake_rnd)
+        assert result4 == '~oo'
+
+    def test_insert_special_char_defaults(self):
+        # defaults are respected
+        expected_matrix = []
+        for i in range(3):
+            for j in range(len(SPECIAL_CHARS)):
+                word = list('foo')
+                word[i] = SPECIAL_CHARS[j]
+                expected_matrix.append(''.join(word))
+        for x in range(100):
+            assert insert_special_char('foo') in expected_matrix
 
     def test_get_passphrase(self):
         # we can get passphrases
