@@ -128,7 +128,7 @@ Links
 -----
 
 - Diceware_ home page
-- Fork the source_ on github
+- `Fork me on github`_
 
 Wordlists:
 
@@ -148,4 +148,4 @@ Copyright by Arnold G. Reinhold. See file LICENSE for details.
 .. _pip: https://pip.pypa.io/en/latest/
 .. _`Diceware8k list`: http://world.std.com/~reinhold/diceware8k.txt
 .. _`Diceware`: http://diceware.com/
-.. _`source`: http://github.com/ulif/diceware/
+.. _`Fork me on github`: http://github.com/ulif/diceware/
