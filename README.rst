@@ -128,7 +128,7 @@ Links
 -----
 
 - Diceware_ home page
-- Source_ on github
+- Fork the source_ on github
 
 Wordlists:
 
@@ -145,13 +145,7 @@ The Copyright for the Diceware_ idea and the `Diceware8k list`_ are
 Copyright by Arnold G. Reinhold. See file LICENSE for details.
 
 
-
-.. raw:: html
-
-  <a href="https://github.com/ulif/diceware"><img style="position: absolute; top: 0; right: 0; border: 0;" alt="Fork me on GitHub" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
-
-
 .. _pip: https://pip.pypa.io/en/latest/
 .. _`Diceware8k list`: http://world.std.com/~reinhold/diceware8k.txt
 .. _`Diceware`: http://diceware.com/
-.. _`Source`: http://github.com/ulif/diceware/
+.. _`source`: http://github.com/ulif/diceware/
