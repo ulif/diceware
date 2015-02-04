@@ -1,6 +1,5 @@
 import argparse
 import os
-import pkg_resources
 import re
 import sys
 from random import SystemRandom
