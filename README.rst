@@ -136,6 +136,59 @@ The Python API of this package allows usage of other sources of
 randomness when generating passphrases.
 
 
+Developer Install
+-----------------
+
+Developers want to `fork me on github`_::
+
+  $ git clone https://github.com/ulif/diceware.git
+
+We recommend to create and activate a virtualenv_ first::
+
+  $ cd diceware/
+  $ virtualenv -p /usr/bin/python3.3 py33
+  $ source py33/bin/activate
+  (py33) $
+
+We support Python versions 2.6, 2.7, 3.2, 3.3, 3.4, pypy.
+
+Now you can create the devel environment::
+
+  (py33) $ python setup.py dev
+
+This will fetch test packages (py.test_). You should be able to run
+tests now::
+
+  (py33) $ py.test
+
+If you have also different Python versions installed you can use tox_
+for using them all for testing::
+
+  (py33) $ pip install tox   # only once
+  (py33) $ tox
+
+Should run tests in all supported Python versions.
+
+
+Documentation Install
+.....................
+
+The docs can be generated with Sphinx_. The needed packages are
+installed via::
+
+  (py33) $ python setup.py docs
+
+To create HTML you have to go to the ``docs/`` directory and use the
+prepared ``Makefile``::
+
+  (py33) $ cd docs/
+  (py33) $ make
+
+This should generate the docs in ``docs/_build/html/``.
+
+
+
+
 Credits
 -------
 
@@ -146,7 +199,7 @@ Links
 -----
 
 - The Diceware_ home page. Reading definitely recommended!
-- `Fork me on github`_
+- `fork me on github`_
 
 Wordlists:
 
@@ -166,5 +219,9 @@ Copyright by Arnold G. Reinhold. See file LICENSE for details.
 .. _pip: https://pip.pypa.io/en/latest/
 .. _`Diceware8k list`: http://world.std.com/~reinhold/diceware8k.txt
 .. _`Diceware`: http://diceware.com/
-.. _`Fork me on github`: http://github.com/ulif/diceware/
+.. _`fork me on github`: http://github.com/ulif/diceware/
 .. _`random.SystemRandom`: https://docs.python.org/3.4/library/random.html#random.SystemRandom
+.. _virtualenv: https://virtualenv.pypa.io/
+.. _py.test: https://pytest.org/
+.. _tox: https://tox.testrun.org/
+.. _Sphinx: https://sphinx-doc.org/
