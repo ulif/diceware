@@ -14,7 +14,7 @@ Arnold G. Reinhold on http://diceware.com . It generates passphrases
 by concatenating words randomly picked from wordlists. For instance::
 
   $ diceware
-  Art83LiarRivetBlytheIs>am
+  MyraPend93rdSixthEagleAid
 
 The passphrase contains by default six capitalized words with no space
 char or similar in-between and a single special char (the ``">"`` in the
@@ -55,23 +55,26 @@ With ``-n`` you can tell how many words are supposed to be picked for
 your new passphrase::
 
   $ diceware -n 1
-  A*ay
+  Thud
 
   $ diceware -n 2
-  FaheyFr?ed
+  KnitMargo
 
-The number of special chars put into the generated phrase can be
-determined with the ``-s`` option::
+You can `diceware` additionally let generate special chars to replace
+characters in the 'normal' passphrase.  The number of special chars
+generated can be determined with the ``-s`` option (*default is zero*)::
 
   $ diceware -s 2
-  LipidFool$kullRu6yI'mPack
+  Heroic%unkLon#DmLewJohns
 
-Here ``"$"`` and ``"'"`` are the special chars.
+Here ``"%"`` and ``"#"`` are the special chars.
 
-To switch special chars completely off, set ``-s`` to zero::
+Special chars are taken from the following list::
 
-  $ diceware -s 0
-  LazyGainMaimBlondDentUtmost
+  ~!#$%^&*()-=+[]\{}:;\"'<>?/0123456789
+
+Please note that several special chars might replace the same original
+char, resulting in a passphrase with less special chars than requested.
 
 By default the single phrase words are capitalized, i.e. the first
 char of each word is made uppercase. This does not neccessarily give
@@ -79,7 +82,7 @@ better security (1 bit at most), but it helps reading a phrase.
 
 You can nevertheless disable caps with the ``--no-caps`` option::
 
-  $ diceware --no-caps -s 0
+  $ diceware --no-caps
   oceanblendbaronferrylistenvalet
 
 This leads to lower-case passphrases, maybe easier to type on smart

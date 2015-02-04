@@ -32,7 +32,7 @@ def handle_options(args):
         '--no-caps', action='store_false', dest='capitalize',
         help='Turn off capitalization.')
     parser.add_argument(
-        '-s', '--specials', default=1, type=int, metavar='NUM',
+        '-s', '--specials', default=0, type=int, metavar='NUM',
         help="Insert NUM special chars into generated word.")
     parser.set_defaults(capitalize=True)
     args = parser.parse_args(args)
