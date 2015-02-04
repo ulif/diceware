@@ -1,7 +1,7 @@
 import os
 import pytest
 import sys
-from diceware.diceware import (
+from diceware import (
     SRC_DIR, RE_LANG_CODE, SPECIAL_CHARS, get_wordlist, get_wordlist_path,
     insert_special_char, get_passphrase, handle_options, main,
     )
@@ -33,7 +33,7 @@ class Test_GetWordList(object):
 
     def test_get_wordlist_en(self):
         # we can get a list of words out of english wordlist.
-        en_src = os.path.join(SRC_DIR, 'wordlist_en.txt')
+        en_src = os.path.join(SRC_DIR, 'wordlists', 'wordlist_en.txt')
         en_result = get_wordlist(en_src)
         assert en_result[0] == 'a'
         assert en_result[-1] == '@'

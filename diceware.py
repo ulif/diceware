@@ -62,7 +62,8 @@ def get_wordlist_path(lang):
     if not RE_LANG_CODE.match(lang):
         raise ValueError("Not a valid language code: %s" % lang)
     basename = 'wordlist_%s.txt' % lang
-    return os.path.abspath(os.path.join(SRC_DIR, basename.lower()))
+    return os.path.abspath(os.path.join(
+        SRC_DIR, 'wordlists', basename.lower()))
 
 
 def insert_special_char(word, specials=SPECIAL_CHARS, rnd=None):

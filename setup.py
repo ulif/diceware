@@ -40,7 +40,7 @@ setup(
     license="GPL 3.0",
     keywords="diceware password passphrase",
     url="https://github.com/ulif/diceware/",
-    packages=['diceware'],
+    packages=[],
     package_data={
         'diceware': ['*.txt', '*.asc'],
         },
@@ -76,7 +76,7 @@ setup(
     cmdclass={'test': PyTest},
     entry_points={
         'console_scripts': [
-            'diceware = diceware.diceware:main',
+            'diceware = diceware:main',
         ]
         }
 )
