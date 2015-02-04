@@ -42,10 +42,6 @@ setup(
     url="https://github.com/ulif/diceware/",
     py_modules=['diceware', ],
     packages=[],
-    data_files=[
-        ('.', ['README.rst', ]),
-        ('wordlists', ['wordlists/wordlist_en.txt', ]),
-        ],
     namespace_packages=[],
     long_description=read('README.rst'),
     classifiers=[
