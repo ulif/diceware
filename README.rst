@@ -16,9 +16,9 @@ by concatenating words randomly picked from wordlists. For instance::
   $ diceware
   MyraPend93rdSixthEagleAid
 
-The passphrase contains by default six capitalized words with no space
-char or similar in-between and a single special char (the ``">"`` in the
-example above).
+The passphrase contains by default six words (with first char
+capitalized) without any separator chars. Optionally you can let
+`diceware` insert special chars into the passphrase.
 
 .. contents::
 
