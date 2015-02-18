@@ -43,7 +43,7 @@ setup(
     py_modules=['diceware', ],
     packages=[],
     namespace_packages=[],
-    long_description=read('README.rst'),
+    long_description=read('README.rst') + '\n\n\n' + read('CHANGES.rst'),
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Environment :: Console",

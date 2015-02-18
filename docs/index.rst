@@ -6,6 +6,8 @@
 
 .. include:: ../README.rst
 
+.. include:: ../CHANGES.rst
+
 
 Indices and tables
 ==================
