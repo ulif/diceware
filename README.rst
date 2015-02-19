@@ -104,15 +104,16 @@ with the famous '936' proof_:
 
 .. image:: http://imgs.xkcd.com/comics/password_strength.png
    :align: center
+   :target: http://xkcd.com/936/
 
 .. _xkcd: http://xkcd.com/
 .. _proof: http://xkcd.com/936/
 
 The standard english wordlist of this `diceware` implementation
-contains 8192 == 2**13 different english words. It is a copy of the
+contains 8192 = 2**13 different english words. It is a copy of the
 `Diceware8k list`_ provided by Mr. Reinhold. Therefore, picking a random word
 from this list gives an entropy of 13 bits. Picking six words means an
-entropy of 6 x 13 == 73 bits.
+entropy of 6 x 13 = 73 bits.
 
 The special chars replacing chars of the originally created passphrase
 give some more entropy (the more chars you have, the more additional
