@@ -3,10 +3,15 @@ diceware
 
 Passphrases to remember...
 
-|build-status|_
 
-.. |build-status| image:: https://travis-ci.org/ulif/diceware.png?branch=master
-.. _build-status: https://travis-ci.org/ulif/diceware
+.. image:: https://travis-ci.org/ulif/diceware.png?branch=master
+     :target: https://travis-ci.org/ulif/diceware
+     :alt: Build Status
+
+
+.. image:: https://readthedocs.org/projects/diceware/badge/?version=latest
+     :target: https://diceware.readthedocs.org/en/latest/
+     :alt: Documentation Status
 
 
 `diceware` is a passphrase generator following the proposals of
