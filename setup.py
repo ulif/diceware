@@ -5,17 +5,25 @@ from setuptools.command.test import test as TestCommand
 
 tests_path = os.path.join(os.path.dirname(__file__), 'tests')
 
+
 class PyTest(TestCommand):
+    user_options = [('pytest-args=', 'a', "Arguments to pass to py.test"), ]
+
+    def initialize_options(self):
+        TestCommand.initialize_options(self)
+        self.pytest_args = []
+
     def finalize_options(self):
         TestCommand.finalize_options(self)
-        args = sys.argv[sys.argv.index('test')+1:]
-        self.test_args = args
+        self.test_args = []
         self.test_suite = True
+
     def run_tests(self):
         #import here, cause outside the eggs aren't loaded
         import pytest
-        errno = pytest.main(self.test_args)
+        errno = pytest.main(self.pytest_args)
         sys.exit(errno)
+
 
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
