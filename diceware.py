@@ -1,9 +1,11 @@
 import argparse
 import os
+import pkg_resources
 import re
 import sys
 from random import SystemRandom
 
+__version__ = pkg_resources.get_distribution('diceware').version
 
 #: The directory in which wordlists are stored
 SRC_DIR = os.path.dirname(__file__)
