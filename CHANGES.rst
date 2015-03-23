@@ -5,6 +5,7 @@ Changes
 ----------------
 
 - Minor documentation changes.
+- Updated copyright infos.
 
 
 0.1 (2015-02-18)
