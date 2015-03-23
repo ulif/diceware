@@ -38,7 +38,7 @@ def handle_options(args):
     parser.add_argument(
         'infile', nargs='?', metavar='INFILE', default=None,
         type=argparse.FileType('r'),
-        help="Input wordlist",
+        help="Input wordlist. `-' will read from stdin.",
         )
     parser.set_defaults(capitalize=True)
     args = parser.parse_args(args)

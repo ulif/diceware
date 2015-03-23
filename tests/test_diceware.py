@@ -144,7 +144,7 @@ class TestDicewareModule(object):
         # we can give an infile
         with open('mywords', 'w') as fd:
             fd.write('one\ntwo\n')
-        options = handle_options(['mywords',])
+        options = handle_options(['mywords', ])
         assert options.infile is not None
         assert options.infile.read() == 'one\ntwo\n'
 
@@ -171,7 +171,7 @@ class TestDicewareModule(object):
      'Create a passphrase\n'
      '\n'
      'positional arguments:\n'
-     '  INFILE                Input wordlist\n'
+     "  INFILE                Input wordlist. `-' will read from stdin.\n"
      '\n'
      'optional arguments:\n'
      '  -h, --help            show this help message and exit\n'
