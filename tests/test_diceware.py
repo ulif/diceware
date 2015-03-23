@@ -151,7 +151,7 @@ class TestDicewareModule(object):
     def test_main_help(self, capsys):
         # we can get help
         with pytest.raises(SystemExit) as exc_info:
-            main(['diceware', '--help'])
+            main(['--help'])
         assert exc_info.value.code == 0
         out, err = capsys.readouterr()
         out = out.replace(
