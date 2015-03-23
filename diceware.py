@@ -35,6 +35,11 @@ def handle_options(args):
     parser.add_argument(
         '-s', '--specials', default=0, type=int, metavar='NUM',
         help="Insert NUM special chars into generated word.")
+    parser.add_argument(
+        'infile', nargs='?', metavar='INFILE', default=None,
+        type=argparse.FileType('r'),
+        help="Input wordlist",
+        )
     parser.set_defaults(capitalize=True)
     args = parser.parse_args(args)
     return args

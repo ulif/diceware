@@ -138,6 +138,15 @@ class TestDicewareModule(object):
         assert options.num == 6
         assert options.capitalize is True
         assert options.specials == 0
+        assert options.infile is None
+
+    def test_handle_options_infile(self):
+        # we can give an infile
+        with open('mywords', 'w') as fd:
+            fd.write('one\ntwo\n')
+        options = handle_options(['mywords',])
+        assert options.infile is not None
+        assert options.infile.read() == 'one\ntwo\n'
 
     def test_main(self, capsys):
         # we can get a passphrase
@@ -157,9 +166,12 @@ class TestDicewareModule(object):
         out = out.replace(
             os.path.basename(sys.argv[0]), 'diceware')
         assert out == (
-     'usage: diceware [-h] [-n NUM] [-c | --no-caps] [-s NUM]\n'
+     'usage: diceware [-h] [-n NUM] [-c | --no-caps] [-s NUM] [INFILE]\n'
      '\n'
      'Create a passphrase\n'
+     '\n'
+     'positional arguments:\n'
+     '  INFILE                Input wordlist\n'
      '\n'
      'optional arguments:\n'
      '  -h, --help            show this help message and exit\n'
