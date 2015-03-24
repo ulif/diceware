@@ -44,9 +44,12 @@ Usage
 Once installed, use ``--help`` to list all available options::
 
   $ diceware --help
-  usage: diceware [-h] [-n NUM] [-c | --no-caps] [-s NUM]
+  usage: diceware [-h] [-n NUM] [-c | --no-caps] [-s NUM] [INFILE]
   
   Create a passphrase
+  
+  positional arguments:
+    INFILE                Input wordlist. `-' will read from stdin.
   
   optional arguments:
     -h, --help            show this help message and exit
@@ -92,6 +95,27 @@ You can nevertheless disable caps with the ``--no-caps`` option::
 
 This leads to lower-case passphrases, maybe easier to type on smart
 phones or similar.
+
+`diceware` comes with an English wordlist (the 'diceware8k' list)
+provided by Arnold G. Reinhold, which will be used by default and
+contains 8192 different words.
+
+If you do not like the wordlist provided, you can use your own one. Any
+`INFILE` provided will be parsed line by line and each line considered
+a possible word. For instance::
+
+  $ echo -e "hi\nhello\n" > mywordlist.txt
+  $ diceware mywordlist.txt
+  HelloHelloHiHiHiHello
+
+With filename ``-`` you can pipe in wordlists::
+
+  $ echo -e "hi\nhello\n" > mywordlist.txt
+  $ cat mywordlist.txt | diceware -
+  HiHiHelloHiHiHello
+
+In custom wordlists we take each line for a valid word and ignore
+empty lines (i.e. lines containing whitespace characters only).
 
 
 What is it good for?
