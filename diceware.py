@@ -45,7 +45,7 @@ def handle_options(args):
     return args
 
 
-def get_wordlist(path):
+def get_wordlist_from_path(path):
     """Parse file at `path` and build a word list of it.
 
     A wordlist is expected to contain lines of words. Each line a
@@ -54,9 +54,19 @@ def get_wordlist(path):
     """
     result = []
     with open(path, 'r') as fd:
-        result = [line.strip() for line in fd.readlines()
-                  if line.strip() != '']
+        result = get_wordlist_from_fd(fd)
     return result
+
+
+def get_wordlist_from_fd(fd):
+    """Parse file opened for reading in file descriptor `fd`.
+
+    A wordlist is expected to contain lines of words. Each line a
+    word. Empty lines are ignored. Returns a list of terms (lines)
+    found.
+    """
+    return [line.strip() for line in fd.readlines()
+            if line.strip() != '']
 
 
 def get_wordlist_path(lang):
@@ -88,7 +98,7 @@ def insert_special_char(word, specials=SPECIAL_CHARS, rnd=None):
 
 
 def get_passphrase(wordnum=6, specialsnum=1, delimiter='', lang='en',
-                   capitalized=True):
+                   capitalized=True, fd=None):
     """Get a diceware passphrase.
 
     The passphrase returned will contain `wordnum` words deliimted by
@@ -96,10 +106,16 @@ def get_passphrase(wordnum=6, specialsnum=1, delimiter='', lang='en',
 
     If `capitalized` is ``True``, all words will be capitalized.
 
+    If `fd`, a file descriptor, is given, it will be used instead of a
+    'built-in' wordlist (and `lang` will be ignored).
+
     The wordlist to pick words from is determined by `lang`,
     representing a language.
     """
-    word_list = get_wordlist(get_wordlist_path(lang))
+    if fd is not None:
+        word_list = get_wordlist_from_fd(fd)
+    else:
+        word_list = get_wordlist_from_path(get_wordlist_path(lang))
     rnd = SystemRandom()
     words = [rnd.choice(word_list) for x in range(wordnum)]
     if capitalized:
@@ -117,6 +133,7 @@ def main(args=1):
     print(get_passphrase(
         wordnum=options.num,
         specialsnum=options.specials,
-        capitalized=options.capitalize
+        capitalized=options.capitalize,
+        fd=options.infile
         )
     )
