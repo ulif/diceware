@@ -120,6 +120,13 @@ def get_passphrase(wordnum=6, specialsnum=1, delimiter='', lang='en',
 
 
 def main(args=None):
+    """Main programme.
+
+    Called when `diceware` script is called.
+
+    `args` is a list of command line arguments to process. If no such
+    args are given, we use `sys.argv`.
+    """
     if args is None:
         args = sys.argv[1:]
     options = handle_options(args)
