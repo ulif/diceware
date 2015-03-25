@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 import os
 import pytest
 import sys
@@ -217,7 +218,7 @@ class TestDicewareModule(object):
 
     def test_main_infile_stdin(self, argv_handler, capsys):
         # main() also accepts input from stdin
-        sys.stdin = StringIO(b"word1\n".decode("utf-8"))
+        sys.stdin = StringIO("word1\n")
         sys.argv = ['diceware', '-n', '2', '-']
         main()
         out, err = capsys.readouterr()
