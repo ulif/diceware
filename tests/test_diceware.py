@@ -1,6 +1,7 @@
 import os
 import pytest
 import sys
+from io import StringIO
 from diceware import (
     SRC_DIR, RE_LANG_CODE, SPECIAL_CHARS, get_wordlist,
     get_wordlist_path, insert_special_char, get_passphrase,
@@ -213,3 +214,11 @@ class TestDicewareModule(object):
         main(['-n', '1', 'mywordlist.txt', ])
         out, err = capsys.readouterr()
         assert out == 'Mysingleword\n'
+
+    def test_main_infile_stdin(self, argv_handler, capsys):
+        # main() also accepts input from stdin
+        sys.stdin = StringIO(b"word1\n".decode("utf-8"))
+        sys.argv = ['diceware', '-n', '2', '-']
+        main()
+        out, err = capsys.readouterr()
+        assert out == 'Word1Word1\n'
