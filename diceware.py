@@ -119,8 +119,8 @@ def get_passphrase(wordnum=6, specialsnum=1, delimiter='', lang='en',
     return result
 
 
-def main(args=1):
-    if args is 1:
+def main(args=None):
+    if args is None:
         args = sys.argv[1:]
     options = handle_options(args)
     print(get_passphrase(
