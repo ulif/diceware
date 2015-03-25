@@ -175,14 +175,13 @@ class TestDicewareModule(object):
         assert not ('\n' in out[:-1])  # we get one line
         assert len(out) > 5            # we get at least some chars
 
-    def test_main_help(self, capsys):
+    def test_main_help(self, argv_handler, capsys):
         # we can get help
+        sys.argv = ['diceware', '--help']
         with pytest.raises(SystemExit) as exc_info:
-            main(['--help'])
+            main()
         assert exc_info.value.code == 0
         out, err = capsys.readouterr()
-        out = out.replace(
-            os.path.basename(sys.argv[0]), 'diceware')
         assert out == (
      'usage: diceware [-h] [-n NUM] [-c | --no-caps] [-s NUM] [INFILE]\n'
      '\n'
