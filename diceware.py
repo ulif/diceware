@@ -49,14 +49,18 @@ def get_wordlist(file_descriptor):
     """Parse file in `file_descriptor` and build a word list of it.
 
     `file_descriptor` is expected to be a file descriptor, already
-    opened for reading.
+    opened for reading. The descriptor will be closed after
+    processing.
 
     A wordlist is expected to contain lines of words. Each line a
     word. Empty lines are ignored. Returns a list of terms (lines)
     found.
     """
-    return [line.strip() for line in file_descriptor.readlines()
-            if line.strip() != '']
+    result = [
+        line.strip() for line in file_descriptor.readlines()
+        if line.strip() != '']
+    file_descriptor.close()
+    return result
 
 
 def get_wordlist_path(lang):

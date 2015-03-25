@@ -57,6 +57,14 @@ class Test_GetWordList(object):
             result = get_wordlist(fd)
         assert ['a'] == result
 
+    def test_get_wordlist_closes_fd(self, tmpdir):
+        # we close passed-in file descriptors
+        in_file = tmpdir.join("somewordlist")
+        in_file.write("aaa\nbbb\n")
+        with open(in_file.strpath, 'r') as fd:
+            get_wordlist(fd)
+            assert fd.closed is True
+
 
 class TestDicewareModule(object):
 
