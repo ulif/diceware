@@ -45,27 +45,17 @@ def handle_options(args):
     return args
 
 
-def get_wordlist_from_path(path):
-    """Parse file at `path` and build a word list of it.
+def get_wordlist(file_descriptor):
+    """Parse file in `file_descriptor` and build a word list of it.
+
+    `file_descriptor` is expected to be a file descriptor, already
+    opened for reading.
 
     A wordlist is expected to contain lines of words. Each line a
     word. Empty lines are ignored. Returns a list of terms (lines)
     found.
     """
-    result = []
-    with open(path, 'r') as fd:
-        result = get_wordlist_from_fd(fd)
-    return result
-
-
-def get_wordlist_from_fd(fd):
-    """Parse file opened for reading in file descriptor `fd`.
-
-    A wordlist is expected to contain lines of words. Each line a
-    word. Empty lines are ignored. Returns a list of terms (lines)
-    found.
-    """
-    return [line.strip() for line in fd.readlines()
+    return [line.strip() for line in file_descriptor.readlines()
             if line.strip() != '']
 
 
@@ -112,10 +102,9 @@ def get_passphrase(wordnum=6, specialsnum=1, delimiter='', lang='en',
     The wordlist to pick words from is determined by `lang`,
     representing a language.
     """
-    if fd is not None:
-        word_list = get_wordlist_from_fd(fd)
-    else:
-        word_list = get_wordlist_from_path(get_wordlist_path(lang))
+    if fd is None:
+        fd = open(get_wordlist_path(lang), 'r')
+    word_list = get_wordlist(fd)
     rnd = SystemRandom()
     words = [rnd.choice(word_list) for x in range(wordnum)]
     if capitalized:

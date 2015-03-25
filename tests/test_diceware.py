@@ -2,9 +2,9 @@ import os
 import pytest
 import sys
 from diceware import (
-    SRC_DIR, RE_LANG_CODE, SPECIAL_CHARS, get_wordlist_from_path,
-    get_wordlist_from_fd, get_wordlist_path, insert_special_char,
-    get_passphrase, handle_options, main,
+    SRC_DIR, RE_LANG_CODE, SPECIAL_CHARS, get_wordlist,
+    get_wordlist_path, insert_special_char, get_passphrase,
+    handle_options, main,
     )
 
 
@@ -32,25 +32,30 @@ def argv_handler(request):
 
 class Test_GetWordList(object):
 
-    def test_get_wordlist_from_path_en(self):
+    def test_get_wordlist_en(self):
         # we can get a list of words out of english wordlist.
         en_src = os.path.join(SRC_DIR, 'wordlists', 'wordlist_en.txt')
-        en_result = get_wordlist_from_path(en_src)
+        with open(en_src, 'r') as fd:
+            en_result = get_wordlist(fd)
         assert en_result[0] == 'a'
         assert en_result[-1] == '@'
         assert len(en_result) == 8192
 
-    def test_get_wordlist_from_path_simple(self, tmpdir):
+    def test_get_wordlist_simple(self, tmpdir):
         # simple wordlists can be created
         in_file = tmpdir.mkdir("work").join("mywordlist")
         in_file.write("a\nb\n")
-        assert ['a', 'b'] == get_wordlist_from_path(in_file.strpath)
+        with open(in_file.strpath, 'r') as fd:
+            result = get_wordlist(fd)
+        assert ['a', 'b'] == result
 
-    def test_get_wordlist_from_path_ignore_empty_lines(self, tmpdir):
+    def test_get_wordlist_ignore_empty_lines(self, tmpdir):
         # we ignore empty lines in wordlists
         in_file = tmpdir.mkdir("work").join("mywordlist")
         in_file.write("\n\na\n\n")
-        assert ['a'] == get_wordlist_from_path(in_file.strpath)
+        with open(in_file.strpath, 'r') as fd:
+            result = get_wordlist(fd)
+        assert ['a'] == result
 
 
 class TestDicewareModule(object):
