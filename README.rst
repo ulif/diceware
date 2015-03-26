@@ -3,16 +3,27 @@ diceware
 
 Passphrases to remember...
 
+|bdg-build|  | `documentation <https://diceware.readthedocs.org/>`_ | `sources <https://github.com/ulif/diceware>`_ | `issues <https://github.com/ulif/diceware/issues>`_
 
-.. image:: https://travis-ci.org/ulif/diceware.png?branch=master
-     :target: https://travis-ci.org/ulif/diceware
-     :alt: Build Status
+.. |bdg-build| image:: https://travis-ci.org/ulif/diceware.png?branch=master
+    :target: https://travis-ci.org/ulif/diceware
+    :alt: Build Status
 
+.. |bdg-last-release|  image:: https://pypip.in/version/diceware/badge.svg
+    :target: https://pypi.python.org/pypi/diceware/
+    :alt: Latest Release
 
-.. image:: https://readthedocs.org/projects/diceware/badge/?version=latest
+.. |bdg-versions| image:: https://pypip.in/py_versions/diceware/badge.svg
+    :target: https://pypi.python.org/pypi/diceware/
+    :alt: Supported Python Versions
+
+.. |bdg-license| image:: https://pypip.in/license/diceware/badge.svg
+    :target: https://pypi.python.org/pypi/diceware/
+    :alt: License
+
+.. |doc-status| image:: https://readthedocs.org/projects/diceware/badge/?version=latest
      :target: https://diceware.readthedocs.org/en/latest/
      :alt: Documentation Status
-
 
 `diceware` is a passphrase generator following the proposals of
 Arnold G. Reinhold on http://diceware.com . It generates passphrases
