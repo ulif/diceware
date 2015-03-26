@@ -158,8 +158,9 @@ class TestDicewareModule(object):
         assert options.specials == 0
         assert options.infile is None
 
-    def test_handle_options_infile(self):
+    def test_handle_options_infile(self, tmpdir):
         # we can give an infile
+        tmpdir.chdir()
         with open('mywords', 'w') as fd:
             fd.write('one\ntwo\n')
         options = handle_options(['mywords', ])
