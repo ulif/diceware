@@ -183,22 +183,11 @@ class TestDicewareModule(object):
             main()
         assert exc_info.value.code == 0
         out, err = capsys.readouterr()
-        assert out == (
-     'usage: diceware [-h] [-n NUM] [-c | --no-caps] [-s NUM] [INFILE]\n'
-     '\n'
-     'Create a passphrase\n'
-     '\n'
-     'positional arguments:\n'
-     "  INFILE                Input wordlist. `-' will read from stdin.\n"
-     '\n'
-     'optional arguments:\n'
-     '  -h, --help            show this help message and exit\n'
-     '  -n NUM, --num NUM     number of words to concatenate. Default: 6\n'
-     '  -c, --caps            Capitalize words. This is the default.\n'
-     '  --no-caps             Turn off capitalization.\n'
-     '  -s NUM, --specials NUM\n'
-     '                        Insert NUM special chars into generated word.\n'
-            )
+        expected_path = os.path.join(
+            os.path.dirname(__file__), 'exp_help_output.txt')
+        with open(expected_path, 'r') as fd:
+            expected_output = fd.read()
+        assert out == expected_output
 
     def test_main_argv(self, argv_handler):
         # main() handles sys.argv if nothing is provided
