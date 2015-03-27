@@ -6,7 +6,7 @@ from io import StringIO
 from diceware import (
     SRC_DIR, RE_LANG_CODE, SPECIAL_CHARS, get_wordlist,
     get_wordlist_path, insert_special_char, get_passphrase,
-    handle_options, main,
+    handle_options, main, __version__,
     )
 
 
@@ -194,6 +194,15 @@ class TestDicewareModule(object):
         with open(expected_path, 'r') as fd:
             expected_output = fd.read()
         assert out == expected_output
+
+    def test_main_version(self, argv_handler, capsys):
+        # we can get version infos.
+        sys.argv = ['diceware', '--version']
+        with pytest.raises(SystemExit) as exc_info:
+            main()
+        assert exc_info.value.code == 0
+        out, err = capsys.readouterr()
+        assert __version__ in out
 
     def test_main_argv(self, argv_handler):
         # main() handles sys.argv if nothing is provided
