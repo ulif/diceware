@@ -40,6 +40,10 @@ def handle_options(args):
         type=argparse.FileType('r'),
         help="Input wordlist. `-' will read from stdin.",
         )
+    parser.add_argument(
+        '--version', action='store_true',
+        help='output version information and exit.',
+        )
     parser.set_defaults(capitalize=True)
     args = parser.parse_args(args)
     return args

@@ -157,6 +157,7 @@ class TestDicewareModule(object):
         assert options.capitalize is True
         assert options.specials == 0
         assert options.infile is None
+        assert options.version is False
 
     def test_handle_options_infile(self, tmpdir):
         # we can give an infile
@@ -166,6 +167,11 @@ class TestDicewareModule(object):
         options = handle_options(['mywords', ])
         assert options.infile is not None
         assert options.infile.read() == 'one\ntwo\n'
+
+    def test_handle_options_version(self):
+        # we can ask for version infos
+        options = handle_options(['--version', ])
+        assert options.version is True
 
     def test_main(self, capsys):
         # we can get a passphrase
