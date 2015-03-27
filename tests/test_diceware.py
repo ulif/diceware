@@ -6,7 +6,7 @@ from io import StringIO
 from diceware import (
     SRC_DIR, RE_LANG_CODE, SPECIAL_CHARS, get_wordlist,
     get_wordlist_path, insert_special_char, get_passphrase,
-    handle_options, main, __version__,
+    handle_options, main, __version__, print_version,
     )
 
 
@@ -143,6 +143,13 @@ class TestDicewareModule(object):
         # we can turn capitals off
         phrase = get_passphrase(capitalized=False)
         assert phrase.lower() == phrase
+
+    def test_print_version(self, capsys):
+        # we can print version infos
+        print_version()
+        out, err = capsys.readouterr()
+        assert err == ''
+        assert __version__ in out
 
     def test_handle_options(self):
         # we can get help
