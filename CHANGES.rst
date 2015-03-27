@@ -4,7 +4,7 @@ Changes
 0.3 (unreleased)
 ----------------
 
-- No changes yet.
+- Add --version option.
 
 
 0.2 (2015-03-27)
