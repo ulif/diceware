@@ -1,7 +1,7 @@
 Changes
 =======
 
-0.2 (unreleased)
+0.2 (2015-03-27)
 ----------------
 
 - Minor documentation changes.
