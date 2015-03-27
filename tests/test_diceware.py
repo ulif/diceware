@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+import datetime
 import os
 import pytest
 import sys
@@ -150,6 +151,13 @@ class TestDicewareModule(object):
         out, err = capsys.readouterr()
         assert err == ''
         assert __version__ in out
+
+    def test_print_version_current_year(self, capsys):
+        # in version infos we display the current year
+        print_version()
+        expected = '(C) %s' % (datetime.datetime.now().year)
+        out, err = capsys.readouterr()
+        assert expected in out
 
     def test_handle_options(self):
         # we can get help
