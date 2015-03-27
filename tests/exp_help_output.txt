@@ -1,0 +1,14 @@
+usage: diceware [-h] [-n NUM] [-c | --no-caps] [-s NUM] [INFILE]
+
+Create a passphrase
+
+positional arguments:
+  INFILE                Input wordlist. `-' will read from stdin.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -n NUM, --num NUM     number of words to concatenate. Default: 6
+  -c, --caps            Capitalize words. This is the default.
+  --no-caps             Turn off capitalization.
+  -s NUM, --specials NUM
+                        Insert NUM special chars into generated word.
