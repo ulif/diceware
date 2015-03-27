@@ -164,6 +164,9 @@ def main(args=None):
     if args is None:
         args = sys.argv[1:]
     options = handle_options(args)
+    if options.version:
+        print_version()
+        sys.exit(0)
     print(get_passphrase(
         wordnum=options.num,
         specialsnum=options.specials,
