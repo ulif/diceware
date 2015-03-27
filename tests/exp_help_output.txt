@@ -1,4 +1,4 @@
-usage: diceware [-h] [-n NUM] [-c | --no-caps] [-s NUM] [INFILE]
+usage: diceware [-h] [-n NUM] [-c | --no-caps] [-s NUM] [--version] [INFILE]
 
 Create a passphrase
 
@@ -12,3 +12,4 @@ optional arguments:
   --no-caps             Turn off capitalization.
   -s NUM, --specials NUM
                         Insert NUM special chars into generated word.
+  --version             output version information and exit.
