@@ -122,7 +122,7 @@ def get_wordlist_path(lang):
         raise ValueError("Not a valid language code: %s" % lang)
     basename = 'wordlist_%s.txt' % lang
     return os.path.abspath(os.path.join(
-        SRC_DIR, 'wordlists', basename.lower()))
+        SRC_DIR, 'diceware-wordlists', basename.lower()))
 
 
 def insert_special_char(word, specials=SPECIAL_CHARS, rnd=None):

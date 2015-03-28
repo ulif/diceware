@@ -5,6 +5,25 @@ from setuptools.command.test import test as TestCommand
 
 tests_path = os.path.join(os.path.dirname(__file__), 'tests')
 
+# support dynamic path for where modules are installed on the system.
+# get version of python for use in module path
+python_version = 'python{}.{}'.format(sys.version_info.major,
+        sys.version_info.minor)
+
+# concatenate path for storing wordlist files in separate directory
+# `diceware` does not have its own directory namespace, so 
+# create a separate dir called 'diceware-wordlists' to avoid
+# clobbering namespace for another (hypothetical) module called 'wordlists'
+wordlists_path_site = os.path.join('lib',
+        python_version, 'site-packages', 'diceware-wordlists'
+        )
+# under Ubuntu, `sudo pip install` targets dist-packages,
+# rather than site-packages, so make sure files are available there.
+# `pip uninstall diceware` will remove wordlist files from both locations.
+wordlists_path_dist = os.path.join('lib',
+        python_version, 'dist-packages', 'diceware-wordlists'
+        )
+
 
 class PyTest(TestCommand):
     user_options = [('pytest-args=', 'a', "Arguments to pass to py.test"), ]
@@ -86,6 +105,7 @@ setup(
         ]
         },
     data_files=[
-        ('wordlists', ['wordlists/wordlist_en.txt']),
+        (wordlists_path_site, ['diceware-wordlists/wordlist_en.txt']),
+        (wordlists_path_dist, ['diceware-wordlists/wordlist_en.txt']),
         ],
 )
