@@ -181,7 +181,7 @@ def main(args=None):
     options = handle_options(args)
     if options.version:
         print_version()
-        sys.exit(0)
+        raise SystemExit(0)
     print(get_passphrase(
         wordnum=options.num,
         specialsnum=options.specials,

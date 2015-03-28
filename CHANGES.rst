@@ -1,9 +1,18 @@
 Changes
 =======
 
-0.3 (unreleased)
+0.4 (unreleased)
 ----------------
 
+- Use readthedocs theme in docs.
+
+
+0.3 (2015-03-28)
+----------------
+
+- Fix `bug #1 Wordlists aren't included during installation
+  <https://github.com/ulif/diceware/issues/1>`_ . Thanks to `conorsch
+  <https://github.com/conorsch>`_
 - Add --version option.
 
 
