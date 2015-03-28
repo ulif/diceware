@@ -1,7 +1,7 @@
 Changes
 =======
 
-0.3 (unreleased)
+0.3 (2015-03-28)
 ----------------
 
 - Fix `bug #1 Wordlists aren't included during installation
