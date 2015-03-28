@@ -239,6 +239,11 @@ Credits
 Arnold G. Reinhold deserves all merits for the working parts of
 `Diceware`_. The non-working parts are certainly my fault.
 
+People that helped spotting bugs, providing solutions, etc.:
+
+ - `Conor Schaefer (conorsch) <https://github.com/conorsch>`_
+
+
 Links
 -----
 
