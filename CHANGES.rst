@@ -4,6 +4,9 @@ Changes
 0.3 (unreleased)
 ----------------
 
+- Fix `bug #1 Wordlists aren't included during installation
+  <https://github.com/ulif/diceware/issues/1>`_ . Thanks to `conorsch
+  <https://github.com/conorsch>`_
 - Add --version option.
 
 
