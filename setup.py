@@ -12,10 +12,15 @@ python_version = 'python{}.{}'.format(sys.version_info.major,
 # `diceware` does not have its own directory namespace, so 
 # create a separate dir called 'diceware-wordlists' to avoid
 # clobbering namespace for another module called 'wordlists'
-wordlists_path = os.path.join(sys.prefix, 'local', 'lib',
+wordlists_path_site = os.path.join('lib',
+        python_version, 'site-packages', 'diceware-wordlists'
+        )
+# under Ubuntu, `sudo pip install` targets dist-packages,
+# rather than site-packages, so make sure files are available there.
+# `pip uninstall diceware` will remove wordlist files from both locations.
+wordlists_path_dist = os.path.join('lib',
         python_version, 'dist-packages', 'diceware-wordlists'
         )
-
 
 class PyTest(TestCommand):
     user_options = [('pytest-args=', 'a', "Arguments to pass to py.test"), ]
@@ -97,6 +102,7 @@ setup(
         ]
         },
     data_files=[
-        (wordlists_path, ['wordlists/wordlist_en.txt']),
+        (wordlists_path_site, ['diceware-wordlists/wordlist_en.txt']),
+        (wordlists_path_dist, ['diceware-wordlists/wordlist_en.txt']),
         ],
 )
