@@ -84,5 +84,8 @@ setup(
         'console_scripts': [
             'diceware = diceware:main',
         ]
-        }
+        },
+    data_files=[
+        ('wordlists', ['wordlists/wordlist_en.txt']),
+        ],
 )
