@@ -3,7 +3,6 @@ python:
   - "2.7"
   - "3.3"
 before_install:
-  - sudo apt-get update -qq
   # Workaround for a permissions issue with Travis virtual machine images
   # that breaks Python's multiprocessing:
   # https://github.com/travis-ci/travis-cookbooks/issues/155
