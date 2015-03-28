@@ -4,7 +4,7 @@ Changes
 0.4 (unreleased)
 ----------------
 
-- No changes yet.
+- Use readthedocs theme in docs.
 
 
 0.3 (2015-03-28)
