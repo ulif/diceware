@@ -48,8 +48,8 @@ setup(
     license="GPL 3.0",
     keywords="diceware password passphrase",
     url="https://github.com/ulif/diceware/",
-    py_modules=['diceware', ],
-    packages=[],
+    py_modules=[],
+    packages=['diceware', ],
     namespace_packages=[],
     long_description=read('README.rst') + '\n\n\n' + read('CHANGES.rst'),
     classifiers=[
@@ -85,7 +85,4 @@ setup(
             'diceware = diceware:main',
         ]
         },
-    data_files=[
-        ('wordlists', ['wordlists/wordlist_en.txt']),
-        ],
 )

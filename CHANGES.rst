@@ -4,6 +4,13 @@ Changes
 0.4 (unreleased)
 ----------------
 
+- Turned former `diceware` module into a Python package. This is to
+  fix `bug #1 Wordlists aren't included during installation
+  <https://github.com/ulif/diceware/issues/1>`_, this time really.
+  Wordlists will from now on be stored inside the `diceware` package.
+  Again many thanks to `conorsch <https://github.com/conorsch>`_ who
+  digged deep into the matter and also came up with a very considerable
+  solution.
 - Use readthedocs theme in docs.
 
 
