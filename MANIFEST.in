@@ -1,2 +1,2 @@
-recursive-include wordlists *.txt
+recursive-include diceware-wordlists *.txt
 include README.rst CHANGES.rst LICENSE
