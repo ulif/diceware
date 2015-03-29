@@ -1,8 +1,8 @@
 Changes
 =======
 
-0.4 (unreleased)
-----------------
+0.3.1 (2015-03-29)
+------------------
 
 - Turned former `diceware` module into a Python package. This is to
   fix `bug #1 Wordlists aren't included during installation
