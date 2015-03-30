@@ -14,5 +14,3 @@ install:
 # command to run tests
 script:
   - python setup.py test
-  # simply running the `diceware` cmd will ensure no errors
-  - diceware
