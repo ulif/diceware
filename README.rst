@@ -254,6 +254,9 @@ Arnold G. Reinhold deserves all merits for the working parts of
 People that helped spotting bugs, providing solutions, etc.:
 
  - `Conor Schaefer (conorsch) <https://github.com/conorsch>`_
+ - Rodolfo Gouveia suggested to activate the ``--delimiter`` option.
+
+Many thanks to all of them!
 
 
 Links
