@@ -1,4 +1,6 @@
-usage: diceware [-h] [-n NUM] [-c | --no-caps] [-s NUM] [--version] [INFILE]
+usage: diceware [-h] [-n NUM] [-c | --no-caps] [-s NUM] [-d DELIMITER]
+                [--version]
+                [INFILE]
 
 Create a passphrase
 
@@ -12,4 +14,6 @@ optional arguments:
   --no-caps             Turn off capitalization.
   -s NUM, --specials NUM
                         Insert NUM special chars into generated word.
+  -d DELIMITER, --delimiter DELIMITER
+                        Separate words by DELIMITER. Empty string by default.
   --version             output version information and exit.

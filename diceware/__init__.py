@@ -81,6 +81,9 @@ def handle_options(args):
         '-s', '--specials', default=0, type=int, metavar='NUM',
         help="Insert NUM special chars into generated word.")
     parser.add_argument(
+        '-d', '--delimiter', default='',
+        help="Separate words by DELIMITER. Empty string by default.")
+    parser.add_argument(
         'infile', nargs='?', metavar='INFILE', default=None,
         type=argparse.FileType('r'),
         help="Input wordlist. `-' will read from stdin.",
