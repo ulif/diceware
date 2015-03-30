@@ -4,7 +4,7 @@ Changes
 0.4 (unreleased)
 ----------------
 
-- No changes yet.
+- Add --delimiter option (thanks to Rodolfo Gouveia).
 
 
 0.3.1 (2015-03-29)
