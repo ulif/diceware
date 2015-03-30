@@ -173,6 +173,7 @@ class TestDicewareModule(object):
         assert options.specials == 0
         assert options.infile is None
         assert options.version is False
+        assert options.delimiter == ""
 
     def test_handle_options_infile(self, tmpdir):
         # we can give an infile
@@ -187,6 +188,15 @@ class TestDicewareModule(object):
         # we can ask for version infos
         options = handle_options(['--version', ])
         assert options.version is True
+
+    def test_handle_options_delimiter(self):
+        # we can set delimiter
+        options = handle_options(['-d', ' '])
+        assert options.delimiter == ' '
+        options = handle_options(['--delimiter', ' '])
+        assert options.delimiter == ' '
+        options = handle_options(['-d', 'WOW'])
+        assert options.delimiter == 'WOW'
 
     def test_main(self, capsys):
         # we can get a passphrase
