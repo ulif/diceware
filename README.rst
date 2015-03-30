@@ -55,8 +55,6 @@ Usage
 Once installed, use ``--help`` to list all available options::
 
   $ diceware --help
-  usage: diceware [-h] [-n NUM] [-c | --no-caps] [-s NUM] [INFILE]
-  
   Create a passphrase
   
   positional arguments:
@@ -69,6 +67,10 @@ Once installed, use ``--help`` to list all available options::
     --no-caps             Turn off capitalization.
     -s NUM, --specials NUM
                           Insert NUM special chars into generated word.
+    -d DELIMITER, --delimiter DELIMITER
+                          Separate words by DELIMITER. Empty string by default.
+    --version             output version information and exit.
+
 
 With ``-n`` you can tell how many words are supposed to be picked for
 your new passphrase::
@@ -94,6 +96,16 @@ Special chars are taken from the following list::
 
 Please note that several special chars might replace the same original
 char, resulting in a passphrase with less special chars than requested.
+
+With ``-d`` you can advise `diceware` to put a delimiter string
+between the words generated::
+
+  $ diceware -d "_"
+  Wavy_Baden_400_Whelp_Quest_Macon
+
+By default we use the empty string as delimiter, which is good for
+copying via double click on Linux systems. But other delimiters might
+make your passphrases more readable.
 
 By default the single phrase words are capitalized, i.e. the first
 char of each word is made uppercase. This does not neccessarily give
