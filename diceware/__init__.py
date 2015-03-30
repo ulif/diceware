@@ -188,7 +188,8 @@ def main(args=None):
     print(get_passphrase(
         wordnum=options.num,
         specialsnum=options.specials,
+        delimiter=options.delimiter,
         capitalized=options.capitalize,
-        fd=options.infile
+        fd=options.infile,
         )
     )

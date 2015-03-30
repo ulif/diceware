@@ -145,6 +145,11 @@ class TestDicewareModule(object):
         phrase = get_passphrase(capitalized=False)
         assert phrase.lower() == phrase
 
+    def test_get_passphrase_delimiters(self):
+        # we can set separators
+        phrase = get_passphrase(delimiter=" ")
+        assert " " in phrase
+
     def test_print_version(self, capsys):
         # we can print version infos
         print_version()
@@ -252,3 +257,12 @@ class TestDicewareModule(object):
         main()
         out, err = capsys.readouterr()
         assert out == 'Word1Word1\n'
+
+    def test_main_delimiters(self, argv_handler, capsys):
+        # delimiters are respected on calls to main
+        sys.stdin = StringIO("word1\n")
+        sys.argv = ['diceware', '-n', '2', '-d', 'DELIM', '-']
+        main()
+        out, err = capsys.readouterr()
+        assert out == 'Word1DELIMWord1\n'
+
