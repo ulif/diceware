@@ -1,7 +1,7 @@
 Changes
 =======
 
-0.4 (unreleased)
+0.4 (2015-03-30)
 ----------------
 
 - Add --delimiter option (thanks to Rodolfo Gouveia).
