@@ -265,4 +265,3 @@ class TestDicewareModule(object):
         main()
         out, err = capsys.readouterr()
         assert out == 'Word1DELIMWord1\n'
-
