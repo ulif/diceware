@@ -23,7 +23,8 @@ from random import SystemRandom
 __version__ = pkg_resources.get_distribution('diceware').version
 
 #: The directory in which wordlists are stored
-SRC_DIR = os.path.dirname(__file__)
+SRC_DIR = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), 'wordlists'))
 
 #: A regular expression matching 2 consecutive ASCII chars. We
 #: consider this to represent some language/country code.
@@ -124,8 +125,7 @@ def get_wordlist_path(lang):
     if not RE_LANG_CODE.match(lang):
         raise ValueError("Not a valid language code: %s" % lang)
     basename = 'wordlist_%s.txt' % lang
-    return os.path.abspath(os.path.join(
-        SRC_DIR, 'wordlists', basename.lower()))
+    return os.path.join(SRC_DIR, basename.lower())
 
 
 def insert_special_char(word, specials=SPECIAL_CHARS, rnd=None):

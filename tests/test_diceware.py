@@ -39,7 +39,7 @@ class Test_GetWordList(object):
 
     def test_get_wordlist_en(self):
         # we can get a list of words out of english wordlist.
-        en_src = os.path.join(SRC_DIR, 'wordlists', 'wordlist_en.txt')
+        en_src = os.path.join(SRC_DIR, 'wordlist_en.txt')
         with open(en_src, 'r') as fd:
             en_result = get_wordlist(fd)
         assert en_result[0] == 'a'
