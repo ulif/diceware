@@ -4,7 +4,7 @@ Changes
 0.4.1 (unreleased)
 ------------------
 
-- No changes yet.
+- Use also flake8 with tox.
 
 
 0.4 (2015-03-30)
