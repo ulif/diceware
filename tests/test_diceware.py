@@ -5,7 +5,7 @@ import pytest
 import sys
 from io import StringIO
 from diceware import (
-    SRC_DIR, RE_LANG_CODE, SPECIAL_CHARS, get_wordlist,
+    WORDLISTS_DIR, RE_LANG_CODE, SPECIAL_CHARS, get_wordlist,
     get_wordlist_path, insert_special_char, get_passphrase,
     handle_options, main, __version__, print_version,
     )
@@ -39,7 +39,7 @@ class Test_GetWordList(object):
 
     def test_get_wordlist_en(self):
         # we can get a list of words out of english wordlist.
-        en_src = os.path.join(SRC_DIR, 'wordlist_en.txt')
+        en_src = os.path.join(WORDLISTS_DIR, 'wordlist_en.txt')
         with open(en_src, 'r') as fd:
             en_result = get_wordlist(fd)
         assert en_result[0] == 'a'
