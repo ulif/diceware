@@ -4,6 +4,7 @@ Changes
 0.4.1 (unreleased)
 ------------------
 
+- Rename `SRC_DIR` to `WORDLISTS_DIR` (reflecting what it stands for).
 - Use also flake8 with tox.
 
 
