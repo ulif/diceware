@@ -33,7 +33,7 @@ WORDLISTS_DIR = os.path.abspath(
 RE_LANG_CODE = re.compile('^[a-zA-Z]{2}$')
 
 #: Special chars inserted on demand
-SPECIAL_CHARS = r"~!#$%^&*()-=+[]\{}:;\"'<>?/0123456789"
+SPECIAL_CHARS = r"~!#$%^&*()-=+[]\{}:;" + r'"' + r"'<>?/0123456789"
 
 
 GPL_TEXT = (
