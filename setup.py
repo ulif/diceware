@@ -19,7 +19,7 @@ class PyTest(TestCommand):
         self.test_suite = True
 
     def run_tests(self):
-        #import here, cause outside the eggs aren't loaded
+        # import here, cause outside the eggs aren't loaded
         import pytest
         errno = pytest.main(self.pytest_args)
         sys.exit(errno)
@@ -59,7 +59,9 @@ setup(
         "Intended Audience :: System Administrators",
         "Topic :: Utilities",
         "Topic :: Security :: Cryptography",
-        "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+        (
+            "License :: OSI Approved :: "
+            "GNU General Public License v3 or later (GPLv3+)"),
         "Operating System :: POSIX :: Linux",
         "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 2.6",
