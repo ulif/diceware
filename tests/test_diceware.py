@@ -129,6 +129,10 @@ class TestDicewareModule(object):
         for x in range(100):
             assert insert_special_char('foo') in expected_matrix
 
+    def test_special_chars_do_not_quote(self):
+        # backslashes in SPECIAL_CHAR do not hide away chars
+        assert len(SPECIAL_CHARS) == 36
+
     def test_get_passphrase(self):
         # we can get passphrases
         r1 = get_passphrase()
