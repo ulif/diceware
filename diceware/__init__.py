@@ -13,6 +13,8 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+"""diceware -- rememberable passphrases
+"""
 import argparse
 import os
 import pkg_resources
@@ -31,7 +33,7 @@ WORDLISTS_DIR = os.path.abspath(
 RE_LANG_CODE = re.compile('^[a-zA-Z]{2}$')
 
 #: Special chars inserted on demand
-SPECIAL_CHARS = "~!#$%^&*()-=+[]\{}:;\"'<>?/0123456789"
+SPECIAL_CHARS = r"~!#$%^&*()-=+[]\{}:;\"'<>?/0123456789"
 
 
 GPL_TEXT = (
@@ -166,7 +168,7 @@ def get_passphrase(wordnum=6, specialsnum=1, delimiter='', lang='en',
     if capitalized:
         words = [x.capitalize() for x in words]
     result = delimiter.join(words)
-    for x in range(specialsnum):
+    for _ in range(specialsnum):
         result = insert_special_char(result, rnd=rnd)
     return result
 
@@ -185,11 +187,12 @@ def main(args=None):
     if options.version:
         print_version()
         raise SystemExit(0)
-    print(get_passphrase(
-        wordnum=options.num,
-        specialsnum=options.specials,
-        delimiter=options.delimiter,
-        capitalized=options.capitalize,
-        fd=options.infile,
+    print(
+        get_passphrase(
+            wordnum=options.num,
+            specialsnum=options.specials,
+            delimiter=options.delimiter,
+            capitalized=options.capitalize,
+            fd=options.infile,
         )
     )
