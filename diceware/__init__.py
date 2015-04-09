@@ -146,7 +146,7 @@ def insert_special_char(word, specials=SPECIAL_CHARS, rnd=None):
 
 
 def get_passphrase(wordnum=6, specialsnum=1, delimiter='', lang='en',
-                   capitalized=True, fd=None):
+                   capitalized=True, wordlist_fd=None):
     """Get a diceware passphrase.
 
     The passphrase returned will contain `wordnum` words deliimted by
@@ -154,15 +154,17 @@ def get_passphrase(wordnum=6, specialsnum=1, delimiter='', lang='en',
 
     If `capitalized` is ``True``, all words will be capitalized.
 
-    If `fd`, a file descriptor, is given, it will be used instead of a
-    'built-in' wordlist (and `lang` will be ignored).
+    If `wordlist_fd`, a file descriptor, is given, it will be used
+    instead of a 'built-in' wordlist (and `lang` will be
+    ignored). `wordlist_fd` must be open for reading.
 
     The wordlist to pick words from is determined by `lang`,
-    representing a language.
+    representing a language (unless `wordlist_fd` is given).
+
     """
-    if fd is None:
-        fd = open(get_wordlist_path(lang), 'r')
-    word_list = get_wordlist(fd)
+    if wordlist_fd is None:
+        wordlist_fd = open(get_wordlist_path(lang), 'r')
+    word_list = get_wordlist(wordlist_fd)
     rnd = SystemRandom()
     words = [rnd.choice(word_list) for x in range(wordnum)]
     if capitalized:
@@ -193,6 +195,6 @@ def main(args=None):
             specialsnum=options.specials,
             delimiter=options.delimiter,
             capitalized=options.capitalize,
-            fd=options.infile,
+            wordlist_fd=options.infile,
         )
     )
