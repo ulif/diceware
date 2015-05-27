@@ -1,4 +1,4 @@
-usage: diceware [-h] [-n NUM] [-c | --no-caps] [-s NUM] [-d DELIMITER]
+usage: diceware [-h] [-n NUM] [-c | --no-caps] [-s NUM] [-d DELIMITER] [-i]
                 [--version]
                 [INFILE]
 
@@ -16,4 +16,7 @@ optional arguments:
                         Insert NUM special chars into generated word.
   -d DELIMITER, --delimiter DELIMITER
                         Separate words by DELIMITER. Empty string by default.
+  -i, --input-dice-results
+                        Input dice results instead of choosing randomly
+                        (ignore "-n").
   --version             output version information and exit.
