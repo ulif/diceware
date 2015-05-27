@@ -87,6 +87,9 @@ def handle_options(args):
         '-d', '--delimiter', default='',
         help="Separate words by DELIMITER. Empty string by default.")
     parser.add_argument(
+        '-i', '--input-dice-results', action='store_true',
+        help="Input dice results instead of choosing randomly (ignore \"-n\").")
+    parser.add_argument(
         'infile', nargs='?', metavar='INFILE', default=None,
         type=argparse.FileType('r'),
         help="Input wordlist. `-' will read from stdin.",
@@ -145,8 +148,55 @@ def insert_special_char(word, specials=SPECIAL_CHARS, rnd=None):
     return ''.join(char_list)
 
 
+def get_words_from_dice_results(wordlist):
+    """Get a list of words based on the results of real dice throws.
+    """
+    words = []
+    num = 1
+    error_msg = "Error: input must be exactly 5 numbers between 1 and 6."
+    print("Input 5 dice results per line, finish with an empty line.")
+    while True:
+        error = False
+        dice_results = raw_input("  Word #%d: " % num)
+        if dice_results == '':
+            # finished inputting words!
+            break
+        # validate input length
+        if len(dice_results) != 5:
+            print(error_msg)
+            error = True
+        # validate input values
+        for c in dice_results:
+            if c not in ['1', '2', '3', '4', '5', '6']:
+                print(error_msg)
+                error = True
+                break
+        if error:
+            continue
+        index = get_word_index_from_input(dice_results)
+        words.append(wordlist[index])
+        num += 1
+    return words
+
+
+def get_word_index_from_input(dice_results):
+    """Calculate a decimal index based on the dice results.
+    """
+    coefficients = [ord(c) - 49 for c in dice_results]  # '1' is 49 in ascii
+    coefficients.reverse()
+    # calculate the result of the base 6 polynomial with coefficients given by
+    # the dice throw results
+    result = 0
+    power = 0
+    for c in coefficients:
+        result += c * (6 ** power)
+        power += 1
+    return result
+
+
 def get_passphrase(wordnum=6, specialsnum=1, delimiter='', lang='en',
-                   capitalized=True, wordlist_fd=None):
+                   capitalized=True, wordlist_fd=None,
+                   input_dice_results=False):
     """Get a diceware passphrase.
 
     The passphrase returned will contain `wordnum` words deliimted by
@@ -165,8 +215,11 @@ def get_passphrase(wordnum=6, specialsnum=1, delimiter='', lang='en',
     if wordlist_fd is None:
         wordlist_fd = open(get_wordlist_path(lang), 'r')
     word_list = get_wordlist(wordlist_fd)
-    rnd = SystemRandom()
-    words = [rnd.choice(word_list) for x in range(wordnum)]
+    if not input_dice_results:
+        rnd = SystemRandom()
+        words = [rnd.choice(word_list) for x in range(wordnum)]
+    else:
+        words = get_words_from_dice_results(word_list)
     if capitalized:
         words = [x.capitalize() for x in words]
     result = delimiter.join(words)
@@ -196,5 +249,6 @@ def main(args=None):
             delimiter=options.delimiter,
             capitalized=options.capitalize,
             wordlist_fd=options.infile,
+            input_dice_results=options.input_dice_results,
         )
     )
