@@ -28,6 +28,10 @@ class PyTest(TestCommand):
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
+install_requires = [
+    'setuptools',
+    ]
+
 tests_require = [
     'pytest >= 2.0.3',
     'pytest-xdist',
@@ -75,7 +79,7 @@ setup(
     ],
     include_package_data=True,
     zip_safe=False,
-    install_requires=[],
+    install_requires=install_requires,
     tests_require=tests_require,
     extras_require=dict(
         tests=tests_require,
