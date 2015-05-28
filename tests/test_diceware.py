@@ -289,3 +289,12 @@ class TestDicewareModule(object):
         main()
         out, err = capsys.readouterr()
         assert out == 'Word1DELIMWord1\n'
+
+    def test_main_specialchars(self, argv_handler, capsys):
+        # number of specialchars is respected in calls to main.
+        sys.stdin = StringIO("word1\n")
+        sys.argv = ['diceware', '-n', '1', '-s', '1', '-']
+        main()
+        out, err = capsys.readouterr()
+        specials = [x for x in out if x in SPECIAL_CHARS]
+        assert len(specials) > 0
