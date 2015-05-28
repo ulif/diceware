@@ -146,18 +146,23 @@ class TestDicewareModule(object):
 
     def test_get_passphrase_no_capitals(self):
         # we can turn capitals off
-        phrase = get_passphrase(capitalized=False)
+        options = handle_options(args=[])
+        options.capitalize = False
+        phrase = get_passphrase(options)
         assert phrase.lower() == phrase
 
     def test_get_passphrase_delimiters(self):
         # we can set separators
-        phrase = get_passphrase(delimiter=" ")
+        options = handle_options(args=[])
+        options.delimiter = " "
+        phrase = get_passphrase(options)
         assert " " in phrase
 
     def test_get_passphrase_wordlist_fd(self):
         #  we can pass in an own wordlist
-        wordlist_fd = StringIO("word1\n")
-        phrase = get_passphrase(wordlist_fd=wordlist_fd)
+        options = handle_options(args=[])
+        options.infile = StringIO("word1\n")
+        phrase = get_passphrase(options)
         assert "Word1" in phrase
 
     def test_print_version(self, capsys):

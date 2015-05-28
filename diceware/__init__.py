@@ -145,32 +145,31 @@ def insert_special_char(word, specials=SPECIAL_CHARS, rnd=None):
     return ''.join(char_list)
 
 
-def get_passphrase(wordnum=6, specialsnum=1, delimiter='', lang='en',
-                   capitalized=True, wordlist_fd=None):
+def get_passphrase(options=None):
     """Get a diceware passphrase.
 
-    The passphrase returned will contain `wordnum` words deliimted by
-    `delimiter`.
+    The passphrase returned will contain `options.num` words deliimted by
+    `options.delimiter`.
 
-    If `capitalized` is ``True``, all words will be capitalized.
+    The passphrase returned will contain `options.specials` special chars.
 
-    If `wordlist_fd`, a file descriptor, is given, it will be used
-    instead of a 'built-in' wordlist (and `lang` will be
-    ignored). `wordlist_fd` must be open for reading.
+    If `options.capitalize` is ``True``, all words will be capitalized.
 
-    The wordlist to pick words from is determined by `lang`,
-    representing a language (unless `wordlist_fd` is given).
-
+    If `options.infile`, a file descriptor, is given, it will be used
+    instead of a 'built-in' wordlist. `options.infile` must be open for
+    reading.
     """
-    if wordlist_fd is None:
-        wordlist_fd = open(get_wordlist_path(lang), 'r')
-    word_list = get_wordlist(wordlist_fd)
+    if options is None:
+        options = handle_options(args=[])
+    if options.infile is None:
+        options.infile = open(get_wordlist_path("en"), 'r')
+    word_list = get_wordlist(options.infile)
     rnd = SystemRandom()
-    words = [rnd.choice(word_list) for x in range(wordnum)]
-    if capitalized:
+    words = [rnd.choice(word_list) for x in range(options.num)]
+    if options.capitalize:
         words = [x.capitalize() for x in words]
-    result = delimiter.join(words)
-    for _ in range(specialsnum):
+    result = options.delimiter.join(words)
+    for _ in range(options.specials):
         result = insert_special_char(result, rnd=rnd)
     return result
 
@@ -189,12 +188,4 @@ def main(args=None):
     if options.version:
         print_version()
         raise SystemExit(0)
-    print(
-        get_passphrase(
-            wordnum=options.num,
-            specialsnum=options.specials,
-            delimiter=options.delimiter,
-            capitalized=options.capitalize,
-            wordlist_fd=options.infile,
-        )
-    )
+    print(get_passphrase(options))
