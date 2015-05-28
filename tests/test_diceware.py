@@ -151,6 +151,15 @@ class TestDicewareModule(object):
         phrase = get_passphrase(options)
         assert phrase.lower() == phrase
 
+    def test_get_passphrase_specialchars(self):
+        # we can request special chars in passphrases
+        options = handle_options(args=[])
+        options.specials = 2
+        phrase = get_passphrase(options)
+        specials = [x for x in phrase if x in SPECIAL_CHARS]
+        # the 2nd special char position might be equal to 1st.
+        assert len(specials) > 0
+
     def test_get_passphrase_delimiters(self):
         # we can set separators
         options = handle_options(args=[])
