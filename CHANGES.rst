@@ -1,8 +1,8 @@
 Changes
 =======
 
-0.4.1 (unreleased)
-------------------
+0.5 (unreleased)
+----------------
 
 - New option ``-r``, ``--randomsource``. We support a pluggable system
   to define alternative sources of randomness. Currently supported
