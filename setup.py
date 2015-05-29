@@ -89,6 +89,10 @@ setup(
     entry_points={
         'console_scripts': [
             'diceware = diceware:main',
-        ]
-        },
+        ],
+        'diceware_random_sources': [
+            'system = diceware.random_sources:SystemRandomSource',
+            # add more sources of randomness here...
+        ],
+    },
 )
