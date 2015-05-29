@@ -4,6 +4,9 @@ Changes
 0.4.1 (unreleased)
 ------------------
 
+- New option ``-r``, ``--randomsource``. We support a pluggable system
+  to define alternative sources of randomness. Currently supported
+  sources: ``"system"``.
 - Rename `SRC_DIR` to `WORDLISTS_DIR` (reflecting what it stands for).
 - Use also flake8 with tox.
 - Pass `options` to `get_passphrase()` instead of a bunch of single args.
