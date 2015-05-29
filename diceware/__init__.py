@@ -86,6 +86,7 @@ def get_random_sources():
 def handle_options(args):
     """Handle commandline options.
     """
+    random_sources = get_random_sources().keys()
     parser = argparse.ArgumentParser(description="Create a passphrase")
     parser.add_argument(
         '-n', '--num', default=6, type=int,
@@ -103,6 +104,12 @@ def handle_options(args):
     parser.add_argument(
         '-d', '--delimiter', default='',
         help="Separate words by DELIMITER. Empty string by default.")
+    parser.add_argument(
+        '-r', '--randomsource', default='system', choices=random_sources,
+        metavar="SOURCE",
+        help=(
+            "Get randomness from this source. Possible values: `%s'. "
+            "Default: system" % "', `".join(random_sources)))
     parser.add_argument(
         'infile', nargs='?', metavar='INFILE', default=None,
         type=argparse.FileType('r'),

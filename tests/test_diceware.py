@@ -211,6 +211,7 @@ class TestDicewareModule(object):
         assert options.infile is None
         assert options.version is False
         assert options.delimiter == ""
+        assert options.randomsource == "system"
 
     def test_handle_options_infile(self, tmpdir):
         # we can give an infile
@@ -234,6 +235,23 @@ class TestDicewareModule(object):
         assert options.delimiter == ' '
         options = handle_options(['-d', 'WOW'])
         assert options.delimiter == 'WOW'
+
+    def test_handle_options_randomsource(self):
+        # we can choose the source of randomness
+        source_names = get_random_sources().keys()
+        for name in source_names:
+            options = handle_options(['-r', name])
+            assert options.randomsource == name
+            options = handle_options(['--randomsource', name])
+            assert options.randomsource == name
+
+    def test_handle_options_randomsource_rejects_invalid(self, capsys):
+        # we can not choose illegal values for source of randomness
+        with pytest.raises(SystemExit):
+            handle_options(['-r', 'not-a-valid-source-name'])
+        out, err = capsys.readouterr()
+        assert out == ''
+        assert "invalid choice" in err
 
     def test_main(self, capsys):
         # we can get a passphrase

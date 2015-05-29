@@ -1,5 +1,5 @@
 usage: diceware [-h] [-n NUM] [-c | --no-caps] [-s NUM] [-d DELIMITER]
-                [--version]
+                [-r SOURCE] [--version]
                 [INFILE]
 
 Create a passphrase
@@ -16,4 +16,7 @@ optional arguments:
                         Insert NUM special chars into generated word.
   -d DELIMITER, --delimiter DELIMITER
                         Separate words by DELIMITER. Empty string by default.
+  -r SOURCE, --randomsource SOURCE
+                        Get randomness from this source. Possible values:
+                        `system'. Default: system
   --version             output version information and exit.
