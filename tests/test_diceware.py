@@ -7,7 +7,7 @@ from io import StringIO
 from diceware import (
     WORDLISTS_DIR, RE_LANG_CODE, SPECIAL_CHARS, get_wordlist,
     get_wordlist_path, insert_special_char, get_passphrase,
-    handle_options, main, __version__, print_version,
+    handle_options, main, __version__, print_version, get_random_sources,
     )
 
 
@@ -36,6 +36,14 @@ def argv_handler(request):
 
 
 class Test_GetWordList(object):
+
+    def test_get_random_sources(self):
+        # we can get a dict of random sources registered as entry_points.
+        sources_dict = get_random_sources()
+        assert isinstance(sources_dict, dict)
+        assert len(sources_dict) > 0
+        assert 'system' in sources_dict
+        assert isinstance(sources_dict['system'], type)
 
     def test_get_wordlist_en(self):
         # we can get a list of words out of english wordlist.

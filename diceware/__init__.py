@@ -66,6 +66,23 @@ def print_version():
     print(GPL_TEXT)
 
 
+def get_random_sources():
+    """Get a dictionary of all entry points called diceware_random_source.
+
+    Returns a dictionary with names mapped to callables registered as
+    `entry_point`s for the ``diceware_randomsource`` group.
+
+    Callables should accept `options` when called and return something
+    that provides a `choice(sequence)` method that works like the
+    respective method in the standard Python lib `random` module.
+    """
+    result = dict()
+    for entry_point in pkg_resources.iter_entry_points(
+            group="diceware_random_sources"):
+        result.update({entry_point.name: entry_point.load()})
+    return result
+
+
 def handle_options(args):
     """Handle commandline options.
     """
