@@ -37,14 +37,6 @@ def argv_handler(request):
 
 class Test_GetWordList(object):
 
-    def test_get_random_sources(self):
-        # we can get a dict of random sources registered as entry_points.
-        sources_dict = get_random_sources()
-        assert isinstance(sources_dict, dict)
-        assert len(sources_dict) > 0
-        assert 'system' in sources_dict
-        assert isinstance(sources_dict['system'], type)
-
     def test_get_wordlist_en(self):
         # we can get a list of words out of english wordlist.
         en_src = os.path.join(WORDLISTS_DIR, 'wordlist_en.txt')
@@ -92,6 +84,14 @@ class TestDicewareModule(object):
         assert RE_LANG_CODE.match('u1') is None
         assert RE_LANG_CODE.match('u') is None
         assert RE_LANG_CODE.match('dea') is None
+
+    def test_get_random_sources(self):
+        # we can get a dict of random sources registered as entry_points.
+        sources_dict = get_random_sources()
+        assert isinstance(sources_dict, dict)
+        assert len(sources_dict) > 0
+        assert 'system' in sources_dict
+        assert isinstance(sources_dict['system'], type)
 
     def test_get_wordlist_path(self):
         # we can get valid wordlist paths
