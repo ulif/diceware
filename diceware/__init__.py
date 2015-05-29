@@ -177,6 +177,9 @@ def get_passphrase(options=None):
 
     The passphrase returned will contain `options.specials` special chars.
 
+    For the passphrase generation we will use the random source
+    registered under the name `options.randomsource`.
+
     If `options.capitalize` is ``True``, all words will be capitalized.
 
     If `options.infile`, a file descriptor, is given, it will be used
@@ -188,7 +191,8 @@ def get_passphrase(options=None):
     if options.infile is None:
         options.infile = open(get_wordlist_path("en"), 'r')
     word_list = get_wordlist(options.infile)
-    rnd = SystemRandom()
+    rnd_source = get_random_sources()[options.randomsource]
+    rnd = rnd_source(options)
     words = [rnd.choice(word_list) for x in range(options.num)]
     if options.capitalize:
         words = [x.capitalize() for x in words]
