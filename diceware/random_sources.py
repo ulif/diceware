@@ -17,6 +17,50 @@
 
 Please register all sources as entry point in ``setup.py``. Look out for
 "SystemRandomSource" for an example.
+
+For developers of interfaces to other sources of randomness: Currently,
+you can extend `diceware` random sources by registering a class, that
+provides a suitable `__init__(self, options)` and a `choice(self,
+sequence)` method.
+
+The `__init__` method of your class will be called with `options`, a set
+of options as parsed from the commandline. The initialization code can
+use the options to determine further actions or ignore it. The
+`__init__` method is also the right place to ask users for one-time
+infos you need.
+
+The `choice` method then, will get a sequence of chars, strings, or
+numbers and should pick one of them based on the source of randomness
+intended to be utilized by your code.
+
+Finally, to register the source, add some stanza in `setup.py` of your
+project that looks like::
+
+    ...
+    setup(
+        ...
+        entry_points={
+            'console_scripts': [
+                'diceware = diceware:main',
+            ],
+            'diceware_random_sources': [
+                'myrandom = mypkg.mymodule:MyRandomSource',
+                'myothersrc = mypkg.mymodule:MyOtherSource',
+            ],
+        },
+        ...
+    )
+    ...
+
+Here the `myrandom` and `myothersrc` lines register random sources that
+(if installed) `diceware` will find on startup and offer to users under
+the name given. In the described case, users could do for instance::
+
+  diceware -r myrandom
+
+and the random source defined in the given class would be used for
+generating a passphrase.
+
 """
 from random import SystemRandom
 
