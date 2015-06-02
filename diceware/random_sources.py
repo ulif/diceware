@@ -62,7 +62,13 @@ and the random source defined in the given class would be used for
 generating a passphrase.
 
 """
+import sys
 from random import SystemRandom
+
+
+input_func = input
+if sys.version[0] < "3":
+    input_func = raw_input  # NOQA  # pragma: no cover
 
 
 class SystemRandomSource(object):
@@ -105,3 +111,12 @@ class SystemRandomSource(object):
         sequences, however, might raise exceptions.
         """
         return self.rnd.choice(sequence)
+
+
+class RealDiceRandomSource(object):
+    """A source of randomness working with real dice.
+    """
+    def get_input(self):
+        """Just a temporary helper to see, whether input mocks in tests work.
+        """
+        return input_func("Enter some values:")
