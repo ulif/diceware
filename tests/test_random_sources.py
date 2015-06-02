@@ -1,5 +1,8 @@
 import pkg_resources
-from diceware.random_sources import SystemRandomSource
+
+from diceware.random_sources import (
+    SystemRandomSource, RealDiceRandomSource,
+    )
 
 
 class TestSystemRandomSource(object):
@@ -57,3 +60,57 @@ class TestSystemRandomSource(object):
                 break
             num -= 1
         assert num > 0
+
+
+class InputMock(object):
+    """A replacement for input() or raw_input() respectively.
+
+    This mock, when called, mimics input() behaviour, outputs a prompt,
+    etc., but does not wait for real key strokes. Instead it returns the
+    next value from `fake_input_values` given on initialization:
+
+       >>> faked_input = InputMock(["val1", "val2", "1"])
+       >>> faked_input("Give a value: ")
+       Give a value: val1
+       'val1'
+
+       >>> faked_input("And another value: ")
+       And another value: val2
+       'val2'
+
+       >>> faked_input()
+       1
+       '1'
+
+    To be used with the `monkeypatch` pytest fixture, to replace
+    `diceware.random_sources.input_func`.
+    """
+    fake_input_values = []
+
+    def __init__(self, fake_input_values=[]):
+        self.fake_input_values = fake_input_values
+        self.fake_input_values.reverse()
+
+    def __call__(self, prompt=''):
+        curr_value = self.fake_input_values.pop()
+        print("%s%s" % (prompt, curr_value))
+        return curr_value
+
+
+class TestRealDiceSource(object):
+
+    def test_raw_input_patch_works(self, monkeypatch, capsys):
+        # make sure our fake input works. We try to fake input ('foo',
+        # 'bar') and make sure that output is captured.
+        # This test is just a hint, how input could be faked in real tests.
+        # It can (and should) be removed if not needed any more.
+        monkeypatch.setattr(
+            "diceware.random_sources.input_func",  # function to replace
+            InputMock(["foo", "bar"]))             # faked input values
+        dice_src = RealDiceRandomSource()
+        result1 = dice_src.get_input()
+        assert result1 == "foo"
+        result2 = dice_src.get_input()
+        assert result2 == "bar"
+        out, err = capsys.readouterr()             # captured stdout/stderr
+        assert out == "Enter some values: foo\nEnter some values: bar\n"

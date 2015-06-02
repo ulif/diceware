@@ -119,4 +119,4 @@ class RealDiceRandomSource(object):
     def get_input(self):
         """Just a temporary helper to see, whether input mocks in tests work.
         """
-        return input_func("Enter some values:")
+        return input_func("Enter some values: ")
