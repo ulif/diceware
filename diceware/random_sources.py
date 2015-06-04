@@ -27,11 +27,17 @@ The `__init__` method of your class will be called with `options`, a set
 of options as parsed from the commandline. The initialization code can
 use the options to determine further actions or ignore it. The
 `__init__` method is also the right place to ask users for one-time
-infos you need.
+infos you need. This includes infos like the number of sides of a dice,
+an API key for random.org or other infos that should not change between
+generating different words (but might change from one `diceware` call
+to the next).
 
 The `choice` method then, will get a sequence of chars, strings, or
 numbers and should pick one of them based on the source of randomness
-intended to be utilized by your code.
+intended to be utilized by your code. If further user interaction is
+required, `choice` might also ask users for input or similar. Typically,
+`choice` is called once for each word and once for each special char to
+generate.
 
 Finally, to register the source, add some stanza in `setup.py` of your
 project that looks like::
