@@ -114,7 +114,7 @@ class TestRealDiceRandomSource(object):
         # This test is just a hint, how input could be faked in real tests.
         # It can (and should) be removed if not needed any more.
         self.fake_input_values(["foo", "bar"], monkeypatch)
-        dice_src = RealDiceRandomSource()
+        dice_src = RealDiceRandomSource(None)
         result1 = dice_src.get_input()
         assert result1 == "foo"
         result2 = dice_src.get_input()
