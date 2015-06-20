@@ -18,5 +18,5 @@ optional arguments:
                         Separate words by DELIMITER. Empty string by default.
   -r SOURCE, --randomsource SOURCE
                         Get randomness from this source. Possible values:
-                        `system'. Default: system
+                        `realdice', `system'. Default: system
   --version             output version information and exit.
