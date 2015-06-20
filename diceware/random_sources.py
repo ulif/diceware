@@ -122,6 +122,9 @@ class SystemRandomSource(object):
 class RealDiceRandomSource(object):
     """A source of randomness working with real dice.
     """
+    def __init__(self, options):
+        self.options = options
+
     def get_input(self):
         """Just a temporary helper to see, whether input mocks in tests work.
         """
