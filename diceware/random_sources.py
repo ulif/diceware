@@ -130,6 +130,8 @@ class RealDiceRandomSource(object):
         num_rolls = int(math.log(len(sequence), 6))
         if num_rolls < 1:
             raise ValueError("Must provide at least 6 items")
+        if 6 ** num_rolls < len(sequence):
+            print("Warning: entropy is reduced!")
         print(
             "You have to roll %s dice (or a single dice %s times)." % (
               num_rolls, num_rolls))
