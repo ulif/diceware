@@ -128,6 +128,8 @@ class RealDiceRandomSource(object):
 
     def choice(self, sequence):
         num_rolls = int(math.log(len(sequence), 6))
+        if num_rolls < 1:
+            raise ValueError("Must provide at least 6 items")
         print(
             "You have to roll %s dice (or a single dice %s times)." % (
               num_rolls, num_rolls))
