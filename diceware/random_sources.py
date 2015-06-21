@@ -68,6 +68,7 @@ and the random source defined in the given class would be used for
 generating a passphrase.
 
 """
+import math
 import sys
 from random import SystemRandom
 
@@ -125,7 +126,16 @@ class RealDiceRandomSource(object):
     def __init__(self, options):
         self.options = options
 
-    def get_input(self):
-        """Just a temporary helper to see, whether input mocks in tests work.
-        """
-        return input_func("Enter some values: ")
+    def choice(self, sequence):
+        num_rolls = int(math.log(len(sequence), 6))
+        print(
+            "You have to roll %s dice (or a single dice %s times)." % (
+              num_rolls, num_rolls))
+        result = 0
+        for i in range(num_rolls):
+            rolled = None
+            while rolled not in ["1", "2", "3", "4", "5", "6"]:
+                rolled = input_func(
+                    "Please number shows dice number %s? " % (i + 1))
+            result +=  ((6 ** i) * int(rolled) - 1)
+        return sequence[result]
