@@ -109,7 +109,7 @@ def handle_options(args):
         metavar="SOURCE",
         help=(
             "Get randomness from this source. Possible values: `%s'. "
-            "Default: system" % "', `".join(random_sources)))
+            "Default: system" % "', `".join(sorted(random_sources))))
     parser.add_argument(
         'infile', nargs='?', metavar='INFILE', default=None,
         type=argparse.FileType('r'),
