@@ -114,13 +114,14 @@ class TestRealDiceRandomSource(object):
         # This test is just a hint, how input could be faked in real tests.
         # It can (and should) be removed if not needed any more.
         self.fake_input_values(["foo", "bar"], monkeypatch)
-        dice_src = RealDiceRandomSource(None)
-        result1 = dice_src.get_input()
+        # late import, because we need the patched version
+        from diceware.random_sources import input_func
+        result1 = input_func("Enter some values: ")
         assert result1 == "foo"
-        result2 = dice_src.get_input()
+        result2 = input_func("Enter more values: ")
         assert result2 == "bar"
         out, err = capsys.readouterr()             # captured stdout/stderr
-        assert out == "Enter some values: foo\nEnter some values: bar\n"
+        assert out == "Enter some values: foo\nEnter more values: bar\n"
 
     def test_options_are_stored(self):
         # options passed-in are stored with RealDiceRandomSource instances
