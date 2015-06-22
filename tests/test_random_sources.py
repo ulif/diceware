@@ -174,7 +174,7 @@ class TestRealDiceRandomSource(object):
         self.fake_input_values(["1", "2"], monkeypatch)
         src = RealDiceRandomSource(None)
         sequence = list(range(6 ** 2))
-        expected_index = 1 * 2 - 1          # = roll_1 x roll_2 - 1
+        expected_index = 6 * (1 - 1) + (2 - 1)     # = 6 x roll_1 + roll_2 - 1
         assert src.choice(sequence) == sequence[expected_index]
 
     def test_choice_num_of_dice_for_seq_len216(self, monkeypatch):
@@ -182,7 +182,9 @@ class TestRealDiceRandomSource(object):
         self.fake_input_values(["1", "2", "3"], monkeypatch)
         src = RealDiceRandomSource(None)
         sequence = list(range(6 ** 3))        # 216
-        expected_index = 1 * 2 * 3 - 1        # = roll_1 x roll_2 x roll_3 - 1
+        expected_index = 0 + 6 + 3 - 1       # = 6^2 x (roll_1 - 1)
+                                             #   + 6^1 x (roll_2 - 1)
+                                             #   + roll_3 - 1
         assert src.choice(sequence) == sequence[expected_index]
 
     def test_hint_if_entropy_is_decreased(self, monkeypatch, capsys):
