@@ -134,12 +134,12 @@ class RealDiceRandomSource(object):
             print("Warning: entropy is reduced!")
         print(
             "Please roll %s dice (or a single dice %s times)." % (
-              num_rolls, num_rolls))
+                num_rolls, num_rolls))
         result = 0
         for i in range(num_rolls, 0, -1):
             rolled = None
             while rolled not in ["1", "2", "3", "4", "5", "6"]:
                 rolled = input_func(
                     "What number shows dice number %s? " % (num_rolls - i + 1))
-            result +=  ((6 ** (i - 1)) * (int(rolled) - 1))
+            result += ((6 ** (i - 1)) * (int(rolled) - 1))
         return sequence[result]
