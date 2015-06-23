@@ -126,8 +126,7 @@ class RealDiceRandomSource(object):
     def __init__(self, options):
         self.options = options
 
-    def choice(self, sequence):
-        num_rolls = int(math.log(len(sequence), 6))
+    def pre_check(self, num_rolls, sequence):
         if num_rolls < 1:
             raise ValueError("Must provide at least 6 items")
         if 6 ** num_rolls < len(sequence):
@@ -135,6 +134,11 @@ class RealDiceRandomSource(object):
         print(
             "Please roll %s dice (or a single dice %s times)." % (
                 num_rolls, num_rolls))
+        return
+
+    def choice(self, sequence):
+        num_rolls = int(math.log(len(sequence), 6))
+        self.pre_check(num_rolls, sequence)
         result = 0
         for i in range(num_rolls, 0, -1):
             rolled = None
