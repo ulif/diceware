@@ -128,6 +128,11 @@ class RealDiceRandomSource(object):
         self.dice_sides = 6
 
     def pre_check(self, num_rolls, sequence):
+        """Checks performed before picking an item of a sequence.
+
+        We make sure that `num_rolls`, the number of rolls, is in an
+        acceptable range and issue an hint about the procedure.
+        """
         if num_rolls < 1:
             raise ValueError(
                 "Must provide at least %s items" % self.dice_sides)
@@ -139,6 +144,8 @@ class RealDiceRandomSource(object):
         return
 
     def choice(self, sequence):
+        """Pick one item out of `sequence`.
+        """
         num_rolls = int(math.log(len(sequence), self.dice_sides))
         self.pre_check(num_rolls, sequence)
         result = 0
