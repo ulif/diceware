@@ -125,11 +125,13 @@ class RealDiceRandomSource(object):
     """
     def __init__(self, options):
         self.options = options
+        self.dice_sides = 6
 
     def pre_check(self, num_rolls, sequence):
         if num_rolls < 1:
-            raise ValueError("Must provide at least 6 items")
-        if 6 ** num_rolls < len(sequence):
+            raise ValueError(
+                "Must provide at least %s items" % self.dice_sides)
+        if (self.dice_sides ** num_rolls) < len(sequence):
             print("Warning: entropy is reduced!")
         print(
             "Please roll %s dice (or a single dice %s times)." % (
@@ -137,13 +139,13 @@ class RealDiceRandomSource(object):
         return
 
     def choice(self, sequence):
-        num_rolls = int(math.log(len(sequence), 6))
+        num_rolls = int(math.log(len(sequence), self.dice_sides))
         self.pre_check(num_rolls, sequence)
         result = 0
         for i in range(num_rolls, 0, -1):
             rolled = None
-            while rolled not in ["1", "2", "3", "4", "5", "6"]:
+            while rolled not in [str(x) for x in range(self.dice_sides)]:
                 rolled = input_func(
                     "What number shows dice number %s? " % (num_rolls - i + 1))
-            result += ((6 ** (i - 1)) * (int(rolled) - 1))
+            result += ((self.dice_sides ** (i - 1)) * (int(rolled) - 1))
         return sequence[result]
