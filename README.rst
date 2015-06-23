@@ -69,6 +69,9 @@ Once installed, use ``--help`` to list all available options::
                           Insert NUM special chars into generated word.
     -d DELIMITER, --delimiter DELIMITER
                           Separate words by DELIMITER. Empty string by default.
+    -r SOURCE, --randomsource SOURCE
+                          Get randomness from this source. Possible values:
+                          `realdice', `system'. Default: system
     --version             output version information and exit.
 
 
