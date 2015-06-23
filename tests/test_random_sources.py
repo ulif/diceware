@@ -210,3 +210,27 @@ class TestRealDiceRandomSource(object):
         src = RealDiceRandomSource(None)
         with pytest.raises(ValueError):
             assert src.choice([1, 2, 3, 4, 5])  # list len < 6
+
+    def test_pre_check_no_rolls_cause_exception(self):
+        # we cannot pick zero items of a sequence
+        src = RealDiceRandomSource(None)
+        with pytest.raises(ValueError):
+            src.pre_check(0, list(range(6)))
+
+    def test_pre_check_warn_if_not_all_seq_items_used(self, capsys):
+        # we issue a warning if not all sequence items will be used
+        src = RealDiceRandomSource(None)
+        src.dice_sides = 10
+        src.pre_check(1, list(range(10)))
+        out, err = capsys.readouterr()
+        assert "entropy is reduced" not in out
+        src.pre_check(1, list(range(11)))
+        out, err = capsys.readouterr()
+        assert "entropy is reduced" in out
+
+    def test_pre_check_requests_rolling_dice(self, capsys):
+        # we request the user to roll dice
+        src = RealDiceRandomSource(None)
+        src.pre_check(5, ['doesntmatter'])
+        out, err = capsys.readouterr()
+        assert "Please roll 5 dice (or a single dice 5 times)." in out
