@@ -10,6 +10,8 @@ Changes
 - Rename `SRC_DIR` to `WORDLISTS_DIR` (reflecting what it stands for).
 - Use also flake8 with tox.
 - Pass `options` to `get_passphrase()` instead of a bunch of single args.
+- Add new source of randomness: ``realdice`` enables use of real dice
+  for creating random words.
 
 
 0.4 (2015-03-30)
