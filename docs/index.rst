@@ -3,10 +3,20 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+Welcome to `diceware` documentation
+=============================================
 
-.. include:: ../README.rst
+Version: |version|
 
-.. include:: ../CHANGES.rst
+|bdg-build|
+
+
+.. toctree::
+   :maxdepth: 2
+
+   readme
+   randomsources
+   changes
 
 
 Indices and tables
@@ -15,4 +25,9 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+.. |bdg-build| image:: https://travis-ci.org/ulif/diceware.png?branch=master
+    :target: https://travis-ci.org/ulif/diceware
+    :alt: Build Status
+
 
