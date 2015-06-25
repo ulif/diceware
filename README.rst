@@ -122,6 +122,24 @@ You can nevertheless disable caps with the ``--no-caps`` option::
 This leads to lower-case passphrases, maybe easier to type on smart
 phones or similar.
 
+`diceware` supports also different sources of randomness, which can be
+chosen with the ``-r <SOURCENAME>`` or ``--randomsource <SOURCENAME>``
+option. Use the ``--help`` option to list all valid values for this
+option.
+
+By default we use the builtin :class:`random.SystemRandom` class but
+you can also bring your own dice to create randomness::
+
+  $ diceware -r realdice
+  Please roll 5 dice (or a single dice 5 times).
+  What number shows dice number 1? 2
+  What number shows dice number 2? 3
+  ...
+  DogmaAnyShrikeSageSableHoar
+
+We support even sources of randomness from other packages. See the
+`documentation <https://diceware.readthedocs.org/>`_ for more details.
+
 `diceware` comes with an English wordlist (the 'diceware8k' list)
 provided by Arnold G. Reinhold, which will be used by default and
 contains 8192 different words.
