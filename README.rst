@@ -277,6 +277,8 @@ People that helped spotting bugs, providing solutions, etc.:
 
  - `Conor Schaefer (conorsch) <https://github.com/conorsch>`_
  - Rodolfo Gouveia suggested to activate the ``--delimiter`` option.
+ - `drebs <https://github.com/drebs>`_ provided patches and discussion for
+   different sources of randomness.
 
 Many thanks to all of them!
 
