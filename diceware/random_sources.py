@@ -151,7 +151,8 @@ class RealDiceRandomSource(object):
         result = 0
         for i in range(num_rolls, 0, -1):
             rolled = None
-            while rolled not in [str(x) for x in range(1, self.dice_sides + 1)]:
+            while rolled not in [
+                    str(x) for x in range(1, self.dice_sides + 1)]:
                 rolled = input_func(
                     "What number shows dice number %s? " % (num_rolls - i + 1))
             result += ((self.dice_sides ** (i - 1)) * (int(rolled) - 1))
