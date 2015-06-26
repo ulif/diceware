@@ -211,6 +211,20 @@ class TestRealDiceRandomSource(object):
         with pytest.raises(ValueError):
             assert src.choice([1, 2, 3, 4, 5])  # list len < 6
 
+    def test_choice_input_lower_value_borders(self, monkeypatch):
+        # choice() does not accept "0" but it accepts "1"
+        self.fake_input_values(["0", "1"], monkeypatch)
+        src = RealDiceRandomSource(None)
+        sequence = (1, 2, 3, 4, 5, 6)
+        assert src.choice(sequence) == 1
+
+    def test_choice_input_upper_value_borders(self, monkeypatch):
+        # choice() does not accept "7" but it accepts "6"
+        self.fake_input_values(["7", "6"], monkeypatch)
+        src = RealDiceRandomSource(None)
+        sequence = (1, 2, 3, 4, 5, 6)
+        assert src.choice(sequence) == 6
+
     def test_pre_check_no_rolls_cause_exception(self):
         # we cannot pick zero items of a sequence
         src = RealDiceRandomSource(None)
