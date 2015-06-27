@@ -198,6 +198,20 @@ class TestRealDiceRandomSource(object):
         assert "entropy is reduced" in out
         assert err == ""
 
+    def test_no_hint_if_entropy_is_not_decreased(self, monkeypatch, capsys):
+        # we do not issue the entropy warning if not neccessary
+        self.fake_input_values(["1"] * 6, monkeypatch)
+        src = RealDiceRandomSource(None)
+        picked1 = src.choice([1, 2, 3, 4, 5, 6])
+        picked2 = src.choice(range(1, 6 ** 2 + 1))
+        picked3 = src.choice(range(1, 6 ** 3 + 1))
+        assert picked1 == 1
+        assert picked2 == 1
+        assert picked3 == 1
+        out, err = capsys.readouterr()
+        assert "entropy is reduced" not in out
+        assert err == ""
+
     def test_non_numbers_as_input_are_rejected(self, monkeypatch):
         # Users might input non-numbers. We ask again then.
         self.fake_input_values(["no-number", "", "1"], monkeypatch)
