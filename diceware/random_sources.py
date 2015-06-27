@@ -137,7 +137,11 @@ class RealDiceRandomSource(object):
             raise ValueError(
                 "Must provide at least %s items" % self.dice_sides)
         if (self.dice_sides ** num_rolls) < len(sequence):
-            print("Warning: entropy is reduced!")
+            print(
+                "Warning: entropy is reduced! Using only first %s of %s "
+                "words/items of your wordlist." % (
+                    self.dice_sides ** num_rolls, len(sequence))
+                  )
         print(
             "Please roll %s dice (or a single dice %s times)." % (
                 num_rolls, num_rolls))

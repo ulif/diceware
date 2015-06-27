@@ -196,6 +196,7 @@ class TestRealDiceRandomSource(object):
         assert picked == 1
         out, err = capsys.readouterr()
         assert "entropy is reduced" in out
+        assert "Using only first 6 of 7 words" in out
         assert err == ""
 
     def test_no_hint_if_entropy_is_not_decreased(self, monkeypatch, capsys):
