@@ -13,4 +13,5 @@ install:
   - python setup.py dev
 # command to run tests
 script:
-  - python setup.py test
+  - coverage run setup.py test
+  - coverage report --include='diceware*' --fail-under=100
