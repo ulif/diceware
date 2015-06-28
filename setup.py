@@ -22,7 +22,7 @@ class PyTest(TestCommand):
         # import here, cause outside the eggs aren't loaded
         import pytest
         errno = pytest.main(self.pytest_args)
-        sys.exit(errno)
+        sys.exit(errno)                                # pragma: no cover
 
 
 def read(fname):
