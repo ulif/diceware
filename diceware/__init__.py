@@ -152,7 +152,7 @@ def get_wordlist_path(name):
     if not RE_WORDLIST_NAME.match(name):
         raise ValueError("Not a valid wordlist name: %s" % name)
     basename = 'wordlist_%s.txt' % name
-    return os.path.join(WORDLISTS_DIR, basename.lower())
+    return os.path.join(WORDLISTS_DIR, basename)
 
 
 def insert_special_char(word, specials=SPECIAL_CHARS, rnd=None):

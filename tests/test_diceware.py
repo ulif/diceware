@@ -110,12 +110,6 @@ class TestDicewareModule(object):
         assert exc_info.value.args[0].startswith(
             'Not a valid wordlist name')
 
-    def test_get_wordlist_path_loweres_country_code(self):
-        # upper case country codes are lowered
-        assert os.path.basename(get_wordlist_path('de')) == 'wordlist_de.txt'
-        assert os.path.basename(get_wordlist_path('De')) == 'wordlist_de.txt'
-        assert os.path.basename(get_wordlist_path('DE')) == 'wordlist_de.txt'
-
     def test_insert_special_char(self):
         # we can insert special chars in words.
         fake_rnd = FakeRandom()
