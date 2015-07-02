@@ -142,15 +142,16 @@ def get_wordlist(file_descriptor):
     return result
 
 
-def get_wordlist_path(lang):
-    """Get path to a wordlist file for language `lang`.
+def get_wordlist_path(name):
+    """Get path to a wordlist file for a wordlist named `name`.
 
-    The `lang` string is a 2-char country code. Invalid codes raise a
-    ValueError.
+    The `name` string must not contain special chars beside ``-``,
+    ``_``, regular chars ``A-Z`` (upper or lower case) or
+    numbers. Invalid names raise a ValueError.
     """
-    if not RE_WORDLIST_NAME.match(lang):
-        raise ValueError("Not a valid language code: %s" % lang)
-    basename = 'wordlist_%s.txt' % lang
+    if not RE_WORDLIST_NAME.match(name):
+        raise ValueError("Not a valid wordlist name: %s" % name)
+    basename = 'wordlist_%s.txt' % name
     return os.path.join(WORDLISTS_DIR, basename.lower())
 
 

@@ -108,7 +108,7 @@ class TestDicewareModule(object):
         with pytest.raises(ValueError) as exc_info:
             get_wordlist_path('../../tmp')
         assert exc_info.value.args[0].startswith(
-            'Not a valid language code')
+            'Not a valid wordlist name')
 
     def test_get_wordlist_path_loweres_country_code(self):
         # upper case country codes are lowered
