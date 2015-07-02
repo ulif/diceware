@@ -28,9 +28,9 @@ __version__ = pkg_resources.get_distribution('diceware').version
 WORDLISTS_DIR = os.path.abspath(
     os.path.join(os.path.dirname(__file__), 'wordlists'))
 
-#: A regular expression matching 2 consecutive ASCII chars. We
-#: consider this to represent some language/country code.
-RE_LANG_CODE = re.compile('^[a-zA-Z]{2}$')
+#: A regular expression matching allowed wordlist names. We
+#: allow names that cannot easily mess up filesystems.
+RE_WORDLIST_NAME = re.compile('^[a-zA-Z0-9_-]+$')
 
 #: Special chars inserted on demand
 SPECIAL_CHARS = r"~!#$%^&*()-=+[]\{}:;" + r'"' + r"'<>?/0123456789"
@@ -148,7 +148,7 @@ def get_wordlist_path(lang):
     The `lang` string is a 2-char country code. Invalid codes raise a
     ValueError.
     """
-    if not RE_LANG_CODE.match(lang):
+    if not RE_WORDLIST_NAME.match(lang):
         raise ValueError("Not a valid language code: %s" % lang)
     basename = 'wordlist_%s.txt' % lang
     return os.path.join(WORDLISTS_DIR, basename.lower())

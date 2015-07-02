@@ -5,7 +5,7 @@ import pytest
 import sys
 from io import StringIO
 from diceware import (
-    WORDLISTS_DIR, RE_LANG_CODE, SPECIAL_CHARS, get_wordlist,
+    WORDLISTS_DIR, RE_WORDLIST_NAME, SPECIAL_CHARS, get_wordlist,
     get_wordlist_path, insert_special_char, get_passphrase,
     handle_options, main, __version__, print_version, get_random_sources,
     )
@@ -73,17 +73,22 @@ class Test_GetWordList(object):
 
 class TestDicewareModule(object):
 
-    def test_re_lang_code(self):
-        # RE_LANG_CODE really works
+    def test_re_wordlist_name(self):
+        # RE_WORDLIST_NAME really works
         # valid stuff
-        assert RE_LANG_CODE.match('de') is not None
-        assert RE_LANG_CODE.match('DE') is not None
-        assert RE_LANG_CODE.match('vb') is not None
+        assert RE_WORDLIST_NAME.match('de') is not None
+        assert RE_WORDLIST_NAME.match('DE') is not None
+        assert RE_WORDLIST_NAME.match('vb') is not None
+        assert RE_WORDLIST_NAME.match('8k') is not None
+        assert RE_WORDLIST_NAME.match('original') is not None
+        assert RE_WORDLIST_NAME.match('with_underscore') is not None
+        assert RE_WORDLIST_NAME.match('u') is not None
         # invalid stuff
-        assert RE_LANG_CODE.match('de_DE') is None
-        assert RE_LANG_CODE.match('u1') is None
-        assert RE_LANG_CODE.match('u') is None
-        assert RE_LANG_CODE.match('dea') is None
+        assert RE_WORDLIST_NAME.match('with space') is None
+        assert RE_WORDLIST_NAME.match('"with quotation marks"') is None
+        assert RE_WORDLIST_NAME.match("'with quotation marks'") is None
+        assert RE_WORDLIST_NAME.match('with.dot') is None
+        assert RE_WORDLIST_NAME.match('with/slash') is None
 
     def test_get_random_sources(self):
         # we can get a dict of random sources registered as entry_points.
