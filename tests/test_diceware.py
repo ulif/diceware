@@ -37,9 +37,9 @@ def argv_handler(request):
 
 class Test_GetWordList(object):
 
-    def test_get_wordlist_en(self):
-        # we can get a list of words out of english wordlist.
-        en_src = os.path.join(WORDLISTS_DIR, 'wordlist_en.txt')
+    def test_get_wordlist_en_8k(self):
+        # we can get a list of words out of english 8k wordlist.
+        en_src = os.path.join(WORDLISTS_DIR, 'wordlist_en_8k.txt')
         with open(en_src, 'r') as fd:
             en_result = get_wordlist(fd)
         assert en_result[0] == 'a'
@@ -100,7 +100,7 @@ class TestDicewareModule(object):
 
     def test_get_wordlist_path(self):
         # we can get valid wordlist paths
-        assert os.path.exists(get_wordlist_path('en'))
+        assert os.path.exists(get_wordlist_path('en_8k'))
         assert not os.path.exists(get_wordlist_path('zz'))
 
     def test_get_wordlist_path_requires_ascii(self):
