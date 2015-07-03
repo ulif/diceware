@@ -127,8 +127,8 @@ chosen with the ``-r <SOURCENAME>`` or ``--randomsource <SOURCENAME>``
 option. Use the ``--help`` option to list all valid values for this
 option.
 
-By default we use the builtin :class:`random.SystemRandom` class but
-you can also bring your own dice to create randomness::
+By default we use the `random.SystemRandom`_ class of standard Python
+lib but you can also bring your own dice to create randomness::
 
   $ diceware -r realdice
   Please roll 5 dice (or a single dice 5 times).
