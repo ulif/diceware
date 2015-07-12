@@ -83,10 +83,11 @@ class TestDicewareModule(object):
         assert RE_WORDLIST_NAME.match('original') is not None
         assert RE_WORDLIST_NAME.match('with_underscore') is not None
         assert RE_WORDLIST_NAME.match('u') is not None
+        assert RE_WORDLIST_NAME.match('with-hyphen') is not None
         # invalid stuff
         assert RE_WORDLIST_NAME.match('with space') is None
-        assert RE_WORDLIST_NAME.match('"with quotation marks"') is None
-        assert RE_WORDLIST_NAME.match("'with quotation marks'") is None
+        assert RE_WORDLIST_NAME.match('"with-quotation-marks"') is None
+        assert RE_WORDLIST_NAME.match("'with-quotation-marks'") is None
         assert RE_WORDLIST_NAME.match('with.dot') is None
         assert RE_WORDLIST_NAME.match('with/slash') is None
 
