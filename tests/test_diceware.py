@@ -8,6 +8,7 @@ from diceware import (
     WORDLISTS_DIR, RE_WORDLIST_NAME, SPECIAL_CHARS, get_wordlist,
     get_wordlist_path, insert_special_char, get_passphrase,
     handle_options, main, __version__, print_version, get_random_sources,
+    get_wordlist_names,
     )
 
 
@@ -119,6 +120,12 @@ class TestDicewareModule(object):
             get_wordlist_path('../../tmp')
         assert exc_info.value.args[0].startswith(
             'Not a valid wordlist name')
+
+    def test_get_wordlist_names(self, wordlists_dir):
+        # we can get wordlist names also if directory is empty.
+        wlist_path = wordlists_dir.join('mywordlist_en_8k.txt')
+        wlist_path.write("some\nirrelevant\nwords")
+        assert get_wordlist_names() == ['en_8k']
 
     def test_insert_special_char(self):
         # we can insert special chars in words.
