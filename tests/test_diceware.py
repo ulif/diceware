@@ -35,6 +35,15 @@ def argv_handler(request):
     request.addfinalizer(teardown)
 
 
+@pytest.fixture(scope="function")
+def wordlists_dir(request, monkeypatch, tmpdir):
+    """This fixture provides a temporary wordlist dir.
+    """
+    _orig_wordlists_dir = WORDLISTS_DIR
+    monkeypatch.setattr("diceware.WORDLISTS_DIR", tmpdir)
+    return tmpdir
+
+
 class Test_GetWordList(object):
 
     def test_get_wordlist_en_8k(self):
