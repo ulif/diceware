@@ -126,6 +126,22 @@ class TestDicewareModule(object):
         wlist_path.write("some\nirrelevant\nwords")
         assert get_wordlist_names() == ['en_8k']
 
+    def test_get_wordlist_names_files_only(self, wordlists_dir):
+        # non-files are ignored when looking for wordlist names
+        sub_dir = wordlists_dir.mkdir('subdir')                # a subdir
+        sub_dir.join("somfile_name.txt").write("Some\ntext")   # and a file in
+        assert get_wordlist_names() == []
+
+    def test_get_wordlist_names_requires_underscore(self, wordlists_dir):
+        # we only recognize wordlist files with underscore in name
+        wordlists_dir.join("file-without-underscore.txt").write("a\nb\n")
+        assert get_wordlist_names() == []
+
+    def test_get_wordlist_names_requires_dot(self, wordlists_dir):
+        # we only recognize wordlist files with dot in name
+        wordlists_dir.join("file_without_dot-in-name").write("a\nb\n")
+        assert get_wordlist_names() == []
+
     def test_insert_special_char(self):
         # we can insert special chars in words.
         fake_rnd = FakeRandom()
