@@ -40,7 +40,7 @@ def wordlists_dir(request, monkeypatch, tmpdir):
     """This fixture provides a temporary wordlist dir.
     """
     _orig_wordlists_dir = WORDLISTS_DIR
-    monkeypatch.setattr("diceware.WORDLISTS_DIR", tmpdir)
+    monkeypatch.setattr("diceware.WORDLISTS_DIR", str(tmpdir))
     return tmpdir
 
 
