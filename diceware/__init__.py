@@ -132,9 +132,9 @@ def get_wordlist_names():
     for filename in filenames:
         if not os.path.isfile(os.path.join(WORDLISTS_DIR, filename)):
             continue
-        if not "_" in filename:
+        if "_" not in filename:
             continue
-        if not "." in filename:
+        if "." not in filename:
             continue
         basename = filename.split(".")[0]
         name = basename.split("_", 1)[1]
