@@ -20,3 +20,6 @@ optional arguments:
                         Get randomness from this source. Possible values:
                         `realdice', `system'. Default: system
   --version             output version information and exit.
+
+Wordlists are stored in
+<PATH-TO-WORDLISTS-DIR>

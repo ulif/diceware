@@ -87,7 +87,10 @@ def handle_options(args):
     """Handle commandline options.
     """
     random_sources = get_random_sources().keys()
-    parser = argparse.ArgumentParser(description="Create a passphrase")
+    parser = argparse.ArgumentParser(
+        description="Create a passphrase",
+        epilog="Wordlists are stored in %s" % WORDLISTS_DIR
+        )
     parser.add_argument(
         '-n', '--num', default=6, type=int,
         help='number of words to concatenate. Default: 6')
