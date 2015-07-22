@@ -16,14 +16,11 @@
 """diceware -- rememberable passphrases
 """
 import argparse
-import os
 import pkg_resources
-import re
 import sys
 from random import SystemRandom
 from diceware.wordlist import (
-    get_wordlist_names, get_wordlist, get_wordlist_path, WORDLISTS_DIR,
-    RE_WORDLIST_NAME,
+    get_wordlist, get_wordlist_path, WORDLISTS_DIR,
     )
 
 __version__ = pkg_resources.get_distribution('diceware').version
@@ -121,6 +118,7 @@ def handle_options(args):
     parser.set_defaults(capitalize=True)
     args = parser.parse_args(args)
     return args
+
 
 def insert_special_char(word, specials=SPECIAL_CHARS, rnd=None):
     """Insert a char out of `specials` into `word`.

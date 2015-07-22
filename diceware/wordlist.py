@@ -27,7 +27,6 @@ WORDLISTS_DIR = os.path.abspath(
 RE_WORDLIST_NAME = re.compile('^[a-zA-Z0-9_-]+$')
 
 
-
 def get_wordlist_names():
     """Get a all names of wordlists stored locally.
     """
