@@ -21,16 +21,12 @@ import pkg_resources
 import re
 import sys
 from random import SystemRandom
+from diceware.wordlist import (
+    get_wordlist_names, get_wordlist, get_wordlist_path, WORDLISTS_DIR,
+    RE_WORDLIST_NAME,
+    )
 
 __version__ = pkg_resources.get_distribution('diceware').version
-
-#: The directory in which wordlists are stored
-WORDLISTS_DIR = os.path.abspath(
-    os.path.join(os.path.dirname(__file__), 'wordlists'))
-
-#: A regular expression matching allowed wordlist names. We
-#: allow names that cannot easily mess up filesystems.
-RE_WORDLIST_NAME = re.compile('^[a-zA-Z0-9_-]+$')
 
 #: Special chars inserted on demand
 SPECIAL_CHARS = r"~!#$%^&*()-=+[]\{}:;" + r'"' + r"'<>?/0123456789"
@@ -125,56 +121,6 @@ def handle_options(args):
     parser.set_defaults(capitalize=True)
     args = parser.parse_args(args)
     return args
-
-
-def get_wordlist_names():
-    """Get a all names of wordlists stored locally.
-    """
-    result = []
-    filenames = os.listdir(WORDLISTS_DIR)
-    for filename in filenames:
-        if not os.path.isfile(os.path.join(WORDLISTS_DIR, filename)):
-            continue
-        if "_" not in filename:
-            continue
-        if "." not in filename:
-            continue
-        basename = filename.split(".")[0]
-        name = basename.split("_", 1)[1]
-        result.append(name)
-    return sorted(result)
-
-
-def get_wordlist(file_descriptor):
-    """Parse file in `file_descriptor` and build a word list of it.
-
-    `file_descriptor` is expected to be a file descriptor, already
-    opened for reading. The descriptor will be closed after
-    processing.
-
-    A wordlist is expected to contain lines of words. Each line a
-    word. Empty lines are ignored. Returns a list of terms (lines)
-    found.
-    """
-    result = [
-        line.strip() for line in file_descriptor.readlines()
-        if line.strip() != '']
-    file_descriptor.close()
-    return result
-
-
-def get_wordlist_path(name):
-    """Get path to a wordlist file for a wordlist named `name`.
-
-    The `name` string must not contain special chars beside ``-``,
-    ``_``, regular chars ``A-Z`` (upper or lower case) or
-    numbers. Invalid names raise a ValueError.
-    """
-    if not RE_WORDLIST_NAME.match(name):
-        raise ValueError("Not a valid wordlist name: %s" % name)
-    basename = 'wordlist_%s.txt' % name
-    return os.path.join(WORDLISTS_DIR, basename)
-
 
 def insert_special_char(word, specials=SPECIAL_CHARS, rnd=None):
     """Insert a char out of `specials` into `word`.
