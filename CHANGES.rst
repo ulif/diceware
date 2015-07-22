@@ -6,12 +6,12 @@ Changes
 
 - New option ``-r``, ``--randomsource``. We support a pluggable system
   to define alternative sources of randomness. Currently supported
-  sources: ``"system"``.
+  sources: ``"system"`` (to retrieve randomness from standard library,
+  default) and ``realdice``, which allows use of real dice.
 - Rename `SRC_DIR` to `WORDLISTS_DIR` (reflecting what it stands for).
 - Use also flake8 with tox.
 - Pass `options` to `get_passphrase()` instead of a bunch of single args.
-- Add new source of randomness: ``realdice`` enables use of real dice
-  for creating random words.
+- Output wordlists dir in help output.
 
 
 0.4 (2015-03-30)
