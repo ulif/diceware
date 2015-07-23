@@ -21,5 +21,4 @@ optional arguments:
                         `realdice', `system'. Default: system
   --version             output version information and exit.
 
-Wordlists are stored in
-<PATH-TO-WORDLISTS-DIR>
+Wordlists are stored in <WORDLISTS-DIR>

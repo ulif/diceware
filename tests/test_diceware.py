@@ -206,7 +206,8 @@ class TestDicewareModule(object):
             os.path.dirname(__file__), 'exp_help_output.txt')
         with open(expected_path, 'r') as fd:
             expected_output = fd.read()
-        out = out.replace(WORDLISTS_DIR, "<PATH-TO-WORDLISTS-DIR>")
+        out = out.replace(WORDLISTS_DIR, "<WORDLISTS-DIR>")
+        out = out.replace("\n<WORDLISTS-DIR>", " <WORDLISTS-DIR>")
         assert out == expected_output
 
     def test_main_version(self, argv_handler, capsys):
