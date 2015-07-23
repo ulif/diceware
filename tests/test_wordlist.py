@@ -1,8 +1,8 @@
 import os
 import pytest
 from diceware.wordlist import (
-    WORDLISTS_DIR, RE_WORDLIST_NAME, get_wordlist, get_wordlist_path,
-    get_wordlist_names,
+    WORDLISTS_DIR, RE_WORDLIST_NAME, get_wordlist, get_signed_wordlist,
+    get_wordlist_path, get_wordlist_names,
 )
 
 
@@ -48,6 +48,17 @@ class Test_GetWordList(object):
         with open(in_file.strpath, 'r') as fd:
             get_wordlist(fd)
             assert fd.closed is True
+
+
+class Test_GetSignedWordList(object):
+
+    def test_get_signed_wordlist_handles_clearsigned_files(self, tmpdir):
+        # we can process cryptogrphically signed files
+        in_path = os.path.join(
+            os.path.dirname(__file__), "sample_signed_wordlist.asc")
+        with open(in_path, 'r') as fd:
+            result = get_signed_wordlist(fd)
+        assert ["foo", "bar"] == result
 
 
 class TestWordlistModule(object):

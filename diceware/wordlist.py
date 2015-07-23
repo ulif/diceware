@@ -63,6 +63,33 @@ def get_wordlist(file_descriptor):
     return result
 
 
+def get_signed_wordlist(file_descriptor):
+    """Parse cryptographically signed file in `file_descriptor` and
+    build a wordlist out of it.
+
+    `file_descriptor` is expected to be a file descriptor, already
+    opened for reading. The descriptor will be closed after
+    processing.
+
+    Signed wordlists are expected to be wordlists as described in
+    `get_wordlist()` but with ASCII armored signatures (as described in
+    RFC 4880).
+
+    The signature headers/footers are stripped and the contained list of
+    words returned.
+    """
+    result = []
+    while file_descriptor.readline().strip():
+        pass
+    for line in file_descriptor.readlines():
+        line = line.strip()
+        if line == '-----BEGIN PGP SIGNATURE-----':
+            break
+        result += [line.strip(), ]
+    file_descriptor.close()
+    return result
+
+
 def get_wordlist_path(name):
     """Get path to a wordlist file for a wordlist named `name`.
 
