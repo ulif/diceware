@@ -85,6 +85,8 @@ def get_signed_wordlist(file_descriptor):
         line = line.strip()
         if line == '-----BEGIN PGP SIGNATURE-----':
             break
+        if line.startswith('- '):
+            line = line[2:]
         result += [line.strip(), ]
     file_descriptor.close()
     return result

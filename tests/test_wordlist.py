@@ -58,7 +58,7 @@ class Test_GetSignedWordList(object):
             os.path.dirname(__file__), "sample_signed_wordlist.asc")
         with open(in_path, 'r') as fd:
             result = get_signed_wordlist(fd)
-        assert ["foo", "bar"] == result
+        assert ["foo", "bar", "-dash-at-start", "baz"] == result
 
 
 class TestWordlistModule(object):
