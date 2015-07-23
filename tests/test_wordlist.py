@@ -2,7 +2,7 @@ import os
 import pytest
 from diceware.wordlist import (
     WORDLISTS_DIR, RE_WORDLIST_NAME, get_wordlist, get_signed_wordlist,
-    get_wordlist_path, get_wordlist_names,
+    get_wordlist_path, get_wordlist_names, is_signed_wordlist,
 )
 
 
@@ -114,3 +114,19 @@ class TestWordlistModule(object):
         # we only recognize wordlist files with dot in name
         wordlists_dir.join("file_without_dot-in-name").write("a\nb\n")
         assert get_wordlist_names() == []
+
+    def test_is_signed_wordlist(self):
+        # we recognize signed wordlists
+        in_path = os.path.join(
+            os.path.dirname(__file__), "sample_signed_wordlist.asc")
+        with open(in_path, "r") as fd:
+            result = is_signed_wordlist(fd)
+        assert result is True
+
+    def test_is_signed_wordlist_plain(self, tmpdir):
+        # we can tell if a wordlist is not signed
+        in_file = tmpdir.mkdir("work").join("mywordlist")
+        in_file.write("a\nb\n")
+        with open(in_file.strpath, 'r') as fd:
+            result = is_signed_wordlist(fd)
+        assert result is False

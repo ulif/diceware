@@ -45,6 +45,16 @@ def get_wordlist_names():
     return sorted(result)
 
 
+def is_signed_wordlist(file_descriptor):
+    """check, whether file in `file_descriptor` is signed.
+    """
+    line1 = file_descriptor.readline()
+    file_descriptor.seek(0)
+    if line1.rstrip() == "-----BEGIN PGP SIGNED MESSAGE-----":
+        return True
+    return False
+
+
 def get_wordlist(file_descriptor):
     """Parse file in `file_descriptor` and build a word list of it.
 
