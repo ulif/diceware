@@ -61,6 +61,14 @@ class Test_GetSignedWordList(object):
             result = get_signed_wordlist(fd)
         assert ["foo", "bar", "-dash-at-start", "baz"] == result
 
+    def test_get_signed_wordlist_handles_en_orig(self, tmpdir):
+        # we can process the original diceware list from diceware.com
+        wlist_path = os.path.join(WORDLISTS_DIR, 'wordlist_en_orig.asc')
+        with open(wlist_path, 'r') as fd:
+            result = get_signed_wordlist(fd)
+        assert "11111\ta" == result[0]
+        assert "66666\t@" == result[-1]
+
 
 class TestWordlistModule(object):
 
