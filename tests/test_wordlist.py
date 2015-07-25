@@ -66,6 +66,7 @@ class Test_GetSignedWordList(object):
         wlist_path = os.path.join(WORDLISTS_DIR, 'wordlist_en_orig.asc')
         with open(wlist_path, 'r') as fd:
             result = get_signed_wordlist(fd)
+        assert len(result) == 7776
         assert "11111\ta" == result[0]
         assert "66666\t@" == result[-1]
 
