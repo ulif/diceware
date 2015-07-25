@@ -100,6 +100,9 @@ def get_signed_wordlist(file_descriptor):
             break
         if line.startswith('- '):
             line = line[2:]
+        match = RE_NUMBERED_WORDLIST_ENTRY.match(line)
+        if match:
+            line = match.groups()[0]
         if not line:
             continue
         result += [line, ]
