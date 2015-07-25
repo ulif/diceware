@@ -26,6 +26,9 @@ WORDLISTS_DIR = os.path.abspath(
 #: allow names that cannot easily mess up filesystems.
 RE_WORDLIST_NAME = re.compile('^[a-zA-Z0-9_-]+$')
 
+#: A regular expression matching numbered entries in wordlists.
+RE_NUMBERED_WORDLIST_ENTRY = re.compile('^[0-9]+\s+([^\s]+)$')
+
 
 def get_wordlist_names():
     """Get a all names of wordlists stored locally.

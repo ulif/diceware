@@ -1,8 +1,9 @@
 import os
 import pytest
 from diceware.wordlist import (
-    WORDLISTS_DIR, RE_WORDLIST_NAME, get_wordlist, get_signed_wordlist,
-    get_wordlist_path, get_wordlist_names, is_signed_wordlist,
+    WORDLISTS_DIR, RE_WORDLIST_NAME, RE_NUMBERED_WORDLIST_ENTRY, get_wordlist,
+    get_signed_wordlist, get_wordlist_path, get_wordlist_names,
+    is_signed_wordlist,
 )
 
 
@@ -80,6 +81,16 @@ class TestWordlistModule(object):
         assert RE_WORDLIST_NAME.match("'with-quotation-marks'") is None
         assert RE_WORDLIST_NAME.match('with.dot') is None
         assert RE_WORDLIST_NAME.match('with/slash') is None
+
+    def test_re_numbered_wordlist_entry(self):
+        assert RE_NUMBERED_WORDLIST_ENTRY.match('11111   a') is not None
+        assert RE_NUMBERED_WORDLIST_ENTRY.match(
+            '11111   a').groups() == ('a', )
+        assert RE_NUMBERED_WORDLIST_ENTRY.match('12211\t 1') is not None
+        assert RE_NUMBERED_WORDLIST_ENTRY.match(
+            '12211\t 1').groups() == ('1', )
+        assert RE_NUMBERED_WORDLIST_ENTRY.match('12a11 foo') is None
+        assert RE_NUMBERED_WORDLIST_ENTRY.match('foo bar') is None
 
     def test_get_wordlist_path(self):
         # we can get valid wordlist paths
