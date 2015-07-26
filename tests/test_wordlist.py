@@ -3,7 +3,7 @@ import pytest
 from diceware.wordlist import (
     WORDLISTS_DIR, RE_WORDLIST_NAME, RE_NUMBERED_WORDLIST_ENTRY, get_wordlist,
     get_signed_wordlist, get_wordlist_path, get_wordlist_names,
-    is_signed_wordlist,
+    is_signed_wordlist, refine_wordlist_entry,
 )
 
 
@@ -166,3 +166,18 @@ class TestWordlistModule(object):
         with open(in_file.strpath, 'r') as fd:
             result = is_signed_wordlist(fd)
         assert result is False
+
+    def test_refine_wordlist_entry_strips(self):
+        # we strip() entries
+        assert refine_wordlist_entry("foo") == "foo"
+        assert refine_wordlist_entry(" foo \n") == "foo"
+        assert refine_wordlist_entry(" foo bar \n") == "foo bar"
+
+    def test_refine_wordlist_entry_handles_numbered(self):
+        # we transform numbered lines
+        assert refine_wordlist_entry("11111\tfoo") == "foo"
+
+    def test_refine_wordlist_entry_handles_dash_quotes_when_signed(self):
+        # we handle dash-escaped lines correctly when in signed mode
+        assert refine_wordlist_entry("- foo") == "- foo"
+        assert refine_wordlist_entry("- foo", signed=True) == "foo"

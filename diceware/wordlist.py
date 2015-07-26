@@ -58,6 +58,20 @@ def is_signed_wordlist(file_descriptor):
     return False
 
 
+def refine_wordlist_entry(entry, signed=False):
+    """Apply modifications to form a proper wordlist entry.
+
+    If the given entry is not valid at all, we return `None`.
+    """
+    entry = entry.strip()
+    if signed and entry.startswith('- '):
+        entry = entry[2:]
+    match = RE_NUMBERED_WORDLIST_ENTRY.match(entry)
+    if match:
+        entry = match.groups()[0]
+    return entry
+
+
 def get_wordlist(file_descriptor):
     """Parse file in `file_descriptor` and build a word list of it.
 
