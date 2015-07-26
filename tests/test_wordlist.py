@@ -70,6 +70,22 @@ class Test_GetSignedWordList(object):
         assert "a" == result[0]
         assert "@" == result[-1]
 
+    def test_get_signed_wordlist_ignore_empty_lines(self, tmpdir):
+        # we ignore empty lines in wordlists
+        in_path = os.path.join(
+            os.path.dirname(__file__), "sample_signed_wordlist.asc")
+        with open(in_path, 'r') as fd:
+            result = get_signed_wordlist(fd)
+        assert '' not in result
+
+    def test_get_signed_wordlist_closes_fd(self, tmpdir):
+        # we close passed-in file descriptors
+        in_path = os.path.join(
+            os.path.dirname(__file__), "sample_signed_wordlist.asc")
+        with open(in_path, 'r') as fd:
+            get_signed_wordlist(fd)
+            assert fd.closed is True
+
 
 class TestWordlistModule(object):
 
