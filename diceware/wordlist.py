@@ -108,16 +108,13 @@ def get_signed_wordlist(file_descriptor):
     """
     result = []
     while file_descriptor.readline().strip():
+        # wait for first empty line
         pass
     for line in file_descriptor.readlines():
         line = line.strip()
         if line == '-----BEGIN PGP SIGNATURE-----':
             break
-        if line.startswith('- '):
-            line = line[2:]
-        match = RE_NUMBERED_WORDLIST_ENTRY.match(line)
-        if match:
-            line = match.groups()[0]
+        line = refine_wordlist_entry(line, signed=True)
         if not line:
             continue
         result += [line, ]
