@@ -111,12 +111,11 @@ def get_signed_wordlist(file_descriptor):
         # wait for first empty line
         pass
     for line in file_descriptor.readlines():
-        line = line.strip()
-        if line == '-----BEGIN PGP SIGNATURE-----':
-            break
         line = refine_wordlist_entry(line, signed=True)
         if not line:
             continue
+        elif line == '-----BEGIN PGP SIGNATURE-----':
+            break
         result += [line, ]
     file_descriptor.close()
     return result
