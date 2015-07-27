@@ -61,7 +61,8 @@ def is_signed_wordlist(file_descriptor):
 def refine_wordlist_entry(entry, signed=False):
     """Apply modifications to form a proper wordlist entry.
 
-    If the given entry is not valid at all, we return `None`.
+    Set `signed` to `True` if the entry is part of a cryptographically
+    signed wordlist.
     """
     entry = entry.strip()
     if signed and entry.startswith('- '):
