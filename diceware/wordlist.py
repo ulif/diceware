@@ -64,9 +64,9 @@ def refine_wordlist_entry(entry, signed=False):
     Set `signed` to `True` if the entry is part of a cryptographically
     signed wordlist.
     """
-    entry = entry.strip()
     if signed and entry.startswith('- '):
         entry = entry[2:]
+    entry = entry.strip()
     match = RE_NUMBERED_WORDLIST_ENTRY.match(entry)
     if match:
         entry = match.groups()[0]

@@ -181,3 +181,11 @@ class TestWordlistModule(object):
         # we handle dash-escaped lines correctly when in signed mode
         assert refine_wordlist_entry("- foo") == "- foo"
         assert refine_wordlist_entry("- foo", signed=True) == "foo"
+
+    def test_refine_wordlist_strips_also_dash_quoted(self):
+        # also dash-escaped lines in signed wordlistgs are stripped.
+        assert refine_wordlist_entry("- \tfoo\n", signed=True) == "foo"
+
+    def test_refine_wordlist_strips_also_numbered(self):
+        # also numbered entries are stripped
+        assert refine_wordlist_entry("11111 \t foo\n") == "foo"
