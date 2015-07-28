@@ -197,5 +197,5 @@ class TestWordList(object):
         # we can create `WordList` objects.
         in_file = tmpdir.mkdir("work").join("mywordlist")
         in_file.write("foo\n")
-        wlist = WordList(str(in_file))
-        assert wlist is not None
+        w_list = WordList(str(in_file))
+        assert w_list is not None
