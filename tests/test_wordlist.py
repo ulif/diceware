@@ -3,7 +3,7 @@ import pytest
 from diceware.wordlist import (
     WORDLISTS_DIR, RE_WORDLIST_NAME, RE_NUMBERED_WORDLIST_ENTRY, get_wordlist,
     get_signed_wordlist, get_wordlist_path, get_wordlist_names,
-    is_signed_wordlist, refine_wordlist_entry,
+    is_signed_wordlist, refine_wordlist_entry, WordList,
 )
 
 
@@ -189,3 +189,13 @@ class TestWordlistModule(object):
     def test_refine_wordlist_strips_also_numbered(self):
         # also numbered entries are stripped
         assert refine_wordlist_entry("11111 \t foo\n") == "foo"
+
+
+class TestWordList(object):
+
+    def test_create_wordlist(self, tmpdir):
+        # we can create `WordList` objects.
+        in_file = tmpdir.mkdir("work").join("mywordlist")
+        in_file.write("foo\n")
+        wlist = WordList(str(in_file))
+        assert wlist is not None
