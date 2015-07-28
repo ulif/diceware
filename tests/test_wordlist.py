@@ -214,7 +214,7 @@ class TestWordList(object):
         # if we pass in an open file, it will be used
         in_file = tmpdir.mkdir("work").join("mywordlist")
         in_file.write("foo\n")
-        with open(str(in_file), "w") as my_open_file:
+        with open(str(in_file), "r") as my_open_file:
             w_list = WordList(my_open_file)
             assert w_list.fd is not None
             assert w_list.path is None
