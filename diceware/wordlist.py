@@ -133,9 +133,19 @@ def get_wordlist_path(name):
     basename = 'wordlist_%s.txt' % name
     return os.path.join(WORDLISTS_DIR, basename)
 
+try:
+    basestring
+except NameError:
+    basestring = str
+
 
 class WordList(object):
     """A word list contains words for building passphrases.
     """
-    def __init__(self, opened_file=None, path=None):
-        pass
+    def __init__(self, path_or_filelike=None):
+        self.path = None
+        if isinstance(path_or_filelike, basestring):
+            self.path = path_or_filelike
+            self.fd = open(self.path, "r")
+        else:
+            self.fd = path_or_filelike
