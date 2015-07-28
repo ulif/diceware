@@ -201,6 +201,7 @@ class TestWordList(object):
         assert w_list is not None
         assert hasattr(w_list, "path")
         assert hasattr(w_list, "fd")
+        assert hasattr(w_list, "signed")
 
     def test_create_opens_file(self, tmpdir):
         # if we pass-in a path, the file will be opened for reading.
@@ -217,3 +218,17 @@ class TestWordList(object):
             w_list = WordList(my_open_file)
             assert w_list.fd is not None
             assert w_list.path is None
+
+    def test_detect_unsigned_wordlists(self, tmpdir):
+        # we can detect unsigned wordlist files.
+        in_file = tmpdir.mkdir("work").join("mywordlist")
+        in_file.write("foo\n")
+        w_list = WordList(str(in_file))
+        assert w_list.signed is False
+
+    def test_detec_signed_wordlists(self):
+        # we can detect signed wordlist files.
+        in_path = os.path.join(
+            os.path.dirname(__file__), "sample_signed_wordlist.asc")
+        w_list = WordList(in_path)
+        assert w_list.signed is True

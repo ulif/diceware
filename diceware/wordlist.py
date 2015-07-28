@@ -152,3 +152,4 @@ class WordList(object):
             self.fd = open(self.path, "r")
         else:
             self.fd = path_or_filelike
+        self.signed = is_signed_wordlist(self.fd)
