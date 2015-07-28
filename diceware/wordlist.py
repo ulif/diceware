@@ -141,6 +141,9 @@ except NameError:
 
 class WordList(object):
     """A word list contains words for building passphrases.
+
+    `path_or_filelike` is the path of the wordlist file or an already
+    opened file. Opened files must be open for reading, of course.
     """
     def __init__(self, path_or_filelike=None):
         self.path = None
