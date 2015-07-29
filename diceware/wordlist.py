@@ -154,3 +154,8 @@ class WordList(object):
         else:
             self.fd = path_or_filelike
         self.signed = is_signed_wordlist(self.fd)
+
+    def __iter__(self):
+        self.fd.seek(0)
+        for line in self.fd:
+            yield refine_wordlist_entry(line, signed=self.signed)

@@ -232,3 +232,10 @@ class TestWordList(object):
             os.path.dirname(__file__), "sample_signed_wordlist.asc")
         w_list = WordList(in_path)
         assert w_list.signed is True
+
+    def test_wordlists_are_generators(self, tmpdir):
+        # WordList instances act like generators.
+        in_file = tmpdir.mkdir("work").join("mywordlist")
+        in_file.write("foo\nbar\n")
+        w_list = WordList(str(in_file))
+        assert list(w_list) == ["foo", "bar"]
