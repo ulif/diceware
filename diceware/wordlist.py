@@ -29,6 +29,12 @@ RE_WORDLIST_NAME = re.compile('^[a-zA-Z0-9_-]+$')
 #: A regular expression matching numbered entries in wordlists.
 RE_NUMBERED_WORDLIST_ENTRY = re.compile('^[0-9]+\s+([^\s]+)$')
 
+# A workaround to avoid `six` dependency.
+try:
+    basestring
+except NameError:                # NOQA  # pragma: no cover
+    basestring = str
+
 
 def get_wordlist_names():
     """Get a all names of wordlists stored locally.
@@ -132,11 +138,6 @@ def get_wordlist_path(name):
         raise ValueError("Not a valid wordlist name: %s" % name)
     basename = 'wordlist_%s.txt' % name
     return os.path.join(WORDLISTS_DIR, basename)
-
-try:
-    basestring
-except NameError:
-    basestring = str
 
 
 class WordList(object):
