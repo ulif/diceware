@@ -239,3 +239,10 @@ class TestWordList(object):
         in_file.write("foo\nbar\n")
         w_list = WordList(str(in_file))
         assert list(w_list) == ["foo", "bar"]
+
+    def test_wordlist_from_signed_file(self):
+        # we can get an iterator from signed wordlist.
+        in_path = os.path.join(
+            os.path.dirname(__file__), "sample_signed_wordlist.asc")
+        w_list = WordList(in_path)
+        assert list(w_list) == ["foo", "bar", "-dash-at-start", "baz"]

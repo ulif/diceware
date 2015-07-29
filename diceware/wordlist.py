@@ -157,5 +157,14 @@ class WordList(object):
 
     def __iter__(self):
         self.fd.seek(0)
+        if self.signed:
+            while self.fd.readline().strip():
+                # wait for first empty line
+                pass
         for line in self.fd:
-            yield refine_wordlist_entry(line, signed=self.signed)
+            line = refine_wordlist_entry(line, signed=self.signed)
+            if not line:
+                continue
+            elif self.signed and line == '-----BEGIN PGP SIGNATURE-----':
+                break
+            yield line
