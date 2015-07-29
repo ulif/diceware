@@ -226,7 +226,7 @@ class TestWordList(object):
         w_list = WordList(str(in_file))
         assert w_list.signed is False
 
-    def test_detec_signed_wordlists(self):
+    def test_detect_signed_wordlists(self):
         # we can detect signed wordlist files.
         in_path = os.path.join(
             os.path.dirname(__file__), "sample_signed_wordlist.asc")
