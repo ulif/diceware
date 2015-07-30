@@ -288,7 +288,7 @@ class TestWordList(object):
         result = list(WordList(str(in_file)))
         assert ['a'] == result
 
-    def test_get_signed_wordlist_handles_clearsigned_files(self, tmpdir):
+    def test_get_signed_wordlist_handles_clearsigned_files(self):
         # we can process cryptogrphically signed files
         in_path = os.path.join(
             os.path.dirname(__file__), "sample_signed_wordlist.asc")
@@ -296,7 +296,7 @@ class TestWordList(object):
             result = get_signed_wordlist(fd)
         assert ["foo", "bar", "-dash-at-start", "baz"] == result
 
-    def test_get_signed_wordlist_handles_en_orig(self, tmpdir):
+    def test_get_signed_wordlist_handles_en_orig(self):
         # we can process the original diceware list from diceware.com
         wlist_path = os.path.join(WORDLISTS_DIR, 'wordlist_en_orig.asc')
         w_list = WordList(wlist_path)
@@ -305,7 +305,7 @@ class TestWordList(object):
         assert "a" == result[0]
         assert "@" == result[-1]
 
-    def test_get_signed_wordlist_ignore_empty_lines(self, tmpdir):
+    def test_get_signed_wordlist_ignore_empty_lines(self):
         # we ignore empty lines in wordlists
         in_path = os.path.join(
             os.path.dirname(__file__), "sample_signed_wordlist.asc")
