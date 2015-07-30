@@ -1,9 +1,9 @@
 import os
 import pytest
 from diceware.wordlist import (
-    WORDLISTS_DIR, RE_WORDLIST_NAME, RE_NUMBERED_WORDLIST_ENTRY, get_wordlist,
-    get_signed_wordlist, get_wordlist_path, get_wordlist_names,
-    is_signed_wordlist, refine_wordlist_entry, WordList,
+    WORDLISTS_DIR, RE_WORDLIST_NAME, RE_NUMBERED_WORDLIST_ENTRY,
+    get_wordlist_path, get_wordlist_names, is_signed_wordlist,
+    refine_wordlist_entry, WordList,
 )
 
 
@@ -13,78 +13,6 @@ def wordlists_dir(request, monkeypatch, tmpdir):
     """
     monkeypatch.setattr("diceware.wordlist.WORDLISTS_DIR", str(tmpdir))
     return tmpdir
-
-
-class Test_GetWordList(object):
-
-    def test_get_wordlist_en_8k(self):
-        # we can get a list of words out of english 8k wordlist.
-        en_src = os.path.join(WORDLISTS_DIR, 'wordlist_en_8k.txt')
-        with open(en_src, 'r') as fd:
-            en_result = get_wordlist(fd)
-        assert en_result[0] == 'a'
-        assert en_result[-1] == '@'
-        assert len(en_result) == 8192
-
-    def test_get_wordlist_simple(self, tmpdir):
-        # simple wordlists can be created
-        in_file = tmpdir.mkdir("work").join("mywordlist")
-        in_file.write("a\nb\n")
-        with open(in_file.strpath, 'r') as fd:
-            result = get_wordlist(fd)
-        assert ['a', 'b'] == result
-
-    def test_get_wordlist_ignore_empty_lines(self, tmpdir):
-        # we ignore empty lines in wordlists
-        in_file = tmpdir.mkdir("work").join("mywordlist")
-        in_file.write("\n\na\n\n")
-        with open(in_file.strpath, 'r') as fd:
-            result = get_wordlist(fd)
-        assert ['a'] == result
-
-    def test_get_wordlist_closes_fd(self, tmpdir):
-        # we close passed-in file descriptors
-        in_file = tmpdir.join("somewordlist")
-        in_file.write("aaa\nbbb\n")
-        with open(in_file.strpath, 'r') as fd:
-            get_wordlist(fd)
-            assert fd.closed is True
-
-
-class Test_GetSignedWordList(object):
-
-    def test_get_signed_wordlist_handles_clearsigned_files(self, tmpdir):
-        # we can process cryptogrphically signed files
-        in_path = os.path.join(
-            os.path.dirname(__file__), "sample_signed_wordlist.asc")
-        with open(in_path, 'r') as fd:
-            result = get_signed_wordlist(fd)
-        assert ["foo", "bar", "-dash-at-start", "baz"] == result
-
-    def test_get_signed_wordlist_handles_en_orig(self, tmpdir):
-        # we can process the original diceware list from diceware.com
-        wlist_path = os.path.join(WORDLISTS_DIR, 'wordlist_en_orig.asc')
-        with open(wlist_path, 'r') as fd:
-            result = get_signed_wordlist(fd)
-        assert len(result) == 7776
-        assert "a" == result[0]
-        assert "@" == result[-1]
-
-    def test_get_signed_wordlist_ignore_empty_lines(self, tmpdir):
-        # we ignore empty lines in wordlists
-        in_path = os.path.join(
-            os.path.dirname(__file__), "sample_signed_wordlist.asc")
-        with open(in_path, 'r') as fd:
-            result = get_signed_wordlist(fd)
-        assert '' not in result
-
-    def test_get_signed_wordlist_closes_fd(self, tmpdir):
-        # we close passed-in file descriptors
-        in_path = os.path.join(
-            os.path.dirname(__file__), "sample_signed_wordlist.asc")
-        with open(in_path, 'r') as fd:
-            get_signed_wordlist(fd)
-            assert fd.closed is True
 
 
 class TestWordlistModule(object):

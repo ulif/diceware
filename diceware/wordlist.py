@@ -79,54 +79,6 @@ def refine_wordlist_entry(entry, signed=False):
     return entry
 
 
-def get_wordlist(file_descriptor):
-    """Parse file in `file_descriptor` and build a word list of it.
-
-    `file_descriptor` is expected to be a file descriptor, already
-    opened for reading. The descriptor will be closed after
-    processing.
-
-    A wordlist is expected to contain lines of words. Each line a
-    word. Empty lines are ignored. Returns a list of terms (lines)
-    found.
-    """
-    result = [
-        line.strip() for line in file_descriptor.readlines()
-        if line.strip() != '']
-    file_descriptor.close()
-    return result
-
-
-def get_signed_wordlist(file_descriptor):
-    """Parse cryptographically signed file in `file_descriptor` and
-    build a wordlist out of it.
-
-    `file_descriptor` is expected to be a file descriptor, already
-    opened for reading. The descriptor will be closed after
-    processing.
-
-    Signed wordlists are expected to be wordlists as described in
-    `get_wordlist()` but with ASCII armored signatures (as described in
-    RFC 4880).
-
-    The signature headers/footers are stripped and the contained list of
-    words returned.
-    """
-    result = []
-    while file_descriptor.readline().strip():
-        # wait for first empty line
-        pass
-    for line in file_descriptor.readlines():
-        line = refine_wordlist_entry(line, signed=True)
-        if not line:
-            continue
-        elif line == '-----BEGIN PGP SIGNATURE-----':
-            break
-        result += [line, ]
-    file_descriptor.close()
-    return result
-
-
 def get_wordlist_path(name):
     """Get path to a wordlist file for a wordlist named `name`.
 
