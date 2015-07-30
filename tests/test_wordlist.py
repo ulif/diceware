@@ -293,7 +293,7 @@ class TestWordList(object):
         in_path = os.path.join(
             os.path.dirname(__file__), "sample_signed_wordlist.asc")
         with open(in_path, 'r') as fd:
-            result = get_signed_wordlist(fd)
+            result = list(WordList(fd))
         assert ["foo", "bar", "-dash-at-start", "baz"] == result
 
     def test_get_signed_wordlist_handles_en_orig(self):
