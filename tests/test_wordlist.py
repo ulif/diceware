@@ -246,3 +246,12 @@ class TestWordList(object):
             os.path.dirname(__file__), "sample_signed_wordlist.asc")
         w_list = WordList(in_path)
         assert list(w_list) == ["foo", "bar", "-dash-at-start", "baz"]
+
+    def test_wordlist_en_8k(self):
+        # we can get a list of words out of english 8k wordlist.
+        en_src = os.path.join(WORDLISTS_DIR, 'wordlist_en_8k.txt')
+        w_list = WordList(en_src)
+        long_list = list(w_list)
+        assert long_list[0] == "a"
+        assert long_list[-1] == "@"
+        assert len(long_list) == 8192
