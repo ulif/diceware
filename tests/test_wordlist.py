@@ -255,3 +255,17 @@ class TestWordList(object):
         assert long_list[0] == "a"
         assert long_list[-1] == "@"
         assert len(long_list) == 8192
+
+    def test_get_wordlist_simple(self, tmpdir):
+        # simple wordlists can be created
+        in_file = tmpdir.mkdir("work").join("mywordlist")
+        in_file.write("a\nb\n")
+        result = list(WordList(str(in_file)))
+        assert ['a', 'b'] == result
+
+    def test_get_wordlist_ignore_empty_lines(self, tmpdir):
+        # we ignore empty lines in wordlists
+        in_file = tmpdir.mkdir("work").join("mywordlist")
+        in_file.write("\n\na\n\n")
+        result = list(WordList(str(in_file)))
+        assert ['a'] == result
