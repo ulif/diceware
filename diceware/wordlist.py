@@ -147,6 +147,22 @@ class WordList(object):
     opened file. Opened files must be open for reading, of course.
 
     Please note that open file descriptors are not closed after reading.
+
+    Wordlist files are expected to contain words, one word per
+    line. Empty lines are ignored, also whitespaces before or trailing
+    a line are stripped. If a "word" contains inner whitespaces, then
+    these are preserved.
+
+    The input file can be a signed wordlist. Signed wordlists are
+    expected to be ordinary lists of words but with ASCII armored
+    signatures (as described in RFC 4880).
+
+    In case of signed wordlists the signature headers/footers are
+    stripped and the contained list of words is read.
+
+    WordList are generators. That means, that you can retrieve the
+    words of a wordlist by iterating over an instance of `WordList`.
+
     """
     def __init__(self, path_or_filelike=None):
         self.path = None
