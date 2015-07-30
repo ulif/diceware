@@ -20,7 +20,7 @@ import pkg_resources
 import sys
 from random import SystemRandom
 from diceware.wordlist import (
-    get_wordlist, get_wordlist_path, WORDLISTS_DIR,
+    WordList, get_wordlist_path, WORDLISTS_DIR,
     )
 
 __version__ = pkg_resources.get_distribution('diceware').version
@@ -156,10 +156,10 @@ def get_passphrase(options=None):
         options = handle_options(args=[])
     if options.infile is None:
         options.infile = open(get_wordlist_path("en_8k"), 'r')
-    word_list = get_wordlist(options.infile)
+    word_list = WordList(options.infile)
     rnd_source = get_random_sources()[options.randomsource]
     rnd = rnd_source(options)
-    words = [rnd.choice(word_list) for x in range(options.num)]
+    words = [rnd.choice(list(word_list)) for x in range(options.num)]
     if options.capitalize:
         words = [x.capitalize() for x in words]
     result = options.delimiter.join(words)
