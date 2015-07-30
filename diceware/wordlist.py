@@ -145,6 +145,8 @@ class WordList(object):
 
     `path_or_filelike` is the path of the wordlist file or an already
     opened file. Opened files must be open for reading, of course.
+
+    Please note that open file descriptors are not closed after reading.
     """
     def __init__(self, path_or_filelike=None):
         self.path = None
