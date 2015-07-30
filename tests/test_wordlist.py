@@ -312,3 +312,22 @@ class TestWordList(object):
         w_list = WordList(in_path)
         result = list(w_list)
         assert '' not in result
+
+    def test_can_get_wordlist_multiple_times(self, tmpdir):
+        # we can get a wordlist several times
+        in_file = tmpdir.mkdir("work").join("mywordlist")
+        in_file.write("\n\na\n\n")
+        w_list = WordList(str(in_file))
+        list1 = list(w_list)
+        list2 = list(w_list)
+        assert list1 == list2
+
+    def test_can_get_wordlist_multiple_times_from_fd(self, tmpdir):
+        # we can get a wordlist several times also if it is a fd.
+        in_file = tmpdir.mkdir("work").join("mywordlist")
+        in_file.write("foo\nbar\n")
+        with open(str(in_file), "r") as fd:
+            w_list = WordList(fd)
+            list1 = list(w_list)
+            list2 = list(w_list)
+        assert list1 == list2
