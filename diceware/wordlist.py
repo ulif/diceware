@@ -29,6 +29,10 @@ RE_WORDLIST_NAME = re.compile('^[a-zA-Z0-9_-]+$')
 #: A regular expression matching numbered entries in wordlists.
 RE_NUMBERED_WORDLIST_ENTRY = re.compile('^[0-9]+\s+([^\s]+)$')
 
+#: A regular expression describing valid wordlist file names.
+RE_VALID_WORDLIST_FILENAME = re.compile(
+    '^wordlist_([a-zA-Z0-9_-]+)\.[a-zA-Z0-9][a-zA-Z0-9\.]+[a-zA-Z0-9]+$')
+
 
 def get_wordlist_names():
     """Get a all names of wordlists stored locally.

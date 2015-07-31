@@ -2,7 +2,8 @@ import os
 import pytest
 from diceware.wordlist import (
     WORDLISTS_DIR, RE_WORDLIST_NAME, RE_NUMBERED_WORDLIST_ENTRY,
-    get_wordlist_path, get_wordlist_names, refine_wordlist_entry, WordList,
+    RE_VALID_WORDLIST_FILENAME, get_wordlist_path, get_wordlist_names,
+    refine_wordlist_entry, WordList,
 )
 
 
@@ -43,6 +44,30 @@ class TestWordlistModule(object):
             '12211\t 1').groups() == ('1', )
         assert RE_NUMBERED_WORDLIST_ENTRY.match('12a11 foo') is None
         assert RE_NUMBERED_WORDLIST_ENTRY.match('foo bar') is None
+
+    def test_re_valid_wordlist_filename(self):
+        # RE_VALID_WORDLIST_FILENAME really detects filenames we allow
+        # Valid filenames
+        regexp = RE_VALID_WORDLIST_FILENAME
+        assert regexp.match("wordlist_foo.txt") is not None
+        assert regexp.match("wordlist_foo_bar.asc") is not None
+        assert regexp.match("wordlist_name-withdots.txt.asc") is not None
+        # We can get the internal wordlist name
+        assert regexp.match("wordlist_foo.txt").groups()[0] == "foo"
+        assert regexp.match(
+            "wordlist_foo_bar.asc").groups()[0] == "foo_bar"
+        assert regexp.match(
+            "wordlist_name-with.dots.txt.asc").groups()[0] == "name-with"
+        # Invalid names
+        assert regexp.match("wordlist-without-underscore.txt") is None
+        assert regexp.match("wordlist_invalid_ch=r.txt") is None
+        assert regexp.match("wordlist_without_dot_txt") is None
+        assert regexp.match("nowordlist_foo.txt") is None
+        assert regexp.match("wordlist_name.") is None
+        assert regexp.match("wordlist_name.txt.") is None
+        assert regexp.match("wordlist_name.txt..") is None
+        assert regexp.match("wordlist_name.txt/..") is None
+        assert regexp.match("wordlist_.txt") is None
 
     def test_get_wordlist_path(self):
         # we can get valid wordlist paths
