@@ -52,6 +52,8 @@ class TestWordlistModule(object):
         assert regexp.match("wordlist_foo.txt") is not None
         assert regexp.match("wordlist_foo_bar.asc") is not None
         assert regexp.match("wordlist_name-withdots.txt.asc") is not None
+        assert regexp.match("wordlist_en_8k.txt") is not None
+        assert regexp.match("wordlist_en_orig.asc") is not None
         # We can get the internal wordlist name
         assert regexp.match("wordlist_foo.txt").groups()[0] == "foo"
         assert regexp.match(
