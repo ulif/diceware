@@ -31,7 +31,7 @@ RE_NUMBERED_WORDLIST_ENTRY = re.compile('^[0-9]+\s+([^\s]+)$')
 
 #: A regular expression describing valid wordlist file names.
 RE_VALID_WORDLIST_FILENAME = re.compile(
-    '^wordlist_([\w_-]+)\.[\w][\w\.]+[\w]+$')
+    '^wordlist_([\w-]+)\.[\w][\w\.]+[\w]+$')
 
 
 def get_wordlist_names():
