@@ -2,8 +2,7 @@ import os
 import pytest
 from diceware.wordlist import (
     WORDLISTS_DIR, RE_WORDLIST_NAME, RE_NUMBERED_WORDLIST_ENTRY,
-    get_wordlist_path, get_wordlist_names, is_signed_wordlist,
-    refine_wordlist_entry, WordList,
+    get_wordlist_path, get_wordlist_names, refine_wordlist_entry, WordList,
 )
 
 
@@ -78,22 +77,6 @@ class TestWordlistModule(object):
         # we only recognize wordlist files with dot in name
         wordlists_dir.join("file_without_dot-in-name").write("a\nb\n")
         assert get_wordlist_names() == []
-
-    def test_is_signed_wordlist(self):
-        # we recognize signed wordlists
-        in_path = os.path.join(
-            os.path.dirname(__file__), "sample_signed_wordlist.asc")
-        with open(in_path, "r") as fd:
-            result = is_signed_wordlist(fd)
-        assert result is True
-
-    def test_is_signed_wordlist_plain(self, tmpdir):
-        # we can tell if a wordlist is not signed
-        in_file = tmpdir.mkdir("work").join("mywordlist")
-        in_file.write("a\nb\n")
-        with open(in_file.strpath, 'r') as fd:
-            result = is_signed_wordlist(fd)
-        assert result is False
 
     def test_refine_wordlist_entry_strips(self):
         # we strip() entries
@@ -259,3 +242,23 @@ class TestWordList(object):
             list1 = list(w_list)
             list2 = list(w_list)
         assert list1 == list2
+
+    def test_is_signed_detects_signed_files(self):
+        # we recognize signed wordlists
+        in_path = os.path.join(
+            os.path.dirname(__file__), "sample_signed_wordlist.asc")
+        with open(in_path, "r") as fd:
+            w_list = WordList(fd)
+            w_list.fd = fd
+            result = w_list.is_signed()
+        assert result is True
+
+    def test_is_signed_detects_unsigned_files(self, tmpdir):
+        # we can tell if a wordlist is not signed
+        in_file = tmpdir.mkdir("work").join("mywordlist")
+        in_file.write("a\nb\n")
+        with open(in_file.strpath, 'r') as fd:
+            w_list = WordList(fd)
+            w_list.fd = fd
+            result = w_list.is_signed()
+        assert result is False

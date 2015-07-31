@@ -48,16 +48,6 @@ def get_wordlist_names():
     return sorted(result)
 
 
-def is_signed_wordlist(file_descriptor):
-    """check, whether file in `file_descriptor` is signed.
-    """
-    line1 = file_descriptor.readline()
-    file_descriptor.seek(0)
-    if line1.rstrip() == "-----BEGIN PGP SIGNED MESSAGE-----":
-        return True
-    return False
-
-
 def refine_wordlist_entry(entry, signed=False):
     """Apply modifications to form a proper wordlist entry.
 
@@ -119,7 +109,7 @@ class WordList(object):
             self.fd = open(self.path, "r")
         else:
             self.fd = path_or_filelike
-        self.signed = is_signed_wordlist(self.fd)
+        self.signed = self.is_signed()
 
     def __iter__(self):
         self.fd.seek(0)
@@ -134,3 +124,16 @@ class WordList(object):
             elif self.signed and line == '-----BEGIN PGP SIGNATURE-----':
                 break
             yield line
+
+    def is_signed(self):
+        """check, whether this file is cryptographically signed.
+
+        This operation is expensive and resets the file descriptor to
+        the beginning of file.
+        """
+        self.fd.seek(0)
+        line1 = self.fd.readline()
+        self.fd.seek(0)
+        if line1.rstrip() == "-----BEGIN PGP SIGNED MESSAGE-----":
+            return True
+        return False
