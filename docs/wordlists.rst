@@ -11,21 +11,64 @@ By default we use the so-called `8k wordlist`_ from Mr. Reinhold as
 published on http://diceware.com/. It contains 8,192 english words
 and phrases.
 
-.. warning:: We do *not* use the `diceware standard wordlist`_ (which
-	     contains 7,776 words) by default, because computers
-	     prefer powers of two and we use the Python standard lib
-	     random source by default.
+.. warning:: We do -- by default -- *not* use the `diceware standard
+	     wordlist`_ (which contains 7,776 words), because
+	     computers prefer powers of two and we use the Python
+	     standard lib random source by default (we do not want to
+	     waste entropy).
 
-	     But this "original" list is included in diceware as
-	     well. You can pick it with the ``-w en_orig`` option and
-	     you *should* pick it when you use real dice as source of
+	     But the "original" list is included in diceware as well
+	     and you can pick it with the ``-w en_orig`` option.  You
+	     *should* pick it when you use real dice as source of
 	     randomness.
 
 You can pick another list with the ``-w`` or ``--wordlist`` option.
 
-You can add own wordlists.
 
-You can add PGP-signed wordlists.
+Add Own Wordlists
+-----------------
+
+The wordlists we offer for use with `diceware` are all stored in a
+single folder. The exact location is output by ``--help`` at the very
+end::
+
+  $ diceware --help
+  ...
+  Wordlists are stored in /some/path/to/folder
+
+Just put your own wordlists into this folder (here:
+``/some/path/to/folder``) and rename the file to something like
+``wordlist_MY_SPECIAL_NAME.txt``. Afterwards you can pick your
+wordlist by running::
+
+  $ diceware -w MY_SPECIAL_NAME
+
+`diceware` will use this file of yours then to create a
+passphrase. Please note that `diceware` only accepts files that are
+named like::
+
+  wordlist_NAME.txt
+
+or::
+
+  wordlist_OTHER_NAME.asc
+
+I.e. we expect ``wordlist_`` at the beginning and some filename
+extension like ``.txt`` at the end. Furthermore names must not contain
+funny characters. In fact we accept regular letters, dashes, numbers,
+and underscores only. Files that do not follow these naming convention
+are ignored.
+
+A list of all available wordlist names can also be retrieved with
+``--help``. See the ``--wordlist`` explanation.
+
+
+Special Wordlists
+-----------------
+
+Out of the box, `diceware` supports PGP-signed wordlists and numbered
+wordlists. Numbered wordlists contain numbers in each line, telling a
+sequence of dice rolls.
 
 .. _`8k wordlist`: http://world.std.com/~reinhold/diceware8k.txt
 
