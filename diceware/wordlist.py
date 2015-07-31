@@ -24,14 +24,14 @@ WORDLISTS_DIR = os.path.abspath(
 
 #: A regular expression matching allowed wordlist names. We
 #: allow names that cannot easily mess up filesystems.
-RE_WORDLIST_NAME = re.compile('^[a-zA-Z0-9_-]+$')
+RE_WORDLIST_NAME = re.compile('^[\w-]+$')
 
 #: A regular expression matching numbered entries in wordlists.
 RE_NUMBERED_WORDLIST_ENTRY = re.compile('^[0-9]+\s+([^\s]+)$')
 
 #: A regular expression describing valid wordlist file names.
 RE_VALID_WORDLIST_FILENAME = re.compile(
-    '^wordlist_([a-zA-Z0-9_-]+)\.[a-zA-Z0-9][a-zA-Z0-9\.]+[a-zA-Z0-9]+$')
+    '^wordlist_([\w_-]+)\.[\w][\w\.]+[\w]+$')
 
 
 def get_wordlist_names():
