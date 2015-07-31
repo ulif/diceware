@@ -29,12 +29,6 @@ RE_WORDLIST_NAME = re.compile('^[a-zA-Z0-9_-]+$')
 #: A regular expression matching numbered entries in wordlists.
 RE_NUMBERED_WORDLIST_ENTRY = re.compile('^[0-9]+\s+([^\s]+)$')
 
-# A workaround to avoid `six` dependency.
-try:
-    basestring
-except NameError:                # NOQA  # pragma: no cover
-    basestring = str
-
 
 def get_wordlist_names():
     """Get a all names of wordlists stored locally.
@@ -96,7 +90,8 @@ class WordList(object):
     """A word list contains words for building passphrases.
 
     `path_or_filelike` is the path of the wordlist file or an already
-    opened file. Opened files must be open for reading, of course.
+    opened file. Opened files must be open for reading, of course. We
+    expect filelike objects to support at least `seek()`.
 
     Please note that open file descriptors are not closed after reading.
 
@@ -118,7 +113,8 @@ class WordList(object):
     """
     def __init__(self, path_or_filelike=None):
         self.path = None
-        if isinstance(path_or_filelike, basestring):
+        if not hasattr(path_or_filelike, 'seek'):
+            # got a path, not a filelike object
             self.path = path_or_filelike
             self.fd = open(self.path, "r")
         else:
