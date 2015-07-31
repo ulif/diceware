@@ -49,21 +49,6 @@ def get_wordlist_names():
     return sorted(result)
 
 
-def refine_wordlist_entry(entry, signed=False):
-    """Apply modifications to form a proper wordlist entry.
-
-    Set `signed` to `True` if the entry is part of a cryptographically
-    signed wordlist.
-    """
-    if signed and entry.startswith('- '):
-        entry = entry[2:]
-    entry = entry.strip()
-    match = RE_NUMBERED_WORDLIST_ENTRY.match(entry)
-    if match:
-        entry = match.groups()[0]
-    return entry
-
-
 def get_wordlist_path(name):
     """Get path to a wordlist file for a wordlist named `name`.
 
@@ -119,7 +104,7 @@ class WordList(object):
                 # wait for first empty line
                 pass
         for line in self.fd:
-            line = refine_wordlist_entry(line, signed=self.signed)
+            line = self.refine_entry(line)
             if not line:
                 continue
             elif self.signed and line == '-----BEGIN PGP SIGNATURE-----':
@@ -138,3 +123,18 @@ class WordList(object):
         if line1.rstrip() == "-----BEGIN PGP SIGNED MESSAGE-----":
             return True
         return False
+
+    def refine_entry(self, entry):
+        """Apply modifications to form a proper wordlist entry.
+
+        Refining means: strip() `entry` remove escape-dashes (if this is
+        a signed wordlist) and extract the term if it is preceded by
+        numbers.
+        """
+        if self.signed and entry.startswith('- '):
+            entry = entry[2:]
+        entry = entry.strip()
+        match = RE_NUMBERED_WORDLIST_ENTRY.match(entry)
+        if match:
+            entry = match.groups()[0]
+        return entry
