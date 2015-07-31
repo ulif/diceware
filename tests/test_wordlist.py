@@ -85,9 +85,9 @@ class TestWordlistModule(object):
 
     def test_get_wordlist_names(self, wordlists_dir):
         # we can get wordlist names also if directory is empty.
-        wlist_path = wordlists_dir.join('mywordlist_en_8k.txt')
+        wlist_path = wordlists_dir.join('wordlist_my_en_8k.txt')
         wlist_path.write("some\nirrelevant\nwords")
-        assert get_wordlist_names() == ['en_8k']
+        assert get_wordlist_names() == ['my_en_8k']
 
     def test_get_wordlist_names_files_only(self, wordlists_dir):
         # non-files are ignored when looking for wordlist names
