@@ -42,13 +42,10 @@ def get_wordlist_names():
     for filename in filenames:
         if not os.path.isfile(os.path.join(WORDLISTS_DIR, filename)):
             continue
-        if "_" not in filename:
+        match = RE_VALID_WORDLIST_FILENAME.match(filename)
+        if not match:
             continue
-        if "." not in filename:
-            continue
-        basename = filename.split(".")[0]
-        name = basename.split("_", 1)[1]
-        result.append(name)
+        result.append(match.groups()[0])
     return sorted(result)
 
 
