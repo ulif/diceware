@@ -15,6 +15,16 @@ def wordlists_dir(request, monkeypatch, tmpdir):
     return tmpdir
 
 
+@pytest.fixture(scope="function")
+def wordlist(request, tmpdir):
+    """A fixture that delivers a simple WordList instance.
+    """
+    path = tmpdir.join("mylist.txt")
+    path.write("foo\nbar\n")
+    w_list = WordList(str(path))
+    return w_list
+
+
 class TestWordlistModule(object):
 
     def test_re_wordlist_name(self):
