@@ -7,6 +7,7 @@ from io import StringIO
 from diceware import (
     WORDLISTS_DIR, SPECIAL_CHARS, insert_special_char, get_passphrase,
     handle_options, main, __version__, print_version, get_random_sources,
+    get_wordlist_names
     )
 
 
@@ -145,6 +146,7 @@ class TestDicewareModule(object):
         assert options.version is False
         assert options.delimiter == ""
         assert options.randomsource == "system"
+        assert options.wordlist == "en_8k"
 
     def test_handle_options_infile(self, tmpdir):
         # we can give an infile
@@ -182,6 +184,23 @@ class TestDicewareModule(object):
         # we can not choose illegal values for source of randomness
         with pytest.raises(SystemExit):
             handle_options(['-r', 'not-a-valid-source-name'])
+        out, err = capsys.readouterr()
+        assert out == ''
+        assert "invalid choice" in err
+
+    def test_handle_options_wordlist(self, capsys):
+        # we can pick a wordlist
+        wordlist_names = get_wordlist_names()
+        for name in wordlist_names:
+            options = handle_options(['-w', name])
+            assert options.wordlist == name
+            options = handle_options(['--wordlist', name])
+            assert options.wordlist == name
+
+    def test_handle_options_wordlist_rejects_invalid(self, capsys):
+        # we can choose only existing wordlists
+        with pytest.raises(SystemExit):
+            handle_options(['-w', 'not-a-valid-wordlist-name'])
         out, err = capsys.readouterr()
         assert out == ''
         assert "invalid choice" in err
