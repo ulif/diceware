@@ -17,6 +17,11 @@
 """
 import os
 import re
+import sys
+try:                                 # pragma: no cover
+    from StringIO import StringIO
+except ImportError:                  # pragma: no cover
+    from io import StringIO
 
 #: The directory in which wordlists are stored
 WORDLISTS_DIR = os.path.abspath(
@@ -89,6 +94,9 @@ class WordList(object):
     """
     def __init__(self, path_or_filelike=None):
         self.path = None
+        # XXX: Need a regression test here: does piping in work?
+        if path_or_filelike is sys.stdin:
+            path_or_filelike = StringIO(path_or_filelike.read())
         if not hasattr(path_or_filelike, 'seek'):
             # got a path, not a filelike object
             self.path = path_or_filelike
