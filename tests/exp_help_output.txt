@@ -1,5 +1,5 @@
 usage: diceware [-h] [-n NUM] [-c | --no-caps] [-s NUM] [-d DELIMITER]
-                [-r SOURCE] [--version]
+                [-r SOURCE] [-w NAME] [--version]
                 [INFILE]
 
 Create a passphrase
@@ -19,6 +19,10 @@ optional arguments:
   -r SOURCE, --randomsource SOURCE
                         Get randomness from this source. Possible values:
                         `realdice', `system'. Default: system
+  -w NAME, --wordlist NAME
+                        Use words from this wordlist. Possible values:
+                        `en_8k', `en_orig'. Wordlists are stored in the folder
+                        displayed below. Default: en_8k
   --version             output version information and exit.
 
 Wordlists are stored in <WORDLISTS-DIR>

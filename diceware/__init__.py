@@ -20,7 +20,7 @@ import pkg_resources
 import sys
 from random import SystemRandom
 from diceware.wordlist import (
-    WordList, get_wordlist_path, WORDLISTS_DIR,
+    WordList, get_wordlist_path, WORDLISTS_DIR, get_wordlist_names,
     )
 
 __version__ = pkg_resources.get_distribution('diceware').version
@@ -80,6 +80,7 @@ def handle_options(args):
     """Handle commandline options.
     """
     random_sources = get_random_sources().keys()
+    wordlist_names = get_wordlist_names()
     parser = argparse.ArgumentParser(
         description="Create a passphrase",
         epilog="Wordlists are stored in %s" % WORDLISTS_DIR
@@ -106,6 +107,13 @@ def handle_options(args):
         help=(
             "Get randomness from this source. Possible values: `%s'. "
             "Default: system" % "', `".join(sorted(random_sources))))
+    parser.add_argument(
+        '-w', '--wordlist', default='en_8k', choices=wordlist_names,
+        metavar="NAME",
+        help=(
+            "Use words from this wordlist. Possible values: `%s'. "
+            "Wordlists are stored in the folder displayed below. "
+            "Default: en_8k" % "', `".join(wordlist_names)))
     parser.add_argument(
         'infile', nargs='?', metavar='INFILE', default=None,
         type=argparse.FileType('r'),
