@@ -8,6 +8,10 @@ Changes
   to define alternative sources of randomness. Currently supported
   sources: ``"system"`` (to retrieve randomness from standard library,
   default) and ``realdice``, which allows use of real dice.
+- New option ``-w``, ``--wordlist``. We now provide several wordlists
+  for users to choose from. Own wordlists could already be fed to
+  `diceware` before. By default we still use the 8192 words list from
+  http://diceware.com.
 - Rename `SRC_DIR` to `WORDLISTS_DIR` (reflecting what it stands for).
 - Use also flake8 with tox.
 - Pass `options` to `get_passphrase()` instead of a bunch of single args.
