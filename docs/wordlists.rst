@@ -28,6 +28,17 @@ You can pick another list with the ``-w`` or ``--wordlist`` option.
 Add Own Wordlists
 -----------------
 
+You can use any wordlist you like. Simply pipe it in and it will be
+used::
+
+  $ cat mywordlist.txt | diceware -
+  HiHiHelloHiHiHello
+
+for instance.
+
+But, if you want to store a wordlist and make it persistent, you can
+do so too.
+
 The wordlists we offer for use with `diceware` are all stored in a
 single folder. The exact location is output by ``--help`` at the very
 end::
