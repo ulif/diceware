@@ -72,6 +72,10 @@ Once installed, use ``--help`` to list all available options::
     -r SOURCE, --randomsource SOURCE
                           Get randomness from this source. Possible values:
                           `realdice', `system'. Default: system
+    -w NAME, --wordlist NAME
+                          Use words from this wordlist. Possible values:
+                          `en_8k', `en_orig'. Wordlists are stored in the folder
+                          displayed below. Default: en_8k
     --version             output version information and exit.
 
 
@@ -160,6 +164,14 @@ With filename ``-`` you can pipe in wordlists::
 
 In custom wordlists we take each line for a valid word and ignore
 empty lines (i.e. lines containing whitespace characters only).
+
+You can also pick one of the wordlists packaged with `diceware` (which
+is, what we do by default) using ``-w``::
+
+  $ diceware --wordlist en_orig
+  YorkNodePrickEchoToriNiobe
+
+These terms come from the original diceware.com wordlist for dice.
 
 
 What is it good for?
