@@ -17,11 +17,7 @@
 """
 import os
 import re
-import sys
-try:                                 # pragma: no cover
-    from StringIO import StringIO
-except ImportError:                  # pragma: no cover
-    from io import StringIO
+import tempfile
 
 #: The directory in which wordlists are stored
 WORDLISTS_DIR = os.path.abspath(
@@ -94,14 +90,21 @@ class WordList(object):
     """
     def __init__(self, path_or_filelike=None):
         self.path = None
-        if path_or_filelike is sys.stdin:
-            path_or_filelike = StringIO(path_or_filelike.read())
         if not hasattr(path_or_filelike, 'read'):
             # got a path, not a filelike object
             self.path = path_or_filelike
             self.fd = open(self.path, "r")
         else:
             self.fd = path_or_filelike
+            try:
+                self.fd.seek(0)
+            except IOError:
+                # the given filelike does not support seek(). Create an own.
+                max_size = 20 * 1024 * 1024  # 20 MB
+                self.fd = tempfile.SpooledTemporaryFile(
+                    max_size=max_size, mode="w+")
+                self.fd.write(path_or_filelike.read())
+                self.fd.seek(0)
         self.signed = self.is_signed()
 
     def __iter__(self):
