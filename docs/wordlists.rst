@@ -74,12 +74,68 @@ A list of all available wordlist names can also be retrieved with
 ``--help``. See the ``--wordlist`` explanation.
 
 
-Special Wordlists
------------------
+Plain Wordlists
+---------------
 
-Out of the box, `diceware` supports PGP-signed wordlists and numbered
-wordlists. Numbered wordlists contain numbers in each line, telling a
-sequence of dice rolls.
+Out of the box, `diceware` supports plain wordlists, PGP-signed
+wordlists, and numbered wordlists. Plain wordlists look like this::
+
+  termone
+  termtwo
+  anotherterm
+
+Each line in such a file is considered a word of the wordlist. Empty
+lines are ignored.
+
+Whitespaces are allowed if they are not at the beginning or end of a
+line, stripped off otherwise.
+
+
+Numbered Wordlists
+------------------
+
+Numbered wordlists contain numbers in each line, telling a
+sequence of dice rolls like so::
+
+  11111    aterm
+  11112    anotherterm
+  ...
+
+`diceware` detects such lines and in this case extracts ``aterm`` and
+``anotherterm`` as wordlist entries.
+
+
+PGP-signed Wordlists
+--------------------
+
+PGP-signed wordlists are wordlists (ordinary or numbered ones), that
+have been cryptographically signed with PGP or GPG. They look like
+this::
+
+  -----BEGIN PGP SIGNED MESSAGE-----
+  Hash: SHA512
+
+  foo
+  bar
+  baz
+
+  -----BEGIN PGP SIGNATURE-----
+  Version: GnuPG v1
+  
+  iJwEAQEKAAYFAlW00GEACgkQ+5ktCoLaPzSutwP8DVgdjBFqRXNKaZlvd8pR+P3k
+  8xx5XLC0OFwZQFx4Ls8xl3+/xfvCNxCGSZjD6BGPzNZCK7bmQQYWcrsoEyX5jAC3
+  dXjAPj0nct/PkJQlrUjUI2qrO0dFfU7sRj0Gn9TOlQQkKoQVwy7pY/6HaScGNepL
+  J8BNUPYdOWeVgxY1jSY=
+  =WXfu
+  -----END PGP SIGNATURE-----
+
+and are normally stored with the ``.asc`` filename extension. Signed
+wordlists can be verified to detect changes, although this is not
+automatically done by `diceware`.
+
+.. warning:: Diceware does *not* automatically verify PGP-signed
+             files.
+
 
 .. _`8k wordlist`: http://world.std.com/~reinhold/diceware8k.txt
 
