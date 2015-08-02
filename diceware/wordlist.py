@@ -94,7 +94,6 @@ class WordList(object):
     """
     def __init__(self, path_or_filelike=None):
         self.path = None
-        # XXX: Need a regression test here: does piping in work?
         if path_or_filelike is sys.stdin:
             path_or_filelike = StringIO(path_or_filelike.read())
         if not hasattr(path_or_filelike, 'seek'):
