@@ -1,6 +1,5 @@
 import os
 import pytest
-import sys
 from io import StringIO
 from diceware.wordlist import (
     WORDLISTS_DIR, RE_WORDLIST_NAME, RE_NUMBERED_WORDLIST_ENTRY,
@@ -149,6 +148,7 @@ class TestWordList(object):
     def test_create_accepts_fd_with_broken_seek(self, argv_handler):
         # we accept files that have no working seek() (like sys.stdin)
         fd = StringIO(b"word1\nword2\n".decode("utf-8"))
+
         def broken_seek(num):
             raise IOError("Illegal seek")
         fd.seek = broken_seek
