@@ -1,5 +1,7 @@
 import os
 import pytest
+import sys
+from io import StringIO
 from diceware.wordlist import (
     WORDLISTS_DIR, RE_WORDLIST_NAME, RE_NUMBERED_WORDLIST_ENTRY,
     RE_VALID_WORDLIST_FILENAME, get_wordlist_path, get_wordlist_names,
@@ -143,6 +145,15 @@ class TestWordList(object):
             w_list = WordList(my_open_file)
             assert w_list.fd is not None
             assert w_list.path is None
+
+    def test_create_accepts_fd_with_broken_seek(self, argv_handler):
+        # we accept files that have no working seek() (like sys.stdin)
+        fd = StringIO("word1\nword2\n")
+        def broken_seek(num):
+            raise IOError("Illegal seek")
+        fd.seek = broken_seek
+        w_list = WordList(fd)
+        assert w_list.fd is not fd
 
     def test_open_file_descriptor_simple(self, tmpdir):
         # we handle simple lists from open file descriptors correctly
