@@ -19,6 +19,13 @@ import os
 import re
 import tempfile
 
+#: Maximum in-memory file size in bytes (20 MB).
+#:
+#: This value is used when creating temporary files replacing
+#: unseekable input streams. If an input file is larger, we write to
+#: disk.
+MAX_IN_MEM_SIZE = 20 * 1024 * 1024
+
 #: The directory in which wordlists are stored
 WORDLISTS_DIR = os.path.abspath(
     os.path.join(os.path.dirname(__file__), 'wordlists'))
@@ -68,7 +75,12 @@ class WordList(object):
 
     `path_or_filelike` is the path of the wordlist file or an already
     opened file. Opened files must be open for reading, of course. We
-    expect filelike objects to support at least `seek()`.
+    expect filelike objects to support at least `read()`.
+
+    If a file-like object does not support `seek()` (like `sys.stdin`),
+    we create a temporary, seekable copy of the input stream. The copy
+    is written to disk only, if it is larger than
+    `MAX_IN_MEM_SIZE`. Otherwise the wordlist is kept in memory.
 
     Please note that open file descriptors are not closed after reading.
 
@@ -100,9 +112,8 @@ class WordList(object):
                 self.fd.seek(0)
             except IOError:
                 # the given filelike does not support seek(). Create an own.
-                max_size = 20 * 1024 * 1024  # 20 MB
                 self.fd = tempfile.SpooledTemporaryFile(
-                    max_size=max_size, mode="w+")
+                    max_size=MAX_IN_MEM_SIZE, mode="w+")
                 self.fd.write(path_or_filelike.read())
                 self.fd.seek(0)
         self.signed = self.is_signed()
