@@ -96,7 +96,7 @@ class WordList(object):
         self.path = None
         if path_or_filelike is sys.stdin:
             path_or_filelike = StringIO(path_or_filelike.read())
-        if not hasattr(path_or_filelike, 'seek'):
+        if not hasattr(path_or_filelike, 'read'):
             # got a path, not a filelike object
             self.path = path_or_filelike
             self.fd = open(self.path, "r")
