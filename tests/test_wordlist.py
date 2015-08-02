@@ -148,7 +148,7 @@ class TestWordList(object):
 
     def test_create_accepts_fd_with_broken_seek(self, argv_handler):
         # we accept files that have no working seek() (like sys.stdin)
-        fd = StringIO("word1\nword2\n")
+        fd = StringIO(b"word1\nword2\n".decode("utf-8"))
         def broken_seek(num):
             raise IOError("Illegal seek")
         fd.seek = broken_seek
