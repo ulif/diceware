@@ -265,3 +265,12 @@ class TestDicewareModule(object):
         out, err = capsys.readouterr()
         specials = [x for x in out if x in SPECIAL_CHARS]
         assert len(specials) > 0
+
+    def test_main_wordlist(self, argv_handler, capsys, wordlists_dir):
+        # we can pick the wordlist we prefer
+        wordlists_dir.join('wordlist_foo.txt').write("foo\n")
+        wordlists_dir.join('wordlist_bar.asc').write("bar\n")
+        sys.argv = ['diceware', '-w', 'foo']
+        main()
+        out, err = capsys.readouterr()
+        assert out == 'FooFooFooFooFooFoo\n'

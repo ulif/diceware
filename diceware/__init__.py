@@ -163,7 +163,7 @@ def get_passphrase(options=None):
     if options is None:
         options = handle_options(args=[])
     if options.infile is None:
-        options.infile = open(get_wordlist_path("en_8k"), 'r')
+        options.infile = open(get_wordlist_path(options.wordlist), 'r')
     word_list = WordList(options.infile)
     rnd_source = get_random_sources()[options.randomsource]
     rnd = rnd_source(options)
