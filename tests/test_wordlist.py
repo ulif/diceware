@@ -9,14 +9,6 @@ from diceware.wordlist import (
 
 
 @pytest.fixture(scope="function")
-def wordlists_dir(request, monkeypatch, tmpdir):
-    """This fixture provides a temporary wordlist dir.
-    """
-    monkeypatch.setattr("diceware.wordlist.WORDLISTS_DIR", str(tmpdir))
-    return tmpdir
-
-
-@pytest.fixture(scope="function")
 def wordlist(request, tmpdir):
     """A fixture that delivers a simple WordList instance.
     """

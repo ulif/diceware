@@ -13,3 +13,11 @@ def argv_handler(request):
         sys.argv = _argv_stored
         sys.stdin = _stdin_stored
     request.addfinalizer(teardown)
+
+
+@pytest.fixture(scope="function")
+def wordlists_dir(request, monkeypatch, tmpdir):
+    """This fixture provides a temporary wordlist dir.
+    """
+    monkeypatch.setattr("diceware.wordlist.WORDLISTS_DIR", str(tmpdir))
+    return tmpdir
