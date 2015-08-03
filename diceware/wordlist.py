@@ -63,11 +63,18 @@ def get_wordlist_path(name):
     The `name` string must not contain special chars beside ``-``,
     ``_``, regular chars ``A-Z`` (upper or lower case) or
     numbers. Invalid names raise a ValueError.
+
+    If a path with the given name (names are not filenames here) does
+    not exist, `None` is returned.
     """
     if not RE_WORDLIST_NAME.match(name):
         raise ValueError("Not a valid wordlist name: %s" % name)
-    basename = 'wordlist_%s.txt' % name
-    return os.path.join(WORDLISTS_DIR, basename)
+    for filename in os.listdir(WORDLISTS_DIR):
+        if not os.path.isfile(os.path.join(WORDLISTS_DIR, filename)):
+            continue
+        match = RE_VALID_WORDLIST_FILENAME.match(filename)
+        if match and match.groups()[0] == name:
+            return os.path.join(WORDLISTS_DIR, filename)
 
 
 class WordList(object):

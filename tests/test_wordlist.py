@@ -74,10 +74,28 @@ class TestWordlistModule(object):
         assert regexp.match("wordlist_name.txt/..") is None
         assert regexp.match("wordlist_.txt") is None
 
-    def test_get_wordlist_path(self):
+    def test_get_wordlist_path(self, wordlists_dir):
         # we can get valid wordlist paths
-        assert os.path.exists(get_wordlist_path('en_8k'))
-        assert not os.path.exists(get_wordlist_path('zz'))
+        path1 = wordlists_dir.join("wordlist_foo.txt")
+        path1.write("foo\n")
+        path2 = wordlists_dir.join("wordlist_bar.asc")
+        path2.write("bar\n")
+        assert get_wordlist_path('foo') == path1
+        assert get_wordlist_path('bar') == path2
+        assert get_wordlist_path('zz') is None
+
+    def test_get_wordlist_path_accepts_any_ext(self, wordlists_dir):
+        # we cope with any filename extension, not only .txt
+        path1 = wordlists_dir.join("wordlist_foo.txt")
+        path1.write("foo\n")
+        path2 = wordlists_dir.join("wordlist_bar.asc")
+        path2.write("bar\n")
+        path3 = wordlists_dir.join("wordlist_baz.txt.asc")
+        path3.write("baz\n")
+        assert get_wordlist_path("foo") == str(path1)
+        assert get_wordlist_path("bar") == str(path2)
+        assert get_wordlist_path("baz") == str(path3)
+        assert get_wordlist_path("not-existing") is None
 
     def test_get_wordlist_path_requires_ascii(self):
         # non ASCII alphabet chars are not accepted in language specifier
