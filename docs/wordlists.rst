@@ -28,16 +28,24 @@ You can pick another list with the ``-w`` or ``--wordlist`` option.
 Add Own Wordlists
 -----------------
 
-You can use any wordlist you like. Simply pipe it in and it will be
-used::
+You can use any wordlist you like. Simply give the filename and it
+will be used::
 
-  $ cat mywordlist.txt | diceware -
+  $ diceware mywordlist.txt
+  HiHelloHelloHiHiHi
+
+You can even pipe-in dynamic wordlists. Just use the dash ``-`` as
+filename::
+
+  $ cat mywordgenerator.sh | diceware -
   HiHiHelloHiHiHello
 
 for instance.
 
-But, if you want to store a wordlist and make it persistent, you can
-do so too.
+Of course you have to give the filenames of your files with each call
+to `diceware`.
+
+But, if you want to store a wordlist persistently, you can do so too.
 
 The wordlists we offer for use with `diceware` are all stored in a
 single folder. The exact location is output by ``--help`` at the very
