@@ -84,6 +84,16 @@ class TestWordlistModule(object):
         assert get_wordlist_path('bar') == path2
         assert get_wordlist_path('zz') is None
 
+    def test_get_wordlist_path_ignores_subdirs(self, wordlists_dir):
+        # we subdirs are ignored, when looking for wordlists.
+        path1 = wordlists_dir.mkdir('wordlist_subdir1.txt')
+        path2 = wordlists_dir.join('wordlist_subdir2.txt')
+        path2.write('foo\n')
+        assert os.path.isdir(str(path1))
+        assert os.path.isfile(str(path2))
+        assert get_wordlist_path('subdir1') is None
+        assert get_wordlist_path('subdir2') == str(path2)
+
     def test_get_wordlist_path_accepts_any_ext(self, wordlists_dir):
         # we cope with any filename extension, not only .txt
         path1 = wordlists_dir.join("wordlist_foo.txt")
