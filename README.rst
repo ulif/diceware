@@ -165,7 +165,7 @@ considered a possible word. For instance::
   $ diceware mywordlist.txt
   HelloHelloHiHiHiHello
 
-With filename ``-`` you can pipe in wordlists::
+With dash (``-``) as filename you can pipe in wordlists::
 
   $ echo -e "hi\nhello\n" > mywordlist.txt
   $ cat mywordlist.txt | diceware -
