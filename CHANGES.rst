@@ -1,7 +1,7 @@
 Changes
 =======
 
-0.5 (unreleased)
+0.5 (2015-08-05)
 ----------------
 
 - New option ``-r``, ``--randomsource``. We support a pluggable system
