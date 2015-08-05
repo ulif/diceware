@@ -148,9 +148,18 @@ We support even sources of randomness from other packages. See the
 provided by Arnold G. Reinhold, which will be used by default and
 contains 8192 different words.
 
-If you do not like the wordlist provided, you can use your own one. Any
-`INFILE` provided will be parsed line by line and each line considered
-a possible word. For instance::
+Apart from that `diceware` is packaged with the "original" 7776 word
+list provided by Mr. Reinhold. You can enable a certain (installed)
+wordlist with the ``-w`` option::
+
+  $ diceware --wordlist en_orig
+  YorkNodePrickEchoToriNiobe
+
+See ``diceware --help`` for a list of all installed wordlists.
+
+If you do not like the wordlists provided, you can use your own
+one. Any `INFILE` provided will be parsed line by line and each line
+considered a possible word. For instance::
 
   $ echo -e "hi\nhello\n" > mywordlist.txt
   $ diceware mywordlist.txt
@@ -163,15 +172,8 @@ With filename ``-`` you can pipe in wordlists::
   HiHiHelloHiHiHello
 
 In custom wordlists we take each line for a valid word and ignore
-empty lines (i.e. lines containing whitespace characters only).
-
-You can also pick one of the wordlists packaged with `diceware` (which
-is, what we do by default) using ``-w``::
-
-  $ diceware --wordlist en_orig
-  YorkNodePrickEchoToriNiobe
-
-These terms come from the original diceware.com wordlist for dice.
+empty lines (i.e. lines containing whitespace characters only). Oh,
+and we handle even PGP-signed wordlists.
 
 
 What is it good for?
