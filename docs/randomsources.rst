@@ -33,6 +33,12 @@ therefore depends on the quality of your OS implementation.
 As a user you can enforce the use of this source of randomness with
 the ``-r system`` option.
 
+Please note that the Raspberry Pi is said to provide a hardware random
+number generator that delivers "real randomness". One has to enable it
+system-wide to make it the active source of randomness on a Raspberry
+Pi. If done properly, also :class:`randomSystemRandom` (and hence
+`diceware`) should use good quality random numbers.
+
 
 Real Dice
 ---------
