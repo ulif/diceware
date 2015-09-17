@@ -36,6 +36,10 @@ The passphrase contains by default six words (with first char
 capitalized) without any separator chars. Optionally you can let
 `diceware` insert special chars into the passphrase.
 
+`diceware` supports several sources of randomness (including real life
+dice) and different wordlists (including cryptographically signed
+ones).
+
 .. contents::
 
 
