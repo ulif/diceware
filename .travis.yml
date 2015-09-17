@@ -1,13 +1,12 @@
 language: python
+# use new container infrastructure
+# see: http://docs.travis-ci.com/user/migrating-from-legacy/
+sudo: false
 python:
   - "2.7"
   - "3.3"
 before_install:
-  # Workaround for a permissions issue with Travis virtual machine images
-  # that breaks Python's multiprocessing:
-  # https://github.com/travis-ci/travis-cookbooks/issues/155
-  - sudo rm -rf /dev/shm
-  - sudo ln -s /run/shm /dev/shm
+  # nothing to do, currently
 # command to install dependencies
 install:
   - python setup.py dev
