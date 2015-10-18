@@ -4,7 +4,7 @@ Changes
 0.5.1.dev0 (unreleased)
 -----------------------
 
-- No changes yet.
+- Officially support Pyhthon 3.5.
 
 
 0.5 (2015-08-05)
