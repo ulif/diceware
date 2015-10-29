@@ -5,6 +5,7 @@ Changes
 -----------------------
 
 - Officially support Pyhthon 3.5.
+- Tests do not depend on `pytest-cov`, `pytest-xdist` anymore.
 
 
 0.5 (2015-08-05)
