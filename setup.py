@@ -34,6 +34,7 @@ install_requires = [
 
 tests_require = [
     'pytest >= 2.0.3',
+    'coverage',
     ]
 
 docs_require = [
