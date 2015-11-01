@@ -17,6 +17,7 @@ Version: |version|
    readme
    randomsources
    wordlists
+   api
    changes
 
 
