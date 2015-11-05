@@ -20,9 +20,9 @@ direct API calls.
 
 """
 try:
-    import configparser                 # Python 3.x
-except ImportError:                     # pragma: no cover
-    import ConfigParser as configparser # Python 2.x
+    import configparser                  # Python 3.x
+except ImportError:                      # pragma: no cover
+    import ConfigParser as configparser  # Python 2.x
 
 
 OPTIONS_DEFAULTS = dict(
@@ -33,3 +33,7 @@ OPTIONS_DEFAULTS = dict(
     randomsource="system",
     wordlist="en_8k",
     )
+
+
+class DicewareConfigParser(configparser.SafeConfigParser):
+    pass
