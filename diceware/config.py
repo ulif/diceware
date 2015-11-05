@@ -19,7 +19,6 @@
 direct API calls.
 
 """
-import argparse
 try:
     import configparser                 # Python 3.x
 except ImportError:                     # pragma: no cover
