@@ -35,5 +35,11 @@ OPTIONS_DEFAULTS = dict(
     )
 
 
+def valid_locations():
+    """The list of valid paths we look up for config files.
+    """
+    pass
+
+
 class DicewareConfigParser(configparser.SafeConfigParser):
     pass
