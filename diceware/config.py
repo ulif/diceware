@@ -23,6 +23,7 @@ try:
     import configparser                  # Python 3.x
 except ImportError:                      # pragma: no cover
     import ConfigParser as configparser  # Python 2.x
+import os
 
 
 OPTIONS_DEFAULTS = dict(
@@ -38,7 +39,11 @@ OPTIONS_DEFAULTS = dict(
 def valid_locations():
     """The list of valid paths we look up for config files.
     """
-    pass
+    user_home = os.path.expanduser("~")
+    result = []
+    if user_home != "~":
+        result = [os.path.join(user_home, ".diceware"), ]
+    return result
 
 
 class DicewareConfigParser(configparser.SafeConfigParser):
