@@ -14,5 +14,5 @@ class TestConfigModule(object):
         new_home.ensure_dir()
         monkeypatch.setenv("HOME", str(new_home))
         assert valid_locations() == [
-            str(new_home / ".diceware")
+            str(new_home / ".diceware.ini")
             ]

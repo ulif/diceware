@@ -42,7 +42,7 @@ def valid_locations():
     user_home = os.path.expanduser("~")
     result = []
     if user_home != "~":
-        result = [os.path.join(user_home, ".diceware"), ]
+        result = [os.path.join(user_home, ".diceware.ini"), ]
     return result
 
 
