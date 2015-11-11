@@ -59,3 +59,11 @@ class TestConfigModule(object):
         conf_dict = get_config_dict()
         assert len(conf_dict) == len(OPTIONS_DEFAULTS)
         assert conf_dict != OPTIONS_DEFAULTS
+
+    def test_get_config_dict_int(self, home_dir):
+        # integer values are interpolated correctly
+        config_file = home_dir / ".diceware.ini"
+        config_file.write("\n".join(["[diceware]", "num=3", ""]))
+        conf_dict = get_config_dict()
+        assert "num" in conf_dict.keys()
+        assert conf_dict["num"] == 3

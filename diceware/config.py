@@ -72,7 +72,10 @@ def get_config_dict(path_list=None):
         return result
     conf = dict(parser.items('diceware'))
     for key, val in OPTIONS_DEFAULTS.items():
-        result[key] = conf.get(key, val)
+        new_val = conf.get(key, val)
+        if isinstance(val, int):
+            new_val = int(new_val)
+        result[key] = new_val
     return result
 
 
