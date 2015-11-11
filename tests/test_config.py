@@ -10,13 +10,10 @@ class TestConfigModule(object):
         # there is a set of defaults for options available
         assert OPTIONS_DEFAULTS is not None
 
-    def test_valid_locations(self, tmpdir, monkeypatch):
+    def test_valid_locations(self, home_dir):
         # we look for config files in user home and local dir
-        new_home = tmpdir / "home"
-        new_home.ensure_dir()
-        monkeypatch.setenv("HOME", str(new_home))
         assert valid_locations() == [
-            str(new_home / ".diceware.ini")
+            str(home_dir / ".diceware.ini")
             ]
 
     def test_get_configparser(self, tmpdir):
@@ -31,10 +28,7 @@ class TestConfigModule(object):
         found, config = get_configparser([])
         assert found == []
 
-    def test_get_configparser_no_list(self, tmpdir, monkeypatch):
+    def test_get_configparser_no_list(self, home_dir):
         # we cope with no list at all
-        new_home = tmpdir / "home"
-        new_home.ensure_dir()
-        monkeypatch.setenv("HOME", str(new_home))
         found, config = get_configparser()
         assert found == []
