@@ -46,5 +46,15 @@ def valid_locations():
     return result
 
 
+def get_configparser(path_list):
+    """Parse `path_list` for config values.
+
+    Return a list of paths read and a config parser instance.
+    """
+    parser = configparser.SafeConfigParser()
+    found = parser.read(path_list)
+    return found, parser
+
+
 class DicewareConfigParser(configparser.SafeConfigParser):
     pass
