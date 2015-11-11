@@ -30,3 +30,8 @@ class TestConfigModule(object):
         # we cope with empty config file lists
         found, config = get_configparser([])
         assert found == []
+
+    def test_get_configparser_no_list(self):
+        # we cope with no list at all
+        found, config = get_configparser()
+        assert found == []

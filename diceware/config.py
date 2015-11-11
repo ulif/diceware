@@ -46,11 +46,13 @@ def valid_locations():
     return result
 
 
-def get_configparser(path_list):
+def get_configparser(path_list=None):
     """Parse `path_list` for config values.
 
     Return a list of paths read and a config parser instance.
     """
+    if path_list is None:
+        path_list = []
     parser = configparser.SafeConfigParser()
     found = parser.read(path_list)
     return found, parser
