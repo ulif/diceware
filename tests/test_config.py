@@ -31,7 +31,10 @@ class TestConfigModule(object):
         found, config = get_configparser([])
         assert found == []
 
-    def test_get_configparser_no_list(self):
+    def test_get_configparser_no_list(self, tmpdir, monkeypatch):
         # we cope with no list at all
+        new_home = tmpdir / "home"
+        new_home.ensure_dir()
+        monkeypatch.setenv("HOME", str(new_home))
         found, config = get_configparser()
         assert found == []
