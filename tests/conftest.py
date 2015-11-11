@@ -21,3 +21,12 @@ def wordlists_dir(request, monkeypatch, tmpdir):
     """
     monkeypatch.setattr("diceware.wordlist.WORDLISTS_DIR", str(tmpdir))
     return tmpdir
+
+
+@pytest.fixture(scope="function")
+def home_dir(request, monkeypatch, tmpdir):
+    """This fixture provides a temporary user home.
+    """
+    tmpdir.mkdir("home")
+    monkeypatch.setenv("HOME", str(tmpdir / "home"))
+    return tmpdir / "home"
