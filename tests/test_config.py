@@ -32,3 +32,10 @@ class TestConfigModule(object):
         # we cope with no list at all
         found, config = get_configparser()
         assert found == []
+
+    def test_get_configparser_default_path(self, home_dir):
+        # a config file in $HOME is looked up by default
+        config_file = home_dir / ".diceware.ini"
+        config_file.write("\n".join(["[diceware]", "num = 3", ""]))
+        found, config = get_configparser()
+        assert found == [str(config_file)]
