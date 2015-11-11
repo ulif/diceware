@@ -71,7 +71,7 @@ def get_config_dict(path_list=None):
     if 'diceware' not in parser.sections():
         return result
     conf = parser['diceware']
-    for key, val in OPTIONS_DEFAULTS:
+    for key, val in OPTIONS_DEFAULTS.items():
         result[key] = conf.get(key, val)
     return result
 
