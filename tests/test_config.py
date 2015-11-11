@@ -1,5 +1,5 @@
 from diceware.config import (
-    OPTIONS_DEFAULTS, valid_locations, get_configparser,
+    OPTIONS_DEFAULTS, valid_locations, get_configparser, get_config_dict
     )
 
 
@@ -39,3 +39,8 @@ class TestConfigModule(object):
         config_file.write("\n".join(["[diceware]", "num = 3", ""]))
         found, config = get_configparser()
         assert found == [str(config_file)]
+
+    def test_get_config_dict_no_config_file(self, home_dir):
+        # we get config values even without a config file.
+        conf_dict = get_config_dict()
+        assert len(conf_dict) > 0

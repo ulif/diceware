@@ -60,5 +60,21 @@ def get_configparser(path_list=None):
     return found, parser
 
 
+def get_config_dict(path_list=None):
+    """Get config values found in `path_list`.
+
+    Read files in `path_list` config files and return
+    option valus as regular dictonary.
+    """
+    result = dict(OPTIONS_DEFAULTS)
+    found, parser = get_configparser(path_list)
+    if 'diceware' not in parser.sections():
+        return result
+    conf = parser['diceware']
+    for key, val in OPTIONS_DEFAULTS:
+        result[key] = conf.get(key, val)
+    return result
+
+
 class DicewareConfigParser(configparser.SafeConfigParser):
     pass
