@@ -43,4 +43,19 @@ class TestConfigModule(object):
     def test_get_config_dict_no_config_file(self, home_dir):
         # we get config values even without a config file.
         conf_dict = get_config_dict()
-        assert len(conf_dict) > 0
+        assert conf_dict == OPTIONS_DEFAULTS
+
+    def test_get_config_dict_no_diceware_section(self, home_dir):
+        # we cope with config files, if they do not contain a diceware config
+        config_file = home_dir / ".diceware.ini"
+        config_file.write("\n".join(["[not-diceware]", "num = 3", ""]))
+        conf_dict = get_config_dict()
+        assert conf_dict == OPTIONS_DEFAULTS
+
+    def test_get_config_dict(self, home_dir):
+        # we can get config values from files as a dict.
+        config_file = home_dir / ".diceware.ini"
+        config_file.write("\n".join(["[diceware]", "num = 3", ""]))
+        conf_dict = get_config_dict()
+        assert len(conf_dict) == len(OPTIONS_DEFAULTS)
+        assert conf_dict != OPTIONS_DEFAULTS
