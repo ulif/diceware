@@ -87,7 +87,3 @@ def get_config_dict(path_list=None):
         else:
             result[key] = conf.get(key, val)
     return result
-
-
-class DicewareConfigParser(configparser.SafeConfigParser):
-    pass
