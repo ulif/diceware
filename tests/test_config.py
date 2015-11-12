@@ -69,7 +69,7 @@ class TestConfigModule(object):
         assert conf_dict["num"] == 3
 
     def test_get_config_dict_bool(self, home_dir):
-        # booleabn values are interpolated correctly
+        # boolean values are interpolated correctly
         config_file = home_dir / ".diceware.ini"
         config_file.write("\n".join(["[diceware]", "caps = Off", ""]))
         conf_dict = get_config_dict()
