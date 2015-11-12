@@ -61,10 +61,16 @@ def get_configparser(path_list=None):
 
 
 def get_config_dict(path_list=None):
-    """Get config values found in `path_list`.
+    """Get config values found in files from `path_list`.
 
-    Read files in `path_list` config files and return
-    option valus as regular dictonary.
+    Read files in `path_list` config files and return option valus as
+    regular dictonary.
+
+    We only accept values for which a default exists in
+    `OPTIONS_DEFAULTS`.
+
+    Values are interpolated to have same value type as same-named values
+    from `OPTIONS_DEFAULTS` if they are integers or boolean.
     """
     result = dict(OPTIONS_DEFAULTS)
     found, parser = get_configparser(path_list)
