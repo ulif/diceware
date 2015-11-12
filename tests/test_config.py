@@ -75,3 +75,5 @@ class TestConfigModule(object):
         conf_dict = get_config_dict()
         assert "caps" in conf_dict.keys()
         assert conf_dict["caps"] is False
+        config_file.write("\n".join(["[diceware]", "caps = On", ""]))
+        assert get_config_dict()["caps"] is True
