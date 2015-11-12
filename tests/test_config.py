@@ -77,3 +77,24 @@ class TestConfigModule(object):
         assert conf_dict["caps"] is False
         config_file.write("\n".join(["[diceware]", "caps = On", ""]))
         assert get_config_dict()["caps"] is True
+
+    def test_get_config_dict_ignore_irrelevant(self, home_dir):
+        # values that have no default are ignored
+        config_file = home_dir / ".diceware.ini"
+        config_file.write("\n".join(["[diceware]", "foo = bar", ""]))
+        conf_dict = get_config_dict()
+        assert "foo" not in conf_dict.keys()
+
+    def test_get_config_dict_string(self, home_dir):
+        # string values are interpolated correctly
+        config_file = home_dir / ".diceware.ini"
+        config_file.write("\n".join(["[diceware]", "delimiter=!", ""]))
+        conf_dict = get_config_dict()
+        assert conf_dict["delimiter"] == "!"
+
+    def test_get_config_dict_string(self, home_dir):
+        # we can set empty string values
+        config_file = home_dir / ".diceware.ini"
+        config_file.write("\n".join(["[diceware]", "delimiter=", ""]))
+        conf_dict = get_config_dict()
+        assert conf_dict["delimiter"] == ""
