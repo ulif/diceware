@@ -78,13 +78,14 @@ def get_config_dict(path_list=None):
         return result
     conf = dict(parser.items('diceware'))
     for key, val in OPTIONS_DEFAULTS.items():
-        new_val = conf.get(key, val)
+        if key not in conf:
+            continue
         if isinstance(val, bool):
-            if not isinstance(new_val, bool):
-                new_val = parser.getboolean("diceware", key)
+            result[key] = parser.getboolean("diceware", key)
         elif isinstance(val, int):
-            new_val = int(new_val)
-        result[key] = new_val
+            result[key] = int(conf.get(key))
+        else:
+            result[key] = conf.get(key, val)
     return result
 
 
