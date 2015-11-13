@@ -92,7 +92,7 @@ class TestConfigModule(object):
         conf_dict = get_config_dict()
         assert conf_dict["delimiter"] == "!"
 
-    def test_get_config_dict_string(self, home_dir):
+    def test_get_config_dict_string_empty(self, home_dir):
         # we can set empty string values
         config_file = home_dir / ".diceware.ini"
         config_file.write("\n".join(["[diceware]", "delimiter=", ""]))
