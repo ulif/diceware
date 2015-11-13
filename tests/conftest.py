@@ -30,3 +30,17 @@ def home_dir(request, monkeypatch, tmpdir):
     tmpdir.mkdir("home")
     monkeypatch.setenv("HOME", str(tmpdir / "home"))
     return tmpdir / "home"
+
+
+@pytest.fixture(autouse=True)
+def change_home(monkeypatch, tmpdir):
+    """Set $HOME to some tempdir.
+
+    This is an autouse fixture.
+
+    If the user running tests has an own .diceware.ini in his home, then
+    this will influence tests. Therefore we set the user home to some
+    empty dir while tests are running.
+    """
+    monkeypatch.setenv("HOME", str(tmpdir))
+    return tmpdir
