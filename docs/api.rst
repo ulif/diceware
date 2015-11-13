@@ -31,11 +31,20 @@ Of course there are other ways to make `diceware` available.
 .. automodule:: diceware
    :members:
 
+
+`diceware.config`
+-----------------
+
+.. automodule:: diceware.config
+   :members:
+
+
 `diceware.wordlist`
 -------------------
 
 .. automodule:: diceware.wordlist
    :members:
+
 
 `diceware.random_sources`
 -------------------------
