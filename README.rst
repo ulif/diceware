@@ -180,6 +180,29 @@ empty lines (i.e. lines containing whitespace characters only). Oh,
 and we handle even PGP-signed wordlists.
 
 
+Configuration
+-------------
+
+You can set customized default values in a configuration file
+``.diceware.ini`` placed in your home directory. This file could look
+like this::
+
+  [diceware]
+  num = 7
+  caps = off
+  specials = 2
+  delimiter = MYDELIMITER
+  randomsource = system
+  wordlist = en_8k
+
+The options names have to match long argument names, as output by
+``--help``. The values set must meet the requirements valid for
+commandline usage.
+
+Please note, that all options must be set within a section
+``[diceware]``.
+
+
 What is it good for?
 --------------------
 
