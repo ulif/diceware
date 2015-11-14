@@ -6,6 +6,8 @@ Changes
 
 - Officially support Pyhthon 3.5.
 - Tests do not depend on `pytest-cov`, `pytest-xdist` anymore.
+- Support configuration files. You can set different defaults in a
+  file called ``.diceware.ini`` in your home directory.
 
 
 0.5 (2015-08-05)
