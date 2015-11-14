@@ -19,6 +19,7 @@ import argparse
 import pkg_resources
 import sys
 from random import SystemRandom
+from diceware.config import get_config_dict
 from diceware.wordlist import (
     WordList, get_wordlist_path, WORDLISTS_DIR, get_wordlist_names,
     )
@@ -81,6 +82,7 @@ def handle_options(args):
     """
     random_sources = get_random_sources().keys()
     wordlist_names = get_wordlist_names()
+    defaults = get_config_dict()
     parser = argparse.ArgumentParser(
         description="Create a passphrase",
         epilog="Wordlists are stored in %s" % WORDLISTS_DIR
@@ -123,7 +125,7 @@ def handle_options(args):
         '--version', action='store_true',
         help='output version information and exit.',
         )
-    parser.set_defaults(capitalize=True)
+    parser.set_defaults(**defaults)
     args = parser.parse_args(args)
     return args
 
