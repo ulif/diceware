@@ -8,6 +8,8 @@ Changes
 - Tests do not depend on `pytest-cov`, `pytest-xdist` anymore.
 - Support configuration files. You can set different defaults in a
   file called ``.diceware.ini`` in your home directory.
+- Renamed wordlist ``en_8k`` to ``en`` as it serves as the default
+  for english passphrases.
 
 
 0.5 (2015-08-05)
