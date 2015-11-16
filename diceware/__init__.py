@@ -110,12 +110,12 @@ def handle_options(args):
             "Get randomness from this source. Possible values: `%s'. "
             "Default: system" % "', `".join(sorted(random_sources))))
     parser.add_argument(
-        '-w', '--wordlist', default='en_8k', choices=wordlist_names,
+        '-w', '--wordlist', default='en', choices=wordlist_names,
         metavar="NAME",
         help=(
             "Use words from this wordlist. Possible values: `%s'. "
             "Wordlists are stored in the folder displayed below. "
-            "Default: en_8k" % "', `".join(wordlist_names)))
+            "Default: en" % "', `".join(wordlist_names)))
     parser.add_argument(
         'infile', nargs='?', metavar='INFILE', default=None,
         type=argparse.FileType('r'),

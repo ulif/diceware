@@ -55,7 +55,7 @@ class TestWordlistModule(object):
         assert regexp.match("wordlist_foo.txt") is not None
         assert regexp.match("wordlist_foo_bar.asc") is not None
         assert regexp.match("wordlist_name-withdots.txt.asc") is not None
-        assert regexp.match("wordlist_en_8k.txt") is not None
+        assert regexp.match("wordlist_en.txt") is not None
         assert regexp.match("wordlist_en_orig.asc") is not None
         # We can get the internal wordlist name
         assert regexp.match("wordlist_foo.txt").groups()[0] == "foo"
@@ -116,9 +116,9 @@ class TestWordlistModule(object):
 
     def test_get_wordlist_names(self, wordlists_dir):
         # we can get wordlist names also if directory is empty.
-        wlist_path = wordlists_dir.join('wordlist_my_en_8k.txt')
+        wlist_path = wordlists_dir.join('wordlist_my_en.txt')
         wlist_path.write("some\nirrelevant\nwords")
-        assert get_wordlist_names() == ['my_en_8k']
+        assert get_wordlist_names() == ['my_en']
 
     def test_get_wordlist_names_files_only(self, wordlists_dir):
         # non-files are ignored when looking for wordlist names
@@ -223,7 +223,7 @@ class TestWordList(object):
 
     def test_wordlist_en_8k(self):
         # we can get a list of words out of english 8k wordlist.
-        en_src = os.path.join(WORDLISTS_DIR, 'wordlist_en_8k.txt')
+        en_src = os.path.join(WORDLISTS_DIR, 'wordlist_en.txt')
         w_list = WordList(en_src)
         long_list = list(w_list)
         assert long_list[0] == "a"
