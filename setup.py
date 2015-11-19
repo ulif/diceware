@@ -34,7 +34,7 @@ install_requires = [
 
 tests_require = [
     # See tox.ini
-    'pytest >=2.0.3,<2.8.0',
+    'pytest >=2.8.3',
     'coverage',
     ]
 
