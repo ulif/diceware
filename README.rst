@@ -179,10 +179,6 @@ In custom wordlists we take each line for a valid word and ignore
 empty lines (i.e. lines containing whitespace characters only). Oh,
 and we handle even PGP-signed wordlists.
 
-
-Coniguration Files
-------------------
-
 You can set customized default values in a configuration file
 ``.diceware.ini`` (note the leading dot) placed in your home
 directory. This file could look like this::
@@ -197,9 +193,7 @@ directory. This file could look like this::
 
 The options names have to match long argument names, as output by
 ``--help``. The values set must meet the requirements valid for
-commandline usage.
-
-Please note, that all options must be set within a section
+commandline usage. All options must be set within a section
 ``[diceware]``.
 
 
