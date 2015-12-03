@@ -77,9 +77,9 @@ Once installed, use ``--help`` to list all available options::
                           Get randomness from this source. Possible values:
                           `realdice', `system'. Default: system
     -w NAME, --wordlist NAME
-                          Use words from this wordlist. Possible values:
-                          `en_8k', `en_orig'. Wordlists are stored in the folder
-                          displayed below. Default: en_8k
+                          Use words from this wordlist. Possible values: `en',
+                          `en_orig'. Wordlists are stored in the folder
+                          displayed below. Default: en
     --version             output version information and exit.
 
 
@@ -189,7 +189,7 @@ directory. This file could look like this::
   specials = 2
   delimiter = MYDELIMITER
   randomsource = system
-  wordlist = en_8k
+  wordlist = en
 
 The options names have to match long argument names, as output by
 ``--help``. The values set must meet the requirements valid for

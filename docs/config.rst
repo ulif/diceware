@@ -13,7 +13,7 @@ like this::
   specials = 2
   delimiter = MYDELIMITER
   randomsource = system
-  wordlist = en_8k
+  wordlist = en
 
 These settings would mean that by default phrases with seven words
 (instead six) would be created. Commandline options, however, override
