@@ -8,12 +8,30 @@ defaults and make your custom settings the default.
 like this::
 
   [diceware]
-  num = 7
+  num = 3
   caps = off
   specials = 2
   delimiter = MYDELIMITER
   randomsource = system
   wordlist = en_8k
+
+These settings would mean that by default phrases with seven words
+(instead six) would be created. Commandline options, however, override
+config file settings. So, with the settings above::
+
+  $ diceware
+  Duma7YDELIMITER56MYDE^IMITERJock
+
+we will get three-word phrases while with::
+
+  $ diceware --delimiter=FOO
+  AmuseFOO]us(FOO18th
+
+we will override the config file setting for ``delimiter``. Other
+settings from config file are still valid.
+
+Option Names
+------------
 
 The options names have to match long argument names, as output with
 ``--help``. The values set must meet the requirements valid for
@@ -27,8 +45,8 @@ Please note, that all options must be set within a section
 ``[diceware]``.
 
 
-Name and Path
--------------
+Config File Name and Path
+-------------------------
 
 Currently, we look for configuration files only in the calling users'
 home directory. The file must be called::
