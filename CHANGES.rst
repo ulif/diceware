@@ -1,8 +1,8 @@
 Changes
 =======
 
-0.6.dev0 (unreleased)
----------------------
+0.6 (2015-12-15)
+----------------
 
 - Officially support Pyhthon 3.5.
 - Tests do not depend on `pytest-cov`, `pytest-xdist` anymore.
