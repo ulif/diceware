@@ -44,7 +44,7 @@ docs_require = [
 
 setup(
     name="diceware",
-    version="0.6.1",
+    version="0.6.2.dev0",
     author="Uli Fouquet",
     author_email="uli@gnufix.de",
     description=(
