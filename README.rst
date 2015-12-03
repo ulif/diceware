@@ -180,12 +180,12 @@ empty lines (i.e. lines containing whitespace characters only). Oh,
 and we handle even PGP-signed wordlists.
 
 
-Configuration
--------------
+Coniguration Files
+------------------
 
 You can set customized default values in a configuration file
-``.diceware.ini`` placed in your home directory. This file could look
-like this::
+``.diceware.ini`` (note the leading dot) placed in your home
+directory. This file could look like this::
 
   [diceware]
   num = 7
