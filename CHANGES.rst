@@ -1,8 +1,8 @@
 Changes
 =======
 
-0.6.1.dev0 (unreleased)
------------------------
+0.6.1 (2015-12-15)
+------------------
 
 - Minor doc changes: add separate config file docs.
 - Fix docs: the default wordlist is named ``en``. Some docs were not
