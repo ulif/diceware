@@ -4,7 +4,7 @@ Changes
 0.6.1.dev0 (unreleased)
 -----------------------
 
-- No changes yet.
+- Minor doc changes: add separate config file docs.
 
 
 0.6 (2015-12-15)
