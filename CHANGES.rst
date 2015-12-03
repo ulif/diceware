@@ -5,6 +5,8 @@ Changes
 -----------------------
 
 - Minor doc changes: add separate config file docs.
+- Fix docs: the default wordlist is named ``en``. Some docs were not
+  up-to-date in that regard.
 
 
 0.6 (2015-12-15)
