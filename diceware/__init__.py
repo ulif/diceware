@@ -148,13 +148,15 @@ def insert_special_char(word, specials=SPECIAL_CHARS, rnd=None):
 def get_passphrase(options=None):
     """Get a diceware passphrase.
 
-    The passphrase returned will contain `options.num` words deliimted by
-    `options.delimiter`.
+    `options` is a set of arguments as provided by
+    `argparse.OptionParser.parse_args()`.
 
-    The passphrase returned will contain `options.specials` special chars.
+    The passphrase returned will contain `options.num` words deliimted by
+    `options.delimiter` and `options.specials` special chars.
 
     For the passphrase generation we will use the random source
-    registered under the name `options.randomsource`.
+    registered under the name `options.randomsource` (something like
+    "system" or "dice").
 
     If `options.capitalize` is ``True``, all words will be capitalized.
 
