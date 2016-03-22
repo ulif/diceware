@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 import datetime
 import os
 import pytest
+import re
 import sys
 from io import StringIO
 from diceware import (
@@ -113,9 +114,10 @@ class TestDicewareModule(object):
     def test_print_version_current_year(self, capsys):
         # in version infos we display the current year
         print_version()
-        expected = '(C) %s' % (datetime.datetime.now().year)
+        pattern = ".*\(C\) (20[0-9]{2}, )*%s.*" % (
+            datetime.datetime.now().year)
         out, err = capsys.readouterr()
-        assert expected in out
+        assert re.match(pattern, out, re.M + re.S) is not None
 
     def test_handle_options(self):
         # we can get help
