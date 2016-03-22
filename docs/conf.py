@@ -53,7 +53,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'diceware'
-copyright = '2015, Uli Fouquet'
+copyright = '2015, 2016, Uli Fouquet'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -292,7 +292,7 @@ texinfo_documents = [
 epub_title = 'diceware'
 epub_author = 'Uli Fouquet'
 epub_publisher = 'Uli Fouquet'
-epub_copyright = '2015, Uli Fouquet'
+epub_copyright = copyright
 
 # The basename for the epub file. It defaults to the project name.
 #epub_basename = 'diceware'

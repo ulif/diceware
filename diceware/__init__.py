@@ -52,7 +52,7 @@ def print_version():
     """Output current version and other infos.
     """
     print("diceware %s" % __version__)
-    print("Copyright (C) 2015 Uli Fouquet")
+    print("Copyright (C) 2015, 2016 Uli Fouquet")
     print("diceware is based on suggestions of Arnold G. Reinhold.")
     print("See http://diceware.com for details.")
 
