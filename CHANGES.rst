@@ -4,7 +4,7 @@ Changes
 0.6.2.dev0 (unreleased)
 -----------------------
 
-- No changes yet.
+- Added sample ``.diceware.ini``.
 
 
 0.6.1 (2015-12-15)
