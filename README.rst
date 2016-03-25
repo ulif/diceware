@@ -187,9 +187,9 @@ directory. This file could look like this::
   num = 7
   caps = off
   specials = 2
-  delimiter = MYDELIMITER
-  randomsource = system
-  wordlist = en
+  delimiter = "MYDELIMITER"
+  randomsource = "system"
+  wordlist = "en"
 
 The options names have to match long argument names, as output by
 ``--help``. The values set must meet the requirements valid for
