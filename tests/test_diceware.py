@@ -135,7 +135,7 @@ class TestDicewareModule(object):
         assert options.version is False
         assert options.delimiter == ""
         assert options.randomsource == "system"
-        assert options.wordlist == "en"
+        assert options.wordlist == "en_heartsucker"
 
     def test_handle_options_infile(self, tmpdir):
         # we can give an infile

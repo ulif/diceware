@@ -60,10 +60,10 @@ Once installed, use ``--help`` to list all available options::
 
   $ diceware --help
   Create a passphrase
-  
+
   positional arguments:
     INFILE                Input wordlist. `-' will read from stdin.
-  
+
   optional arguments:
     -h, --help            show this help message and exit
     -n NUM, --num NUM     number of words to concatenate. Default: 6
@@ -78,8 +78,8 @@ Once installed, use ``--help`` to list all available options::
                           `realdice', `system'. Default: system
     -w NAME, --wordlist NAME
                           Use words from this wordlist. Possible values: `en',
-                          `en_orig'. Wordlists are stored in the folder
-                          displayed below. Default: en
+                          `en_orig', `en_heartsucker'. Wordlists are stored in
+                          the folder displayed below. Default: en_heartsucker
     --version             output version information and exit.
 
 
@@ -148,13 +148,14 @@ lib but you can also bring your own dice to create randomness::
 We support even sources of randomness from other packages. See the
 `documentation <https://diceware.readthedocs.org/>`_ for more details.
 
-`diceware` comes with an English wordlist (the 'diceware8k' list)
-provided by Arnold G. Reinhold, which will be used by default and
-contains 8192 different words.
+`diceware` comes with an English wordlist provided by Heartsucker,
+which will be used by default and contains 8192 different words. This
+list is based off the original diceware list written by Arnold G.
+Reinhold.
 
-Apart from that `diceware` is packaged with the "original" 7776 word
-list provided by Mr. Reinhold. You can enable a certain (installed)
-wordlist with the ``-w`` option::
+
+Both the original and 8k diceware wordlists by Mr. Reinhold are provided.
+You can enable a certain (installed) wordlist with the ``-w`` option::
 
   $ diceware --wordlist en_orig
   YorkNodePrickEchoToriNiobe
@@ -214,7 +215,7 @@ with the famous '936' proof_:
 
 The standard english wordlist of this `diceware` implementation
 contains 8192 = 2**13 different english words. It is a copy of the
-`Diceware8k list`_ provided by Mr. Reinhold. Therefore, picking a random word
+`Diceware 8192 list`_ provided by Heartsucker. Therefore, picking a random word
 from this list gives an entropy of 13 bits. Picking six words means an
 entropy of 6 x 13 = 73 bits.
 

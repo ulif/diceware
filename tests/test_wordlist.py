@@ -57,6 +57,7 @@ class TestWordlistModule(object):
         assert regexp.match("wordlist_name-withdots.txt.asc") is not None
         assert regexp.match("wordlist_en.txt") is not None
         assert regexp.match("wordlist_en_orig.asc") is not None
+        assert regexp.match("wordlist_en_heartsucker.asc") is not None
         # We can get the internal wordlist name
         assert regexp.match("wordlist_foo.txt").groups()[0] == "foo"
         assert regexp.match(
@@ -228,6 +229,15 @@ class TestWordList(object):
         long_list = list(w_list)
         assert long_list[0] == "a"
         assert long_list[-1] == "@"
+        assert len(long_list) == 8192
+
+    def test_wordlist_en_heartsucker(self):
+        # we can get a list of words out of english 8k wordlist.
+        en_src = os.path.join(WORDLISTS_DIR, 'wordlist_en_heartsucker.txt')
+        w_list = WordList(en_src)
+        long_list = list(w_list)
+        assert long_list[0] == "0"
+        assert long_list[-1] == "zurich"
         assert len(long_list) == 8192
 
     def test_get_wordlist_simple(self, tmpdir):

@@ -1,10 +1,12 @@
 The diceware idea Copyright(C) 1995-2015, Arnold G. Reinhold,
 Cambridge, Massachusetts USA.
 
-The English Diceware Wordlists used with this programme (files
-``wordlists/wordlist_en_orig.asc``, ``wordlists/wordlist_en_8k.txt``)
-are licensed by Arnold G. Reinhold under the `Creative Commons CC-BY
-3.0` (see http://creativecommons.org/licenses/by/3.0/) license.
+The English Diceware Wordlists used with this programme are licensed
+by Arnold G. Reinhold (files ``wordlists/wordlist_en_orig.asc``,
+``wordlists/wordlist_en.txt``) under the `Creative Commons CC-BY 3.0`
+license (see http://creativecommons.org/licenses/by/3.0/) and by
+Heartsucker (file ``wordlists/wordlist_en_heartsucker.txt``) under
+the `MIT` license (see http://mit-license.org/).
 
 "Diceware" is a trademark of A G Reinhold.
 
