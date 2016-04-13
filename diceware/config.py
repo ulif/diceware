@@ -32,7 +32,7 @@ OPTIONS_DEFAULTS = dict(
     specials=0,
     delimiter="",
     randomsource="system",
-    wordlist="en",
+    wordlist="en_heartsucker",
     )
 
 
