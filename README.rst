@@ -314,6 +314,8 @@ People that helped spotting bugs, providing solutions, etc.:
  - Rodolfo Gouveia suggested to activate the ``--delimiter`` option.
  - `drebs <https://github.com/drebs>`_ provided patches and discussion for
    different sources of randomness.
+ - `Heartsucker <https://github.com/heartsucker>`_ hand-compiled and
+   added a new english wordlist.
 
 Many thanks to all of them!
 
