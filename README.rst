@@ -153,7 +153,6 @@ which will be used by default and contains 8192 different words. This
 list is based off the original diceware list written by Arnold G.
 Reinhold.
 
-
 Both the original and 8k diceware wordlists by Mr. Reinhold are provided.
 You can enable a certain (installed) wordlist with the ``-w`` option::
 
@@ -214,10 +213,10 @@ with the famous '936' proof_:
 .. _proof: http://xkcd.com/936/
 
 The standard english wordlist of this `diceware` implementation
-contains 8192 = 2**13 different english words. It is a copy of the
-`Diceware 8192 list`_ provided by Heartsucker. Therefore, picking a random word
-from this list gives an entropy of 13 bits. Picking six words means an
-entropy of 6 x 13 = 73 bits.
+contains 8192 = 2**13 different english words. It is a hand-compiled
+8192-words list provided by `Heartsucker`_. Therefore, picking a
+random word from this list gives an entropy of 13 bits. Picking six
+words means an entropy of 6 x 13 = 73 bits.
 
 The special chars replacing chars of the originally created passphrase
 give some more entropy (the more chars you have, the more additional
