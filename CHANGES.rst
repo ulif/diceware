@@ -5,6 +5,9 @@ Changes
 -----------------------
 
 - Added sample ``.diceware.ini``.
+- Added new english wordlist ``en_heartsucker``. This is the new
+  default list. Thanks to `heartsucker
+  <https://github.com/heartsucker>`_ who compiled and added the list.
 
 
 0.6.1 (2015-12-15)
@@ -83,3 +86,6 @@ Changes
 ----------------
 
 - Initial release.
+
+
+_heartsucker: `
