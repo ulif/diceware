@@ -7,9 +7,17 @@ words used, the wordlists.
 `diceware` comes with some wordlists out-of-the-box, that might be a
 good choice for usual private use.
 
-By default we use the so-called `8k wordlist`_ from Mr. Reinhold as
-published on http://diceware.com/. It contains 8,192 english words
-and phrases.
+By default we use a hand-crafted wordlist provided by
+`@Heartsucker`_. It contains 8,192 english words and phrases. This list
+is based on the `diceware standard wordlist`_ and extended to offer
+better memorizable words. Please see
+https://github.com/heartsucker/diceware for details.
+
+Apart from it we also provide the so-called `8k wordlist`_ from
+Mr. Reinhold as published on http://diceware.com/. It also contains
+8,192 english words and phrases and is something like the canonical
+wordlist for use with binary-geared entities like computers or
+nerds.
 
 .. warning:: We do -- by default -- *not* use the `diceware standard
 	     wordlist`_ (which contains 7,776 words), because
@@ -146,5 +154,5 @@ automatically done by `diceware`.
 
 
 .. _`8k wordlist`: http://world.std.com/~reinhold/diceware8k.txt
-
 .. _`diceware standard wordlist`: http://world.std.com/~reinhold/diceware.wordlist.asc
+.. _`@Heartsucker`: https://github.com/heartsucker/
