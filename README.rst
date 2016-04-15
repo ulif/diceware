@@ -78,8 +78,8 @@ Once installed, use ``--help`` to list all available options::
                           `realdice', `system'. Default: system
     -w NAME, --wordlist NAME
                           Use words from this wordlist. Possible values: `en',
-                          `en_orig', `en_heartsucker'. Wordlists are stored in
-                          the folder displayed below. Default: en_heartsucker
+                          `en_orig', `en_securedrop'. Wordlists are stored in
+                          the folder displayed below. Default: en_securedrop
     --version             output version information and exit.
 
 
@@ -329,6 +329,7 @@ Links
 Wordlists:
 
 - `Diceware8k list`_ by Arnold G. Reinhold.
+- `Diceware SecureDrop list`_ by Heartsucer.
 
 
 License
@@ -338,12 +339,13 @@ This Python implementation of Diceware, (C) 2015, 2016 Uli Fouquet, is
 licensed under the GPL v3+.
 
 The Copyright for the Diceware_ idea and the `Diceware8k list`_ are
-Copyright by Arnold G. Reinhold. See file LICENSE for details.
-
+Copyright by Arnold G. Reinhold. The Copyright for the the `Diceware
+SecureDrop list`_ are copyright by Heartsucker. See file LICENSE for details.
 
 .. _pip: https://pip.pypa.io/en/latest/
 .. _`Diceware8k list`: http://world.std.com/~reinhold/diceware8k.txt
 .. _`Diceware`: http://diceware.com/
+.. _`Diceware SecureDrop list`: https://github.com/heartsucker/diceware
 .. _`fork me on github`: http://github.com/ulif/diceware/
 .. _`random.SystemRandom`: https://docs.python.org/3.4/library/random.html#random.SystemRandom
 .. _virtualenv: https://virtualenv.pypa.io/
