@@ -30,12 +30,14 @@ def read(fname):
 
 install_requires = [
     'setuptools',
+    'gnupg >=2.0.2',
     ]
 
 tests_require = [
     # See tox.ini
     'pytest >=2.8.3',
     'coverage',
+    'six >=1.10.0',
     ]
 
 docs_require = [

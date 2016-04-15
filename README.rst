@@ -179,6 +179,12 @@ In custom wordlists we take each line for a valid word and ignore
 empty lines (i.e. lines containing whitespace characters only). Oh,
 and we handle even PGP-signed wordlists.
 
+GPG signed wordlists can be verified with the `--verify` option. This
+uses the `gpg` program to veriy the signaure. You can set you GPG
+home directory with the `--gpg-home` option. Using the `--verify` option
+will only out put a passphrase if the word list is signed, the key is
+in your key ring, and you have signed the key.
+
 You can set customized default values in a configuration file
 ``.diceware.ini`` (note the leading dot) placed in your home
 directory. This file could look like this::
