@@ -21,8 +21,8 @@ optional arguments:
                         `realdice', `system'. Default: system
   -w NAME, --wordlist NAME
                         Use words from this wordlist. Possible values: `en',
-                        `en_heartsucker', `en_orig'. Wordlists are stored in
-                        the folder displayed below. Default: en_heartsucker
+                        `en_orig', `en_securedrop'. Wordlists are stored in
+                        the folder displayed below. Default: en_securedrop
   --version             output version information and exit.
 
 Wordlists are stored in <WORDLISTS-DIR>
