@@ -19,6 +19,8 @@ import os
 import re
 import tempfile
 
+from gnupg import GPG
+
 #: Maximum in-memory file size in bytes (20 MB).
 #:
 #: This value is used when creating temporary files replacing
@@ -107,7 +109,10 @@ class WordList(object):
     words of a wordlist by iterating over an instance of `WordList`.
 
     """
-    def __init__(self, path_or_filelike=None):
+    def __init__(self, path_or_filelike=None, verify_wordlist=False,
+                 gpg_home=None):
+        self.verify_wordlist = verify_wordlist
+        self.gpg_home = gpg_home
         self.path = None
         if not hasattr(path_or_filelike, 'read'):
             # got a path, not a filelike object
@@ -124,6 +129,12 @@ class WordList(object):
                 self.fd.write(path_or_filelike.read())
                 self.fd.seek(0)
         self.signed = self.is_signed()
+
+        if self.verify_wordlist:
+            if self.signed:
+                self.verify_signature()
+            else:
+                raise GpgException('Attempted to verify an unsigned wordlist')
 
     def __iter__(self):
         self.fd.seek(0)
@@ -166,3 +177,20 @@ class WordList(object):
         if match:
             entry = match.groups()[0]
         return entry
+
+    def verify_signature(self):
+        """
+        Checks if the GPG signed file has a valid signature. The key that
+        signed the file is required to be in the user's keyring and signed.
+        """
+        gpg = GPG(homedir=self.gpg_home)
+        verification = gpg.verify_file(self.fd)
+        if not verification.valid:
+            raise GpgException('Error checking signature. GPG says: ' +
+                               verification.status)
+
+
+class GpgException(Exception):
+
+    def __init__(self, message):
+        super(GpgException, self).__init__(message)

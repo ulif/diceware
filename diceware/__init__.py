@@ -125,6 +125,17 @@ def handle_options(args):
         '--version', action='store_true',
         help='output version information and exit.',
         )
+    parser.add_argument(
+        '--verify-wordlist', action='store_true', default=False,
+        dest='verify_wordlist',
+        help='Whether or not the signature on GPG signed wordlists are '
+             'verified. Default: false'
+    )
+    parser.add_argument(
+        '--gpg-home', dest='gpg_home',
+        help='The directory containing GPG keyrings used for verifying signed '
+             'wordlists. Default: whatever your gpg binary uses'
+    )
     parser.set_defaults(**defaults)
     args = parser.parse_args(args)
     return args
@@ -168,7 +179,10 @@ def get_passphrase(options=None):
         options = handle_options(args=[])
     if options.infile is None:
         options.infile = open(get_wordlist_path(options.wordlist), 'r')
-    word_list = WordList(options.infile)
+
+    word_list = WordList(options.infile,
+                         verify_wordlist=options.verify_wordlist,
+                         gpg_home=getattr(options, 'gpg_home', None))
     rnd_source = get_random_sources()[options.randomsource]
     rnd = rnd_source(options)
     words = [rnd.choice(list(word_list)) for x in range(options.num)]

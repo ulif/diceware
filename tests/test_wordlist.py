@@ -1,21 +1,69 @@
 import os
 import pytest
+import six
 from io import StringIO
+from gnupg import GPG
 from diceware.wordlist import (
     WORDLISTS_DIR, RE_WORDLIST_NAME, RE_NUMBERED_WORDLIST_ENTRY,
     RE_VALID_WORDLIST_FILENAME, get_wordlist_path, get_wordlist_names,
-    WordList,
+    WordList, GpgException,
 )
 
 
 @pytest.fixture(scope="function")
-def wordlist(request, tmpdir):
+def gpg_alice(tmpdir):
+    gpg = GPG(homedir=str(tmpdir.join("alice_home")))
+    gpg.create_trustdb()
+    key_args = {'name_real': 'alice',
+                'name_email': 'alice@example.com',
+                'key_type': 'RSA',
+                'key_length': 1024}  # short key for faster generation
+    key_input = gpg.gen_key_input(testing=True, **key_args)
+    gpg.gen_key(key_input)
+    return gpg
+
+
+@pytest.fixture(scope="function")
+def gpg_bob(tmpdir):
+    gpg = GPG(homedir=str(tmpdir.join("bob_home")))
+    gpg.create_trustdb()
+    key_args = {'name_real': 'bob',
+                'name_email': 'bob@example.com',
+                'key_type': 'RSA',
+                'key_length': 1024}  # short key for faster generation
+    key_input = gpg.gen_key_input(testing=True, **key_args)
+    gpg.gen_key(key_input)
+    return gpg
+
+
+@pytest.fixture(scope="function")
+def wordlist(tmpdir):
     """A fixture that delivers a simple WordList instance.
     """
     path = tmpdir.join("mylist.txt")
     path.write("foo\nbar\n")
     w_list = WordList(str(path))
     return w_list
+
+
+@pytest.fixture(scope="function")
+def alice_wordlist(gpg_alice):
+    signed = gpg_alice.sign(StringIO(b"word1\nword2\n".decode("utf-8")),
+                            clearsign=True)
+    return StringIO(six.text_type(signed))
+
+
+@pytest.fixture(scope="function")
+def bob_wordlist(gpg_bob):
+    signed = gpg_bob.sign(StringIO(b"word1\nword2\n".decode("utf-8")),
+                          clearsign=True)
+    return StringIO(six.text_type(signed))
+
+
+@pytest.fixture(scope="function")
+def alice_wordlist_mod(alice_wordlist):
+    return StringIO(six.text_type(alice_wordlist.getvalue()
+                                  .replace('word1', 'mitm')))
 
 
 class TestWordlistModule(object):
@@ -348,3 +396,38 @@ class TestWordList(object):
         # we can do all the things above at once and in right order.
         wordlist.signed = True
         assert wordlist.refine_entry("- 11111 foo  \n") == "foo"
+
+    def test_valid_signature(self, gpg_alice, alice_wordlist):
+        w_list = WordList(alice_wordlist, gpg_home=gpg_alice.homedir,
+                          verify_wordlist=True)
+        assert w_list.signed
+        assert list(w_list)[0] == 'word1'
+        assert list(w_list)[1] == 'word2'
+
+    def test_signature_for_missing_key(self, gpg_alice, bob_wordlist):
+        try:
+            WordList(bob_wordlist, gpg_home=gpg_alice.homedir,
+                     verify_wordlist=True)
+        except GpgException:
+            return
+        raise Exception('Expected GpgException')
+
+    def test_signature_for_modified_data(self, gpg_alice, alice_wordlist_mod):
+        try:
+            WordList(alice_wordlist_mod, gpg_home=gpg_alice.homedir,
+                     verify_wordlist=True)
+        except GpgException:
+            return
+        raise Exception('Expected GpgException')
+
+    def test_signature_for_modified_data_no_verify(self, alice_wordlist_mod):
+        w_list = WordList(alice_wordlist_mod, verify_wordlist=False)
+        assert w_list.signed
+
+    def test_signature_unsigned_date(self, wordlist):
+        try:
+            WordList(StringIO(b'foo\nbar\b'.decode('utf-8')),
+                     verify_wordlist=True)
+        except GpgException:
+            return
+        raise Exception('Expected GpgException')

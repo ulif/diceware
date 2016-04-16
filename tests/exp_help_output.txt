@@ -1,5 +1,6 @@
 usage: diceware [-h] [-n NUM] [-c | --no-caps] [-s NUM] [-d DELIMITER]
-                [-r SOURCE] [-w NAME] [--version]
+                [-r SOURCE] [-w NAME] [--version] [--verify-wordlist]
+                [--gpg-home GPG_HOME]
                 [INFILE]
 
 Create a passphrase
@@ -24,5 +25,10 @@ optional arguments:
                         `en_orig', `en_securedrop'. Wordlists are stored in
                         the folder displayed below. Default: en_securedrop
   --version             output version information and exit.
+  --verify-wordlist     Whether or not the signature on GPG signed wordlists
+                        are verified. Default: false
+  --gpg-home GPG_HOME   The directory containing GPG keyrings used for
+                        verifying signed wordlists. Default: whatever your gpg
+                        binary uses
 
 Wordlists are stored in <WORDLISTS-DIR>
