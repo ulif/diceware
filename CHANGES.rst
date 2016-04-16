@@ -5,7 +5,7 @@ Changes
 -----------------------
 
 - Added sample ``.diceware.ini``.
-- Added new english wordlist ``en_heartsucker``. This is the new
+- Added new english wordlist ``en_securedrop``. This is the new
   default list. Thanks to `heartsucker
   <https://github.com/heartsucker>`_ who compiled and added the list.
 
