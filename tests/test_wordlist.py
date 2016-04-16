@@ -233,7 +233,7 @@ class TestWordList(object):
 
     def test_wordlist_en_securedrop(self):
         # we can get a list of words out of securedrop english 8k wordlist.
-        en_src = os.path.join(WORDLISTS_DIR, 'wordlist_en_securedrop.txt')
+        en_src = os.path.join(WORDLISTS_DIR, 'wordlist_en_securedrop.asc')
         w_list = WordList(en_src)
         long_list = list(w_list)
         assert long_list[0] == "0"
