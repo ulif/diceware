@@ -223,7 +223,7 @@ class TestWordList(object):
         assert list(w_list) == ["foo", "bar", "-dash-at-start", "baz"]
 
     def test_wordlist_en_8k(self):
-        # we can get a list of words out of english 8k wordlist.
+        # we can get a list of words out of the reinhold english 8k wordlist.
         en_src = os.path.join(WORDLISTS_DIR, 'wordlist_en.txt')
         w_list = WordList(en_src)
         long_list = list(w_list)
@@ -232,13 +232,21 @@ class TestWordList(object):
         assert len(long_list) == 8192
 
     def test_wordlist_en_securedrop(self):
-        # we can get a list of words out of english 8k wordlist.
+        # we can get a list of words out of securedrop english 8k wordlist.
         en_src = os.path.join(WORDLISTS_DIR, 'wordlist_en_securedrop.txt')
         w_list = WordList(en_src)
         long_list = list(w_list)
         assert long_list[0] == "0"
         assert long_list[-1] == "zurich"
         assert len(long_list) == 8192
+
+    def test_wordlist_en(self):
+        # we can get a list of words out of the original diceware wordlist.
+        en_src = os.path.join(WORDLISTS_DIR, 'wordlist_en_orig.asc')
+        w_list = list(WordList(en_src))
+        assert w_list[0] == "a"
+        assert w_list[-1] == "@"
+        assert len(w_list) == 7776
 
     def test_get_wordlist_simple(self, tmpdir):
         # simple wordlists can be created
