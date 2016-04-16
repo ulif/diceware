@@ -7,11 +7,12 @@ words used, the wordlists.
 `diceware` comes with some wordlists out-of-the-box, that might be a
 good choice for usual private use.
 
-By default we use a hand-crafted wordlist provided by
-`@Heartsucker`_. It contains 8,192 english words and phrases. This list
-is based on the `diceware standard wordlist`_ and extended to offer
-better memorizable words. Please see
-https://github.com/heartsucker/diceware for details.
+By default we use a hand-crafted `en_securedrop` wordlist provided by
+`@Heartsucker`_. It contains 8,192 english words and phrases. This
+list is based on the `diceware standard wordlist`_ and extended to
+offer better memorizable words. Please see
+https://github.com/heartsucker/diceware for details. The name
+`en_securedrop` refers to the `securedrop`_ project.
 
 Apart from it we also provide the so-called `8k wordlist`_ from
 Mr. Reinhold as published on http://diceware.com/. It also contains
@@ -137,7 +138,7 @@ this::
 
   -----BEGIN PGP SIGNATURE-----
   Version: GnuPG v1
-  
+
   iJwEAQEKAAYFAlW00GEACgkQ+5ktCoLaPzSutwP8DVgdjBFqRXNKaZlvd8pR+P3k
   8xx5XLC0OFwZQFx4Ls8xl3+/xfvCNxCGSZjD6BGPzNZCK7bmQQYWcrsoEyX5jAC3
   dXjAPj0nct/PkJQlrUjUI2qrO0dFfU7sRj0Gn9TOlQQkKoQVwy7pY/6HaScGNepL
@@ -156,3 +157,4 @@ automatically done by `diceware`.
 .. _`8k wordlist`: http://world.std.com/~reinhold/diceware8k.txt
 .. _`diceware standard wordlist`: http://world.std.com/~reinhold/diceware.wordlist.asc
 .. _`@Heartsucker`: https://github.com/heartsucker/
+.. _`securedrop`: https://github.com/freedomofpress/securedrop
