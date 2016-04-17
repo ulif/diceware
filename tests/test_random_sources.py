@@ -263,3 +263,17 @@ class TestRealDiceRandomSource(object):
         src.pre_check(5, ['doesntmatter'])
         out, err = capsys.readouterr()
         assert "Please roll 5 dice (or a single dice 5 times)." in out
+
+    def test_sequence_less_than_dice_sides(self, capsys):
+        # Test to see whether we can use a n-sided die to choose from a sequence with less than n items
+        src = RealDiceRandomSource(None)
+        # If we give a value of num_rolls < 1,
+        # the pre_check should fix the number of rolls
+        # and notify us to use the modulo
+        num_rolls, usemodulo = src.pre_check(0.5, ['abc'])
+        assert num_rolls > 1
+        assert usemodulo
+        # But if we give num_rolls > 1, it should do no such thing:
+        num_rolls, usemodulo = src.pre_check(5, range(1, 6 ** 5))
+        assert num_rolls == 5
+        assert not usemodulo
