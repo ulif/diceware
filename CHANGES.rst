@@ -1,8 +1,8 @@
 Changes
 =======
 
-0.7.dev0 (unreleased)
----------------------
+0.7 (2016-04-17)
+----------------
 
 - Added sample ``.diceware.ini``.
 - Added new english wordlist ``en_securedrop``. This is the new
