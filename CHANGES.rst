@@ -8,6 +8,8 @@ Changes
 - Added new english wordlist ``en_securedrop``. This is the new
   default list. Thanks to `heartsucker
   <https://github.com/heartsucker>`_ who compiled and added the list.
+- Remove support for Python 3.2. Several packages we depend on for testing
+  and sandboxing stopped Python 3.2 support. We follow them.
 
 
 0.6.1 (2015-12-15)
