@@ -1,4 +1,4 @@
 recursive-include diceware/wordlists *.txt *.asc
 recursive-include docs *.bat *.py *.rst Makefile
-recursive-include tests *.asc *.py *.txt
+recursive-include tests *.asc *.py *.txt *.ini
 include README.rst CHANGES.rst LICENSE COPYRIGHT tox.ini
