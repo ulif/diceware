@@ -113,14 +113,9 @@ class TestSampleIni(object):
         found = parser.read([sample_path, ])
         assert sample_path in found
         assert parser.has_section('diceware')
-
-        has_diceware_opt = False
-
         for key, val in OPTIONS_DEFAULTS.items():
             # make sure option keywords are contained.
-            has_diceware_opt = parser.has_option('diceware', key) or has_diceware_opt
-
-        assert has_diceware_opt
+            assert parser.has_option('diceware', key)
 
     def test_no_invalid_options(self, home_dir):
         # ensure we have no obsolete/unused options in sample

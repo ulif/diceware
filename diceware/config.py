@@ -33,7 +33,7 @@ OPTIONS_DEFAULTS = dict(
     delimiter="",
     randomsource="system",
     wordlist="en_securedrop",
-    gpg_home=None,
+    gpg_home='',
     )
 
 
