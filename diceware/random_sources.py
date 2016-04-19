@@ -131,15 +131,8 @@ class RealDiceRandomSource(object):
         We make sure that `num_rolls`, the number of rolls, is in an
         acceptable range and issue an hint about the procedure.
         """
-        use_modulo=False
         if num_rolls == 0:
            raise(ValueError)
-        if num_rolls < 1:
-           # If this happens, there are less values in the sequence to choose from than there are dice sides.
-           # We will generate a large integer (larger than 100*len(sequence)),
-           # and use modulo to select from it
-           num_rolls = int(math.ceil(math.log(100*len(sequence), self.dice_sides)))
-           use_modulo=True
         if (self.dice_sides ** num_rolls) < len(sequence):
             print(
                 "Warning: entropy is reduced! Using only first %s of %s "
@@ -150,13 +143,27 @@ class RealDiceRandomSource(object):
         print(
             "Please roll %s dice (or a single dice %s times)." % (
                 num_rolls, num_rolls))
-        return num_rolls, use_modulo
+        return
 
     def choice(self, sequence):
         """Pick one item out of `sequence`.
         """
         num_rolls = int(math.log(len(sequence), self.dice_sides))
-        num_rolls, use_modulo = self.pre_check(num_rolls, sequence)
+        use_modulo = False
+        if num_rolls < 1:
+           # If this happens, there are less values in the sequence to choose from than there are dice sides.
+           # First check whehter the length is 1. Then we don't have to do anything else
+           if len(sequence) == 1:
+           # Check whether len(sequence) is a factor of dice.sides
+              return sequence[0]
+           if self.dice_sides % len(sequence) == 0:
+              use_modulo = True
+              num_rolls = 1
+           else:
+              # otherwise We will perform one extra roll and apply modulo
+              use_modulo=True
+              num_rolls = 2
+        self.pre_check(num_rolls, sequence)
         result = 0
         for i in range(num_rolls, 0, -1):
             rolled = None
