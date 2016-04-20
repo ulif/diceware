@@ -316,6 +316,9 @@ People that helped spotting bugs, providing solutions, etc.:
    different sources of randomness.
  - `Heartsucker <https://github.com/heartsucker>`_ hand-compiled and
    added a new english wordlist.
+ - `dwcoder <https://github.com/dwcoder>`_ revealed and fixed bug
+   #19. Also showed sound knowledge of (theoretical) entropy. A
+   pleasure to work with.
 
 Many thanks to all of them!
 
