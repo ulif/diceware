@@ -258,7 +258,8 @@ class TestRealDiceRandomSource(object):
         assert "Please roll 5 dice (or a single dice 5 times)." in out
 
     def test_sequence_less_than_dice_sides(self, capsys, monkeypatch):
-        # Test to see whether we can use a n-sided die to choose from a sequence with less than n items
+        # Test to see whether we can use a n-sided die to choose from
+        # a sequence with less than n items
         src = RealDiceRandomSource(None)
         src.dice_sides = 6
         # A length of 1 requires no rolls
@@ -268,16 +269,16 @@ class TestRealDiceRandomSource(object):
         assert "roll" not in out
         assert picked == 1
         # A length of 2,3 only requires 1 roll
-        for choice_length in (2,3):
+        for choice_length in (2, 3):
             self.fake_input_values(["1"], monkeypatch)
-            picked = src.choice(range(1,choice_length + 1))
+            picked = src.choice(range(1, choice_length + 1))
             out, err = capsys.readouterr()
             assert "roll 1 dice" in out
             assert picked == 1
         # A length of 4,5 requires 2 rolls
-        for choice_length in (4,5):
-            self.fake_input_values(["1","1"], monkeypatch)
-            picked = src.choice(range(1,choice_length + 1))
+        for choice_length in (4, 5):
+            self.fake_input_values(["1", "1"], monkeypatch)
+            picked = src.choice(range(1, choice_length + 1))
             out, err = capsys.readouterr()
             assert "roll 2 dice" in out
             assert picked == 1

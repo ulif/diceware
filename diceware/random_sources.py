@@ -132,7 +132,7 @@ class RealDiceRandomSource(object):
         acceptable range and issue an hint about the procedure.
         """
         if num_rolls == 0:
-           raise(ValueError)
+            raise(ValueError)
         if (self.dice_sides ** num_rolls) < len(sequence):
             print(
                 "Warning: entropy is reduced! Using only first %s of %s "
@@ -151,18 +151,20 @@ class RealDiceRandomSource(object):
         num_rolls = int(math.log(len(sequence), self.dice_sides))
         use_modulo = False
         if num_rolls < 1:
-           # If this happens, there are less values in the sequence to choose from than there are dice sides.
-           # First check whehter the length is 1. Then we don't have to do anything else
-           if len(sequence) == 1:
-           # Check whether len(sequence) is a factor of dice.sides
-              return sequence[0]
-           if self.dice_sides % len(sequence) == 0:
-              use_modulo = True
-              num_rolls = 1
-           else:
-              # otherwise We will perform one extra roll and apply modulo
-              use_modulo=True
-              num_rolls = 2
+            # If this happens, there are less values in the sequence to
+            # choose from than there are dice sides.
+            # First check whehter the length is 1. Then we don't have
+            # to do anything else
+            if len(sequence) == 1:
+                # Check whether len(sequence) is a factor of dice.sides
+                return sequence[0]
+            if self.dice_sides % len(sequence) == 0:
+                use_modulo = True
+                num_rolls = 1
+            else:
+                # otherwise We will perform one extra roll and apply modulo
+                use_modulo = True
+                num_rolls = 2
         self.pre_check(num_rolls, sequence)
         result = 0
         for i in range(num_rolls, 0, -1):
