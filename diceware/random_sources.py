@@ -131,9 +131,8 @@ class RealDiceRandomSource(object):
         We make sure that `num_rolls`, the number of rolls, is in an
         acceptable range and issue an hint about the procedure.
         """
-        if num_rolls < 1:
-            raise ValueError(
-                "Must provide at least %s items" % self.dice_sides)
+        if num_rolls == 0:
+           raise(ValueError)
         if (self.dice_sides ** num_rolls) < len(sequence):
             print(
                 "Warning: entropy is reduced! Using only first %s of %s "
@@ -150,6 +149,20 @@ class RealDiceRandomSource(object):
         """Pick one item out of `sequence`.
         """
         num_rolls = int(math.log(len(sequence), self.dice_sides))
+        use_modulo = False
+        if num_rolls < 1:
+           # If this happens, there are less values in the sequence to choose from than there are dice sides.
+           # First check whehter the length is 1. Then we don't have to do anything else
+           if len(sequence) == 1:
+           # Check whether len(sequence) is a factor of dice.sides
+              return sequence[0]
+           if self.dice_sides % len(sequence) == 0:
+              use_modulo = True
+              num_rolls = 1
+           else:
+              # otherwise We will perform one extra roll and apply modulo
+              use_modulo=True
+              num_rolls = 2
         self.pre_check(num_rolls, sequence)
         result = 0
         for i in range(num_rolls, 0, -1):
@@ -159,4 +172,6 @@ class RealDiceRandomSource(object):
                 rolled = input_func(
                     "What number shows dice number %s? " % (num_rolls - i + 1))
             result += ((self.dice_sides ** (i - 1)) * (int(rolled) - 1))
+            if use_modulo:
+                result = result % len(sequence)
         return sequence[result]

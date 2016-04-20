@@ -219,13 +219,6 @@ class TestRealDiceRandomSource(object):
         src = RealDiceRandomSource(None)
         assert src.choice([1, 2, 3, 4, 5, 6]) == 1
 
-    def test_choice_len_too_short(self, monkeypatch):
-        # We raise an exception if choice gets less than 6 elements.
-        self.fake_input_values(["1"], monkeypatch)
-        src = RealDiceRandomSource(None)
-        with pytest.raises(ValueError):
-            assert src.choice([1, 2, 3, 4, 5])  # list len < 6
-
     def test_choice_input_lower_value_borders(self, monkeypatch):
         # choice() does not accept "0" but it accepts "1"
         self.fake_input_values(["0", "1"], monkeypatch)
@@ -263,3 +256,28 @@ class TestRealDiceRandomSource(object):
         src.pre_check(5, ['doesntmatter'])
         out, err = capsys.readouterr()
         assert "Please roll 5 dice (or a single dice 5 times)." in out
+
+    def test_sequence_less_than_dice_sides(self, capsys, monkeypatch):
+        # Test to see whether we can use a n-sided die to choose from a sequence with less than n items
+        src = RealDiceRandomSource(None)
+        src.dice_sides = 6
+        # A length of 1 requires no rolls
+        self.fake_input_values(["1"], monkeypatch)
+        picked = src.choice([1])
+        out, err = capsys.readouterr()
+        assert "roll" not in out
+        assert picked == 1
+        # A length of 2,3 only requires 1 roll
+        for choice_length in (2,3):
+            self.fake_input_values(["1"], monkeypatch)
+            picked = src.choice(range(1,choice_length + 1))
+            out, err = capsys.readouterr()
+            assert "roll 1 dice" in out
+            assert picked == 1
+        # A length of 4,5 requires 2 rolls
+        for choice_length in (4,5):
+            self.fake_input_values(["1","1"], monkeypatch)
+            picked = src.choice(range(1,choice_length + 1))
+            out, err = capsys.readouterr()
+            assert "roll 2 dice" in out
+            assert picked == 1
