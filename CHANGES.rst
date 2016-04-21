@@ -1,8 +1,8 @@
 Changes
 =======
 
-0.7.1.dev0 (unreleased)
------------------------
+0.7.1 (2016-04-21)
+------------------
 
 - Fixed #19. @dwcoder revealed and fixed a nasty bug in the real-dice
   randomness-source. Thanks a lot!
