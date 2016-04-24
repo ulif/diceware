@@ -153,8 +153,8 @@ class RealDiceRandomSource(object):
             # If this happens, there are less values in the sequence to
             # choose from than there are dice sides.
             if len(sequence) == 1:
-                # Check whether len(sequence) is a factor of dice.sides
                 return sequence[0]
+            # Check whether len(sequence) is a factor of dice.sides
             if self.dice_sides % len(sequence) == 0:
                 num_rolls = 1
             else:
