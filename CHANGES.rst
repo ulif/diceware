@@ -4,7 +4,7 @@ Changes
 0.7.2.dev0 (unreleased)
 -----------------------
 
-- No changes yet.
+- Shortened real-dice randomness source.
 
 
 0.7.1 (2016-04-21)
