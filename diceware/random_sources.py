@@ -149,7 +149,6 @@ class RealDiceRandomSource(object):
         """Pick one item out of `sequence`.
         """
         num_rolls = int(math.log(len(sequence), self.dice_sides))
-        use_modulo = False
         if num_rolls < 1:
             # If this happens, there are less values in the sequence to
             # choose from than there are dice sides.
@@ -159,11 +158,9 @@ class RealDiceRandomSource(object):
                 # Check whether len(sequence) is a factor of dice.sides
                 return sequence[0]
             if self.dice_sides % len(sequence) == 0:
-                use_modulo = True
                 num_rolls = 1
             else:
                 # otherwise We will perform one extra roll and apply modulo
-                use_modulo = True
                 num_rolls = 2
         self.pre_check(num_rolls, sequence)
         result = 0
@@ -174,6 +171,5 @@ class RealDiceRandomSource(object):
                 rolled = input_func(
                     "What number shows dice number %s? " % (num_rolls - i + 1))
             result += ((self.dice_sides ** (i - 1)) * (int(rolled) - 1))
-            if use_modulo:
-                result = result % len(sequence)
+            result = result % len(sequence)
         return sequence[result]
