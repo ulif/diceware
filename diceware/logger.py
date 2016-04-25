@@ -1,0 +1,37 @@
+#  diceware -- passphrases to remember
+#  Copyright (C) 2016  Uli Fouquet and contributors
+#
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or
+#  (at your option) any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+"""logging -- output status and other data.
+"""
+import logging
+try:
+    from logging import NullHandler
+except ImportError:  # NOQA  # pragma: no cover
+    class NullHandler(object):
+        """Replacement for `logging.NullHandler` from py3.x standard lib.
+        """
+        def emit(self, record):
+            pass
+
+        def handle(self, record):
+            pass
+
+        def createLock(self):
+            pass
+
+
+#: Logger that can be used for all diceware related messages.
+logger = logging.getLogger("ulif.diceware")
+logger.addHandler(NullHandler())
