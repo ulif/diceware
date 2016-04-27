@@ -40,6 +40,7 @@ tests_require = [
 
 docs_require = [
     'Sphinx',
+    'sphinx_rtd_theme',
     ]
 
 setup(
