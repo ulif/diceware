@@ -5,6 +5,7 @@ Changes
 -----------------------
 
 - Shortened real-dice randomness source.
+- Added logger as common interface to send messages to users.
 
 
 0.7.1 (2016-04-21)
