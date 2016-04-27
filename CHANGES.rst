@@ -6,6 +6,8 @@ Changes
 
 - Shortened real-dice randomness source.
 - Added logger as common interface to send messages to users.
+- New dependency: `sphinx_rtd_theme` for generating docs. This theme
+  was formerly a dependency of `Sphinx`.
 
 
 0.7.1 (2016-04-21)
