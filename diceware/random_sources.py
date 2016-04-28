@@ -124,6 +124,16 @@ class RealDiceRandomSource(object):
     def __init__(self, options):
         self.options = options
         self.dice_sides = 6
+        self.dice_rolls_list = None
+        # Some tests don't pass any options.
+        # Here we ensure that dice_rolls_list created nonetheless.
+        if hasattr(self.options, "dice_rolls_list"):
+            self.dice_rolls_list = self.options.dice_rolls_list
+        if self.dice_rolls_list is not None:
+            self.dice_rolls_list = [x for x in self.dice_rolls_list if x <= self.dice_sides]
+        #TODO Put the expected_output back in the unit-test
+        #TODO Make the --dice-rolls option automatically set the source to `realdice`
+
 
     def pre_check(self, num_rolls, sequence):
         """Checks performed before picking an item of a sequence.
@@ -163,11 +173,17 @@ class RealDiceRandomSource(object):
         self.pre_check(num_rolls, sequence)
         result = 0
         for i in range(num_rolls, 0, -1):
-            rolled = None
-            while rolled not in [
-                    str(x) for x in range(1, self.dice_sides + 1)]:
-                rolled = input_func(
-                    "What number shows dice number %s? " % (num_rolls - i + 1))
+            if self.dice_rolls_list is not None and len(self.dice_rolls_list) is not 0:
+                rolled = self.dice_rolls_list.pop()
+                print("Roll %s given as %s" % (num_rolls - i + 1 , rolled))
+                if len(self.dice_rolls_list) is 0 and i > 1:
+                    print("Not enough rolls given, please roll a real dice")
+            else: # this means there is no more dice rolls left in the given list
+                rolled = None
+                while rolled not in [
+                        str(x) for x in range(1, self.dice_sides + 1)]:
+                    rolled = input_func(
+                        "What number shows dice number %s? " % (num_rolls - i + 1))
             result += ((self.dice_sides ** (i - 1)) * (int(rolled) - 1))
             result = result % len(sequence)
         return sequence[result]

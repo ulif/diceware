@@ -110,6 +110,12 @@ def handle_options(args):
             "Get randomness from this source. Possible values: `%s'. "
             "Default: system" % "', `".join(sorted(random_sources))))
     parser.add_argument(
+        '--dice-rolls', default=None, type=int, nargs="+",
+        metavar="NUM" , dest="dice_rolls_list",
+        help=("Provide a sequence of dice rolls from a six sided die, "
+              "separated by spaces. "
+              "Example of possible input: 1 2 3 4 5 6 6."))
+    parser.add_argument(
         '-w', '--wordlist', default='en_securedrop', choices=wordlist_names,
         metavar="NAME",
         help=(
