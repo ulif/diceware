@@ -3,7 +3,7 @@ diceware
 
 Passphrases to remember...
 
-|bdg-build|  | `documentation <https://diceware.readthedocs.org/>`_ | `sources <https://github.com/ulif/diceware>`_ | `issues <https://github.com/ulif/diceware/issues>`_
+|bdg-build|  | `documentation <https://diceware.readthedocs.io/>`_ | `sources <https://github.com/ulif/diceware>`_ | `issues <https://github.com/ulif/diceware/issues>`_
 
 .. |bdg-build| image:: https://travis-ci.org/ulif/diceware.png?branch=master
     :target: https://travis-ci.org/ulif/diceware
@@ -21,8 +21,8 @@ Passphrases to remember...
     :target: https://pypi.python.org/pypi/diceware/
     :alt: License
 
-.. |doc-status| image:: https://readthedocs.org/projects/diceware/badge/?version=latest
-     :target: https://diceware.readthedocs.org/en/latest/
+.. |doc-status| image:: https://readthedocs.io/projects/diceware/badge/?version=latest
+     :target: https://diceware.readthedocs.io/en/latest/
      :alt: Documentation Status
 
 `diceware` is a passphrase generator following the proposals of
@@ -146,7 +146,7 @@ lib but you can also bring your own dice to create randomness::
   DogmaAnyShrikeSageSableHoar
 
 We support even sources of randomness from other packages. See the
-`documentation <https://diceware.readthedocs.org/>`_ for more details.
+`documentation <https://diceware.readthedocs.io/>`_ for more details.
 
 `diceware` comes with an English wordlist provided by Heartsucker,
 which will be used by default and contains 8192 different words. This
