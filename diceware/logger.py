@@ -14,6 +14,16 @@
 #  You should have received a copy of the GNU General Public License
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """logging -- output status and other data.
+
+The `logger` provided in this module is meant to be used by other
+components for messages to users.
+
+It is named `"ulif.openoffice"` and can, as a singleton, be retrieved by
+calling standard lib `logging.getLogger("ulif.diceware")`.
+
+By default it provides a `logging.NullHandler` as libraries normally
+do. Other components might add other handlers.
+
 """
 import logging
 try:
