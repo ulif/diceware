@@ -31,6 +31,12 @@ Of course there are other ways to make `diceware` available.
 .. automodule:: diceware
    :members:
 
+`diceware.logger`
+-----------------
+
+.. automodule:: diceware.logger
+   :members:
+
 
 `diceware.config`
 -----------------
