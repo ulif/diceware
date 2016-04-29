@@ -77,7 +77,7 @@ class TestDicewareModule(object):
     def test_get_passphrase_no_capitals(self):
         # we can turn capitals off
         options = handle_options(args=[])
-        options.capitalize = False
+        options.caps = False
         phrase = get_passphrase(options)
         assert phrase.lower() == phrase
 
@@ -129,7 +129,7 @@ class TestDicewareModule(object):
         # defaults are correctly set
         options = handle_options([])
         assert options.num == 6
-        assert options.capitalize is True
+        assert options.caps is True
         assert options.specials == 0
         assert options.infile is None
         assert options.version is False
@@ -194,7 +194,7 @@ class TestDicewareModule(object):
         assert out == ''
         assert "invalid choice" in err
 
-    def test_handle_options_considers_configfile(self, home_dir):
+    def test_handle_options_considers_configfile(self, home_dir, capsys):
         # defaults from a local configfile are respected
         config_file = home_dir / ".diceware.ini"
         config_file.write("\n".join(
@@ -207,6 +207,13 @@ class TestDicewareModule(object):
         assert options.num == 3
         assert options.delimiter == "my-delim"
         assert options.caps is False
+        # Now test the main program
+        sys.stdin = StringIO("word1\n")
+        sys.argv = ['diceware', '-']
+        main()  # call with default options in place
+        out, err = capsys.readouterr()
+        assert out == 'word1my-delimword1my-delimword1\n'
+
 
     def test_main(self, capsys):
         # we can get a passphrase

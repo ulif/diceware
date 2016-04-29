@@ -95,7 +95,7 @@ def handle_options(args):
         '-c', '--caps', action='store_true',
         help='Capitalize words. This is the default.')
     cap_group.add_argument(
-        '--no-caps', action='store_false', dest='capitalize',
+        '--no-caps', action='store_false', dest='caps',
         help='Turn off capitalization.')
     parser.add_argument(
         '-s', '--specials', default=0, type=int, metavar='NUM',
@@ -158,7 +158,7 @@ def get_passphrase(options=None):
     registered under the name `options.randomsource` (something like
     "system" or "dice").
 
-    If `options.capitalize` is ``True``, all words will be capitalized.
+    If `options.caps` is ``True``, all words will be caps.
 
     If `options.infile`, a file descriptor, is given, it will be used
     instead of a 'built-in' wordlist. `options.infile` must be open for
@@ -172,7 +172,7 @@ def get_passphrase(options=None):
     rnd_source = get_random_sources()[options.randomsource]
     rnd = rnd_source(options)
     words = [rnd.choice(list(word_list)) for x in range(options.num)]
-    if options.capitalize:
+    if options.caps:
         words = [x.capitalize() for x in words]
     result = options.delimiter.join(words)
     for _ in range(options.specials):
