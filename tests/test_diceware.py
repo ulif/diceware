@@ -214,7 +214,6 @@ class TestDicewareModule(object):
         out, err = capsys.readouterr()
         assert out == 'word1my-delimword1my-delimword1\n'
 
-
     def test_main(self, capsys):
         # we can get a passphrase
         main([])  # call with default options in place
