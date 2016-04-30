@@ -4,6 +4,9 @@ Changes
 0.7.2.dev0 (unreleased)
 -----------------------
 
+- Fixed #21. @dwcoder revealed and fixed (again!). This time `caps`
+  and `no-caps` settings did not work properly when set in CLI or in
+  `.diceware.ini` config file.
 - Shortened real-dice randomness source.
 - Added logger as common interface to send messages to users.
 - New dependency: `sphinx_rtd_theme` for generating docs. This theme
