@@ -77,7 +77,7 @@ class TestDicewareModule(object):
     def test_get_passphrase_no_capitals(self):
         # we can turn capitals off
         options = handle_options(args=[])
-        options.capitalize = False
+        options.caps = False
         phrase = get_passphrase(options)
         assert phrase.lower() == phrase
 
@@ -129,7 +129,7 @@ class TestDicewareModule(object):
         # defaults are correctly set
         options = handle_options([])
         assert options.num == 6
-        assert options.capitalize is True
+        assert options.caps is True
         assert options.specials == 0
         assert options.infile is None
         assert options.version is False
