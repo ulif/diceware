@@ -194,7 +194,7 @@ class TestDicewareModule(object):
         assert out == ''
         assert "invalid choice" in err
 
-    def test_handle_options_considers_configfile(self, home_dir, capsys):
+    def test_handle_options_considers_configfile(self, home_dir):
         # defaults from a local configfile are respected
         config_file = home_dir / ".diceware.ini"
         config_file.write("\n".join(
@@ -207,12 +207,6 @@ class TestDicewareModule(object):
         assert options.num == 3
         assert options.delimiter == "my-delim"
         assert options.caps is False
-        # Now test the main program
-        sys.stdin = StringIO("word1\n")
-        sys.argv = ['diceware', '-']
-        main()  # call with default options in place
-        out, err = capsys.readouterr()
-        assert out == 'word1my-delimword1my-delimword1\n'
 
     def test_main(self, capsys):
         # we can get a passphrase
