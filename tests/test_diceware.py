@@ -151,6 +151,24 @@ class TestDicewareModule(object):
         options = handle_options(['--version', ])
         assert options.version is True
 
+    def test_handle_options_caps(self):
+        # we can set a flag to tell use of caps
+        options = handle_options([])
+        assert options.caps is True  # default
+        options = handle_options(['-c', ])
+        assert options.caps is True
+        options = handle_options(['--caps', ])
+        assert options.caps is True
+        options = handle_options(['--no-caps', ])
+        assert options.caps is False
+
+    def test_handle_options_caps_conflicting_raises_exc(self):
+        # conflicting caps-settings raise an exception
+        with pytest.raises(SystemExit) as exc_info:
+            options = handle_options(['--caps', '--no-caps'])
+        with pytest.raises(SystemExit) as exc_info:
+            options = handle_options(['--no-caps', '--caps'])
+
     def test_handle_options_delimiter(self):
         # we can set delimiter
         options = handle_options(['-d', ' '])
