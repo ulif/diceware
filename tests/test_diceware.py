@@ -71,10 +71,10 @@ class TestHandleOptions(object):
 
     def test_handle_options_caps_conflicting_raises_exc(self):
         # conflicting caps-settings raise an exception
-        with pytest.raises(SystemExit) as exc_info:
-            options = handle_options(['--caps', '--no-caps'])
-        with pytest.raises(SystemExit) as exc_info:
-            options = handle_options(['--no-caps', '--caps'])
+        with pytest.raises(SystemExit):
+            handle_options(['--caps', '--no-caps'])
+        with pytest.raises(SystemExit):
+            handle_options(['--no-caps', '--caps'])
 
     def test_handle_options_delimiter(self):
         # we can set delimiter
