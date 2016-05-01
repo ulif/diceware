@@ -23,101 +23,8 @@ class FakeRandom(object):
         return elems[num]
 
 
-class TestDicewareModule(object):
-
-    def test_get_random_sources(self):
-        # we can get a dict of random sources registered as entry_points.
-        sources_dict = get_random_sources()
-        assert isinstance(sources_dict, dict)
-        assert len(sources_dict) > 0
-        assert 'system' in sources_dict
-        assert isinstance(sources_dict['system'], type)
-
-    def test_insert_special_char(self):
-        # we can insert special chars in words.
-        fake_rnd = FakeRandom()
-        result1 = insert_special_char('foo', specials='bar', rnd=fake_rnd)
-        assert result1 == 'boo'
-        fake_rnd.nums_to_draw = [1, 1]
-        result2 = insert_special_char('foo', specials='bar', rnd=fake_rnd)
-        assert result2 == 'fao'
-        fake_rnd.nums_to_draw = [2, 2]
-        result3 = insert_special_char('foo', specials='bar', rnd=fake_rnd)
-        assert result3 == 'for'
-        fake_rnd.nums_to_draw = [0, 0]
-        result4 = insert_special_char('foo', rnd=fake_rnd)
-        assert result4 == '~oo'
-
-    def test_insert_special_char_defaults(self):
-        # defaults are respected
-        expected_matrix = []
-        for i in range(3):
-            for j in range(len(SPECIAL_CHARS)):
-                word = list('foo')
-                word[i] = SPECIAL_CHARS[j]
-                expected_matrix.append(''.join(word))
-        for x in range(100):
-            assert insert_special_char('foo') in expected_matrix
-
-    def test_special_chars_do_not_quote(self):
-        # backslashes in SPECIAL_CHAR do not hide away chars
-        assert len(SPECIAL_CHARS) == 36
-
-    def test_get_passphrase(self):
-        # we can get passphrases
-        r1 = get_passphrase()
-        r2 = get_passphrase()
-        assert r1 != r2
-
-    def test_get_passphrase_capitals(self):
-        # by default a passphrase contains upper case chars
-        phrase = get_passphrase()
-        assert phrase.lower() != phrase
-
-    def test_get_passphrase_no_capitals(self):
-        # we can turn capitals off
-        options = handle_options(args=[])
-        options.caps = False
-        phrase = get_passphrase(options)
-        assert phrase.lower() == phrase
-
-    def test_get_passphrase_specialchars(self):
-        # we can request special chars in passphrases
-        options = handle_options(args=[])
-        options.specials = 2
-        phrase = get_passphrase(options)
-        specials = [x for x in phrase if x in SPECIAL_CHARS]
-        # the 2nd special char position might be equal to 1st.
-        assert len(specials) > 0
-
-    def test_get_passphrase_delimiters(self):
-        # we can set separators
-        options = handle_options(args=[])
-        options.delimiter = " "
-        phrase = get_passphrase(options)
-        assert " " in phrase
-
-    def test_get_passphrase_wordlist_fd(self):
-        #  we can pass in an own wordlist
-        options = handle_options(args=[])
-        options.infile = StringIO("word1\n")
-        phrase = get_passphrase(options)
-        assert "Word1" in phrase
-
-    def test_print_version(self, capsys):
-        # we can print version infos
-        print_version()
-        out, err = capsys.readouterr()
-        assert err == ''
-        assert __version__ in out
-
-    def test_print_version_current_year(self, capsys):
-        # in version infos we display the current year
-        print_version()
-        pattern = ".*\(C\) (20[0-9]{2}, )*%s.*" % (
-            datetime.datetime.now().year)
-        out, err = capsys.readouterr()
-        assert re.match(pattern, out, re.M + re.S) is not None
+class TestHandleOptions(object):
+    # tests for diceware.handle_options
 
     def test_handle_options(self):
         # we can get help
@@ -225,6 +132,103 @@ class TestDicewareModule(object):
         assert options.num == 3
         assert options.delimiter == "my-delim"
         assert options.caps is False
+
+
+class TestDicewareModule(object):
+
+    def test_get_random_sources(self):
+        # we can get a dict of random sources registered as entry_points.
+        sources_dict = get_random_sources()
+        assert isinstance(sources_dict, dict)
+        assert len(sources_dict) > 0
+        assert 'system' in sources_dict
+        assert isinstance(sources_dict['system'], type)
+
+    def test_insert_special_char(self):
+        # we can insert special chars in words.
+        fake_rnd = FakeRandom()
+        result1 = insert_special_char('foo', specials='bar', rnd=fake_rnd)
+        assert result1 == 'boo'
+        fake_rnd.nums_to_draw = [1, 1]
+        result2 = insert_special_char('foo', specials='bar', rnd=fake_rnd)
+        assert result2 == 'fao'
+        fake_rnd.nums_to_draw = [2, 2]
+        result3 = insert_special_char('foo', specials='bar', rnd=fake_rnd)
+        assert result3 == 'for'
+        fake_rnd.nums_to_draw = [0, 0]
+        result4 = insert_special_char('foo', rnd=fake_rnd)
+        assert result4 == '~oo'
+
+    def test_insert_special_char_defaults(self):
+        # defaults are respected
+        expected_matrix = []
+        for i in range(3):
+            for j in range(len(SPECIAL_CHARS)):
+                word = list('foo')
+                word[i] = SPECIAL_CHARS[j]
+                expected_matrix.append(''.join(word))
+        for x in range(100):
+            assert insert_special_char('foo') in expected_matrix
+
+    def test_special_chars_do_not_quote(self):
+        # backslashes in SPECIAL_CHAR do not hide away chars
+        assert len(SPECIAL_CHARS) == 36
+
+    def test_get_passphrase(self):
+        # we can get passphrases
+        r1 = get_passphrase()
+        r2 = get_passphrase()
+        assert r1 != r2
+
+    def test_get_passphrase_capitals(self):
+        # by default a passphrase contains upper case chars
+        phrase = get_passphrase()
+        assert phrase.lower() != phrase
+
+    def test_get_passphrase_no_capitals(self):
+        # we can turn capitals off
+        options = handle_options(args=[])
+        options.caps = False
+        phrase = get_passphrase(options)
+        assert phrase.lower() == phrase
+
+    def test_get_passphrase_specialchars(self):
+        # we can request special chars in passphrases
+        options = handle_options(args=[])
+        options.specials = 2
+        phrase = get_passphrase(options)
+        specials = [x for x in phrase if x in SPECIAL_CHARS]
+        # the 2nd special char position might be equal to 1st.
+        assert len(specials) > 0
+
+    def test_get_passphrase_delimiters(self):
+        # we can set separators
+        options = handle_options(args=[])
+        options.delimiter = " "
+        phrase = get_passphrase(options)
+        assert " " in phrase
+
+    def test_get_passphrase_wordlist_fd(self):
+        #  we can pass in an own wordlist
+        options = handle_options(args=[])
+        options.infile = StringIO("word1\n")
+        phrase = get_passphrase(options)
+        assert "Word1" in phrase
+
+    def test_print_version(self, capsys):
+        # we can print version infos
+        print_version()
+        out, err = capsys.readouterr()
+        assert err == ''
+        assert __version__ in out
+
+    def test_print_version_current_year(self, capsys):
+        # in version infos we display the current year
+        print_version()
+        pattern = ".*\(C\) (20[0-9]{2}, )*%s.*" % (
+            datetime.datetime.now().year)
+        out, err = capsys.readouterr()
+        assert re.match(pattern, out, re.M + re.S) is not None
 
     def test_main(self, capsys):
         # we can get a passphrase
