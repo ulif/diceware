@@ -226,6 +226,15 @@ class TestDicewareModule(object):
         phrase = get_passphrase(options)
         assert "Word1" in phrase
 
+    def test_get_passphrase_realdice(self, capsys):
+        # Test whether the option "--dice-rolls" forces the randomsource option to be realdice
+        sys.stdin = StringIO("word1\n")
+        options = handle_options(args=["--dice-rolls", "1", "1","-n", "1", "-"])
+        phrase = get_passphrase(options)
+        out, err = capsys.readouterr()
+        assert options.randomsource == "realdice"
+        assert "Using realdice as random source, with given dice rolls" in out
+
     def test_print_version(self, capsys):
         # we can print version infos
         print_version()

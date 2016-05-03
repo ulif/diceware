@@ -175,6 +175,10 @@ def get_passphrase(options=None):
     if options.infile is None:
         options.infile = open(get_wordlist_path(options.wordlist), 'r')
     word_list = WordList(options.infile)
+    if options.dice_rolls_list is not None:
+        if options.randomsource is not 'realdice':
+            print('Warning: Using realdice as random source, with given dice rolls')
+        options.randomsource = 'realdice'
     rnd_source = get_random_sources()[options.randomsource]
     rnd = rnd_source(options)
     words = [rnd.choice(list(word_list)) for x in range(options.num)]
