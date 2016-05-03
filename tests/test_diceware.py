@@ -272,7 +272,7 @@ class TestDicewareModule(object):
             expected_output = fd.read()
         out = out.replace(WORDLISTS_DIR, "<WORDLISTS-DIR>")
         out = out.replace("\n<WORDLISTS-DIR>", " <WORDLISTS-DIR>")
-        # assert out == expected_output
+        assert out == expected_output
 
     def test_main_version(self, argv_handler, capsys):
         # we can get version infos.

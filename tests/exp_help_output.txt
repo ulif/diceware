@@ -1,5 +1,5 @@
 usage: diceware [-h] [-n NUM] [-c | --no-caps] [-s NUM] [-d DELIMITER]
-                [-r SOURCE] [-w NAME] [--version]
+                [-r SOURCE] [--dice-rolls NUM [NUM ...]] [-w NAME] [--version]
                 [INFILE]
 
 Create a passphrase
@@ -19,6 +19,10 @@ optional arguments:
   -r SOURCE, --randomsource SOURCE
                         Get randomness from this source. Possible values:
                         `realdice', `system'. Default: system
+  --dice-rolls NUM [NUM ...]
+                        Provide a sequence of dice rolls from a six sided die,
+                        separated by spaces. Example of possible input: 1 2 3
+                        4 5 6 6.
   -w NAME, --wordlist NAME
                         Use words from this wordlist. Possible values: `en',
                         `en_orig', `en_securedrop'. Wordlists are stored in

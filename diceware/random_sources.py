@@ -131,7 +131,6 @@ class RealDiceRandomSource(object):
             self.dice_rolls_list = self.options.dice_rolls_list
         if self.dice_rolls_list is not None:
             self.dice_rolls_list = [x for x in self.dice_rolls_list if x <= self.dice_sides]
-        #TODO Put the expected_output back in the unit-test
 
 
     def pre_check(self, num_rolls, sequence):
