@@ -101,6 +101,22 @@ class TestConfigModule(object):
         conf_dict = get_config_dict()
         assert conf_dict["delimiter"] == ""
 
+    def test_get_config_dict_string_space(self, home_dir):
+        # We test for the following three cases of whitespace delimiter
+        # delimiter=" "
+        # delimiter=' '
+        # delimiter="  " (two spaces)
+        config_file = home_dir / ".diceware.ini"
+        config_file.write("\n".join(["[diceware]", "delimiter=\" \""]))
+        conf_dict = get_config_dict()
+        assert conf_dict["delimiter"] == " "
+        config_file.write("\n".join(["[diceware]", "delimiter=' '"]))
+        conf_dict = get_config_dict()
+        assert conf_dict["delimiter"] == " "
+        config_file.write("\n".join(["[diceware]", "delimiter=\"  \""]))
+        conf_dict = get_config_dict()
+        assert conf_dict["delimiter"] == "  "
+
 
 class TestSampleIni(object):
     # test local sample ini file

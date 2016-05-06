@@ -82,5 +82,5 @@ def get_config_dict(path_list=None):
         elif isinstance(val, int):
             result[key] = parser.getint("diceware", key)
         else:
-            result[key] = parser.get("diceware", key)
+            result[key] = parser.get("diceware", key).strip("\"'")
     return result
