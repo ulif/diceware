@@ -4,6 +4,9 @@ Changes
 0.7.2.dev0 (unreleased)
 -----------------------
 
+- Closed #23. @dwcoder provided a fix that allows use of
+  whitespace-only values in diceware confg files if they are enclosed
+  in quotes.
 - Fixed #21. @dwcoder revealed and fixed (again!). This time `--caps`
   and `--no-caps` settings did not work properly when set in CLI or in
   `.diceware.ini` config file.
