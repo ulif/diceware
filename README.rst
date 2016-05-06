@@ -317,8 +317,8 @@ People that helped spotting bugs, providing solutions, etc.:
  - `Heartsucker <https://github.com/heartsucker>`_ hand-compiled and
    added a new english wordlist.
  - `dwcoder <https://github.com/dwcoder>`_ revealed and fixed bugs
-   #19, #21. Also showed sound knowledge of (theoretical) entropy. A
-   pleasure to work with.
+   #19, #21, #23. Also showed sound knowledge of (theoretical)
+   entropy. A pleasure to work with.
 
 Many thanks to all of them!
 
