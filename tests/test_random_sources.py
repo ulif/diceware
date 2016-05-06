@@ -1,6 +1,7 @@
 import pkg_resources
 import pytest
 
+from argparse import Namespace
 from diceware.random_sources import (
     SystemRandomSource, RealDiceRandomSource,
     )
@@ -282,3 +283,47 @@ class TestRealDiceRandomSource(object):
             out, err = capsys.readouterr()
             assert "roll 2 dice" in out
             assert picked == 1
+
+    def test_pre_check_rolls_given(self, capsys):
+        # If the user gave rolls in the arguments
+        options = Namespace()
+        options.dice_rolls_list = [1]
+        src = RealDiceRandomSource(options)
+        sequence = (1, 2, 3, 4, 5, 6)
+        # Test that the correct one is chosen
+        assert src.choice(sequence) == 1
+        out, err = capsys.readouterr()
+        assert "Please roll 1 dice (or a single dice 1 times)." in out
+        assert "Roll 1 given as 1" in out
+        # check that user isn't warned or prompted to roll
+        assert "Not enough rolls given" not in out
+        assert "What number shows dice number 1?" not in out
+
+    def test_pre_check_rolls_given_too_large_int(self, capsys):
+        # If the user gave rolls in the arguments
+        options = Namespace()
+        # The first number is too large, it will just be ignored
+        options.dice_rolls_list = [20,1]
+        src = RealDiceRandomSource(options)
+        sequence = (1, 2, 3, 4, 5, 6)
+        # Test that the correct one is chosen
+        assert src.choice(sequence) == 1
+        out, err = capsys.readouterr()
+        assert "Please roll 1 dice (or a single dice 1 times)." in out
+        assert "What number shows dice number 1?" not in out
+
+    def test_pre_check_rolls_given_not_enough(self, capsys, monkeypatch):
+        # If the user gave rolls in the arguments
+        sequence = range(1,37)
+        # Not enough rolls given for sequence requiring 2 rolls
+        options = Namespace()
+        options.dice_rolls_list = [1]
+        self.fake_input_values(["1"], monkeypatch)
+        src = RealDiceRandomSource(options)
+        # Test that the correct one is chosen
+        assert src.choice(sequence) == 1
+        out, err = capsys.readouterr()
+        assert "Please roll 2 dice (or a single dice 2 times)." in out
+        # check that user isn't prompted to roll
+        assert "Not enough rolls given" in out
+        assert "What number shows dice number 2?" in out

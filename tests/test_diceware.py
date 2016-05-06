@@ -133,6 +133,17 @@ class TestHandleOptions(object):
         assert options.delimiter == "my-delim"
         assert options.caps is False
 
+    def test_handle_options_get_dice_rolls(self):
+        options = handle_options(args=["--dice-rolls", "1", "2", "3"])
+        assert [1,2,3] == options.dice_rolls_list
+        # Should give error if no arguments
+        with pytest.raises(SystemExit):
+            handle_options(args=["--dice-rolls"])
+        # Value should be None if option not given
+        options = handle_options(args=[])
+        assert options.dice_rolls_list is None
+
+
 
 class TestDicewareModule(object):
 
@@ -214,6 +225,15 @@ class TestDicewareModule(object):
         options.infile = StringIO("word1\n")
         phrase = get_passphrase(options)
         assert "Word1" in phrase
+
+    def test_get_passphrase_realdice(self, capsys):
+        # Test whether the option "--dice-rolls" forces the randomsource option to be realdice
+        sys.stdin = StringIO("word1\n")
+        options = handle_options(args=["--dice-rolls", "1", "1","-n", "1", "-"])
+        phrase = get_passphrase(options)
+        out, err = capsys.readouterr()
+        assert options.randomsource == "realdice"
+        assert "Using realdice as random source, with given dice rolls" in out
 
     def test_print_version(self, capsys):
         # we can print version infos

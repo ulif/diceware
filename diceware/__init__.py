@@ -110,6 +110,12 @@ def handle_options(args):
             "Get randomness from this source. Possible values: `%s'. "
             "Default: system" % "', `".join(sorted(random_sources))))
     parser.add_argument(
+        '--dice-rolls', default=None, type=int, nargs="+",
+        metavar="NUM" , dest="dice_rolls_list",
+        help=("Provide a sequence of dice rolls from a six sided die, "
+              "separated by spaces. "
+              "Example of possible input: 1 2 3 4 5 6 6."))
+    parser.add_argument(
         '-w', '--wordlist', default='en_securedrop', choices=wordlist_names,
         metavar="NAME",
         help=(
@@ -169,6 +175,10 @@ def get_passphrase(options=None):
     if options.infile is None:
         options.infile = open(get_wordlist_path(options.wordlist), 'r')
     word_list = WordList(options.infile)
+    if options.dice_rolls_list is not None:
+        if options.randomsource is not 'realdice':
+            print('Warning: Using realdice as random source, with given dice rolls')
+        options.randomsource = 'realdice'
     rnd_source = get_random_sources()[options.randomsource]
     rnd = rnd_source(options)
     words = [rnd.choice(list(word_list)) for x in range(options.num)]
