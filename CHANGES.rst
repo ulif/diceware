@@ -1,8 +1,8 @@
 Changes
 =======
 
-0.7.2.dev0 (unreleased)
------------------------
+0.8.dev0 (unreleased)
+---------------------
 
 - Closed #23. @dwcoder provided a fix that allows use of
   whitespace-only values in diceware confg files if they are enclosed
