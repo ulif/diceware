@@ -116,6 +116,3 @@ Changes
 ----------------
 
 - Initial release.
-
-
-_heartsucker: `
