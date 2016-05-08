@@ -1,5 +1,5 @@
 usage: diceware [-h] [-n NUM] [-c | --no-caps] [-s NUM] [-d DELIMITER]
-                [-r SOURCE] [-w NAME] [--version]
+                [-r SOURCE] [-w NAME] [-v] [--version]
                 [INFILE]
 
 Create a passphrase
@@ -23,6 +23,7 @@ optional arguments:
                         Use words from this wordlist. Possible values: `en',
                         `en_orig', `en_securedrop'. Wordlists are stored in
                         the folder displayed below. Default: en_securedrop
+  -v, --verbose         Be verbose. Use several times for increased verbosity.
   --version             output version information and exit.
 
 Wordlists are stored in <WORDLISTS-DIR>

@@ -121,6 +121,9 @@ def handle_options(args):
         help="Input wordlist. `-' will read from stdin.",
         )
     parser.add_argument(
+        '-v', '--verbose', action='count',
+        help='Be verbose. Use several times for increased verbosity.')
+    parser.add_argument(
         '--version', action='store_true',
         help='output version information and exit.',
         )
