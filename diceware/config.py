@@ -32,6 +32,7 @@ OPTIONS_DEFAULTS = dict(
     specials=0,
     delimiter="",
     randomsource="system",
+    verbose=0,
     wordlist="en_securedrop",
     )
 
