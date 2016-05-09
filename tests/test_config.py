@@ -67,6 +67,16 @@ class TestGetConfigDict(object):
         assert len(conf_dict) == len(OPTIONS_DEFAULTS)
         assert conf_dict != OPTIONS_DEFAULTS
 
+    def test_get_config_dict_arg_path_list(self, home_dir):
+        # we can give the paths searched.
+        config_file_default = home_dir / ".diceware.ini"
+        config_file_default.write("[diceware]\nnum=4\n")
+        config_file_custom = home_dir / "some-new-file"
+        config_file_custom.write("[diceware]\nnum=42\n")
+        conf_dict = get_config_dict(
+            path_list = [str(config_file_custom), ])
+        assert conf_dict['num'] == 42
+
     def test_get_config_dict_arg_defaults_dict(self, home_dir):
         # we can change the dict of defaults used.
         custom_defaults = dict(num=42)
