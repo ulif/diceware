@@ -61,11 +61,12 @@ def get_configparser(path_list=None):
     return found, parser
 
 
-def get_config_dict(path_list=None, defaults_dict=OPTIONS_DEFAULTS):
+def get_config_dict(
+        path_list=None, defaults_dict=OPTIONS_DEFAULTS, section="diceware"):
     """Get config values found in files from `path_list`.
 
-    Read files in `path_list` config files and return option valus as
-    regular dictonary.
+    Read files in `path_list` config files and return option values from
+    section `section` as regular dictonary.
 
     We only accept values for which a default exists in
     `defaults_dict`. If `defaults_dict` is ``None`` we use
@@ -80,12 +81,12 @@ def get_config_dict(path_list=None, defaults_dict=OPTIONS_DEFAULTS):
     result = dict(defaults_dict)
     found, parser = get_configparser(path_list)
     for key, val in defaults_dict.items():
-        if not parser.has_option('diceware', key):
+        if not parser.has_option(section, key):
             continue
         if isinstance(val, bool):
-            result[key] = parser.getboolean("diceware", key)
+            result[key] = parser.getboolean(section, key)
         elif isinstance(val, int):
-            result[key] = parser.getint("diceware", key)
+            result[key] = parser.getint(section, key)
         else:
-            result[key] = parser.get("diceware", key).strip("\"'")
+            result[key] = parser.get(section, key).strip("\"'")
     return result

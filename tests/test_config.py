@@ -84,6 +84,13 @@ class TestGetConfigDict(object):
         assert conf_dict == dict(num=42)
         assert conf_dict is not custom_defaults
 
+    def test_get_config_dict_arg_section(self, home_dir):
+        # we can set the section name to look for in config files.
+        config_file = home_dir / ".diceware.ini"
+        config_file.write("[diceware]\nnum=4\n[foo]\nnum=5\n[bar]\nnum=6\n")
+        conf_dict = get_config_dict(section='foo')
+        assert conf_dict['num'] == 5
+
     def test_get_config_dict_int(self, home_dir):
         # integer values are interpolated correctly
         config_file = home_dir / ".diceware.ini"
