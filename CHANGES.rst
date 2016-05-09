@@ -4,7 +4,8 @@ Changes
 0.8.1.dev0 (unreleased)
 -----------------------
 
-- no changes yet.
+- Changed API interface of `get_config_dict()` to allow more flexible
+  handling of config files.
 
 
 0.8 (2016-05-07)
