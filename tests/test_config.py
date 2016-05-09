@@ -74,7 +74,7 @@ class TestGetConfigDict(object):
         config_file_custom = home_dir / "some-new-file"
         config_file_custom.write("[diceware]\nnum=42\n")
         conf_dict = get_config_dict(
-            path_list = [str(config_file_custom), ])
+            path_list=[str(config_file_custom), ])
         assert conf_dict['num'] == 42
 
     def test_get_config_dict_arg_defaults_dict(self, home_dir):
