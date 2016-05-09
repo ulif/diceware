@@ -61,21 +61,25 @@ def get_configparser(path_list=None):
     return found, parser
 
 
-def get_config_dict(path_list=None):
+def get_config_dict(path_list=None, defaults_dict=OPTIONS_DEFAULTS):
     """Get config values found in files from `path_list`.
 
     Read files in `path_list` config files and return option valus as
     regular dictonary.
 
     We only accept values for which a default exists in
-    `OPTIONS_DEFAULTS`.
+    `defaults_dict`. If `defaults_dict` is ``None`` we use
+    ``OPTIONS_DEFAULTS``.
 
     Values are interpolated to have same value type as same-named values
-    from `OPTIONS_DEFAULTS` if they are integers or boolean.
+    from `defaults_dict` if they are integers or boolean.
+
+    String/text values are stripped from preceding/trailing quotes
+    (single and double).
     """
-    result = dict(OPTIONS_DEFAULTS)
+    result = dict(defaults_dict)
     found, parser = get_configparser(path_list)
-    for key, val in OPTIONS_DEFAULTS.items():
+    for key, val in defaults_dict.items():
         if not parser.has_option('diceware', key):
             continue
         if isinstance(val, bool):

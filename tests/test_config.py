@@ -66,6 +66,12 @@ class TestGetConfigDict(object):
         assert len(conf_dict) == len(OPTIONS_DEFAULTS)
         assert conf_dict != OPTIONS_DEFAULTS
 
+    def test_get_config_dict_arg_defaults_dict(self, home_dir):
+        # we can change the dict of defaults used.
+        custom_defaults = dict(num=42)
+        conf_dict = get_config_dict(defaults_dict=custom_defaults)
+        assert conf_dict == dict(num=42)
+
     def test_get_config_dict_int(self, home_dir):
         # integer values are interpolated correctly
         config_file = home_dir / ".diceware.ini"
