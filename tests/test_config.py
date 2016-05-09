@@ -42,6 +42,10 @@ class TestConfigModule(object):
         found, config = get_configparser()
         assert found == [str(config_file)]
 
+
+class TestGetConfigDict(object):
+    # tests for get_config_dict()
+
     def test_get_config_dict_no_config_file(self, home_dir):
         # we get config values even without a config file.
         conf_dict = get_config_dict()
