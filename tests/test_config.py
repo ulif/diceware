@@ -50,6 +50,7 @@ class TestGetConfigDict(object):
         # we get config values even without a config file.
         conf_dict = get_config_dict()
         assert conf_dict == OPTIONS_DEFAULTS
+        assert conf_dict is not OPTIONS_DEFAULTS
 
     def test_get_config_dict_no_diceware_section(self, home_dir):
         # we cope with config files, if they do not contain a diceware config
@@ -71,6 +72,7 @@ class TestGetConfigDict(object):
         custom_defaults = dict(num=42)
         conf_dict = get_config_dict(defaults_dict=custom_defaults)
         assert conf_dict == dict(num=42)
+        assert conf_dict is not custom_defaults
 
     def test_get_config_dict_int(self, home_dir):
         # integer values are interpolated correctly
