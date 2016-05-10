@@ -43,6 +43,7 @@ class TestHandleOptions(object):
         assert options.delimiter == ""
         assert options.randomsource == "system"
         assert options.wordlist == "en_securedrop"
+        assert options.verbose == 0
 
     def test_handle_options_infile(self, tmpdir):
         # we can give an infile
@@ -101,6 +102,19 @@ class TestHandleOptions(object):
         out, err = capsys.readouterr()
         assert out == ''
         assert "invalid choice" in err
+
+    def test_handle_options_verbose(self):
+        # we can set verbosity level.
+        options = handle_options([])
+        assert options.verbose == 0
+        options = handle_options(['-v', ])
+        assert options.verbose == 1
+        options = handle_options(['-vv', ])
+        assert options.verbose == 2
+        options = handle_options(['--verbose', ])
+        assert options.verbose == 1
+        options = handle_options(['--verbose', '--verbose', ])
+        assert options.verbose == 2
 
     def test_handle_options_wordlist(self, capsys):
         # we can pick a wordlist
