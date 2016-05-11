@@ -1,5 +1,5 @@
 usage: diceware [-h] [-n NUM] [-c | --no-caps] [-s NUM] [-d DELIMITER]
-                [-r SOURCE] [-w NAME] [-v] [--version]
+                [-r SOURCE] [-w NAME] [-v] [--version] [--dice-sides N]
                 [INFILE]
 
 Create a passphrase
@@ -25,5 +25,7 @@ optional arguments:
                         the folder displayed below. Default: en_securedrop
   -v, --verbose         Be verbose. Use several times for increased verbosity.
   --version             output version information and exit.
+  --dice-sides N        Number of sides of dice when using ``realdice`` as
+                        `randomsource`. Default: 6
 
 Wordlists are stored in <WORDLISTS-DIR>
