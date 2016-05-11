@@ -125,7 +125,7 @@ class TestRealDiceRandomSource(object):
 
     def test_options_are_stored(self):
         # options passed-in are stored with RealDiceRandomSource instances
-        options = "fake_options"
+        options = dict(fake=1)
         src = RealDiceRandomSource(options)
         assert src.options is options
 
