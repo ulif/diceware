@@ -1,7 +1,7 @@
 Changes
 =======
 
-0.8.1.dev0 (unreleased)
+0.9.dev0 (unreleased)
 -----------------------
 
 - Changed API interface of `get_config_dict()` to allow more flexible
