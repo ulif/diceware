@@ -126,6 +126,10 @@ class SystemRandomSource(object):
 class RealDiceRandomSource(object):
     """A source of randomness working with real dice.
     """
+    @classmethod
+    def update_argparser(cls, parser):
+        return parser
+
     def __init__(self, options):
         self.options = options
         self.dice_sides = 6
