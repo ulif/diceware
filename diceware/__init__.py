@@ -79,7 +79,8 @@ def get_random_sources():
 def handle_options(args):
     """Handle commandline options.
     """
-    random_sources = get_random_sources().keys()
+    plugins = get_random_sources()
+    random_sources = plugins.keys()
     wordlist_names = get_wordlist_names()
     defaults = get_config_dict()
     parser = argparse.ArgumentParser(
@@ -127,6 +128,9 @@ def handle_options(args):
         '--version', action='store_true',
         help='output version information and exit.',
         )
+    for plugin in plugins.values():
+        if hasattr(plugin, "update_argparser"):
+            parser = plugin.update_argparser(parser)
     parser.set_defaults(**defaults)
     args = parser.parse_args(args)
     return args

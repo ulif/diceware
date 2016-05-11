@@ -147,6 +147,18 @@ class TestHandleOptions(object):
         assert options.delimiter == "my-delim"
         assert options.caps is False
 
+    def test_handle_options_allows_plugins_updating(self, monkeypatch):
+        # we allow plugins to update our argparser, before being used
+        import diceware
+        class FakePlugin(object):
+            @classmethod
+            def update_argparser(cls, parser):
+                parser.add_argument('--foo', default=2, type=int)
+                return parser
+        monkeypatch.setattr(diceware, 'get_random_sources', lambda: dict(foo=FakePlugin))
+        options = handle_options([])
+        assert options.foo == 2
+
 
 class TestDicewareModule(object):
 
