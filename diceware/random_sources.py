@@ -41,6 +41,9 @@ required, `choice` might also ask users for input or similar. Typically,
 `choice` is called once for each word and once for each special char to
 generate.
 
+If you want to manage own commandline options with your plugin, see the
+`RealDiceRandomSource` for a sample.
+
 Finally, to register the source, add some stanza in `setup.py` of your
 project that looks like::
 
