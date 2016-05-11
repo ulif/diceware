@@ -21,7 +21,9 @@ Please register all sources as entry point in ``setup.py``. Look out for
 For developers of interfaces to other sources of randomness: Currently,
 you can extend `diceware` random sources by registering a class, that
 provides a suitable `__init__(self, options)` and a `choice(self,
-sequence)` method.
+sequence)` method. Optionally, you can also provide a `classmethod`
+called ``update_arparse`` that will get the possibility to update the
+`argparser.ArgumentParser` used by `diceware`.
 
 The `__init__` method of your class will be called with `options`, a set
 of options as parsed from the commandline. The initialization code can
