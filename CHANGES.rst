@@ -4,6 +4,8 @@ Changes
 0.9.dev0 (unreleased)
 -----------------------
 
+- Added `--dice-sides` option to tell how many sides used dices
+  provide.
 - Changed API interface of `get_config_dict()` to allow more flexible
   handling of config files.
 
