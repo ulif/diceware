@@ -116,6 +116,13 @@ def handle_options(args):
             "Use words from this wordlist. Possible values: `%s'. "
             "Wordlists are stored in the folder displayed below. "
             "Default: en_securedrop" % "', `".join(wordlist_names)))
+    realdice_group = parser.add_argument_group(
+        "Arguments related to `realdice' randomsource",
+        )
+    realdice_group.add_argument(
+            '--dice-sides', default=6, type=int, metavar="N",
+            help='Number of sides of dice. Default: 6'
+        )
     parser.add_argument(
         'infile', nargs='?', metavar='INFILE', default=None,
         type=argparse.FileType('r'),
