@@ -80,8 +80,13 @@ Once installed, use ``--help`` to list all available options::
                           Use words from this wordlist. Possible values: `en',
                           `en_orig', `en_securedrop'. Wordlists are stored in
                           the folder displayed below. Default: en_securedrop
+    -v, --verbose         Be verbose. Use several times for increased verbosity.
     --version             output version information and exit.
 
+  Arguments related to `realdice' randomsource:
+    --dice-sides N        Number of sides of dice. Default: 6
+
+  Wordlists are stored in <WORDLISTS-DIR>
 
 With ``-n`` you can tell how many words are supposed to be picked for
 your new passphrase::
