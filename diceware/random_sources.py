@@ -41,8 +41,9 @@ required, `choice` might also ask users for input or similar. Typically,
 `choice` is called once for each word and once for each special char to
 generate.
 
-If you want to manage own commandline options with your plugin, see the
-`RealDiceRandomSource` for a sample.
+If you want to manage own commandline options with your plugin, you can
+implement a `classmethod` called ``update_argparser(parser)`` which gets
+an `argparse.ArgumentParser` instance  as argument (no pun intended).
 
 Finally, to register the source, add some stanza in `setup.py` of your
 project that looks like::
@@ -126,16 +127,6 @@ class SystemRandomSource(object):
 class RealDiceRandomSource(object):
     """A source of randomness working with real dice.
     """
-    @classmethod
-    def update_argparser(cls, parser):
-        parser.add_argument(
-            '--dice-sides', default=6, type=int, metavar="N",
-            help=(
-                'Number of sides of dice when using ``realdice`` as '
-                '`randomsource`. Default: 6')
-                )
-        return parser
-
     def __init__(self, options):
         self.options = options
         self.dice_sides = 6
