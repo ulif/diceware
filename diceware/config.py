@@ -34,6 +34,7 @@ OPTIONS_DEFAULTS = dict(
     randomsource="system",
     verbose=0,
     wordlist="en_securedrop",
+    dice_sides=6,
     )
 
 
