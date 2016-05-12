@@ -282,3 +282,13 @@ class TestRealDiceRandomSource(object):
             out, err = capsys.readouterr()
             assert "roll 2 dice" in out
             assert picked == 1
+
+    def test_dice_sides_respected(self, capsys, monkeypatch):
+        # we use the number of dice sides given by options dict.
+        self.fake_input_values(["1", "2"], monkeypatch)
+        src = RealDiceRandomSource(dict(dice_sides=2))  # a coin
+        picked = src.choice(['a', 'b', 'c', 'd'])
+        out, err = capsys.readouterr()
+        # must throw a coin 2 times to pick one out of 4 items
+        assert "Please roll 2 dice" in out
+        assert picked == 'b'
