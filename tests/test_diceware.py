@@ -133,6 +133,13 @@ class TestHandleOptions(object):
         assert out == ''
         assert "invalid choice" in err
 
+    def test_handle_options_dice_sides(self):
+        # we can set the number of dice sides.
+        options = handle_options([])
+        assert options.dice_sides == 6
+        options = handle_options(['--dice-sides', '21'])
+        assert options.dice_sides == 21
+
     def test_handle_options_considers_configfile(self, home_dir):
         # defaults from a local configfile are respected
         config_file = home_dir / ".diceware.ini"
