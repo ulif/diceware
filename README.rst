@@ -143,12 +143,17 @@ option.
 By default we use the `random.SystemRandom`_ class of standard Python
 lib but you can also bring your own dice to create randomness::
 
-  $ diceware -r realdice
+  $ diceware -r realdice --dice-sides 6
   Please roll 5 dice (or a single dice 5 times).
   What number shows dice number 1? 2
   What number shows dice number 2? 3
   ...
   DogmaAnyShrikeSageSableHoar
+
+Normally dice have six sides. And this is also the default in
+`diceware` if you do not use ``--dice-sides``. But if you do, you can
+tell how many sides (all) your dice have. More sides will lead to less
+rolls required.
 
 We support even sources of randomness from other packages. See the
 `documentation <https://diceware.readthedocs.io/>`_ for more details.
