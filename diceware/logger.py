@@ -52,9 +52,9 @@ logger.addHandler(NullHandler())
 def configure(verbosity=None):
     """Configure global duceware logger.
     """
-    logger.setLevel(logging.INFO)
     if verbosity is None:
         return
+    logger.setLevel(logging.INFO)
     if verbosity > 1:
         logger.setLevel(logging.DEBUG)
     logger.addHandler(logging.StreamHandler())
