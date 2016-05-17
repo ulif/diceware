@@ -47,3 +47,15 @@ except ImportError:  # NOQA  # pragma: no cover
 #: Logger that can be used for all diceware related messages.
 logger = logging.getLogger("ulif.diceware")
 logger.addHandler(NullHandler())
+
+
+def configure(verbosity=None):
+    """Configure global duceware logger.
+    """
+    logger.setLevel(logging.INFO)
+    if verbosity is None:
+        return
+    if verbosity > 1:
+        logger.setLevel(logging.DEBUG)
+    logger.addHandler(logging.StreamHandler())
+    logger.debug("Verbose logging enabled")
