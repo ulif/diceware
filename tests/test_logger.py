@@ -1,5 +1,5 @@
 import logging
-from diceware.logger import logger
+from diceware.logger import logger, configure
 
 
 def test_logger_exists():
@@ -16,3 +16,11 @@ def test_get_logger_by_name():
     # we can get a logger directly from std lib
     my_logger = logging.getLogger("ulif.diceware")
     assert len(my_logger.handlers) > 0
+
+def test_configure():
+    # we can configure the logger.
+    my_logger = logging.getLogger("ulif.diceware")
+    configure(0)
+    assert my_logger.level == logging.INFO
+    configure(2)
+    assert my_logger.level == logging.DEBUG
