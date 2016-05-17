@@ -32,6 +32,8 @@ except ImportError:  # NOQA  # pragma: no cover
     class NullHandler(object):
         """Replacement for `logging.NullHandler` from py3.x standard lib.
         """
+        level = None
+
         def emit(self, record):
             pass
 
