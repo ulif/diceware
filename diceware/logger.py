@@ -51,6 +51,9 @@ logger.addHandler(NullHandler())
 
 def configure(verbosity=None):
     """Configure global duceware logger.
+
+    `verbosity` sets the diceware logger verbosity. ``0`` enables info
+    mode, while all numbes > 2 enable debug mode.
     """
     if verbosity is None:
         return
