@@ -17,6 +17,7 @@ def test_get_logger_by_name():
     my_logger = logging.getLogger("ulif.diceware")
     assert len(my_logger.handlers) > 0
 
+
 def test_configure():
     # we can configure the logger.
     my_logger = logging.getLogger("ulif.diceware")
