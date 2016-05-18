@@ -22,8 +22,8 @@ def test_configure():
     # we can configure the logger.
     my_logger = logging.getLogger("ulif.diceware")
     configure(None)
-    assert my_logger.level == 0
+    assert my_logger.level == logging.NOTSET
     configure(0)
-    assert my_logger.level == logging.INFO
+    assert my_logger.level == logging.CRITICAL
     configure(2)
     assert my_logger.level == logging.DEBUG

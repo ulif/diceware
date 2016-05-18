@@ -57,7 +57,7 @@ def configure(verbosity=None):
     """
     if verbosity is None:
         return
-    logger.setLevel(logging.INFO)
+    logger.setLevel(logging.CRITICAL)
     if verbosity > 1:
         logger.setLevel(logging.DEBUG)
     logger.addHandler(logging.StreamHandler())
