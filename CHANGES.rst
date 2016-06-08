@@ -8,6 +8,7 @@ Changes
   provide.
 - Changed API interface of `get_config_dict()` to allow more flexible
   handling of config files.
+- Support different verbosity levels.
 
 
 0.8 (2016-05-07)
