@@ -11,11 +11,12 @@ like this::
   num = 3
   caps = off
   specials = 2
-  delimiter = MYDELIMITER
+  delimiter = "MYDELIMITER"
   randomsource = system
-  wordlist = en
+  wordlist = "en"
+  dice_sides = 6
 
-These settings would mean that by default phrases with seven words
+These settings would mean that by default phrases with three words
 (instead six) would be created. Commandline options, however, override
 config file settings. So, with the settings above::
 
@@ -29,6 +30,7 @@ we will get three-word phrases while with::
 
 we will override the config file setting for ``delimiter``. Other
 settings from config file are still valid.
+
 
 Option Names
 ------------
@@ -67,6 +69,10 @@ values.
 ``on``, and ``off`` as boolean values.
 
 Some options require their setting to be taken from a fixed set of
-names/values, for instance the ``randomsource`` option.
+names/values, for instance the ``randomsource`` option. You can
+normally get the allowed values from calling ``diceware --help``.
+
+String-based options (like `delimiter`) accept values enclosed in
+quotes to allow whitespace-only values.
 
 If some value cannot be parsed, an exception is raised.
