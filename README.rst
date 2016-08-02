@@ -78,8 +78,9 @@ Once installed, use ``--help`` to list all available options::
                           `realdice', `system'. Default: system
     -w NAME, --wordlist NAME
                           Use words from this wordlist. Possible values: `en',
-                          `en_orig', `en_securedrop'. Wordlists are stored in
-                          the folder displayed below. Default: en_securedrop
+                          `en_eff', `en_orig', `en_securedrop'. Wordlists are
+                          stored in the folder displayed below. Default:
+                          en_securedrop
     -v, --verbose         Be verbose. Use several times for increased verbosity.
     --version             output version information and exit.
 
