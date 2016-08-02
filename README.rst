@@ -344,7 +344,7 @@ Links
 Wordlists:
 
 - `Diceware8k list`_ by Arnold G. Reinhold.
-- `Diceware SecureDrop list`_ by Heartsucer.
+- `Diceware SecureDrop list`_ by Heartsucker.
 - `EFF large list`_ provided by EFF_.
 
 
