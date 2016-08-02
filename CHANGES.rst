@@ -9,6 +9,11 @@ Changes
 - Changed API interface of `get_config_dict()` to allow more flexible
   handling of config files.
 - Support different verbosity levels.
+- Added new wordlist ``en_eff``. It is a 7776-terms list provided by
+  the Electronic Frontier Foundation. See
+  https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases
+  for details. Thanks to `George V. Reilly
+  <https://github.com/georgevreilly>`_ for hinting!
 
 
 0.8 (2016-05-07)
