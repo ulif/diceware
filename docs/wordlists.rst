@@ -7,19 +7,6 @@ words used, the wordlists.
 `diceware` comes with some wordlists out-of-the-box, that might be a
 good choice for usual private use.
 
-By default we use a hand-crafted `en_securedrop` wordlist provided by
-`@Heartsucker`_. It contains 8,192 english words and phrases. This
-list is based on the `diceware standard wordlist`_ and extended to
-offer better memorizable words. Please see
-https://github.com/heartsucker/diceware for details. The name
-`en_securedrop` refers to the `securedrop`_ project.
-
-Apart from it we also provide the so-called `8k wordlist`_ from
-Mr. Reinhold as published on http://diceware.com/. It also contains
-8,192 english words and phrases and is something like the canonical
-wordlist for use with binary-geared entities like computers or
-nerds.
-
 .. warning:: We do -- by default -- *not* use the `diceware standard
 	     wordlist`_ (which contains 7,776 words), because
 	     computers prefer powers of two and we use the Python
@@ -30,6 +17,40 @@ nerds.
 	     and you can pick it with the ``-w en_orig`` option.  You
 	     *should* pick it when you use real dice as source of
 	     randomness.
+
+Currently we provide the following lists:
+
+- `en_securedrop` (8192 words, default)
+
+  By default we use a hand-crafted `en_securedrop` wordlist provided
+  by `@Heartsucker`_. It contains 8,192 english words and
+  phrases. This list is based on the `diceware standard wordlist`_ and
+  extended to offer better memorizable words. Please see
+  https://github.com/heartsucker/diceware for details. The name
+  `en_securedrop` refers to the `securedrop`_ project.
+
+- `en` (8192 words)
+
+  Apart from it we also provide the so-called `8k wordlist`_ from
+  Mr. Reinhold as published on http://diceware.com/. It also contains
+  8,192 english words and phrases and is something like the canonical
+  wordlist for use with binary-geared entities like computers or
+  nerds.
+
+- `en_eff` (7776 words)
+
+  This is the `long EFF wordlist`_ as published by the `Electronic
+  Frontier Foundation`_ in mid-2016. They put real `scientific
+  effort`_ into the creation of this list which might considerably
+  ease the use of passphrases generated with it. When using real dice
+  (or other six-based randomness generators) use is definitely
+  recommended!
+
+- `en_orig` (7776 words)
+
+  This is the `diceware standard wordlist`_ as provided by
+  Mr. Reinhold. Something like the canonical list in former times,
+  there are now considerable alternatives.
 
 You can pick another list with the ``-w`` or ``--wordlist`` option.
 
@@ -156,5 +177,8 @@ automatically done by `diceware`.
 
 .. _`8k wordlist`: http://world.std.com/~reinhold/diceware8k.txt
 .. _`diceware standard wordlist`: http://world.std.com/~reinhold/diceware.wordlist.asc
+.. _`Electronic Frontier Foundation`: https://eff.org/
 .. _`@Heartsucker`: https://github.com/heartsucker/
+.. _`long EFF wordlist`: https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt
+.. _`scientific effort`: https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases
 .. _`securedrop`: https://github.com/freedomofpress/securedrop
