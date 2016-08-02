@@ -329,6 +329,8 @@ People that helped spotting bugs, providing solutions, etc.:
  - `dwcoder <https://github.com/dwcoder>`_ revealed and fixed bugs
    #19, #21, #23. Also showed sound knowledge of (theoretical)
    entropy. A pleasure to work with.
+ - `George V. Reilly <https://github.com/georgevreilly>`_ pointed to new
+   EFF wordlists.
 
 Many thanks to all of them!
 
