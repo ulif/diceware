@@ -345,6 +345,7 @@ Wordlists:
 
 - `Diceware8k list`_ by Arnold G. Reinhold.
 - `Diceware SecureDrop list`_ by Heartsucer.
+- `EFF large list`_ provided by EFF_.
 
 
 License
@@ -361,6 +362,8 @@ SecureDrop list`_ are copyright by Heartsucker. See file LICENSE for details.
 .. _`Diceware8k list`: http://world.std.com/~reinhold/diceware8k.txt
 .. _`Diceware`: http://diceware.com/
 .. _`Diceware SecureDrop list`: https://github.com/heartsucker/diceware
+.. _`EFF`: https://eff.org/
+.. _`EFF large list`: https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt
 .. _`fork me on github`: http://github.com/ulif/diceware/
 .. _`random.SystemRandom`: https://docs.python.org/3.4/library/random.html#random.SystemRandom
 .. _virtualenv: https://virtualenv.pypa.io/
