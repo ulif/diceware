@@ -56,6 +56,7 @@ class TestWordlistModule(object):
         assert regexp.match("wordlist_foo_bar.asc") is not None
         assert regexp.match("wordlist_name-withdots.txt.asc") is not None
         assert regexp.match("wordlist_en.txt") is not None
+        assert regexp.match("wordlist_en_eff.txt") is not None
         assert regexp.match("wordlist_en_orig.asc") is not None
         assert regexp.match("wordlist_en_securedrop.asc") is not None
         # We can get the internal wordlist name
@@ -246,6 +247,14 @@ class TestWordList(object):
         w_list = list(WordList(en_src))
         assert w_list[0] == "a"
         assert w_list[-1] == "@"
+        assert len(w_list) == 7776
+
+    def test_wordlist_en_eff(self):
+        # we can get a list of words out of the EFF-maintained wordlist.
+        en_src = os.path.join(WORDLISTS_DIR, 'wordlist_en_eff.txt')
+        w_list = list(WordList(en_src))
+        assert w_list[0] == "abacus"
+        assert w_list[-1] == "zoom"
         assert len(w_list) == 7776
 
     def test_get_wordlist_simple(self, tmpdir):
