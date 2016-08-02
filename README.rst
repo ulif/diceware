@@ -356,7 +356,9 @@ licensed under the GPL v3+.
 
 The Copyright for the Diceware_ idea and the `Diceware8k list`_ are
 Copyright by Arnold G. Reinhold. The Copyright for the the `Diceware
-SecureDrop list`_ are copyright by Heartsucker. See file LICENSE for details.
+SecureDrop list`_ are copyright by Heartsucker. Copyright for the `EFF
+large list`_ by `Joseph Bonneau`_ and EFF_. See file LICENSE for
+details.
 
 .. _pip: https://pip.pypa.io/en/latest/
 .. _`Diceware8k list`: http://world.std.com/~reinhold/diceware8k.txt
@@ -365,6 +367,7 @@ SecureDrop list`_ are copyright by Heartsucker. See file LICENSE for details.
 .. _`EFF`: https://eff.org/
 .. _`EFF large list`: https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt
 .. _`fork me on github`: http://github.com/ulif/diceware/
+.. _`Joseph Bonneau`: https://www.eff.org/about/staff/joseph-bonneau
 .. _`random.SystemRandom`: https://docs.python.org/3.4/library/random.html#random.SystemRandom
 .. _virtualenv: https://virtualenv.pypa.io/
 .. _py.test: https://pytest.org/
