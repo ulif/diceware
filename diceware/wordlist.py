@@ -35,7 +35,7 @@ WORDLISTS_DIR = os.path.abspath(
 RE_WORDLIST_NAME = re.compile('^[\w-]+$')
 
 #: A regular expression matching numbered entries in wordlists.
-RE_NUMBERED_WORDLIST_ENTRY = re.compile('^[0-9]+\s+([^\s]+)$')
+RE_NUMBERED_WORDLIST_ENTRY = re.compile('^[0-9]+(\-[0-9]+)*\s+([^\s]+)$')
 
 #: A regular expression describing valid wordlist file names.
 RE_VALID_WORDLIST_FILENAME = re.compile(
@@ -164,5 +164,5 @@ class WordList(object):
         entry = entry.strip()
         match = RE_NUMBERED_WORDLIST_ENTRY.match(entry)
         if match:
-            entry = match.groups()[0]
+            entry = match.groups()[1]
         return entry
