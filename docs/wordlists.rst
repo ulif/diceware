@@ -142,6 +142,15 @@ sequence of dice rolls like so::
 `diceware` detects such lines and in this case extracts ``aterm`` and
 ``anotherterm`` as wordlist entries.
 
+Apart from simple digits written next to each other, `diceware` also
+accepts numbers separated by dashes like this::
+
+  1-1-1-1-1   aterm
+  1-1-1-1-2   anotherterm
+
+which is handy when working with wordlists for dice with more than 9
+sides.
+
 
 PGP-signed Wordlists
 --------------------
