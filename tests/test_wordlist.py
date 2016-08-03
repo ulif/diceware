@@ -59,7 +59,6 @@ class TestWordlistModule(object):
         assert RE_NUMBERED_WORDLIST_ENTRY.match('-1211 foo') is None
         assert RE_NUMBERED_WORDLIST_ENTRY.match('foo bar') is None
 
-
     def test_re_valid_wordlist_filename(self):
         # RE_VALID_WORDLIST_FILENAME really detects filenames we allow
         # Valid filenames
