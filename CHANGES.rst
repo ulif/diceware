@@ -14,6 +14,8 @@ Changes
   https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases
   for details. Thanks to `George V. Reilly
   <https://github.com/georgevreilly>`_ for hinting!
+- Fixed #27. Allow dashes in numbered wordlists. Yet, these looked
+  like ``1234 myterm``. We now also accept ``1-2-3-4 myterm``.
 
 
 0.8 (2016-05-07)
