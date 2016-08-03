@@ -39,14 +39,26 @@ class TestWordlistModule(object):
         assert RE_WORDLIST_NAME.match('with/slash') is None
 
     def test_re_numbered_wordlist_entry(self):
+        # we accept numbers (optionally separated by single dashes) in
+        # wordlist lines
+        #
+        # valid stuff
         assert RE_NUMBERED_WORDLIST_ENTRY.match('11111   a') is not None
+        assert RE_NUMBERED_WORDLIST_ENTRY.match('1-2-2-11 1') is not None
         assert RE_NUMBERED_WORDLIST_ENTRY.match(
-            '11111   a').groups() == ('a', )
+            '11111   a').groups() == (None, 'a', )
         assert RE_NUMBERED_WORDLIST_ENTRY.match('12211\t 1') is not None
         assert RE_NUMBERED_WORDLIST_ENTRY.match(
-            '12211\t 1').groups() == ('1', )
+            '12211\t 1').groups() == (None, '1', )
+        assert RE_NUMBERED_WORDLIST_ENTRY.match(
+            '1-2-2-1-1\t 1-1').groups()[1] == '1-1'
+        # invalid stuff
         assert RE_NUMBERED_WORDLIST_ENTRY.match('12a11 foo') is None
+        assert RE_NUMBERED_WORDLIST_ENTRY.match('12--11 foo') is None
+        assert RE_NUMBERED_WORDLIST_ENTRY.match('1211- foo') is None
+        assert RE_NUMBERED_WORDLIST_ENTRY.match('-1211 foo') is None
         assert RE_NUMBERED_WORDLIST_ENTRY.match('foo bar') is None
+
 
     def test_re_valid_wordlist_filename(self):
         # RE_VALID_WORDLIST_FILENAME really detects filenames we allow
