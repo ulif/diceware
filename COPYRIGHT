@@ -4,9 +4,16 @@ Cambridge, Massachusetts USA.
 The English Diceware Wordlists used with this programme are licensed
 by Arnold G. Reinhold (files ``wordlists/wordlist_en_orig.asc``,
 ``wordlists/wordlist_en.txt``) under the `Creative Commons CC-BY 3.0`
-license (see http://creativecommons.org/licenses/by/3.0/) and by
-Heartsucker (file ``wordlists/wordlist_en_securedrop.txt``) under
-the `MIT` license (see http://mit-license.org/).
+license (see http://creativecommons.org/licenses/by/3.0/).
+
+The Securedrop wordlist (file
+``wordlists/wordlist_en_securedrop.txt``) by Heartsucker is licensed
+under the `MIT` license (see http://mit-license.org/).
+
+The EFF wordlist (file ``wordlsts/wordlist_en_eff.txt``) is licensed
+by the Electronic Frontier Foundation under the `Creative Commons
+CC-BY 3.0 US` license (see
+https://creativecommons.org/licenses/by/3.0/us/).
 
 "Diceware" is a trademark of A G Reinhold.
 
