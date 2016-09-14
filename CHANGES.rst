@@ -1,8 +1,8 @@
 Changes
 =======
 
-0.9.dev0 (unreleased)
------------------------
+0.9 (2016-09-14)
+----------------
 
 - Added `--dice-sides` option to tell how many sides used dices
   provide.
