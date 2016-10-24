@@ -302,26 +302,26 @@ Developers want to `fork me on github`_::
 We recommend to create and activate a virtualenv_ first::
 
   $ cd diceware/
-  $ virtualenv -p /usr/bin/python3.3 py33
-  $ source py33/bin/activate
-  (py33) $
+  $ virtualenv -p /usr/bin/python3.4 py34
+  $ source py34/bin/activate
+  (py34) $
 
-We support Python versions 2.6, 2.7, 3.2, 3.3, 3.4, pypy.
+We support Python versions 2.6, 2.7, 3.3, 3.4, 3.5, pypy.
 
 Now you can create the devel environment::
 
-  (py33) $ python setup.py dev
+  (py34) $ python setup.py dev
 
 This will fetch test packages (py.test_). You should be able to run
 tests now::
 
-  (py33) $ py.test
+  (py34) $ py.test
 
 If you have also different Python versions installed you can use tox_
 for using them all for testing::
 
-  (py33) $ pip install tox   # only once
-  (py33) $ tox
+  (py34) $ pip install tox   # only once
+  (py34) $ tox
 
 Should run tests in all supported Python versions.
 
@@ -332,13 +332,13 @@ Documentation Install
 The docs can be generated with Sphinx_. The needed packages are
 installed via::
 
-  (py33) $ python setup.py docs
+  (py34) $ python setup.py docs
 
 To create HTML you have to go to the ``docs/`` directory and use the
 prepared ``Makefile``::
 
-  (py33) $ cd docs/
-  (py33) $ make
+  (py34) $ cd docs/
+  (py34) $ make
 
 This should generate the docs in ``docs/_build/html/``.
 
