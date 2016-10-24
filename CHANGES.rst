@@ -4,7 +4,7 @@ Changes
 0.9.1.dev0 (unreleased)
 -----------------------
 
-- No changes yet.
+- Fixed #29. Tell about code prefix problem in README.
 
 
 0.9 (2016-09-14)

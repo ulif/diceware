@@ -122,11 +122,14 @@ between the words generated::
 
 By default we use the empty string as delimiter, which is good for
 copying via double click on Linux systems. But other delimiters might
-make your passphrases more readable.
+make your passphrases more readable (and more secure, see
+`Security Traps <#sec-traps>`_ below).
 
 By default the single phrase words are capitalized, i.e. the first
 char of each word is made uppercase. This does not neccessarily give
-better security (1 bit at most), but it helps reading a phrase.
+better entropy (but protects against entropy loss due to non `prefix
+code`_, see `Security Traps <#sec-traps>`_ below), and it might
+improve phrase readability.
 
 You can nevertheless disable caps with the ``--no-caps`` option::
 
@@ -260,6 +263,35 @@ randomness when generating passphrases. This includes real dice. See
 the ``-r`` option.
 
 
+.. _sec-traps:
+
+Security Traps
+--------------
+
+There are issues that might reduce the entropy of the passphrase
+generated. One of them is the `prefix code`_ problem:
+
+If the wordlist contains, for example, the words::
+
+   "air", "airport", "portable", "able"
+
+*and* we switched off caps *and* delimiter chars, then `diceware` might
+generate a passphrase containing::
+
+   "airportable"
+
+which could come from ``air-portable`` or ``airport-able``. We cannot
+tell and an attacker would have less combinations to guess.
+
+To avoid that, you can leave caps enabled (the default), use any word
+delimiter except the empty string or use the ``en_eff`` wordlist,
+which was checked to be a `prefix code`_ (i.e. it does not contain
+words that start with other words in the list).
+
+Each of these measures is sufficient to protect you against the
+`prefix code`_ problem.
+
+
 Developer Install
 -----------------
 
@@ -332,6 +364,8 @@ People that helped spotting bugs, providing solutions, etc.:
    entropy. A pleasure to work with.
  - `George V. Reilly <https://github.com/georgevreilly>`_ pointed to new
    EFF wordlists.
+ - `lieryan <https://github.com/lieryan>`_ brought up the `prefix
+   code`_ problem.
 
 Many thanks to all of them!
 
@@ -369,6 +403,7 @@ details.
 .. _`EFF large list`: https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt
 .. _`fork me on github`: http://github.com/ulif/diceware/
 .. _`Joseph Bonneau`: https://www.eff.org/about/staff/joseph-bonneau
+.. _`prefix code`: https://en.wikipedia.org/wiki/Prefix_code
 .. _`random.SystemRandom`: https://docs.python.org/3.4/library/random.html#random.SystemRandom
 .. _virtualenv: https://virtualenv.pypa.io/
 .. _py.test: https://pytest.org/
