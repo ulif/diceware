@@ -46,6 +46,11 @@ Currently we provide the following lists:
   (or other six-based randomness generators) use is definitely
   recommended!
 
+  Please note, that this is currently the only list, that provides the
+  `prefix property`_. That means it contains no word which is a prefix
+  of another word. Lists without this property might provide a slightly
+  decreased entropy.
+
 - `en_orig` (7776 words)
 
   This is the `diceware standard wordlist`_ as provided by
@@ -189,5 +194,6 @@ automatically done by `diceware`.
 .. _`Electronic Frontier Foundation`: https://eff.org/
 .. _`@Heartsucker`: https://github.com/heartsucker/
 .. _`long EFF wordlist`: https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt
+.. _`prefix property`: https://en.wikipedia.org/wiki/Prefix_code
 .. _`scientific effort`: https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases
 .. _`securedrop`: https://github.com/freedomofpress/securedrop
