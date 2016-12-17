@@ -131,7 +131,7 @@ class RealDiceRandomSource(object):
         self.options = options
         self.dice_sides = 6
         if options is not None:
-            self.dice_sides = options.get('dice_sides', 6)
+            self.dice_sides = getattr(options, 'dice_sides', 6)
 
     def pre_check(self, num_rolls, sequence):
         """Checks performed before picking an item of a sequence.

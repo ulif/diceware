@@ -1,6 +1,8 @@
 import pkg_resources
 import pytest
 
+import argparse
+
 from diceware.random_sources import (
     SystemRandomSource, RealDiceRandomSource,
     )
@@ -125,7 +127,7 @@ class TestRealDiceRandomSource(object):
 
     def test_options_are_stored(self):
         # options passed-in are stored with RealDiceRandomSource instances
-        options = dict(fake=1)
+        options = "fake_check"
         src = RealDiceRandomSource(options)
         assert src.options is options
 
@@ -286,7 +288,9 @@ class TestRealDiceRandomSource(object):
     def test_dice_sides_respected(self, capsys, monkeypatch):
         # we use the number of dice sides given by options dict.
         self.fake_input_values(["1", "2"], monkeypatch)
-        src = RealDiceRandomSource(dict(dice_sides=2))  # a coin
+        # A Namespace, not a dict, is passed to the constructor.
+        options = argparse.Namespace(dice_sides=2)  # a coin
+        src = RealDiceRandomSource(options)
         picked = src.choice(['a', 'b', 'c', 'd'])
         out, err = capsys.readouterr()
         # must throw a coin 2 times to pick one out of 4 items
