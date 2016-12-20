@@ -366,6 +366,8 @@ People that helped spotting bugs, providing solutions, etc.:
    EFF wordlists.
  - `lieryan <https://github.com/lieryan>`_ brought up the `prefix
    code`_ problem.
+ - `LogosOfJ <https://github.com/LogosOfJ>`_ discovered and fixed
+   serious `realdice` source of randomnoess problem.
 
 Many thanks to all of them!
 
