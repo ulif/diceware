@@ -4,6 +4,8 @@ Changes
 0.9.1.dev0 (unreleased)
 -----------------------
 
+- Fixed #31, broken `realdice` source of randomness. `argparse` related bug,
+  Bug was discovered and fixed by @LogosOfJ, thanks a lot!
 - Fixed #29. Tell about code prefix problem in README.
 
 
