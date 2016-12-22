@@ -2,6 +2,41 @@ import pytest
 import sys
 
 
+class InputMock(object):
+    """A replacement for input() or raw_input() respectively.
+
+    This mock, when called, mimics input() behaviour, outputs a prompt,
+    etc., but does not wait for real key strokes. Instead it returns the
+    next value from `fake_input_values` given on initialization:
+
+       >>> faked_input = InputMock(["val1", "val2", "1"])
+       >>> faked_input("Give a value: ")
+       Give a value: val1
+       'val1'
+
+       >>> faked_input("And another value: ")
+       And another value: val2
+       'val2'
+
+       >>> faked_input()
+       1
+       '1'
+
+    To be used with the `monkeypatch` pytest fixture, to replace
+    `diceware.random_sources.input_func`.
+    """
+    fake_input_values = []
+
+    def __init__(self, fake_input_values=[]):
+        self.fake_input_values = fake_input_values
+        self.fake_input_values.reverse()
+
+    def __call__(self, prompt=''):
+        curr_value = self.fake_input_values.pop()
+        print("%s%s" % (prompt, curr_value))
+        return curr_value
+
+
 @pytest.fixture(scope="function")
 def argv_handler(request):
     """This fixture restores sys.argv and sys.stdin after tests.
