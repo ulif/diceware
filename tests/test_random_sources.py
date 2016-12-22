@@ -264,7 +264,8 @@ class TestRealDiceRandomSource(object):
         assert "Please roll 2 dice" in out
         assert picked == 'b'
 
-    def test_main_with_realdice_source(self, argv_handler, capsys, monkeypatch):
+    def test_main_with_realdice_source(
+            self, argv_handler, capsys, monkeypatch):
         # we can run main with `realdice` source of randomness
         self.fake_input_values(
             ["1", "3"], monkeypatch)
