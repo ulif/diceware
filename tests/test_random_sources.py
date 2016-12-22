@@ -1,8 +1,10 @@
 import pkg_resources
 import pytest
-
+import sys
 import argparse
 from conftest import InputMock
+from io import StringIO
+from diceware import main
 from diceware.random_sources import (
     SystemRandomSource, RealDiceRandomSource,
     )
@@ -261,3 +263,13 @@ class TestRealDiceRandomSource(object):
         # must throw a coin 2 times to pick one out of 4 items
         assert "Please roll 2 dice" in out
         assert picked == 'b'
+
+    def test_main_with_realdice_source(self, argv_handler, capsys, monkeypatch):
+        # we can run main with `realdice` source of randomness
+        self.fake_input_values(
+            ["1", "3"], monkeypatch)
+        sys.stdin = StringIO("w1\nw2\nw3\nw4\nw5\nw6\n")
+        sys.argv = ['diceware', '-r', 'realdice', '-n', '2', '-d', '#', '-']
+        main()
+        out, err = capsys.readouterr()
+        assert out.endswith('W1#W3\n')
