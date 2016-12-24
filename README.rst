@@ -360,8 +360,10 @@ People that helped spotting bugs, providing solutions, etc.:
 
  - `Conor Schaefer (conorsch) <https://github.com/conorsch>`_
  - Rodolfo Gouveia suggested to activate the ``--delimiter`` option.
- - `drebs <https://github.com/drebs>`_ provided patches and discussion for
-   different sources of randomness.
+ - `@drebs`_ provided patches and discussion for different sources of
+   randomness. `@drebs`_ also initiated and performed the packaging of
+   `diceware` for the `Debian`_ platform. Many kudos for this work! `@drebs`_
+   is also the official Debian maintainer of the `diceware` package.
  - `Heartsucker <https://github.com/heartsucker>`_ hand-compiled and
    added a new english wordlist.
  - `dwcoder <https://github.com/dwcoder>`_ revealed and fixed bugs
@@ -403,9 +405,11 @@ large list`_ by `Joseph Bonneau`_ and EFF_. See file LICENSE for
 details.
 
 .. _pip: https://pip.pypa.io/en/latest/
+.. _`Debian`: https://www.debian.org/
 .. _`Diceware8k list`: http://world.std.com/~reinhold/diceware8k.txt
 .. _`Diceware`: http://diceware.com/
 .. _`Diceware SecureDrop list`: https://github.com/heartsucker/diceware
+.. _`@drebs`: https://github.com/drebs
 .. _`EFF`: https://eff.org/
 .. _`EFF large list`: https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt
 .. _`fork me on github`: http://github.com/ulif/diceware/
