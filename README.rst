@@ -140,8 +140,9 @@ This will leave the input words untouched (upper-case stays upper-case,
 lower-case stays lower-case). It does *not* mean, that all output words will be
 lower-case (except if all words of your wordlist are lowercase).
 
-Anyway, lower-case passphrases might be easier to type on smart phones and
-similar.
+As the default lists of `diceware` contain only lower-case terms, here
+``--no-caps`` means in fact lower-case only output, which might be easier to
+type on smart phones and similar.
 
 `diceware` supports also different sources of randomness, which can be
 chosen with the ``-r <SOURCENAME>`` or ``--randomsource <SOURCENAME>``
