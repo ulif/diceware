@@ -1,8 +1,8 @@
 Changes
 =======
 
-0.9.1.dev0 (unreleased)
------------------------
+0.9.1 (2016-12-24)
+------------------
 
 - Fixed #32, in docs tell that ``--no-caps`` option does not generate
   lower-case terms.
