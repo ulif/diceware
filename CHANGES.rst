@@ -4,7 +4,7 @@ Changes
 0.9.2 (unreleased)
 ------------------
 
-- (no changes yet)
+- only minor changes like fixing doc typos.
 
 
 0.9.1 (2016-12-24)
