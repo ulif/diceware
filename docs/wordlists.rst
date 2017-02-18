@@ -8,10 +8,8 @@ words used, the wordlists.
 good choice for usual private use.
 
 .. warning:: We do -- by default -- *not* use the `diceware standard
-	     wordlist`_ (which contains 7,776 words), because
-	     computers prefer powers of two and we use the Python
-	     standard lib random source by default (we do not want to
-	     waste entropy).
+	     wordlist`_, but the `long EFF wordlist`_ (see below), because it is
+         more secure and more comfortable to use.
 
 	     But the "original" list is included in diceware as well
 	     and you can pick it with the ``-w en_orig`` option.  You
@@ -20,9 +18,9 @@ good choice for usual private use.
 
 Currently we provide the following lists:
 
-- `en_securedrop` (8192 words, default)
+- `en_securedrop` (8192 words)
 
-  By default we use a hand-crafted `en_securedrop` wordlist provided
+  We provide a hand-crafted `en_securedrop` wordlist provided
   by `@Heartsucker`_. It contains 8,192 english words and
   phrases. This list is based on the `diceware standard wordlist`_ and
   extended to offer better memorizable words. Please see
@@ -37,14 +35,13 @@ Currently we provide the following lists:
   wordlist for use with binary-geared entities like computers or
   nerds.
 
-- `en_eff` (7776 words)
+- `en_eff` (7776 words, default)
 
-  This is the `long EFF wordlist`_ as published by the `Electronic
-  Frontier Foundation`_ in mid-2016. They put real `scientific
-  effort`_ into the creation of this list which might considerably
-  ease the use of passphrases generated with it. When using real dice
-  (or other six-based randomness generators) use is definitely
-  recommended!
+  This is the `long EFF wordlist`_ as published by the `Electronic Frontier
+  Foundation`_ in mid-2016 and used by default. They put real `scientific
+  effort`_ into the creation of this list which might considerably ease the
+  use of passphrases generated with it. When using real dice (or other
+  six-based randomness generators) use is definitely recommended!
 
   Please note, that this is currently the only list, that provides the
   `prefix property`_. That means it contains no word which is a prefix
