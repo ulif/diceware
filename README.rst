@@ -79,8 +79,7 @@ Once installed, use ``--help`` to list all available options::
     -w NAME, --wordlist NAME
                           Use words from this wordlist. Possible values: `en',
                           `en_eff', `en_orig', `en_securedrop'. Wordlists are
-                          stored in the folder displayed below. Default:
-                          en_securedrop
+                          stored in the folder displayed below. Default: en_eff
     -v, --verbose         Be verbose. Use several times for increased verbosity.
     --version             output version information and exit.
 
@@ -167,10 +166,13 @@ rolls required.
 We support even sources of randomness from other packages. See the
 `documentation <https://diceware.readthedocs.io/>`_ for more details.
 
-`diceware` comes with an English wordlist provided by Heartsucker,
-which will be used by default and contains 8192 different words. This
-list is based off the original diceware list written by Arnold G.
-Reinhold.
+`diceware` comes with an English wordlist provided by the EFF_, which will be
+used by default and contains 7776 (=6^6) different words. This list is stored
+as ``en_eff``.
+
+Additionally `diceware` comes with an English wordlist provided by Heartsucker,
+which contains 8192 different words. This list is based off the original
+diceware list written by Arnold G. Reinhold.
 
 Both the original and 8k diceware wordlists by Mr. Reinhold are provided.
 You can enable a certain (installed) wordlist with the ``-w`` option::
@@ -208,7 +210,7 @@ directory. This file could look like this::
   specials = 2
   delimiter = "MYDELIMITER"
   randomsource = "system"
-  wordlist = "en"
+  wordlist = "en_securedrop"
 
 The options names have to match long argument names, as output by
 ``--help``. The values set must meet the requirements valid for
