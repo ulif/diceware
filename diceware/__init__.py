@@ -110,12 +110,12 @@ def handle_options(args):
             "Get randomness from this source. Possible values: `%s'. "
             "Default: system" % "', `".join(sorted(random_sources))))
     parser.add_argument(
-        '-w', '--wordlist', default='en_securedrop', choices=wordlist_names,
+        '-w', '--wordlist', default='en_eff', choices=wordlist_names,
         metavar="NAME",
         help=(
             "Use words from this wordlist. Possible values: `%s'. "
             "Wordlists are stored in the folder displayed below. "
-            "Default: en_securedrop" % "', `".join(wordlist_names)))
+            "Default: en_eff" % "', `".join(wordlist_names)))
     realdice_group = parser.add_argument_group(
         "Arguments related to `realdice' randomsource",
         )

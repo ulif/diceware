@@ -42,7 +42,7 @@ class TestHandleOptions(object):
         assert options.version is False
         assert options.delimiter == ""
         assert options.randomsource == "system"
-        assert options.wordlist == "en_securedrop"
+        assert options.wordlist == "en_eff"
         assert options.verbose == 0
 
     def test_handle_options_infile(self, tmpdir):

@@ -33,7 +33,7 @@ OPTIONS_DEFAULTS = dict(
     delimiter="",
     randomsource="system",
     verbose=0,
-    wordlist="en_securedrop",
+    wordlist="en_eff",
     dice_sides=6,
     )
 
