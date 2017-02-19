@@ -7,6 +7,7 @@ Changes
 - Fixed #33. Make `en_eff` the new default wordlist. This results in slightly
   decreased entropy per word (12.92 bits instead of 13.0), but provides prefix
   code and better memorizable words. Thanks to @anarcat for the suggestion.
+- Support Python 3.6.
 
 
 0.9.1 (2016-12-24)
