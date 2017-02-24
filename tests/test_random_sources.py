@@ -68,6 +68,13 @@ class TestSystemRandomSource(object):
         assert num > 0
 
 
+def fake_input_values(values, patch):
+    input_mock = InputMock(values)
+    patch.setattr(
+        "diceware.random_sources.input_func", input_mock)
+    return input_mock
+
+
 class TestRealDiceRandomSource(object):
 
     @classmethod
@@ -83,7 +90,7 @@ class TestRealDiceRandomSource(object):
         # 'bar') and make sure that output is captured.
         # This test is just a hint, how input could be faked in real tests.
         # It can (and should) be removed if not needed any more.
-        self.fake_input_values(["foo", "bar"], monkeypatch)
+        fake_input_values(["foo", "bar"], monkeypatch)
         # late import, because we need the patched version
         from diceware.random_sources import input_func
         result1 = input_func("Enter some values: ")
