@@ -11,6 +11,16 @@ from diceware.random_sources import (
     )
 
 
+@pytest.fixture(scope="function")
+def fake_input(request, monkeypatch):
+    def handler(values):
+        mock = InputMock(values)
+        monkeypatch.setattr(
+            "diceware.random_sources.input_func", mock)
+        return mock
+    return handler
+
+
 class TestSystemRandomSource(object):
 
     def test_options_are_stored(self):
@@ -66,20 +76,6 @@ class TestSystemRandomSource(object):
                 break
             num -= 1
         assert num > 0
-
-
-def fake_input_values(values, patch):
-    input_mock = InputMock(values)
-    patch.setattr(
-        "diceware.random_sources.input_func", input_mock)
-    return input_mock
-
-
-@pytest.fixture(scope="function")
-def fake_input(request, monkeypatch):
-    def handler(values):
-        return fake_input_values(values, monkeypatch)
-    return handler
 
 
 class TestRealDiceRandomSource(object):
