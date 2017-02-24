@@ -255,7 +255,7 @@ class TestRealDiceRandomSource(object):
             assert "roll 2 dice" in out
             assert picked == 1
 
-    def test_dice_sides_respected(self, capsys, fake_input):
+    def test_choice_respects_dice_sides(self, capsys, fake_input):
         # we use the number of dice sides given by options dict.
         fake_input(["1", "2"])
         # A Namespace, not a dict, is passed to the constructor.
