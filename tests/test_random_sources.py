@@ -76,7 +76,7 @@ def fake_input_values(values, patch):
 
 
 @pytest.fixture(scope="function")
-def fake_input_handler(request, monkeypatch):
+def fake_input(request, monkeypatch):
     def handler(values):
         return fake_input_values(values, monkeypatch)
     return handler
@@ -84,12 +84,12 @@ def fake_input_handler(request, monkeypatch):
 
 class TestRealDiceRandomSource(object):
 
-    def test_raw_input_patch_works(self, capsys, fake_input_handler):
+    def test_raw_input_patch_works(self, capsys, fake_input):
         # make sure our fake input works. We try to fake input ('foo',
         # 'bar') and make sure that output is captured.
         # This test is just a hint, how input could be faked in real tests.
         # It can (and should) be removed if not needed any more.
-        fake_input_handler(["foo", "bar"])
+        fake_input(["foo", "bar"])
         # late import, because we need the patched version
         from diceware.random_sources import input_func
         result1 = input_func("Enter some values: ")
