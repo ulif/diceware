@@ -120,53 +120,53 @@ class TestRealDiceRandomSource(object):
         assert 'realdice' in sources_dict
         assert sources_dict['realdice'] == RealDiceRandomSource
 
-    def test_choice_accepts_lists_of_numbers(self, monkeypatch):
+    def test_choice_accepts_lists_of_numbers(self, fake_input):
         # the choice() method accepts lists of numbers
-        fake_input_values(["1"], monkeypatch)
+        fake_input(["1"])
         src = RealDiceRandomSource(None)
         assert src.choice([11, 12, 13, 14, 15, 16]) == 11
 
-    def test_choice_accepts_tuples_of_numbers(self, monkeypatch):
+    def test_choice_accepts_tuples_of_numbers(self, fake_input):
         # the choice() method accepts tuples of numbers
-        fake_input_values(["1"], monkeypatch)
+        fake_input(["1"])
         src = RealDiceRandomSource(None)
         assert src.choice((11, 12, 13, 14, 15, 16), ) == 11
 
-    def test_choice_accepts_list_of_chars(self, monkeypatch):
+    def test_choice_accepts_list_of_chars(self, fake_input):
         # the choice() method accepts lists of chars
-        fake_input_values(["1"], monkeypatch)
+        fake_input(["1"])
         src = RealDiceRandomSource(None)
         assert src.choice(['a', 'b', 'c', 'd', 'e', 'f']) == 'a'
 
-    def test_choice_accepts_list_of_strings(self, monkeypatch):
+    def test_choice_accepts_list_of_strings(self, fake_input):
         # the choice() method accepts lists of strings
-        fake_input_values(["1"], monkeypatch)
+        fake_input(["1"])
         src = RealDiceRandomSource(None)
         assert src.choice(
             ['val1', 'val2', 'val3', 'val4', 'val5', 'val6']) == "val1"
 
-    def test_choice_num_of_dice_for_seq_len36(self, monkeypatch):
+    def test_choice_num_of_dice_for_seq_len36(self, fake_input):
         # choice() requires two dice for a sequence len of 6**2
-        fake_input_values(["1", "2"], monkeypatch)
+        fake_input(["1", "2"])
         src = RealDiceRandomSource(None)
         sequence = list(range(6 ** 2))
         expected_index = 6 * (1 - 1) + (2 - 1)     # = 6 x roll_1 + roll_2 - 1
         assert src.choice(sequence) == sequence[expected_index]
 
-    def test_choice_num_of_dice_for_seq_len216(self, monkeypatch):
+    def test_choice_num_of_dice_for_seq_len216(self, fake_input):
         # choice() requires three dice for a sequence len of 6**3
-        fake_input_values(["1", "2", "3"], monkeypatch)
+        fake_input(["1", "2", "3"])
         src = RealDiceRandomSource(None)
         sequence = list(range(6 ** 3))        # 216
         # = 6^2 * (roll_1 - 1) + 6^1 * (roll_2 - 1) + (roll_3 - 1)
         expected_index = 0 + 6 + 3 - 1
         assert src.choice(sequence) == sequence[expected_index]
 
-    def test_hint_if_entropy_is_decreased(self, monkeypatch, capsys):
+    def test_hint_if_entropy_is_decreased(self, fake_input, capsys):
         # if len of choice is not a multiple of 6, entropy is decreased
         # (not the whole sequence is taken into consideration). We get
         # a warning in that case.
-        fake_input_values(["1"], monkeypatch)
+        fake_input(["1"])
         src = RealDiceRandomSource(None)
         picked = src.choice([1, 2, 3, 4, 5, 6, 7])
         assert picked == 1
@@ -175,9 +175,9 @@ class TestRealDiceRandomSource(object):
         assert "Using only first 6 of 7 words" in out
         assert err == ""
 
-    def test_no_hint_if_entropy_is_not_decreased(self, monkeypatch, capsys):
+    def test_no_hint_if_entropy_is_not_decreased(self, fake_input, capsys):
         # we do not issue the entropy warning if not neccessary
-        fake_input_values(["1"] * 6, monkeypatch)
+        fake_input(["1"] * 6)
         src = RealDiceRandomSource(None)
         picked1 = src.choice([1, 2, 3, 4, 5, 6])
         picked2 = src.choice(range(1, 6 ** 2 + 1))
@@ -189,22 +189,22 @@ class TestRealDiceRandomSource(object):
         assert "entropy is reduced" not in out
         assert err == ""
 
-    def test_non_numbers_as_input_are_rejected(self, monkeypatch):
+    def test_non_numbers_as_input_are_rejected(self, fake_input):
         # Users might input non-numbers. We ask again then.
-        fake_input_values(["no-number", "", "1"], monkeypatch)
+        fake_input(["no-number", "", "1"])
         src = RealDiceRandomSource(None)
         assert src.choice([1, 2, 3, 4, 5, 6]) == 1
 
-    def test_choice_input_lower_value_borders(self, monkeypatch):
+    def test_choice_input_lower_value_borders(self, fake_input):
         # choice() does not accept "0" but it accepts "1"
-        fake_input_values(["0", "1"], monkeypatch)
+        fake_input(["0", "1"])
         src = RealDiceRandomSource(None)
         sequence = (1, 2, 3, 4, 5, 6)
         assert src.choice(sequence) == 1
 
-    def test_choice_input_upper_value_borders(self, monkeypatch):
+    def test_choice_input_upper_value_borders(self, fake_input):
         # choice() does not accept "7" but it accepts "6"
-        fake_input_values(["7", "6"], monkeypatch)
+        fake_input(["7", "6"])
         src = RealDiceRandomSource(None)
         sequence = (1, 2, 3, 4, 5, 6)
         assert src.choice(sequence) == 6
@@ -233,35 +233,35 @@ class TestRealDiceRandomSource(object):
         out, err = capsys.readouterr()
         assert "Please roll 5 dice (or a single dice 5 times)." in out
 
-    def test_sequence_less_than_dice_sides(self, capsys, monkeypatch):
+    def test_sequence_less_than_dice_sides(self, capsys, fake_input):
         # Test to see whether we can use a n-sided die to choose from
         # a sequence with less than n items
         src = RealDiceRandomSource(None)
         src.dice_sides = 6
         # A length of 1 requires no rolls
-        fake_input_values(["1"], monkeypatch)
+        fake_input(["1"])
         picked = src.choice([1])
         out, err = capsys.readouterr()
         assert "roll" not in out
         assert picked == 1
         # A length of 2,3 only requires 1 roll
         for choice_length in (2, 3):
-            fake_input_values(["1"], monkeypatch)
+            fake_input(["1"])
             picked = src.choice(range(1, choice_length + 1))
             out, err = capsys.readouterr()
             assert "roll 1 dice" in out
             assert picked == 1
         # A length of 4,5 requires 2 rolls
         for choice_length in (4, 5):
-            fake_input_values(["1", "1"], monkeypatch)
+            fake_input(["1", "1"])
             picked = src.choice(range(1, choice_length + 1))
             out, err = capsys.readouterr()
             assert "roll 2 dice" in out
             assert picked == 1
 
-    def test_dice_sides_respected(self, capsys, monkeypatch):
+    def test_dice_sides_respected(self, capsys, fake_input):
         # we use the number of dice sides given by options dict.
-        fake_input_values(["1", "2"], monkeypatch)
+        fake_input(["1", "2"])
         # A Namespace, not a dict, is passed to the constructor.
         options = argparse.Namespace(dice_sides=2)  # a coin
         src = RealDiceRandomSource(options)
@@ -272,10 +272,9 @@ class TestRealDiceRandomSource(object):
         assert picked == 'b'
 
     def test_main_with_realdice_source(
-            self, argv_handler, capsys, monkeypatch):
+            self, argv_handler, capsys, fake_input):
         # we can run main with `realdice` source of randomness
-        fake_input_values(
-            ["1", "3"], monkeypatch)
+        fake_input(["1", "3"])
         sys.stdin = StringIO("w1\nw2\nw3\nw4\nw5\nw6\n")
         sys.argv = ['diceware', '-r', 'realdice', '-n', '2', '-d', '#', '-']
         main()
