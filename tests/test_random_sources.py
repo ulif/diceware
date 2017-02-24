@@ -229,9 +229,9 @@ class TestRealDiceRandomSource(object):
         out, err = capsys.readouterr()
         assert "Please roll 5 dice (or a single dice 5 times)." in out
 
-    def test_sequence_less_than_dice_sides(self, capsys, fake_input):
-        # Test to see whether we can use a n-sided die to choose from
-        # a sequence with less than n items
+    def test_choice_copes_with_small_sequences(self, capsys, fake_input):
+        # We handle sequences correctly, that have less elements than the used
+        # dice sides.
         src = RealDiceRandomSource(None)
         src.dice_sides = 6
         # A length of 1 requires no rolls
