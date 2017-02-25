@@ -229,17 +229,20 @@ class TestRealDiceRandomSource(object):
         out, err = capsys.readouterr()
         assert "Please roll 5 dice (or a single dice 5 times)." in out
 
-    def test_choice_copes_with_small_sequences(self, capsys, fake_input):
-        # We handle sequences correctly, that have less elements than the used
-        # dice sides.
+    def test_choice_copes_with_sequence_len_1(self, capsys, fake_input):
+        # choice copes with sequences of len 1
         src = RealDiceRandomSource(None)
-        src.dice_sides = 6
-        # A length of 1 requires no rolls
         fake_input(["1"])
         picked = src.choice([1])
         out, err = capsys.readouterr()
         assert "roll" not in out
         assert picked == 1
+
+    def test_choice_copes_with_small_sequences(self, capsys, fake_input):
+        # We handle sequences correctly, that have less elements than the used
+        # dice sides.
+        src = RealDiceRandomSource(None)
+        src.dice_sides = 6
         # A length of 2,3 only requires 1 roll
         for choice_length in (2, 3):
             fake_input(["1"])
