@@ -258,6 +258,22 @@ class TestRealDiceRandomSource(object):
             assert "roll 2 dice" in out
             assert picked == 2
 
+    def test_choice_distributes_equally_on_short_seq(self, fake_input):
+        # we distribute nearly equally over sequences shorter than
+        # dice_sides**n
+        src = RealDiceRandomSource(None)
+        src.dice_sides = 4
+        dist = [0, 0, 0]
+        fake_input(
+                ["1", "1", "1", "2", "1", "3", "1", "4",
+                 "2", "1", "2", "2", "2", "3", "2", "4",
+                 "3", "1", "3", "2", "3", "3", "3", "4",
+                 "4", "1", "4", "2", "4", "3", "4", "4"])
+        for x in range(16):
+            picked = src.choice([1, 2, 3])
+            dist[picked - 1] += 1
+        assert dist == [6, 5, 5]
+
     def test_choice_respects_dice_sides(self, capsys, fake_input):
         # we use the number of dice sides given by options dict.
         fake_input(["1", "2"])
