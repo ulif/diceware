@@ -274,6 +274,18 @@ class TestRealDiceRandomSource(object):
             dist[picked - 1] += 1
         assert dist == [6, 5, 5]
 
+    def test_choice_distributes_equally(self, fake_input):
+        # we distribute nearly equally over sequences sized
+        # dice_sides**n
+        src = RealDiceRandomSource(None)
+        src.dice_sides = 3
+        dist = [0, 0, 0]
+        fake_input(["1", "2", "3"])
+        for x in range(3):
+            picked = src.choice([1, 2, 3])
+            dist[picked - 1] += 1
+        assert dist == [1, 1, 1]
+
     def test_choice_respects_dice_sides(self, capsys, fake_input):
         # we use the number of dice sides given by options dict.
         fake_input(["1", "2"])
