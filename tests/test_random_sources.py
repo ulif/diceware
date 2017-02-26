@@ -252,11 +252,11 @@ class TestRealDiceRandomSource(object):
             assert picked == 1
         # A length of 4,5 requires 2 rolls
         for choice_length in (4, 5):
-            fake_input(["1", "1"])
+            fake_input(["1", "2"])
             picked = src.choice(range(1, choice_length + 1))
             out, err = capsys.readouterr()
             assert "roll 2 dice" in out
-            assert picked == 1
+            assert picked == 2
 
     def test_choice_respects_dice_sides(self, capsys, fake_input):
         # we use the number of dice sides given by options dict.
