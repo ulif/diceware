@@ -5,6 +5,7 @@ import sys
 import argparse
 from conftest import InputMock
 from io import StringIO
+from itertools import product, chain
 from diceware import main
 from diceware.random_sources import (
     SystemRandomSource, RealDiceRandomSource,
@@ -265,10 +266,8 @@ class TestRealDiceRandomSource(object):
         src.dice_sides = 4
         dist = [0, 0, 0]
         fake_input(
-                ["1", "1", "1", "2", "1", "3", "1", "4",
-                 "2", "1", "2", "2", "2", "3", "2", "4",
-                 "3", "1", "3", "2", "3", "3", "3", "4",
-                 "4", "1", "4", "2", "4", "3", "4", "4"])
+             list(chain.from_iterable(
+                 product(["1", "2", "3", "4"], repeat=2))))
         for x in range(16):
             picked = src.choice([1, 2, 3])
             dist[picked - 1] += 1
