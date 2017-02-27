@@ -309,6 +309,13 @@ class TestRealDiceRandomSource(object):
         assert "Please roll 2 dice" in out
         assert picked == 'b'
 
+    def test_get_num_rolls(self):
+        # we can compute the number of rolls required for a given sequence
+        # length.
+        src = RealDiceRandomSource(argparse.Namespace(dice_sides=2))
+        assert src.get_num_rolls(2) == 1
+        assert src.get_num_rolls(2**12) == 12
+
     def test_main_with_realdice_source(
             self, argv_handler, capsys, fake_input):
         # we can run main with `realdice` source of randomness
