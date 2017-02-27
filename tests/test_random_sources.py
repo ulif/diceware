@@ -315,6 +315,8 @@ class TestRealDiceRandomSource(object):
         src = RealDiceRandomSource(argparse.Namespace(dice_sides=2))
         assert src.get_num_rolls(2) == 1
         assert src.get_num_rolls(2**12) == 12
+        assert src.get_num_rolls(3) == 2
+        assert src.get_num_rolls(2**12 + 1) == 13
 
     def test_main_with_realdice_source(
             self, argv_handler, capsys, fake_input):

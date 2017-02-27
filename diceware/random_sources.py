@@ -154,7 +154,7 @@ class RealDiceRandomSource(object):
         return
 
     def get_num_rolls(self, seq_len):
-        return int(math.log(seq_len, self.dice_sides))
+        return math.ceil(math.log(seq_len, self.dice_sides))
 
     def choice(self, sequence):
         """Pick one item out of `sequence`.
