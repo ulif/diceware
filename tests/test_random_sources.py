@@ -272,7 +272,7 @@ class TestRealDiceRandomSource(object):
         for x in range(16):
             picked = src.choice([1, 2, 3])
             dist[picked - 1] += 1
-        assert dist == [6, 5, 5]
+        assert dist == [6, 5, 5]  # this is not fair, is it?
 
     def test_choice_distributes_equally(self, fake_input):
         # we distribute nearly equally over sequences sized
@@ -285,6 +285,18 @@ class TestRealDiceRandomSource(object):
             picked = src.choice([1, 2, 3])
             dist[picked - 1] += 1
         assert dist == [1, 1, 1]
+
+    def test_choice_distributes_equally_on_long_seq(self, fake_input):
+        # we distribute nearly equally over sequences longer than
+        # dice_sides**n
+        src = RealDiceRandomSource(None)
+        src.dice_sides = 2
+        dist = [0, 0, 0]
+        fake_input(["1", "1", "1", "2", "2", "1", "2", "2"])
+        for x in range(8):
+            picked = src.choice([1, 2, 3])
+            dist[picked - 1] += 1
+        assert dist == [4, 4, 0]
 
     def test_choice_respects_dice_sides(self, capsys, fake_input):
         # we use the number of dice sides given by options dict.
