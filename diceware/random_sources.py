@@ -163,7 +163,7 @@ class RealDiceRandomSource(object):
         """
         if len(sequence) == 1:
             return sequence[0]  # no need to roll dice.
-        num_rolls = int(math.log(len(sequence), self.dice_sides))
+        num_rolls = self.get_num_rolls(len(sequence))
         if num_rolls < 1:
             # If this happens, there are less values in the sequence to
             # choose from than there are dice sides.
