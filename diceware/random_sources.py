@@ -154,6 +154,8 @@ class RealDiceRandomSource(object):
         return
 
     def get_num_rolls(self, seq_len):
+        """Compute how many dice rolls we need to pick a value from a sequence
+        """
         return math.ceil(math.log(seq_len, self.dice_sides))
 
     def choice(self, sequence):
