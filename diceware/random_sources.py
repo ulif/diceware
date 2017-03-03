@@ -156,7 +156,17 @@ class RealDiceRandomSource(object):
     def get_num_rolls(self, seq_len):
         """Compute how many dice rolls we need to pick a value from a sequence
         """
-        return math.ceil(math.log(seq_len, self.dice_sides))
+        num_rolls = int(math.log(seq_len, self.dice_sides))
+        if num_rolls < 1:
+            # If this happens, there are less values in the sequence to
+            # choose from than there are dice sides.
+            # Check whether len(sequence) is a factor of dice_sides
+            if self.dice_sides % seq_len == 0:
+                num_rolls = 1
+            else:
+                # otherwise We will perform one extra roll and apply modulo
+                num_rolls = 2
+        return num_rolls
 
     def choice(self, sequence):
         """Pick one item out of `sequence`.
@@ -164,15 +174,6 @@ class RealDiceRandomSource(object):
         if len(sequence) == 1:
             return sequence[0]  # no need to roll dice.
         num_rolls = self.get_num_rolls(len(sequence))
-        if num_rolls < 1:
-            # If this happens, there are less values in the sequence to
-            # choose from than there are dice sides.
-            # Check whether len(sequence) is a factor of dice_sides
-            if self.dice_sides % len(sequence) == 0:
-                num_rolls = 1
-            else:
-                # otherwise We will perform one extra roll and apply modulo
-                num_rolls = 2
         self.pre_check(num_rolls, sequence)
         result = 0
         for i in range(num_rolls, 0, -1):
