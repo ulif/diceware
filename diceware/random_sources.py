@@ -165,7 +165,7 @@ class RealDiceRandomSource(object):
                 num_rolls = 1
             else:
                 # otherwise We will perform one extra roll and apply modulo
-                num_rolls = 2
+                num_rolls = 1
         return num_rolls
 
     def choice(self, sequence):
@@ -175,13 +175,17 @@ class RealDiceRandomSource(object):
             return sequence[0]  # no need to roll dice.
         num_rolls = self.get_num_rolls(len(sequence))
         self.pre_check(num_rolls, sequence)
-        result = 0
-        for i in range(num_rolls, 0, -1):
-            rolled = None
-            while rolled not in [
-                    str(x) for x in range(1, self.dice_sides + 1)]:
-                rolled = input_func(
-                    "What number shows dice number %s? " % (num_rolls - i + 1))
-            result += ((self.dice_sides ** (i - 1)) * (int(rolled) - 1))
-            result = result % len(sequence)
+        repeat = True
+        while repeat:
+            result = 0
+            for i in range(num_rolls, 0, -1):
+                rolled = None
+                while rolled not in [
+                        str(x) for x in range(1, self.dice_sides + 1)]:
+                    rolled = input_func(
+                        "What number shows dice number %s? " % (
+                            num_rolls - i + 1))
+                result += ((self.dice_sides ** (i - 1)) * (int(rolled) - 1))
+            if result < len(sequence):
+                repeat = False
         return sequence[result]

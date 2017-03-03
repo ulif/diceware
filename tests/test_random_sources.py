@@ -256,22 +256,26 @@ class TestRealDiceRandomSource(object):
             fake_input(["1", "2"])
             picked = src.choice(range(1, choice_length + 1))
             out, err = capsys.readouterr()
-            assert "roll 2 dice" in out
-            assert picked == 2
+            assert "roll 1 dice" in out
+            assert picked == 1
 
     def test_choice_distributes_equally_on_short_seq(self, fake_input):
-        # we distribute nearly equally over sequences shorter than
+        # we distribute equally over sequences shorter than
         # dice_sides**n
         src = RealDiceRandomSource(None)
         src.dice_sides = 4
         dist = [0, 0, 0]
-        fake_input(
-             list(chain.from_iterable(
-                 product(["1", "2", "3", "4"], repeat=2))))
-        for x in range(16):
+        # a list of pairs in a row: 4-4 - 4-3 - 4-2 - ... - 1-3 - 1-2 - 1-1
+        rolled_values = list(chain.from_iterable(
+            product(["4", "3", "2", "1"], repeat=2)))
+        # 4 is not a valid roll value, must do a new roll then
+        num_valid = len(rolled_values) - rolled_values.count("4")
+        fake_input(rolled_values)
+        fake_input(rolled_values)
+        for x in range(num_valid):
             picked = src.choice([1, 2, 3])
             dist[picked - 1] += 1
-        assert dist == [6, 5, 5]  # this is not fair, is it?
+        assert dist == [8, 8, 8]
 
     def test_choice_distributes_equally(self, fake_input):
         # we distribute nearly equally over sequences sized
