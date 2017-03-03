@@ -160,12 +160,7 @@ class RealDiceRandomSource(object):
         if num_rolls < 1:
             # If this happens, there are less values in the sequence to
             # choose from than there are dice sides.
-            # Check whether len(sequence) is a factor of dice_sides
-            if self.dice_sides % seq_len == 0:
-                num_rolls = 1
-            else:
-                # otherwise We will perform one extra roll and apply modulo
-                num_rolls = 1
+            num_rolls = 1
         return num_rolls
 
     def choice(self, sequence):
