@@ -277,6 +277,22 @@ class TestRealDiceRandomSource(object):
             dist[picked - 1] += 1
         assert dist == [8, 8, 8]
 
+    def test_choice_prints_hint_on_repeated_rolls(self, capsys, fake_input):
+        # on short sequences (shorter than number of dice sides)
+        # we give users hints to repeat dice rolls
+        src = RealDiceRandomSource(None)
+        src.dice_sides = 4
+        fake_input(["2", "3"])  # no value out of bounds (> 3)
+        picked = src.choice([1, 2, 3])
+        out, err = capsys.readouterr()
+        assert picked == 2
+        assert out.count("Please roll dice again") == 0
+        fake_input(["4", "4", "1"])
+        picked = src.choice([1, 2, 3])
+        out, err = capsys.readouterr()
+        assert picked == 1
+        assert out.count("Please roll dice again") == 2
+
     def test_choice_distributes_equally(self, fake_input):
         # we distribute nearly equally over sequences sized
         # dice_sides**n

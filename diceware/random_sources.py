@@ -183,4 +183,6 @@ class RealDiceRandomSource(object):
                 result += ((self.dice_sides ** (i - 1)) * (int(rolled) - 1))
             if result < len(sequence):
                 repeat = False
+            else:
+                print("Value out of range. Please roll dice again.")
         return sequence[result]
