@@ -271,7 +271,6 @@ class TestRealDiceRandomSource(object):
         # 4 is not a valid roll value, must do a new roll then
         num_valid = len(rolled_values) - rolled_values.count("4")
         fake_input(rolled_values)
-        fake_input(rolled_values)
         for x in range(num_valid):
             picked = src.choice([1, 2, 3])
             dist[picked - 1] += 1
