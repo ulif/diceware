@@ -9,6 +9,7 @@ Changes
   code and better memorizable words. Thanks to @anarcat for the suggestion.
 - Fixed #35. Make `realdice` source of randomness provide an equal distribution
   of roll numbers even for sequences shorter than number of dice sides.
+- Added a man page.
 - Support Python 3.6.
 
 
