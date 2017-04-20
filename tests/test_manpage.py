@@ -30,4 +30,3 @@ class TestManpage(object):
         help_text = help_text.replace('<WORDLISTS-DIR>', '')
         for word in help_text.split():
             assert word in manpage
-
