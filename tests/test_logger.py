@@ -20,9 +20,10 @@ def test_get_logger_by_name():
 
 def test_configure():
     # we can configure the logger.
+    logger.setLevel(23)
     my_logger = logging.getLogger("ulif.diceware")
     configure(None)
-    assert my_logger.level == logging.NOTSET
+    assert my_logger.level == 23
     configure(0)
     assert my_logger.level == logging.CRITICAL
     configure(1)
