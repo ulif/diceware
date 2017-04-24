@@ -54,6 +54,8 @@ def configure(verbosity=None):
 
     `verbosity` sets the diceware logger verbosity. ``0`` enables info
     mode, while all numbers > 2 enable debug mode.
+
+    If no `verbosity` is given, we leave the logging level untouched.
     """
     if verbosity is None:
         return
