@@ -21,6 +21,7 @@ Changes
 - Fixed #31, broken `realdice` source of randomness. `argparse` related bug,
   Bug was discovered and fixed by @LogosOfJ, thanks a lot!
 - Fixed #29. Tell about code prefix problem in README.
+- Activated logging. Using `verbose` will result in additional output.
 
 
 0.9 (2016-09-14)

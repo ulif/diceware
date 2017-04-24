@@ -20,6 +20,7 @@ import pkg_resources
 import sys
 from random import SystemRandom
 from diceware.config import get_config_dict
+from diceware.logger import configure
 from diceware.wordlist import (
     WordList, get_wordlist_path, WORDLISTS_DIR, get_wordlist_names,
     )
@@ -204,6 +205,7 @@ def main(args=None):
     if args is None:
         args = sys.argv[1:]
     options = handle_options(args)
+    configure(options.verbose)
     if options.version:
         print_version()
         raise SystemExit(0)
