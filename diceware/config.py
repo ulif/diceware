@@ -20,9 +20,9 @@ direct API calls.
 
 """
 try:
-    import configparser                  # Python 3.x
-except ImportError:                      # pragma: no cover
-    import ConfigParser as configparser  # Python 2.x
+    from configparser import ConfigParser as SafeParser      # Python 3.x
+except ImportError:                                         # pragma: no cover
+    from ConfigParser import SafeConfigParser as SafeParser  # Python 2.x
 import os
 
 
@@ -57,7 +57,7 @@ def get_configparser(path_list=None):
     """
     if path_list is None:
         path_list = valid_locations()
-    parser = configparser.SafeConfigParser()
+    parser = SafeParser()
     found = parser.read(path_list)
     return found, parser
 

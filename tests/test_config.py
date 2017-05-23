@@ -1,7 +1,7 @@
 import os
 from diceware.config import (
     OPTIONS_DEFAULTS, valid_locations, get_configparser, get_config_dict,
-    configparser,
+    SafeParser,
     )
 
 
@@ -147,7 +147,7 @@ class TestSampleIni(object):
         # make sure the set of options in sample file is complete
         sample_path = os.path.join(
             os.path.dirname(__file__), 'sample_dot_diceware.ini')
-        parser = configparser.SafeConfigParser()
+        parser = SafeParser()
         found = parser.read([sample_path, ])
         assert sample_path in found
         assert parser.has_section('diceware')
@@ -159,7 +159,7 @@ class TestSampleIni(object):
         # ensure we have no obsolete/unused options in sample
         sample_path = os.path.join(
             os.path.dirname(__file__), 'sample_dot_diceware.ini')
-        parser = configparser.SafeConfigParser()
+        parser = SafeParser()
         parser.read([sample_path, ])
         for option in parser.options('diceware'):
             assert option in OPTIONS_DEFAULTS.keys()
