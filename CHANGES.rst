@@ -11,6 +11,8 @@ Changes
   of roll numbers even for sequences shorter than number of dice sides.
 - Added a man page.
 - Support Python 3.6.
+- Import `ConfigParser` instead of `SafeConfigParser` if the latter is an alias
+  of the former.
 
 
 0.9.1 (2016-12-24)
