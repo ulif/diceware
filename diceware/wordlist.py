@@ -125,6 +125,12 @@ class WordList(object):
                 self.fd.seek(0)
         self.signed = self.is_signed()
 
+    def __del__(self):
+        try:
+            self.fd.close()
+        except:
+            pass
+
     def __iter__(self):
         self.fd.seek(0)
         if self.signed:
