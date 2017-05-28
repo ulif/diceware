@@ -124,12 +124,14 @@ class WordList(object):
                 self.fd.write(path_or_filelike.read())
                 self.fd.seek(0)
         self.signed = self.is_signed()
+        self._self_opened = self.fd is path_or_filelike
 
     def __del__(self):
-        try:
-            self.fd.close()
-        except:
-            pass
+        if not self._self_opened:
+            try:
+                self.fd.close()
+            except:
+                pass
 
     def __iter__(self):
         self.fd.seek(0)
