@@ -124,10 +124,10 @@ class WordList(object):
                 self.fd.write(path_or_filelike.read())
                 self.fd.seek(0)
         self.signed = self.is_signed()
-        self._self_opened = self.fd is path_or_filelike
+        self._self_opened = self.fd is not path_or_filelike
 
     def __del__(self):
-        if not self._self_opened:
+        if self._self_opened:
             try:
                 self.fd.close()
             except:
