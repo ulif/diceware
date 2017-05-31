@@ -51,9 +51,7 @@ class TestHandleOptions(object):
         with open('mywords', 'w') as fd:
             fd.write('one\ntwo\n')
         options = handle_options(['mywords', ])
-        assert options.infile is not None
-        assert options.infile.read() == 'one\ntwo\n'
-        options.infile.close()
+        assert options.infile == 'mywords'
 
     def test_handle_options_version(self):
         # we can ask for version infos
