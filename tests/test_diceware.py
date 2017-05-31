@@ -243,13 +243,6 @@ class TestDicewareModule(object):
         phrase = get_passphrase(options)
         assert " " in phrase
 
-    def test_get_passphrase_wordlist_fd(self):
-        #  we can pass in an own wordlist
-        options = handle_options(args=[])
-        options.infile = StringIO("word1\n")
-        phrase = get_passphrase(options)
-        assert "Word1" in phrase
-
     def test_print_version(self, capsys):
         # we can print version infos
         print_version()
