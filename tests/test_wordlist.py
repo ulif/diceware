@@ -169,15 +169,6 @@ class TestWordList(object):
         w_list = WordList(str(in_file))
         assert w_list.fd is not None
 
-    def test_create_accepts_open_file(self, tmpdir):
-        # if we pass in an open file, it will be used
-        in_file = tmpdir.mkdir("work").join("mywordlist")
-        in_file.write("foo\n")
-        with open(str(in_file), "r") as my_open_file:
-            w_list = WordList(my_open_file)
-            assert w_list.fd is not None
-            assert w_list.path is None
-
     def test_create_accepts_fd_with_broken_seek(self, argv_handler):
         # we accept files that have no working seek() (like sys.stdin)
         fd = StringIO(b"word1\nword2\n".decode("utf-8"))
