@@ -331,11 +331,8 @@ class TestWordList(object):
         # we can tell if a wordlist is not signed
         in_file = tmpdir.mkdir("work").join("mywordlist")
         in_file.write("a\nb\n")
-        with open(in_file.strpath, 'r') as fd:
-            w_list = WordList(fd)
-            w_list.fd = fd
-            result = w_list.is_signed()
-        assert result is False
+        w_list = WordList(in_file.strpath)
+        assert w_list.is_signed() is False
 
     def test_refine_entry_strips(self, wordlist):
         # we strip() entries
