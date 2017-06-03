@@ -277,8 +277,7 @@ class TestWordList(object):
         # we can process cryptogrphically signed files
         in_path = os.path.join(
             os.path.dirname(__file__), "sample_signed_wordlist.asc")
-        with open(in_path, 'r') as fd:
-            result = list(WordList(fd))
+        result = list(WordList(in_path))
         assert ["foo", "bar", "-dash-at-start", "baz"] == result
 
     def test_get_signed_wordlist_handles_en_orig(self):
@@ -311,10 +310,9 @@ class TestWordList(object):
         # we can get a wordlist several times also if it is a fd.
         in_file = tmpdir.mkdir("work").join("mywordlist")
         in_file.write("foo\nbar\n")
-        with open(str(in_file), "r") as fd:
-            w_list = WordList(fd)
-            list1 = list(w_list)
-            list2 = list(w_list)
+        w_list = WordList(in_file.strpath)
+        list1 = list(w_list)
+        list2 = list(w_list)
         assert list1 == list2
 
     def test_is_signed_detects_signed_files(self):
