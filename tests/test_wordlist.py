@@ -321,11 +321,8 @@ class TestWordList(object):
         # we recognize signed wordlists
         in_path = os.path.join(
             os.path.dirname(__file__), "sample_signed_wordlist.asc")
-        with open(in_path, "r") as fd:
-            w_list = WordList(fd)
-            w_list.fd = fd
-            result = w_list.is_signed()
-        assert result is True
+        w_list = WordList(in_path)
+        assert w_list.is_signed() is True
 
     def test_is_signed_detects_unsigned_files(self, tmpdir):
         # we can tell if a wordlist is not signed
