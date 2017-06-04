@@ -17,7 +17,7 @@
 """
 import os
 import re
-import tempfile
+import sys
 
 #: Maximum in-memory file size in bytes (20 MB).
 #:
