@@ -80,27 +80,23 @@ def get_wordlist_path(name):
 class WordList(object):
     """A word list contains words for building passphrases.
 
-    `path` is the path of the wordlist file.
+    `path` is the path of the wordlist file. With single dash (``-``) as path,
+    we read from `sys.stdin`.
 
-    If a file-like object does not support `seek()` (like `sys.stdin`),
-    we create a temporary, seekable copy of the input stream. The copy
-    is written to disk only, if it is larger than
-    `MAX_IN_MEM_SIZE`. Otherwise the wordlist is kept in memory.
+    Wordlist files are expected to contain words, one word per line. Empty
+    lines are ignored, also whitespaces before or trailing a line are
+    stripped. If a "word" contains inner whitespaces, then these are
+    preserved.
 
-    Wordlist files are expected to contain words, one word per
-    line. Empty lines are ignored, also whitespaces before or trailing
-    a line are stripped. If a "word" contains inner whitespaces, then
-    these are preserved.
+    The input file can be a signed wordlist. Signed wordlists are expected to
+    be ordinary lists of words but with ASCII armored signatures (as described
+    in RFC 4880).
 
-    The input file can be a signed wordlist. Signed wordlists are
-    expected to be ordinary lists of words but with ASCII armored
-    signatures (as described in RFC 4880).
+    In case of signed wordlists the signature headers/footers are stripped and
+    the contained list of words is read.
 
-    In case of signed wordlists the signature headers/footers are
-    stripped and the contained list of words is read.
-
-    WordList are generators. That means, that you can retrieve the
-    words of a wordlist by iterating over an instance of `WordList`.
+    WordList are generators. That means, that you can retrieve the words of a
+    wordlist by iterating over an instance of `WordList`.
 
     """
     def __init__(self, path):
