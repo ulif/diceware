@@ -1,6 +1,5 @@
 import os
 import pytest
-from io import StringIO
 from diceware.wordlist import (
     WORDLISTS_DIR, RE_WORDLIST_NAME, RE_NUMBERED_WORDLIST_ENTRY,
     RE_VALID_WORDLIST_FILENAME, get_wordlist_path, get_wordlist_names,
