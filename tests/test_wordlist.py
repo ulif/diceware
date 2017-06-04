@@ -188,15 +188,6 @@ class TestWordList(object):
             result = tuple(w_list)
         assert result == ("foo", "bar", "baz")
 
-    def test_open_file_descriptor_signed(self):
-        # we can handle signed wordlists from open file descriptors
-        in_path = os.path.join(
-            os.path.dirname(__file__), "sample_signed_wordlist.asc")
-        with open(str(in_path), "r") as my_open_file:
-            w_list = WordList(my_open_file)
-            result = tuple(w_list)
-        assert ("foo", "bar", "-dash-at-start", "baz") == result
-
     def test_detect_unsigned_wordlists(self, tmpdir):
         # we can detect unsigned wordlist files.
         in_file = tmpdir.mkdir("work").join("mywordlist")
