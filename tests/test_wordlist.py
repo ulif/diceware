@@ -169,16 +169,6 @@ class TestWordList(object):
         w_list = WordList(str(in_file))
         assert w_list.fd is not None
 
-    def test_create_accepts_fd_with_broken_seek(self, argv_handler):
-        # we accept files that have no working seek() (like sys.stdin)
-        fd = StringIO(b"word1\nword2\n".decode("utf-8"))
-
-        def broken_seek(num):
-            raise IOError("Illegal seek")
-        fd.seek = broken_seek
-        w_list = WordList(fd)
-        assert w_list.fd is not fd
-
     def test_file_simple(self, tmpdir):
         # we handle simple files correctly
         in_file = tmpdir.mkdir("work").join("mywordlist")
