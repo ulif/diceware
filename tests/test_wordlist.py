@@ -179,14 +179,12 @@ class TestWordList(object):
         w_list = WordList(fd)
         assert w_list.fd is not fd
 
-    def test_open_file_descriptor_simple(self, tmpdir):
-        # we handle simple lists from open file descriptors correctly
+    def test_file_simple(self, tmpdir):
+        # we handle simple files correctly
         in_file = tmpdir.mkdir("work").join("mywordlist")
         in_file.write("foo\nbar\n\nbaz\n")
-        with open(str(in_file), "r") as my_open_file:
-            w_list = WordList(my_open_file)
-            result = tuple(w_list)
-        assert result == ("foo", "bar", "baz")
+        w_list = WordList(in_file.strpath)
+        assert tuple(w_list) == ("foo", "bar", "baz")
 
     def test_detect_unsigned_wordlists(self, tmpdir):
         # we can detect unsigned wordlist files.
