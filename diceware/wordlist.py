@@ -80,16 +80,12 @@ def get_wordlist_path(name):
 class WordList(object):
     """A word list contains words for building passphrases.
 
-    `path_or_filelike` is the path of the wordlist file or an already
-    opened file. Opened files must be open for reading, of course. We
-    expect filelike objects to support at least `read()`.
+    `path` is the path of the wordlist file.
 
     If a file-like object does not support `seek()` (like `sys.stdin`),
     we create a temporary, seekable copy of the input stream. The copy
     is written to disk only, if it is larger than
     `MAX_IN_MEM_SIZE`. Otherwise the wordlist is kept in memory.
-
-    Please note that open file descriptors are not closed after reading.
 
     Wordlist files are expected to contain words, one word per
     line. Empty lines are ignored, also whitespaces before or trailing
@@ -107,31 +103,17 @@ class WordList(object):
     words of a wordlist by iterating over an instance of `WordList`.
 
     """
-    def __init__(self, path_or_filelike=None):
-        self.path = None
-        if not hasattr(path_or_filelike, 'read'):
-            # got a path, not a filelike object
-            self.path = path_or_filelike
-            self.fd = open(self.path, "r")
+    def __init__(self, path):
+        self.path = path
+        if self.path == "-":
+            self.fd = sys.stdin
         else:
-            self.fd = path_or_filelike
-            try:
-                self.fd.seek(0)
-            except IOError:
-                # the given filelike does not support seek(). Create an own.
-                self.fd = tempfile.SpooledTemporaryFile(
-                    max_size=MAX_IN_MEM_SIZE, mode="w+")
-                self.fd.write(path_or_filelike.read())
-                self.fd.seek(0)
+            self.fd = open(self.path, "r")
         self.signed = self.is_signed()
-        self._self_opened = self.fd is not path_or_filelike
 
     def __del__(self):
-        if self._self_opened:
-            try:
-                self.fd.close()
-            except:
-                pass
+        if self.path != "-":
+            self.fd.close()
 
     def __iter__(self):
         self.fd.seek(0)
