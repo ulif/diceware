@@ -13,6 +13,7 @@ Changes
 - Support Python 3.6.
 - Import `ConfigParser` instead of `SafeConfigParser` if the latter is an alias
   of the former.
+- Fixed #37. Ensure file descriptors are closed properly.
 
 
 0.9.1 (2016-12-24)
