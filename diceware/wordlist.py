@@ -18,6 +18,7 @@
 import os
 import re
 import sys
+import tempfile
 
 #: Maximum in-memory file size in bytes (20 MB).
 #:
@@ -83,6 +84,10 @@ class WordList(object):
     `path` is the path of the wordlist file. With single dash (``-``) as path,
     we read from `sys.stdin`.
 
+    In case input comes from stdin, we write the input stream into a file if
+    the content length is larger than `MAX_IN_MEM_SIZE`. Otherwise, the
+    wordlist is kept in memory.
+
     Wordlist files are expected to contain words, one word per line. Empty
     lines are ignored, also whitespaces before or trailing a line are
     stripped. If a "word" contains inner whitespaces, then these are
@@ -102,7 +107,10 @@ class WordList(object):
     def __init__(self, path):
         self.path = path
         if self.path == "-":
-            self.fd = sys.stdin
+            self.fd = tempfile.SpooledTemporaryFile(
+                    max_size=MAX_IN_MEM_SIZE, mode="w+")
+            self.fd.write(sys.stdin.read())
+            self.fd.seek(0)
         else:
             self.fd = open(self.path, "r")
         self.signed = self.is_signed()
