@@ -1,5 +1,7 @@
 import os
 import pytest
+import sys
+from io import StringIO
 from diceware.wordlist import (
     WORDLISTS_DIR, RE_WORDLIST_NAME, RE_NUMBERED_WORDLIST_ENTRY,
     RE_VALID_WORDLIST_FILENAME, get_wordlist_path, get_wordlist_names,
@@ -243,6 +245,16 @@ class TestWordList(object):
         in_file.write("a\nb\n")
         result = list(WordList(str(in_file)))
         assert ['a', 'b'] == result
+
+    def test_get_wordlist_stdin(self, argv_handler):
+        # we can get a wordlist from stdin
+        def broken_seek(num):
+            raise IOError("Illegal seek")
+        fd = StringIO(b"foo\nbar\n".decode('utf-8'))
+        fd.seek = broken_seek
+        sys.stdin = fd
+        w_list = WordList("-")
+        assert list(w_list) == ['foo', 'bar']
 
     def test_get_wordlist_ignore_empty_lines(self, tmpdir):
         # we ignore empty lines in wordlists
