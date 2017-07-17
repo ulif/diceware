@@ -313,7 +313,7 @@ We recommend to create and activate a virtualenv_ first::
   $ source py34/bin/activate
   (py34) $
 
-We support Python versions 2.6, 2.7, 3.3, 3.4, 3.5, pypy.
+We support Python versions 2.6, 2.7, 3.3 to 3.6, and pypy.
 
 Now you can create the devel environment::
 
