@@ -7,14 +7,14 @@ words used, the wordlists.
 `diceware` comes with some wordlists out-of-the-box, that might be a
 good choice for usual private use.
 
-.. warning:: We do -- by default -- *not* use the `diceware standard
-	     wordlist`_, but the `long EFF wordlist`_ (see below), because it is
-         more secure and more comfortable to use.
+.. warning::
+         We do -- by default -- *not* use the `diceware standard wordlist`_,
+         but the `long EFF wordlist`_ (see below), because it is more secure
+         and more comfortable to use.
 
-	     But the "original" list is included in diceware as well
-	     and you can pick it with the ``-w en_orig`` option.  You
-	     *should* pick it when you use real dice as source of
-	     randomness.
+         But the "original" list is included in diceware as well and you can
+         pick it with the ``-w en_orig`` option.  You *should* pick it when you
+         use real dice as source of randomness.
 
 Currently we provide the following lists:
 
