@@ -9,15 +9,15 @@ Passphrases to remember...
     :target: https://travis-ci.org/ulif/diceware
     :alt: Build Status
 
-.. |bdg-last-release|  image:: https://pypip.in/version/diceware/badge.svg
+.. |bdg-last-release|  image:: https://img.shields.io/pypi/v/diceware.svg
     :target: https://pypi.python.org/pypi/diceware/
     :alt: Latest Release
 
-.. |bdg-versions| image:: https://pypip.in/py_versions/diceware/badge.svg
+.. |bdg-versions| image:: https://img.shields.io/pypi/pyversions/diceware.svg
     :target: https://pypi.python.org/pypi/diceware/
     :alt: Supported Python Versions
 
-.. |bdg-license| image:: https://pypip.in/license/diceware/badge.svg
+.. |bdg-license| image:: https://img.shields.io/pypi/l/diceware.svg
     :target: https://pypi.python.org/pypi/diceware/
     :alt: License
 
