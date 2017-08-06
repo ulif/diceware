@@ -36,11 +36,41 @@ options
 
 ``optional arguments``:
 
-  -h, --help
+  ``-h``, ``--help``
     show help message and exit
 
-  -n NUM, --num NUM
+  ``-n`` `NUM`, ``--num`` `NUM`
     number of words to concatenate. Default 6
+
+  ``-c``, ``--caps``
+    Capitalize words. This is the default.
+
+  ``--no-caps``
+    Turn off capitalization.
+
+  ``-s`` `NUM`, ``--specials`` `NUM`
+    Insert NUM special chars into generated word.
+
+  ``-d`` `DELIMITER`, ``--delimiter`` `DELIMITER`
+    Separate words by DELIMITER. Empty string by default.
+
+  ``-r`` `SOURCE`, ``--randomsource`` `SOURCE`
+    Get randomness from this source. Possible values:
+    ``realdice``, ``system``. Default: ``system``
+
+  ``-w`` `NAME`, ``--wordlist`` `NAME`
+    Use words from this wordlist. Possible values: `en`,
+    `en_8k`, `en_eff`, `en_orig`, `en_securedrop`.
+    Wordlists are stored in the folder displayed below.
+    Default: ``en_securedrop``
+
+  ``-v``, ``--verbose``
+    Be verbose. Use several times for increased verbosity.
+
+  ``--version``
+    output version information and exit.
+
+
 
 copyright
 ---------
