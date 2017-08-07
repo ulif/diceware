@@ -5,7 +5,7 @@
 :manual_group: User Commands
 :date: August 2017
 :version: diceware 0.9.2.dev0
-:author: Written by Uli Fouquet
+:author: Written by Uli Fouquet and contributors
 
 .. :authors: Uli Fouquet and Contributors
 
@@ -23,7 +23,7 @@ description
 ``diceware`` is a passphrase generator that generates passphrases by
 concatenating words randomly picked from wordlists.
 
-It is based on the proposals of Arnold G. Reinhold on http://diceware.com .
+It is based on the proposals of Arnold G. Reinhold on http://diceware.com.
 
 
 options
