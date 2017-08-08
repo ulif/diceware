@@ -7,14 +7,11 @@
 :version: diceware 0.9.2.dev0
 :author: Written by Uli Fouquet and contributors
 
-.. :authors: Uli Fouquet and Contributors
-
-
 
 synopsis
 --------
 
-``diceware`` [`OPTION`]... [`FILE`]...
+``diceware`` [`OPTION`]... [`FILE`]
 
 
 description
@@ -69,7 +66,6 @@ options
 
   ``--version``
     output version information and exit.
-
 
 
 copyright
