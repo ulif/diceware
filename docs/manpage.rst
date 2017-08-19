@@ -71,9 +71,5 @@ options
 copyright
 ---------
 
-Copyright (C) 2015-2017 Uli Fouquet and contributors. License GPLv3+: GNU GPL
-version 3 or later <https://gnu.org/licensesi/gpl.html>.
-
-This is free software: you are free to change and redisttribute it.  There is
-NO WARRANTY, to extent permitted by law.
+.. include:: ../COPYRIGHT
 
