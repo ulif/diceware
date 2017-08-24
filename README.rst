@@ -350,6 +350,19 @@ prepared ``Makefile``::
 This should generate the docs in ``docs/_build/html/``.
 
 
+Creating the Man Page
+.....................
+
+We provide a `ReStructuredTexT`_ template to create a man page. When the
+documentation engine is installed (`Sphinx`_, see above), then you can create a
+manpage doing::
+
+  (py34) $ rst2man docs/manpage.rst > diceware.1
+
+The template is mainly provided to ease the job of Debian maintainers.
+Currently, it is not automatically updated. Dates, authors, synopsis, etc. have
+to be updated manually. Information in the manpage may therefore be wrong,
+outdated, or simply misleading.
 
 
 Credits
@@ -418,6 +431,7 @@ details.
 .. _`Joseph Bonneau`: https://www.eff.org/about/staff/joseph-bonneau
 .. _`prefix code`: https://en.wikipedia.org/wiki/Prefix_code
 .. _`random.SystemRandom`: https://docs.python.org/3.4/library/random.html#random.SystemRandom
+.. _ReStructuredText: http://docutils.sourceforge.net/rst.html
 .. _virtualenv: https://virtualenv.pypa.io/
 .. _py.test: https://pytest.org/
 .. _tox: https://tox.testrun.org/
