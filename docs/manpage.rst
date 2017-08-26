@@ -56,10 +56,9 @@ options
     ``realdice``, ``system``. Default: ``system``
 
   ``-w`` `NAME`, ``--wordlist`` `NAME`
-    Use words from this wordlist. Possible values: `en`,
-    `en_8k`, `en_eff`, `en_orig`, `en_securedrop`.
-    Wordlists are stored in the folder displayed below.
-    Default: ``en_securedrop``
+    Use words from this wordlist. Possible values: `en`, `en_eff`, `en_orig`,
+    `en_securedrop`.  Wordlists are stored in the folder displayed below.
+    Default: ``en_eff``
 
   ``-v``, ``--verbose``
     Be verbose. Use several times for increased verbosity.
