@@ -66,6 +66,11 @@ options
   ``--version``
     output version information and exit.
 
+``Arguments related to `realdice' randomsource:``
+
+   ``--dice-sides`` `N`
+   Number of sides of dice. Default: 6
+
 
 copyright
 ---------
