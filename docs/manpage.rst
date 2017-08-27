@@ -18,7 +18,8 @@ description
 -----------
 
 ``diceware`` is a passphrase generator that generates passphrases by
-concatenating words randomly picked from wordlists.
+concatenating words randomly picked from wordlists. It supports also real dice
+for passphrase generation.
 
 It is based on the proposals of Arnold G. Reinhold on http://diceware.com.
 
@@ -66,10 +67,10 @@ options
   ``--version``
     output version information and exit.
 
-``Arguments related to `realdice' randomsource:``
+``Arguments related to `` `realdice` ``randomsource``:
 
-   ``--dice-sides`` `N`
-   Number of sides of dice. Default: 6
+  ``--dice-sides`` `N`
+    Number of sides of dice. Default: 6
 
 
 copyright
