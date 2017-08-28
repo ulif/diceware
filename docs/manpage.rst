@@ -17,9 +17,8 @@ synopsis
 description
 -----------
 
-``diceware`` is a passphrase generator that generates passphrases by
-concatenating words randomly picked from wordlists. It supports also real dice
-for passphrase generation.
+``diceware`` generates passphrases by concatenating words randomly picked from
+wordlists. It supports also real dice for passphrase generation.
 
 It is based on the proposals of Arnold G. Reinhold on http://diceware.com.
 
