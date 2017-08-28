@@ -22,7 +22,7 @@ from random import SystemRandom
 from diceware.config import get_config_dict
 from diceware.logger import configure
 from diceware.wordlist import (
-    WordList, get_wordlist_path, WORDLISTS_DIR, get_wordlist_names,
+    WordList, get_wordlist_path, get_wordlists_dir, get_wordlist_names,
     )
 
 __version__ = pkg_resources.get_distribution('diceware').version
@@ -86,7 +86,7 @@ def handle_options(args):
     defaults = get_config_dict()
     parser = argparse.ArgumentParser(
         description="Create a passphrase",
-        epilog="Wordlists are stored in %s" % WORDLISTS_DIR
+        epilog="Wordlists are stored in %s" % get_wordlists_dir()
         )
     parser.add_argument(
         '-n', '--num', default=6, type=int,

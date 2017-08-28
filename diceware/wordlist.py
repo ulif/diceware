@@ -27,9 +27,14 @@ import tempfile
 #: disk.
 MAX_IN_MEM_SIZE = 20 * 1024 * 1024
 
+
 #: The directory in which wordlists are stored
-WORDLISTS_DIR = os.path.abspath(
-    os.path.join(os.path.dirname(__file__), 'wordlists'))
+def get_wordlists_dir():
+    """Get the directory for local storage of wordlists.
+    """
+    return os.path.abspath(
+        os.path.join(os.path.dirname(__file__), 'wordlists'))
+
 
 #: A regular expression matching allowed wordlist names. We
 #: allow names that cannot easily mess up filesystems.
@@ -47,9 +52,10 @@ def get_wordlist_names():
     """Get a all names of wordlists stored locally.
     """
     result = []
-    filenames = os.listdir(WORDLISTS_DIR)
+    wordlists_dir = get_wordlists_dir()
+    filenames = os.listdir(wordlists_dir)
     for filename in filenames:
-        if not os.path.isfile(os.path.join(WORDLISTS_DIR, filename)):
+        if not os.path.isfile(os.path.join(wordlists_dir, filename)):
             continue
         match = RE_VALID_WORDLIST_FILENAME.match(filename)
         if not match:
@@ -70,12 +76,13 @@ def get_wordlist_path(name):
     """
     if not RE_WORDLIST_NAME.match(name):
         raise ValueError("Not a valid wordlist name: %s" % name)
-    for filename in os.listdir(WORDLISTS_DIR):
-        if not os.path.isfile(os.path.join(WORDLISTS_DIR, filename)):
+    wordlists_dir = get_wordlists_dir()
+    for filename in os.listdir(wordlists_dir):
+        if not os.path.isfile(os.path.join(wordlists_dir, filename)):
             continue
         match = RE_VALID_WORDLIST_FILENAME.match(filename)
         if match and match.groups()[0] == name:
-            return os.path.join(WORDLISTS_DIR, filename)
+            return os.path.join(wordlists_dir, filename)
 
 
 class WordList(object):

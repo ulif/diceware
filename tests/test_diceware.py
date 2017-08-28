@@ -6,7 +6,7 @@ import re
 import sys
 from io import StringIO
 from diceware import (
-    WORDLISTS_DIR, SPECIAL_CHARS, insert_special_char, get_passphrase,
+    get_wordlists_dir, SPECIAL_CHARS, insert_special_char, get_passphrase,
     handle_options, main, __version__, print_version, get_random_sources,
     get_wordlist_names
     )
@@ -278,7 +278,8 @@ class TestDicewareModule(object):
             os.path.dirname(__file__), 'exp_help_output.txt')
         with open(expected_path, 'r') as fd:
             expected_output = fd.read()
-        out = out.replace(WORDLISTS_DIR, "<WORDLISTS-DIR>")
+        wordlists_dir = get_wordlists_dir()
+        out = out.replace(wordlists_dir, "<WORDLISTS-DIR>")
         out = out.replace("\n<WORDLISTS-DIR>", " <WORDLISTS-DIR>")
         assert out == expected_output
 
