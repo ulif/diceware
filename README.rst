@@ -357,7 +357,7 @@ We provide a `ReStructuredTexT`_ template to create a man page. When the
 documentation engine is installed (`Sphinx`_, see above), then you can create a
 manpage doing::
 
-  (py34) $ rst2man docs/manpage.rst > diceware.1
+  (py34) $ rst2man.py docs/manpage.rst > diceware.1
 
 The template is mainly provided to ease the job of Debian maintainers.
 Currently, it is not automatically updated. Dates, authors, synopsis, etc. have
