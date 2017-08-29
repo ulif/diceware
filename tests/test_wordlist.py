@@ -3,7 +3,7 @@ import pytest
 import sys
 from io import StringIO
 from diceware.wordlist import (
-    WORDLISTS_DIR, RE_WORDLIST_NAME, RE_NUMBERED_WORDLIST_ENTRY,
+    get_wordlists_dir, RE_WORDLIST_NAME, RE_NUMBERED_WORDLIST_ENTRY,
     RE_VALID_WORDLIST_FILENAME, get_wordlist_path, get_wordlist_names,
     WordList,
 )
@@ -207,7 +207,8 @@ class TestWordList(object):
 
     def test_wordlist_en_8k(self):
         # we can get a list of words out of the reinhold english 8k wordlist.
-        en_src = os.path.join(WORDLISTS_DIR, 'wordlist_en.txt')
+        wordlists_dir = get_wordlists_dir()
+        en_src = os.path.join(wordlists_dir, 'wordlist_en.txt')
         w_list = WordList(en_src)
         long_list = list(w_list)
         assert long_list[0] == "a"
@@ -216,7 +217,8 @@ class TestWordList(object):
 
     def test_wordlist_en_securedrop(self):
         # we can get a list of words out of securedrop english 8k wordlist.
-        en_src = os.path.join(WORDLISTS_DIR, 'wordlist_en_securedrop.asc')
+        wordlists_dir = get_wordlists_dir()
+        en_src = os.path.join(wordlists_dir, 'wordlist_en_securedrop.asc')
         w_list = WordList(en_src)
         long_list = list(w_list)
         assert long_list[0] == "0"
@@ -225,7 +227,8 @@ class TestWordList(object):
 
     def test_wordlist_en(self):
         # we can get a list of words out of the original diceware wordlist.
-        en_src = os.path.join(WORDLISTS_DIR, 'wordlist_en_orig.asc')
+        wordlists_dir = get_wordlists_dir()
+        en_src = os.path.join(wordlists_dir, 'wordlist_en_orig.asc')
         w_list = list(WordList(en_src))
         assert w_list[0] == "a"
         assert w_list[-1] == "@"
@@ -233,7 +236,8 @@ class TestWordList(object):
 
     def test_wordlist_en_eff(self):
         # we can get a list of words out of the EFF-maintained wordlist.
-        en_src = os.path.join(WORDLISTS_DIR, 'wordlist_en_eff.txt')
+        wordlists_dir = get_wordlists_dir()
+        en_src = os.path.join(wordlists_dir, 'wordlist_en_eff.txt')
         w_list = list(WordList(en_src))
         assert w_list[0] == "abacus"
         assert w_list[-1] == "zoom"
@@ -272,7 +276,8 @@ class TestWordList(object):
 
     def test_get_signed_wordlist_handles_en_orig(self):
         # we can process the original diceware list from diceware.com
-        wlist_path = os.path.join(WORDLISTS_DIR, 'wordlist_en_orig.asc')
+        wordlists_dir = get_wordlists_dir()
+        wlist_path = os.path.join(wordlists_dir, 'wordlist_en_orig.asc')
         w_list = WordList(wlist_path)
         result = list(w_list)
         assert len(result) == 7776
