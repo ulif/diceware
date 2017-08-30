@@ -54,7 +54,8 @@ def argv_handler(request):
 def wordlists_dir(request, monkeypatch, tmpdir):
     """This fixture provides a temporary wordlist dir.
     """
-    monkeypatch.setattr("diceware.wordlist.get_wordlists_dir", lambda: str(tmpdir))
+    monkeypatch.setattr(
+            "diceware.wordlist.get_wordlists_dir", lambda: str(tmpdir))
     return tmpdir
 
 
