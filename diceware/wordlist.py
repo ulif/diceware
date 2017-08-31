@@ -39,9 +39,8 @@ RE_VALID_WORDLIST_FILENAME = re.compile(
     '^wordlist_([\w-]+)\.[\w][\w\.]+[\w]+$')
 
 
-#: The directory in which wordlists are stored
 def get_wordlists_dir():
-    """Get the directory for local storage of wordlists.
+    """Get the directory in which wordlsts are stored.
     """
     return os.path.abspath(
         os.path.join(os.path.dirname(__file__), 'wordlists'))
