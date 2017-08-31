@@ -27,15 +27,6 @@ import tempfile
 #: disk.
 MAX_IN_MEM_SIZE = 20 * 1024 * 1024
 
-
-#: The directory in which wordlists are stored
-def get_wordlists_dir():
-    """Get the directory for local storage of wordlists.
-    """
-    return os.path.abspath(
-        os.path.join(os.path.dirname(__file__), 'wordlists'))
-
-
 #: A regular expression matching allowed wordlist names. We
 #: allow names that cannot easily mess up filesystems.
 RE_WORDLIST_NAME = re.compile('^[\w-]+$')
@@ -46,6 +37,14 @@ RE_NUMBERED_WORDLIST_ENTRY = re.compile('^[0-9]+(\-[0-9]+)*\s+([^\s]+)$')
 #: A regular expression describing valid wordlist file names.
 RE_VALID_WORDLIST_FILENAME = re.compile(
     '^wordlist_([\w-]+)\.[\w][\w\.]+[\w]+$')
+
+
+#: The directory in which wordlists are stored
+def get_wordlists_dir():
+    """Get the directory for local storage of wordlists.
+    """
+    return os.path.abspath(
+        os.path.join(os.path.dirname(__file__), 'wordlists'))
 
 
 def get_wordlist_names():
