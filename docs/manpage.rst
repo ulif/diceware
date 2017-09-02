@@ -72,6 +72,12 @@ options
     Number of sides of dice. Default: 6
 
 
+files
+-----
+
+`~/.diceware.ini`
+    Your personal diceware configuration file.
+
 copyright
 ---------
 
