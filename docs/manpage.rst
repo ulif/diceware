@@ -78,6 +78,10 @@ files
 `~/.diceware.ini`
     Your personal diceware configuration file.
 
+``diceware`` also comes with a set of wordlists. The path where these lists are
+stored is showed with ``--help``.
+
+
 copyright
 ---------
 
