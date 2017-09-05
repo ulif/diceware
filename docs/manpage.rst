@@ -82,6 +82,17 @@ files
 stored is showed with ``--help``.
 
 
+examples
+--------
+
+``diceware``
+    Create a passphrase using defaults. Outputs something like
+
+``diceware -d`` `"-"`
+    Create a passphrase with dash `"-"` as separator.
+
+
+
 copyright
 ---------
 
