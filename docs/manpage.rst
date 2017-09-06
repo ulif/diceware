@@ -87,10 +87,11 @@ examples
 
 ``diceware``
     Create a passphrase using defaults. Outputs something like
+    "``WheelDyeHonkCanvasWitsPuck``"
 
 ``diceware -d`` `"-"`
-    Create a passphrase with dash `"-"` as separator.
-
+    Create a passphrase with dash ("`-`") as separator. Results in something like
+    "``Wheel-Dye-Honk-Canvas-Wits-Puck``"
 
 
 copyright
