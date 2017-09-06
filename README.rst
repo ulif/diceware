@@ -167,7 +167,7 @@ We support even sources of randomness from other packages. See the
 `documentation <https://diceware.readthedocs.io/>`_ for more details.
 
 `diceware` comes with an English wordlist provided by the EFF_, which will be
-used by default and contains 7776 (=6^6) different words. This list is stored
+used by default and contains 7776 (=6^5) different words. This list is stored
 as ``en_eff``.
 
 Additionally `diceware` comes with an English wordlist provided by Heartsucker,
@@ -233,11 +233,11 @@ with the famous '936' proof_:
 .. _xkcd: http://xkcd.com/
 .. _proof: http://xkcd.com/936/
 
-The standard english wordlist of this `diceware` implementation
-contains 8192 = 2**13 different english words. It is a hand-compiled
-8192-words list provided by `Heartsucker`_. Therefore, picking a
-random word from this list gives an entropy of 13 bits. Picking six
-words means an entropy of 6 x 13 = 73 bits.
+The standard english wordlist of this `diceware` implementation contains 7776 =
+6^5 different english words. It is the official EFF_ wordlist.  compiled by
+`Joseph Bonneau`_. Therefore, picking a random word from this list gives an
+entropy of nearly 12.9 bits. Picking six words means an entropy of 6 x 12.9 =
+77.54 bits.
 
 The special chars replacing chars of the originally created passphrase
 give some more entropy (the more chars you have, the more additional
