@@ -401,6 +401,7 @@ Links
 
 Wordlists:
 
+_ `Diceware standard list`_ by Arnold G. Reinhold.
 - `Diceware8k list`_ by Arnold G. Reinhold.
 - `Diceware SecureDrop list`_ by `@heartsucker`_.
 - `EFF large list`_ provided by EFF_.
@@ -419,9 +420,10 @@ are copyright by `@heartsucker`_. Copyright for the `EFF large list`_ by
 
 .. _pip: https://pip.pypa.io/en/latest/
 .. _`Debian`: https://www.debian.org/
-.. _`Diceware8k list`: http://world.std.com/~reinhold/diceware8k.txt
 .. _`Diceware`: http://diceware.com/
+.. _`Diceware standard list`: http://world.std.com/~reinhold/diceware.wordlist.asc
 .. _`Diceware SecureDrop list`: https://github.com/heartsucker/diceware
+.. _`Diceware8k list`: http://world.std.com/~reinhold/diceware8k.txt
 .. _`@drebs`: https://github.com/drebs
 .. _`EFF`: https://eff.org/
 .. _`EFF large list`: https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt
