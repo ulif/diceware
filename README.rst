@@ -167,12 +167,12 @@ We support even sources of randomness from other packages. See the
 `documentation <https://diceware.readthedocs.io/>`_ for more details.
 
 `diceware` comes with an English wordlist provided by the EFF_, which will be
-used by default and contains 7776 (=6^5) different words. This list is stored
-as ``en_eff``.
+used by default and contains 7776 (=6^5) different words. This list is
+registered as ``en_eff``.
 
-Additionally `diceware` comes with an English wordlist provided by Heartsucker,
-which contains 8192 different words. This list is based off the original
-diceware list written by Arnold G. Reinhold.
+Additionally `diceware` comes with an English wordlist provided by
+`@heartsucker`_, which contains 8192 different words. This list is based off
+the original diceware list written by Arnold G. Reinhold.
 
 Both the original and 8k diceware wordlists by Mr. Reinhold are provided.
 You can enable a certain (installed) wordlist with the ``-w`` option::
@@ -379,8 +379,7 @@ People that helped spotting bugs, providing solutions, etc.:
    randomness. `@drebs`_ also initiated and performed the packaging of
    `diceware` for the `Debian`_ platform. Many kudos for this work! `@drebs`_
    is also the official Debian maintainer of the `diceware` package.
- - `Heartsucker <https://github.com/heartsucker>`_ hand-compiled and
-   added a new english wordlist.
+ - `@heartsucker`_ hand-compiled and added a new english wordlist.
  - `dwcoder <https://github.com/dwcoder>`_ revealed and fixed bugs
    #19, #21, #23. Also showed sound knowledge of (theoretical)
    entropy. A pleasure to work with.
@@ -403,7 +402,7 @@ Links
 Wordlists:
 
 - `Diceware8k list`_ by Arnold G. Reinhold.
-- `Diceware SecureDrop list`_ by Heartsucker.
+- `Diceware SecureDrop list`_ by `@heartsucker`_.
 - `EFF large list`_ provided by EFF_.
 
 
@@ -413,11 +412,10 @@ License
 This Python implementation of Diceware, (C) 2015-2017 Uli Fouquet, is
 licensed under the GPL v3+.
 
-The Copyright for the Diceware_ idea and the `Diceware8k list`_ are
-Copyright by Arnold G. Reinhold. The Copyright for the the `Diceware
-SecureDrop list`_ are copyright by Heartsucker. Copyright for the `EFF
-large list`_ by `Joseph Bonneau`_ and EFF_. See file LICENSE for
-details.
+The Copyright for the Diceware_ idea and the `Diceware8k list`_ are Copyright
+by Arnold G. Reinhold. The Copyright for the the `Diceware SecureDrop list`_
+are copyright by `@heartsucker`_. Copyright for the `EFF large list`_ by
+`Joseph Bonneau`_ and EFF_. See file LICENSE for details.
 
 .. _pip: https://pip.pypa.io/en/latest/
 .. _`Debian`: https://www.debian.org/
@@ -428,6 +426,7 @@ details.
 .. _`EFF`: https://eff.org/
 .. _`EFF large list`: https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt
 .. _`fork me on github`: http://github.com/ulif/diceware/
+.. _`@heartsucker`: https://github.com/heartsucker/
 .. _`Joseph Bonneau`: https://www.eff.org/about/staff/joseph-bonneau
 .. _`prefix code`: https://en.wikipedia.org/wiki/Prefix_code
 .. _`random.SystemRandom`: https://docs.python.org/3.4/library/random.html#random.SystemRandom
