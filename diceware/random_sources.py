@@ -156,7 +156,7 @@ class RealDiceRandomSource(object):
     def get_num_rolls(self, seq_len):
         """Compute how many dice rolls we need to pick a value from a sequence
         """
-        num_rolls = int(math.log(seq_len, self.dice_sides))
+        num_rolls = math.ceil(math.log(seq_len, self.dice_sides))
         if num_rolls < 1:
             # If this happens, there are less values in the sequence to
             # choose from than there are dice sides.
@@ -169,20 +169,16 @@ class RealDiceRandomSource(object):
         if len(sequence) == 1:
             return sequence[0]  # no need to roll dice.
         num_rolls = self.get_num_rolls(len(sequence))
+        max_result = self.dice_sides ** num_rolls
         self.pre_check(num_rolls, sequence)
-        repeat = True
-        while repeat:
-            result = 0
-            for i in range(num_rolls, 0, -1):
-                rolled = None
-                while rolled not in [
-                        str(x) for x in range(1, self.dice_sides + 1)]:
-                    rolled = input_func(
-                        "What number shows dice number %s? " % (
-                            num_rolls - i + 1))
-                result += ((self.dice_sides ** (i - 1)) * (int(rolled) - 1))
-            if result < len(sequence):
-                repeat = False
-            else:
-                print("Value out of range. Please roll dice again.")
-        return sequence[result]
+        result = 0
+        for i in range(num_rolls, 0, -1):
+            rolled = None
+            while rolled not in [
+                    str(x) for x in range(1, self.dice_sides + 1)]:
+                rolled = input_func(
+                    "What number shows dice number %s? " % (
+                        num_rolls - i + 1))
+            result += ((self.dice_sides ** (i - 1)) * (int(rolled) - 1))
+        index = math.floor(result / max_result * len(sequence))
+        return sequence[index]
