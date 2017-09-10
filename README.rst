@@ -278,6 +278,10 @@ Security Traps
 There are issues that might reduce the entropy of the passphrase
 generated. One of them is the `prefix code`_ problem:
 
+
+Prefix Code
+...........
+
 If the wordlist contains, for example, the words::
 
    "air", "airport", "portable", "able"
@@ -297,6 +301,18 @@ words that start with other words in the list).
 
 Each of these measures is sufficient to protect you against the
 `prefix code`_ problem.
+
+
+Reduced Entropy
+...............
+
+Overall, `diceware` is a kind of mapping input values, dice throws for
+instance, onto wordlist entries. We normally want each of the words in the
+wordlist to be picked for passphrases with the same probability.
+
+This, however, is not possible, if the number of dice sides and the number of
+wordlist entries are relatively prime. In that case we cut some words of the
+wordlist and inform the user about the matter.
 
 
 Developer Install
