@@ -89,9 +89,18 @@ examples
     Create a passphrase using defaults. Outputs something like
     "``WheelDyeHonkCanvasWitsPuck``"
 
-``diceware -d`` `"-"`
-    Create a passphrase with dash ("`-`") as separator. Results in something like
-    "``Wheel-Dye-Honk-Canvas-Wits-Puck``"
+``diceware -d`` `"-"` ``-n`` `3`
+    Create a passphrase with three words, separated by dash ("`-`"). Results in
+    something like "``Wheel-Dye-Honk``"
+
+``diceware --no-caps``
+    Create a passphrase without capital words. Creates something like
+    "``wheel-dye-honk``".
+
+``diceware -r`` `realdice`
+    Use real dice to create a passphrase. The programm will tell you what to do
+    (roll dice and tell what numbers appear) and in the end present a
+    passphrase.
 
 
 copyright
