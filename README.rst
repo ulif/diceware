@@ -310,9 +310,12 @@ Overall, `diceware` is a kind of mapping input values, dice throws for
 instance, onto wordlist entries. We normally want each of the words in the
 wordlist to be picked for passphrases with the same probability.
 
-This, however, is not possible, if the number of dice sides and the number of
-wordlist entries are relatively prime. In that case we cut some words of the
-wordlist and inform the user about the matter.
+This, however, is not possible, if the number of wordlist entries is not a
+power of dice sides. In that case we cut some words of the wordlist and inform
+the user about the matter. Reducing the number of words this way makes it
+easier for attackers to guess the phrase picked.
+
+You can fix that problem by using longer wordlists.
 
 
 Developer Install
