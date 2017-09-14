@@ -28,7 +28,7 @@ options
 
 ``positional arguments``:
 
-  INFILE
+  FILE
     input wordlist. ``'-'`` will read from stdin.
 
 ``optional arguments``:
