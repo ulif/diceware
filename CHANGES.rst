@@ -1,7 +1,7 @@
 Changes
 =======
 
-0.9.2 (unreleased)
+0.9.2 (2017-09-14)
 ------------------
 
 - Fixed #33. Make `en_eff` the new default wordlist. This results in slightly
