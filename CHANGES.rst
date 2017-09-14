@@ -4,7 +4,7 @@ Changes
 0.9.3.dev0 (unreleased)
 -----------------------
 
-- No changes yet.
+- Fix broken test.
 
 
 0.9.2 (2017-09-14)
