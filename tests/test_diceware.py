@@ -279,8 +279,9 @@ class TestDicewareModule(object):
         with open(expected_path, 'r') as fd:
             expected_output = fd.read()
         wordlists_dir = get_wordlists_dir()
+        expected_output = expected_output.replace("\n", "")
+        out = expected_output.replace("\n", "")
         out = out.replace(wordlists_dir, "<WORDLISTS-DIR>")
-        out = out.replace("\n<WORDLISTS-DIR>", " <WORDLISTS-DIR>")
         assert out == expected_output
 
     def test_main_version(self, argv_handler, capsys):
