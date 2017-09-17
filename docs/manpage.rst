@@ -102,6 +102,10 @@ examples
     (roll dice and tell what numbers appear) and in the end present a
     passphrase.
 
+``diceware mywordlist.txt``
+    Create a passphrase with words from file "mywordlist.txt". The file should
+    contain one word on each line.
+
 
 copyright
 ---------
