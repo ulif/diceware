@@ -29,7 +29,8 @@ options
 ``positional arguments``:
 
   FILE
-    input wordlist. ``'-'`` will read from stdin.
+    optional input wordlist. ``'-'`` will read from stdin. Should contain one
+    word per line.
 
 ``optional arguments``:
 
