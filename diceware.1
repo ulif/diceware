@@ -47,7 +47,8 @@ It is based on the proposals of Arnold G. Reinhold on \fI\%http://diceware.com\f
 .INDENT 0.0
 .TP
 .B FILE
-input wordlist. \fB\(aq\-\(aq\fP will read from stdin.
+optional input wordlist. \fB\(aq\-\(aq\fP will read from stdin. Should contain one
+word per line.
 .UNINDENT
 .UNINDENT
 .UNINDENT
@@ -131,6 +132,10 @@ Create a passphrase without capital words. Creates something like
 Use real dice to create a passphrase. The programm will tell you what to do
 (roll dice and tell what numbers appear) and in the end present a
 passphrase.
+.TP
+.B \fBdiceware mywordlist.txt\fP
+Create a passphrase with words from file "mywordlist.txt". The file should
+contain one word on each line.
 .UNINDENT
 .SH COPYRIGHT
 .sp
