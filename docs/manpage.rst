@@ -107,6 +107,12 @@ examples
     Create a passphrase with words from file "mywordlist.txt". The file should
     contain one word on each line.
 
+``diceware -w en_orig -s 2``
+    Create a passphrase with two special chars spread over the generated
+    passphrase and containing words from wordlist "``en_orig``". This is one of
+    the wordlists that come included with `diceware`. Creates something like:
+    "``Rutt[FanScoldLouiseT*nyThrob``".
+
 
 copyright
 ---------
