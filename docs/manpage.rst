@@ -103,6 +103,10 @@ examples
     (roll dice and tell what numbers appear) and in the end present a
     passphrase.
 
+``diceware -r`` `realdice` ``--dice-sides`` `20`
+    Use real dice, as shown above, but this time use dice with 20 faces,
+    instead of standard, 6-sided dice.
+
 ``diceware mywordlist.txt``
     Create a passphrase with words from file "mywordlist.txt". The file should
     contain one word on each line.
