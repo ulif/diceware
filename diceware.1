@@ -1,6 +1,6 @@
 .\" Man page generated from reStructuredText.
 .
-.TH DICEWARE 1 "September 2017" "diceware 0.9.4.dev0" "User Commands"
+.TH DICEWARE 1 "October 2017" "diceware 0.9.4.dev0" "User Commands"
 .SH NAME
 diceware \- create passphrases
 .
@@ -133,9 +133,19 @@ Use real dice to create a passphrase. The programm will tell you what to do
 (roll dice and tell what numbers appear) and in the end present a
 passphrase.
 .TP
+.B \fBdiceware \-r\fP \fIrealdice\fP \fB\-\-dice\-sides\fP \fI20\fP
+Use real dice, as shown above, but this time use dice with 20 faces,
+instead of standard, 6\-sided dice.
+.TP
 .B \fBdiceware mywordlist.txt\fP
 Create a passphrase with words from file "mywordlist.txt". The file should
 contain one word on each line.
+.TP
+.B \fBdiceware \-w en_orig \-s 2\fP
+Create a passphrase with two special chars spread over the generated
+passphrase and containing words from wordlist "\fBen_orig\fP". This is one of
+the wordlists that come included with \fIdiceware\fP\&. Creates something like:
+"\fBRutt[FanScoldLouiseT*nyThrob\fP".
 .UNINDENT
 .SH COPYRIGHT
 .sp
