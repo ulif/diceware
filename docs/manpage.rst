@@ -3,7 +3,7 @@
 :subtitle: create passphrases
 :manual_section: 1
 :manual_group: User Commands
-:date: December 2017
+:date: January 2018
 :version: diceware 0.9.4.dev0
 :author: Written by Uli Fouquet and contributors
 
