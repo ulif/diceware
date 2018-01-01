@@ -5,6 +5,7 @@ import pytest
 import re
 import sys
 from io import StringIO
+from errno import EISDIR
 from diceware import (
     get_wordlists_dir, SPECIAL_CHARS, insert_special_char, get_passphrase,
     handle_options, main, __version__, print_version, get_random_sources,
@@ -316,6 +317,25 @@ class TestDicewareModule(object):
         main()
         out, err = capsys.readouterr()
         assert out == 'Word1Word1\n'
+
+    def test_main_infile_nonexisting(self, argv_handler, capsys):
+        # main() prints error if file does not exist
+        # raises the exception if it's other that file not exist
+        sys.argv = ['diceware', 'nonexisting']
+        with pytest.raises(SystemExit) as exc_info:
+            main()
+        assert exc_info.value.code == 1
+        out, err = capsys.readouterr()
+        assert "The file 'nonexisting' does not exist." in err
+
+    def test_main_infile_not_a_file(self, argv_handler, tmpdir):
+        # give directory as input
+        tmpdir.mkdir("wordlist")
+        tmpdir.chdir()
+        sys.argv = ['diceware', 'wordlist']
+        with pytest.raises(IOError) as infile_error:
+            main()
+        assert infile_error.value.errno == EISDIR
 
     def test_main_delimiters(self, argv_handler, capsys):
         # delimiters are respected on calls to main
