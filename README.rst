@@ -192,8 +192,7 @@ considered a possible word. For instance::
 
 With dash (``-``) as filename you can pipe in wordlists::
 
-  $ echo -e "hi\nhello\n" > mywordlist.txt
-  $ cat mywordlist.txt | diceware -
+  $ echo -e "hi\nhello\n" | diceware -
   HiHiHelloHiHiHello
 
 In custom wordlists we take each line for a valid word and ignore
