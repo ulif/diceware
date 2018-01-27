@@ -25,7 +25,7 @@ def test_configure():
     configure(None)
     assert my_logger.level == 23
     configure(0)
-    assert my_logger.level == logging.CRITICAL
+    assert my_logger.level == logging.ERROR
     configure(1)
     assert my_logger.level == logging.INFO
     configure(2)

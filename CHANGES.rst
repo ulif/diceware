@@ -4,7 +4,7 @@ Changes
 0.9.4.dev0 (unreleased)
 -----------------------
 
-- No changes yet.
+- Set default logging level to ERROR (was: CRITICAL)
 
 
 0.9.3 (2017-09-14)

@@ -1,5 +1,5 @@
 #  diceware -- passphrases to remember
-#  Copyright (C) 2016, 2017  Uli Fouquet and contributors
+#  Copyright (C) 2016-2018  Uli Fouquet and contributors
 #
 #  This program is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -59,7 +59,7 @@ def configure(verbosity=None):
     """
     if verbosity is None:
         return
-    logger.setLevel(logging.CRITICAL)
+    logger.setLevel(logging.ERROR)
     if verbosity == 1:
         logger.setLevel(logging.INFO)
     elif verbosity > 1:
