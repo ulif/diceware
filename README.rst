@@ -407,6 +407,8 @@ People that helped spotting bugs, providing solutions, etc.:
    code`_ problem.
  - `LogosOfJ <https://github.com/LogosOfJ>`_ discovered and fixed
    serious `realdice` source of randomness problem.
+ - `Bhavin Gandhi <https://github.com/bhavin192>`_ fixed the confusing error
+   message when an invalid input filename is given.
 
 Many thanks to all of them!
 
