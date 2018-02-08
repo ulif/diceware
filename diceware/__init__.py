@@ -18,6 +18,8 @@
 import argparse
 import pkg_resources
 import sys
+import logging
+from errno import ENOENT
 from random import SystemRandom
 from diceware.config import get_config_dict
 from diceware.logger import configure
@@ -208,4 +210,12 @@ def main(args=None):
     if options.version:
         print_version()
         raise SystemExit(0)
-    print(get_passphrase(options))
+    try:
+        print(get_passphrase(options))
+    except (OSError, IOError) as infile_error:
+        if getattr(infile_error, 'errno', 0) == ENOENT:
+            logging.getLogger('ulif.diceware').error(
+                "The file '%s' does not exist." % infile_error.filename)
+            raise SystemExit(1)
+        else:
+            raise

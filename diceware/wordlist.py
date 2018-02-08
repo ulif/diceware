@@ -111,6 +111,7 @@ class WordList(object):
     """
     def __init__(self, path):
         self.path = path
+        self.fd = None
         if self.path == "-":
             self.fd = tempfile.SpooledTemporaryFile(
                     max_size=MAX_IN_MEM_SIZE, mode="w+")
@@ -121,7 +122,7 @@ class WordList(object):
         self.signed = self.is_signed()
 
     def __del__(self):
-        if self.path != "-":
+        if self.path != "-" and self.fd is not None:
             self.fd.close()
 
     def __iter__(self):
