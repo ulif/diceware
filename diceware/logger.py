@@ -43,6 +43,12 @@ except ImportError:  # NOQA  # pragma: no cover
         def createLock(self):
             pass
 
+        def acquire(self):
+            pass
+
+        def release(self):
+            pass
+
 
 #: Logger that can be used for all diceware related messages.
 logger = logging.getLogger("ulif.diceware")
