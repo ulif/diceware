@@ -1,3 +1,4 @@
+import logging
 import pytest
 import sys
 
@@ -80,3 +81,14 @@ def change_home(monkeypatch, tmpdir):
     """
     monkeypatch.setenv("HOME", str(tmpdir))
     return tmpdir
+
+
+@pytest.fixture(autouse=True)
+def cleanup_loghandlers(request, monkeypatch):
+    """Clean up log handlers still in `ulif.diceware` logger
+    """
+    def teardown():
+        logger = logging.getLogger('ulif.diceware')
+        for handler in logger.handlers:
+            logger.removeHandler(handler)
+    request.addfinalizer(teardown)
