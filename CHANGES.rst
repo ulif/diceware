@@ -7,6 +7,7 @@ Changes
 - Set default logging level to ERROR (was: CRITICAL)
 - Fixed #44: provide a short and readable file-not-found message (many thanks to
   `bhavin192 <https://github.com/bhavin192>`_)
+- Fixed #45: clean up logging handlers after test runs.
 
 
 0.9.3 (2017-09-14)
