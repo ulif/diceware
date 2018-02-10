@@ -19,12 +19,14 @@ def test_logger_exists():
 
 def test_logger_has_handler():
     # the logger has at least one handler
+    configure(0)
     assert len(logger.handlers) > 0
 
 
 def test_get_logger_by_name():
     # we can get a logger directly from std lib
     my_logger = logging.getLogger("ulif.diceware")
+    configure(0)
     assert len(my_logger.handlers) > 0
 
 
