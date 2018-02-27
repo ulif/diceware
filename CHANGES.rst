@@ -8,6 +8,8 @@ Changes
 - Fixed #44: provide a short and readable file-not-found message (many thanks to
   `bhavin192 <https://github.com/bhavin192>`_)
 - Fixed #45: clean up logging handlers after test runs.
+- Removed date-dependent tests from default test suite. Run ``py.test -m ''``
+  or ``tox`` to run them.
 
 
 0.9.3 (2017-09-14)
