@@ -251,6 +251,7 @@ class TestDicewareModule(object):
         assert err == ''
         assert __version__ in out
 
+    @pytest.mark.packaging
     def test_print_version_current_year(self, capsys):
         # in version infos we display the current year
         print_version()

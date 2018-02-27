@@ -17,6 +17,7 @@ def manpage(request):
 
 class TestManpage(object):
 
+    @pytest.mark.packaging
     def test_manpage_contains_current_year(self, manpage):
         # the current year appears at least in the manpage
         assert str(datetime.datetime.now().year) in manpage
