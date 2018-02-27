@@ -1,8 +1,8 @@
 Changes
 =======
 
-0.9.4.dev0 (unreleased)
------------------------
+0.9.4 (2018-02-27)
+------------------
 
 - Set default logging level to ERROR (was: CRITICAL)
 - Fixed #44: provide a short and readable file-not-found message (many thanks to
