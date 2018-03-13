@@ -409,6 +409,8 @@ People that helped spotting bugs, providing solutions, etc.:
    serious `realdice` source of randomness problem.
  - `Bhavin Gandhi <https://github.com/bhavin192>`_ fixed the confusing error
    message when an invalid input filename is given.
+ - `Simon Fondrie-Teitler <https://github.com/simonft>`_ contributed a
+   machine-readable copyright file.
 
 Many thanks to all of them!
 
