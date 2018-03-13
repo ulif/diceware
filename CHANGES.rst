@@ -5,7 +5,7 @@ Changes
 ---------------------------
 
 - Fixed #28: use Debian-compliant, machine-readable copyright format. Kudos to
-  `Simon Fondrie-Teitler <https://github.com/simonft>`_.
+  `Simon Fondrie-Teitler <https://github.com/simonft>`_ and @anarcat.
 
 
 0.9.4 (2018-02-27)

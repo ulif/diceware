@@ -410,7 +410,7 @@ People that helped spotting bugs, providing solutions, etc.:
  - `Bhavin Gandhi <https://github.com/bhavin192>`_ fixed the confusing error
    message when an invalid input filename is given.
  - `Simon Fondrie-Teitler <https://github.com/simonft>`_ contributed a
-   machine-readable copyright file.
+   machine-readable copyright file, with improvements from `@anarcat`_
 
 Many thanks to all of them!
 
@@ -441,6 +441,7 @@ are copyright by `@heartsucker`_. Copyright for the `EFF large list`_ by
 `Joseph Bonneau`_ and EFF_. See file LICENSE for details.
 
 .. _pip: https://pip.pypa.io/en/latest/
+.. _`@anarcat`: https://github.com/anarcat
 .. _`Debian`: https://www.debian.org/
 .. _`Diceware`: http://diceware.com/
 .. _`Diceware standard list`: http://world.std.com/~reinhold/diceware.wordlist.asc
