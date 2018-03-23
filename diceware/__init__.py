@@ -58,7 +58,8 @@ def print_version():
     print("Copyright (C) 2015-2018 Uli Fouquet")
     print("diceware is based on suggestions of Arnold G. Reinhold.")
     print("See http://diceware.com for details.")
-    print("'Diceware' is a trademark of Arnold G. Reinhold.")
+    print("'Diceware' is a trademark of Arnold G Reinhold,"
+          " used with permission")
     print(GPL_TEXT)
 
 

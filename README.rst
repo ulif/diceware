@@ -433,12 +433,14 @@ License
 -------
 
 This Python implementation of Diceware, (C) 2015-2017 Uli Fouquet, is
-licensed under the GPL v3+.
+licensed under the GPL v3+. See file LICENSE for details.
 
-The Copyright for the Diceware_ idea and the `Diceware8k list`_ are Copyright
-by Arnold G. Reinhold. The Copyright for the the `Diceware SecureDrop list`_
-are copyright by `@heartsucker`_. Copyright for the `EFF large list`_ by
-`Joseph Bonneau`_ and EFF_. See file LICENSE for details.
+"Diceware" is a trademark of Arnold G Reinhold, used with permission.
+
+The copyright for the `Diceware8k list`_ is owned by Arnold G Reinhold.
+The copyright for the the `Diceware SecureDrop list`_ are owned by
+`@heartsucker`_. Copyright for the `EFF large list`_ by `Joseph Bonneau`_ and
+EFF_. See file COPYRIGHT for details.
 
 .. _pip: https://pip.pypa.io/en/latest/
 .. _`@anarcat`: https://github.com/anarcat
