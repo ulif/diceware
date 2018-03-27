@@ -6,6 +6,9 @@ Changes
 
 - Fixed #28: use Debian-compliant, machine-readable copyright format. Kudos to
   `Simon Fondrie-Teitler <https://github.com/simonft>`_ and @anarcat.
+- Fixed #48: Clarify trademark status of diceware. Mr. Reinhold granted
+  permission to use the name 'Diceware' in this project and under the condtions
+  listed in the issue comments. Many thanks to him!
 
 
 0.9.4 (2018-02-27)
