@@ -2,7 +2,7 @@ Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: diceware
 Upstream-Contact: Uli Fouquet
 Source: <https://github.com/ulif/diceware/>
-Comment: "Diceware" is a trademark of A G Reinhold.
+Comment: "Diceware" is a trademark of Arnold G Reinhold, used with permission.
 
 Files: *
 Copyright: 2015-2018, Uli Fouquet
