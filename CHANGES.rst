@@ -1,8 +1,8 @@
 Changes
 =======
 
-0.9.5.dev0 (yet unreleased)
----------------------------
+0.9.5 (2018-04-07)
+------------------
 
 - Fixed #28: use Debian-compliant, machine-readable copyright format. Kudos to
   `Simon Fondrie-Teitler <https://github.com/simonft>`_ and @anarcat.
