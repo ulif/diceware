@@ -423,7 +423,7 @@ Links
 
 Wordlists:
 
-_ `Diceware standard list`_ by Arnold G. Reinhold.
+- `Diceware standard list`_ by Arnold G. Reinhold.
 - `Diceware8k list`_ by Arnold G. Reinhold.
 - `Diceware SecureDrop list`_ by `@heartsucker`_.
 - `EFF large list`_ provided by EFF_.
