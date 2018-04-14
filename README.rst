@@ -432,7 +432,7 @@ Wordlists:
 License
 -------
 
-This Python implementation of Diceware, (C) 2015-2017 Uli Fouquet, is
+This Python implementation of Diceware, (C) 2015-2018 Uli Fouquet, is
 licensed under the GPL v3+. See file LICENSE for details.
 
 "Diceware" is a trademark of Arnold G Reinhold, used with permission.
