@@ -4,7 +4,8 @@ Changes
 0.9.6.dev0 (yet unreleased)
 ---------------------------
 
-(No changes yet)
+- Fixed #51: Fix to formatting of list in Wordlists section. Kudos to `Doug
+  Muth <https://github.com/dmuth>`_.
 
 
 0.9.5 (2018-04-07)
