@@ -29,14 +29,14 @@ MAX_IN_MEM_SIZE = 20 * 1024 * 1024
 
 #: A regular expression matching allowed wordlist names. We
 #: allow names that cannot easily mess up filesystems.
-RE_WORDLIST_NAME = re.compile('^[\w-]+$')
+RE_WORDLIST_NAME = re.compile(r'^[\w-]+$')
 
 #: A regular expression matching numbered entries in wordlists.
-RE_NUMBERED_WORDLIST_ENTRY = re.compile('^[0-9]+(\-[0-9]+)*\s+([^\s]+)$')
+RE_NUMBERED_WORDLIST_ENTRY = re.compile(r'^[0-9]+(\-[0-9]+)*\s+([^\s]+)$')
 
 #: A regular expression describing valid wordlist file names.
 RE_VALID_WORDLIST_FILENAME = re.compile(
-    '^wordlist_([\w-]+)\.[\w][\w\.]+[\w]+$')
+    r'^wordlist_([\w-]+)\.[\w][\w\.]+[\w]+$')
 
 
 def get_wordlists_dir():

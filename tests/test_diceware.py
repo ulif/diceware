@@ -255,7 +255,7 @@ class TestDicewareModule(object):
     def test_print_version_current_year(self, capsys):
         # in version infos we display the current year
         print_version()
-        pattern = ".*\(C\) (20[0-9]{2}([,\-] ?))*%s.*" % (
+        pattern = r'.*\(C\) (20[0-9]{2}([,\-] ?))*%s.*' % (
             datetime.datetime.now().year)
         out, err = capsys.readouterr()
         assert re.match(pattern, out, re.M + re.S) is not None
