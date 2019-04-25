@@ -73,6 +73,8 @@ Once installed, use ``--help`` to list all available options::
                           Insert NUM special chars into generated word.
     -d DELIMITER, --delimiter DELIMITER
                           Separate words by DELIMITER. Empty string by default.
+    -D NUM, --delimiter-special NUM
+                          Separate words by NUM special chars (none by default).
     -r SOURCE, --randomsource SOURCE
                           Get randomness from this source. Possible values:
                           `realdice', `system'. Default: system
@@ -208,6 +210,7 @@ directory. This file could look like this::
   caps = off
   specials = 2
   delimiter = "MYDELIMITER"
+  delimiter_special = 0
   randomsource = "system"
   wordlist = "en_securedrop"
 
@@ -412,6 +415,8 @@ People that helped spotting bugs, providing solutions, etc.:
  - `Simon Fondrie-Teitler <https://github.com/simonft>`_ contributed a
    machine-readable copyright file, with improvements from `@anarcat`_
  - `Doug Muth <https://github.com/dmuth>`_ fixed formatting in docs.
+ - `Hartmut Goebel <https://crazy-compilers.com>`_ added option
+   ``--delimiter-special`` and some wordlists.
 
 Many thanks to all of them!
 

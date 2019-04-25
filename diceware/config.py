@@ -31,6 +31,7 @@ OPTIONS_DEFAULTS = dict(
     caps=True,
     specials=0,
     delimiter="",
+    delimiter_special=0,
     randomsource="system",
     verbose=0,
     wordlist="en_eff",

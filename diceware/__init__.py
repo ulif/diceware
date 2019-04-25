@@ -108,6 +108,9 @@ def handle_options(args):
         '-d', '--delimiter', default='',
         help="Separate words by DELIMITER. Empty string by default.")
     parser.add_argument(
+        '-D', '--delimiter-special', default=0, type=int, metavar='NUM',
+        help="Separate words by NUM special chars (none by default).")
+    parser.add_argument(
         '-r', '--randomsource', default='system', choices=random_sources,
         metavar="SOURCE",
         help=(
@@ -190,7 +193,15 @@ def get_passphrase(options=None):
     words = [rnd.choice(list(word_list)) for x in range(options.num)]
     if options.caps:
         words = [x.capitalize() for x in words]
-    result = options.delimiter.join(words)
+    if options.delimiter_special:
+        lengths = list(range(1, options.delimiter_special + 1))
+        for pos in range(len(words)-1, 0, -1):
+            l = rnd.choice(lengths)
+            deli = "".join(rnd.choice(SPECIAL_CHARS) for j in range(l))
+            words.insert(pos, deli)
+        result = "".join(words)
+    else:
+        result = options.delimiter.join(words)
     for _ in range(options.specials):
         result = insert_special_char(result, rnd=rnd)
     return result

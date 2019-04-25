@@ -4,7 +4,10 @@ Changes
 0.9.7.dev0 (yet unreleased)
 ---------------------------
 
-(no changes yet)
+- Added option ``--delimiter-special``. Thanks to `Hartmut Goebel
+  <https://crazy-compilers.com>`_.
+- Added German, Italien, Latin and two Spanish wordlists. Thanks to
+  `Hartmut Goebel <https://crazy-compilers.com>`_.
 
 0.9.6 (2018-12-19)
 ------------------
