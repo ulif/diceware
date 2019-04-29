@@ -2,8 +2,9 @@ import os
 from setuptools import setup
 
 
-def read(fname):
-    return open(os.path.join(os.path.dirname(__file__), fname)).read()
+def read(*parts):
+    with open(os.path.join(os.path.dirname(__file__), *parts)) as fp:
+        return fp.read()
 
 version = {}
 exec(read("diceware", "__about__.py"), version)
