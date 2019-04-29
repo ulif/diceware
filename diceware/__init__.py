@@ -21,13 +21,12 @@ import sys
 import logging
 from errno import ENOENT
 from random import SystemRandom
+from .__about__ import version as __version__
 from diceware.config import get_config_dict
 from diceware.logger import configure
 from diceware.wordlist import (
     WordList, get_wordlist_path, get_wordlists_dir, get_wordlist_names,
     )
-
-__version__ = pkg_resources.get_distribution('diceware').version
 
 #: Special chars inserted on demand
 SPECIAL_CHARS = r"~!#$%^&*()-=+[]\{}:;" + r'"' + r"'<>?/0123456789"

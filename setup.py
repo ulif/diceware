@@ -5,6 +5,9 @@ from setuptools import setup
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
+version = {}
+exec(read("diceware", "__about__.py"), version)
+
 
 setup_requires = [
     'pytest_runner',
@@ -27,7 +30,7 @@ docs_require = [
 
 setup(
     name="diceware",
-    version="0.9.7.dev0",
+    version=version["version"],
     author="Uli Fouquet",
     author_email="uli@gnufix.de",
     description=(
