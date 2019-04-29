@@ -163,6 +163,24 @@ def insert_special_char(word, specials=SPECIAL_CHARS, rnd=None):
     char_list[rnd.choice(range(len(char_list)))] = rnd.choice(specials)
     return ''.join(char_list)
 
+def insert_special_delimiter(words, max_delimiter_chars,
+                             specials=SPECIAL_CHARS, rnd=None):
+    """Insert a char out of `specials` into `word`.
+
+    `rnd`, if passed in, will be used as a (pseudo) random number
+    generator. We use `.choice()` only.
+
+    Returns the modified word.
+    """
+    if rnd is None:
+        rnd = SystemRandom()
+    words = words[:]
+    lengths = list(range(1, max_delimiter_chars + 1))
+    for pos in range(len(words)-1, 0, -1):
+        num_chars = rnd.choice(lengths)  # choose number of chars to insert
+        deli = "".join(rnd.choice(specials) for j in range(num_chars))
+        words.insert(pos, deli)
+    return words
 
 def get_passphrase(options=None):
     """Get a diceware passphrase.
@@ -194,11 +212,7 @@ def get_passphrase(options=None):
     if options.caps:
         words = [x.capitalize() for x in words]
     if options.delimiter_special:
-        lengths = list(range(1, options.delimiter_special + 1))
-        for pos in range(len(words)-1, 0, -1):
-            l = rnd.choice(lengths)
-            deli = "".join(rnd.choice(SPECIAL_CHARS) for j in range(l))
-            words.insert(pos, deli)
+        words = insert_special_delimiter(words, options.delimiter_special)
         result = "".join(words)
     else:
         result = options.delimiter.join(words)
