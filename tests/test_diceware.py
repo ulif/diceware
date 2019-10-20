@@ -45,6 +45,7 @@ class TestHandleOptions(object):
         assert options.randomsource == "system"
         assert options.wordlist == "en_eff"
         assert options.verbose == 0
+        assert options.max == 0
 
     def test_handle_options_infile(self, tmpdir):
         # we can give an infile
@@ -69,6 +70,14 @@ class TestHandleOptions(object):
         assert options.caps is True
         options = handle_options(['--no-caps', ])
         assert options.caps is False
+    
+    def test_handle_options_max(self):
+        options = handle_options([])
+        assert options.max == 0 
+        options = handle_options(['-m', '0'])
+        assert options.max == 0 
+        options = handle_options(['--max', '0'])
+        assert options.max == 0
 
     def test_handle_options_caps_conflicting_raises_exc(self):
         # conflicting caps-settings raise an exception
@@ -243,6 +252,12 @@ class TestDicewareModule(object):
         options.delimiter = " "
         phrase = get_passphrase(options)
         assert " " in phrase
+    
+    def test_get_passphrase_max(self):
+        options = handle_options(args=[])
+        options.max = 15
+        phrase = get_passphrase(options)
+        assert len(phrase) == 15
 
     def test_print_version(self, capsys):
         # we can print version infos
