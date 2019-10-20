@@ -71,6 +71,8 @@ Once installed, use ``--help`` to list all available options::
     --no-caps             Turn off capitalization.
     -s NUM, --specials NUM
                           Insert NUM special chars into generated word.
+    -m NUM, --max NUM
+                          Truncate to NUM length.
     -d DELIMITER, --delimiter DELIMITER
                           Separate words by DELIMITER. Empty string by default.
     -r SOURCE, --randomsource SOURCE
