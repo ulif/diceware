@@ -167,7 +167,7 @@ def get_passphrase(options=None):
     `options` is a set of arguments as provided by
     `argparse.OptionParser.parse_args()`.
 
-    The passphrase returned will contain `options.num` words deliimted by
+    The passphrase returned will contain `options.num` words delimited by
     `options.delimiter` and `options.specials` special chars.
 
     For the passphrase generation we will use the random source
