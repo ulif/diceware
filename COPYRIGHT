@@ -26,6 +26,11 @@ Source: https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt
 License: CC-BY-3.0
 Comment: License comes from eff.org/copyright
 
+Files: diceware/wordlists/wordlist_pt-br.txt
+Copyright: 2019 drebs <drebs@riseup.net>
+License: CC-BY-3.0
+Comment: This wordlist was crafted for use with `diceware`
+
 License: Expat
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this data (the "Data"), to deal in the Data without

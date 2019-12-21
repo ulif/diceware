@@ -296,7 +296,8 @@ tell and an attacker would have less combinations to guess.
 To avoid that, you can leave caps enabled (the default), use any word
 delimiter except the empty string or use the ``en_eff`` wordlist,
 which was checked to be a `prefix code`_ (i.e. it does not contain
-words that start with other words in the list).
+words that start with other words in the list). The ``pt-br`` is also a secure
+`prefix code`_.
 
 Each of these measures is sufficient to protect you against the
 `prefix code`_ problem.
@@ -394,9 +395,10 @@ People that helped spotting bugs, providing solutions, etc.:
  - `Conor Schaefer (conorsch) <https://github.com/conorsch>`_
  - Rodolfo Gouveia suggested to activate the ``--delimiter`` option.
  - `@drebs`_ provided patches and discussion for different sources of
-   randomness. `@drebs`_ also initiated and performed the packaging of
-   `diceware` for the `Debian`_ platform. Many kudos for this work! `@drebs`_
-   is also the official Debian maintainer of the `diceware` package.
+   randomness and the excellent ``pt-br`` wordlist. `@drebs`_ also initiated
+   and performed the packaging of `diceware` for the `Debian`_ platform. Many
+   kudos for this work! `@drebs`_ is also the official Debian maintainer of the
+   `diceware` package.
  - `@heartsucker`_ hand-compiled and added a new english wordlist.
  - `dwcoder <https://github.com/dwcoder>`_ revealed and fixed bugs
    #19, #21, #23. Also showed sound knowledge of (theoretical)
