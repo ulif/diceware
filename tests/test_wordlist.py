@@ -208,7 +208,7 @@ class TestWordList(object):
     def test_wordlist_en_8k(self):
         # we can get a list of words out of the reinhold english 8k wordlist.
         wordlists_dir = get_wordlists_dir()
-        en_src = os.path.join(wordlists_dir, 'wordlist_en.txt')
+        en_src = os.path.join(wordlists_dir, 'wordlist_en_orig.txt')
         w_list = WordList(en_src)
         long_list = list(w_list)
         assert long_list[0] == "a"
