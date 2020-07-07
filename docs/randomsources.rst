@@ -25,7 +25,7 @@ System Random
 -------------
 
 By default `diceware` uses the Python standard lib
-:class:`random.SystemRandom` class to retrieve randomness. This class
+:class:`secrets.SystemRandom` class to retrieve randomness. This class
 calls an OS-specific source of randomness that returns data normally
 unpredictable enough for our purposes. The quality of randomness
 therefore depends on the quality of your OS implementation.

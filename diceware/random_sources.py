@@ -74,7 +74,7 @@ generating a passphrase.
 """
 import math
 import sys
-from random import SystemRandom
+from secrets import SystemRandom
 
 
 input_func = input

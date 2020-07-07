@@ -3,7 +3,6 @@ language: python
 # see: http://docs.travis-ci.com/user/migrating-from-legacy/
 sudo: false
 python:
-  - "2.7"
   - "3.6"
 before_install:
   # nothing to do, currently

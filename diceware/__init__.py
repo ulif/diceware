@@ -20,7 +20,7 @@ import pkg_resources
 import sys
 import logging
 from errno import ENOENT
-from random import SystemRandom
+from secrets import SystemRandom
 from diceware.config import get_config_dict
 from diceware.logger import configure
 from diceware.wordlist import (
