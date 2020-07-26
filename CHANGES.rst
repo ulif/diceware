@@ -19,7 +19,7 @@ Changes
 - Fixed #28: use Debian-compliant, machine-readable copyright format. Kudos to
   `Simon Fondrie-Teitler <https://github.com/simonft>`_ and @anarcat.
 - Fixed #48: Clarify trademark status of diceware. Mr. Reinhold granted
-  permission to use the name 'Diceware' in this project and under the condtions
+  permission to use the name 'Diceware' in this project and under the conditions
   listed in the issue comments. Many thanks to him!
 
 
@@ -89,7 +89,7 @@ Changes
 ----------------
 
 - Closed #23. @dwcoder provided a fix that allows use of
-  whitespace-only values in diceware confg files if they are enclosed
+  whitespace-only values in diceware config files if they are enclosed
   in quotes.
 - Fixed #21. @dwcoder revealed and fixed (again!). This time `--caps`
   and `--no-caps` settings did not work properly when set in CLI or in
@@ -129,7 +129,7 @@ Changes
 0.6 (2015-12-15)
 ----------------
 
-- Officially support Pyhthon 3.5.
+- Officially support Python 3.5.
 - Tests do not depend on `pytest-cov`, `pytest-xdist` anymore.
 - Support configuration files. You can set different defaults in a
   file called ``.diceware.ini`` in your home directory.
