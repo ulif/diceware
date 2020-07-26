@@ -125,7 +125,7 @@ make your passphrases more readable (and more secure, see
 `Security Traps <#sec-traps>`_ below).
 
 By default the single phrase words are capitalized, i.e. the first
-char of each word is made uppercase. This does not neccessarily give
+char of each word is made uppercase. This does not necessarily give
 better entropy (but protects against entropy loss due to non `prefix
 code`_, see `Security Traps <#sec-traps>`_ below), and it might
 improve phrase readability.

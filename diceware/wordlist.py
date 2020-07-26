@@ -40,7 +40,7 @@ RE_VALID_WORDLIST_FILENAME = re.compile(
 
 
 def get_wordlists_dir():
-    """Get the directory in which wordlsts are stored.
+    """Get the directory in which word lists are stored.
     """
     return os.path.abspath(
         os.path.join(os.path.dirname(__file__), 'wordlists'))

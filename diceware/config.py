@@ -67,7 +67,7 @@ def get_config_dict(
     """Get config values found in files from `path_list`.
 
     Read files in `path_list` config files and return option values from
-    section `section` as regular dictonary.
+    section `section` as regular dictionary.
 
     We only accept values for which a default exists in
     `defaults_dict`. If `defaults_dict` is ``None`` we use
