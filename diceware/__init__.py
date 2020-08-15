@@ -147,6 +147,10 @@ def handle_options(args):
             parser = plugin.update_argparser(parser)
     parser.set_defaults(**defaults)
     args = parser.parse_args(args)
+    if args.randomsource != 'realdice' and args.inline:
+        parser.error(
+            '--inline option can only be used with real dice (-r realdice)'
+        )
     return args
 
 
