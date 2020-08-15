@@ -149,7 +149,7 @@ class RealDiceRandomSource(object):
                 )
             )
         print(
-            "Please roll %s dice (or a single dice %s times)." % (
+            "Please roll %s dice (or a single die %s times)." % (
                 num_rolls, num_rolls))
         return
 
@@ -178,7 +178,7 @@ class RealDiceRandomSource(object):
                 while rolled not in [
                         str(x) for x in range(1, self.dice_sides + 1)]:
                     rolled = input_func(
-                        "What number shows dice number %s? " % (
+                        "What number does die number %s show? " % (
                             num_rolls - i + 1))
                 result += ((self.dice_sides ** (i - 1)) * (int(rolled) - 1))
             if result < len(sequence):

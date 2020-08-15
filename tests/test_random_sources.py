@@ -228,7 +228,7 @@ class TestRealDiceRandomSource(object):
         src = RealDiceRandomSource(None)
         src.pre_check(5, ['doesntmatter'])
         out, err = capsys.readouterr()
-        assert "Please roll 5 dice (or a single dice 5 times)." in out
+        assert "Please roll 5 dice (or a single die 5 times)." in out
 
     def test_choice_copes_with_sequence_len_1(self, capsys, fake_input):
         # choice copes with sequences of len 1
