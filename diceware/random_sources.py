@@ -130,10 +130,8 @@ class RealDiceRandomSource(object):
     def __init__(self, options):
         self.options = options
         self.dice_sides = 6
-        self.is_inline = False
         if options is not None:
             self.dice_sides = getattr(options, 'dice_sides', 6)
-            self.is_inline = getattr(options, 'inline', False)
 
     def pre_check(self, num_rolls, sequence):
         """Checks performed before picking an item of a sequence.
@@ -175,12 +173,8 @@ class RealDiceRandomSource(object):
         repeat = True
         while repeat:
             result = 0
-            if self.is_inline:
-                roll_gen = self.__roll_gen_inline
-            else:
-                roll_gen = self.__roll_gen_normal
 
-            for i, rolled in roll_gen(num_rolls):
+            for i, rolled in self.__roll_gen_inline(num_rolls):
                 result += ((self.dice_sides ** (i - 1)) * (int(rolled) - 1))
             if result < len(sequence):
                 repeat = False
@@ -188,18 +182,6 @@ class RealDiceRandomSource(object):
                 print("Value out of range. Please roll dice again.")
         return sequence[result]
 
-    def __roll_gen_normal(self, num_rolls):
-        """Ask the user for each dice result one at a time
-        """
-        for i in range(num_rolls, 0, -1):
-            rolled = None
-            while rolled not in [
-                    str(x) for x in range(1, self.dice_sides + 1)]:
-                rolled = input_func(
-                    "What number shows dice number %s? " % (
-                        num_rolls - i + 1))
-            yield i, rolled
-    
     def __roll_gen_inline(self, num_rolls):
         """Ask the user for all dice results at once
         """
