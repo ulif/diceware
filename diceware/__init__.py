@@ -127,10 +127,6 @@ def handle_options(args):
             '--dice-sides', default=6, type=int, metavar="N",
             help='Number of sides of dice. Default: 6'
         )
-    realdice_group.add_argument(
-            '--inline', default=False, action='store_const', const=True,
-            help='Accept a space-separated list of values rather than one at a time'
-    )
     parser.add_argument(
         'infile', nargs='?', metavar='INFILE', default=None,
         help="Input wordlist. `-' will read from stdin.",
@@ -147,10 +143,6 @@ def handle_options(args):
             parser = plugin.update_argparser(parser)
     parser.set_defaults(**defaults)
     args = parser.parse_args(args)
-    if args.randomsource != 'realdice' and args.inline:
-        parser.error(
-            '--inline option can only be used with real dice (-r realdice)'
-        )
     return args
 
 
