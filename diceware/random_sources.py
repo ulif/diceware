@@ -174,7 +174,7 @@ class RealDiceRandomSource(object):
         while repeat:
             result = 0
 
-            for i, rolled in self.__roll_gen_inline(num_rolls):
+            for i, rolled in self.__get_rolls(num_rolls):
                 result += ((self.dice_sides ** (i - 1)) * (int(rolled) - 1))
             if result < len(sequence):
                 repeat = False
@@ -182,7 +182,7 @@ class RealDiceRandomSource(object):
                 print("Value out of range. Please roll dice again.")
         return sequence[result]
 
-    def __roll_gen_inline(self, num_rolls):
+    def __get_rolls(self, num_rolls):
         """Ask the user for all dice results at once
         """
         rolls = []
@@ -191,5 +191,4 @@ class RealDiceRandomSource(object):
             rolls = input_func(
                 "Enter your %d dice results, separated by spaces: "
                     % num_rolls).split()
-        for i, roll in enumerate(rolls):
-            yield num_rolls - i, roll
+        return [(num_rolls - i, roll) for i, roll in enumerate(rolls)]
