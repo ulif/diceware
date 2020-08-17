@@ -144,7 +144,7 @@ class TestRealDiceRandomSource(object):
 
     def test_choice_num_of_dice_for_seq_len36(self, fake_input):
         # choice() requires two dice for a sequence len of 6**2
-        fake_input(["1", "2"])
+        fake_input(["1 2"])
         src = RealDiceRandomSource(None)
         sequence = list(range(6 ** 2))
         expected_index = 6 * (1 - 1) + (2 - 1)     # = 6 x roll_1 + roll_2 - 1
@@ -152,7 +152,7 @@ class TestRealDiceRandomSource(object):
 
     def test_choice_num_of_dice_for_seq_len216(self, fake_input):
         # choice() requires three dice for a sequence len of 6**3
-        fake_input(["1", "2", "3"])
+        fake_input(["1 2 3"])
         src = RealDiceRandomSource(None)
         sequence = list(range(6 ** 3))        # 216
         # = 6^2 * (roll_1 - 1) + 6^1 * (roll_2 - 1) + (roll_3 - 1)
@@ -174,7 +174,7 @@ class TestRealDiceRandomSource(object):
 
     def test_no_hint_if_entropy_is_not_decreased(self, fake_input, capsys):
         # we do not issue the entropy warning if not neccessary
-        fake_input(["1"] * 6)
+        fake_input(["1", "1 1", "1 1 1"])
         src = RealDiceRandomSource(None)
         picked1 = src.choice([1, 2, 3, 4, 5, 6])
         picked2 = src.choice(range(1, 6 ** 2 + 1))
@@ -318,7 +318,7 @@ class TestRealDiceRandomSource(object):
 
     def test_choice_respects_dice_sides(self, capsys, fake_input):
         # we use the number of dice sides given by options dict.
-        fake_input(["1", "2"])
+        fake_input(["1 2"])
         # A Namespace, not a dict, is passed to the constructor.
         options = argparse.Namespace(dice_sides=2)  # a coin
         src = RealDiceRandomSource(options)
