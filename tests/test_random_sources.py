@@ -337,36 +337,6 @@ class TestRealDiceRandomSource(object):
         assert src.get_num_rolls(3) == 1
         assert src.get_num_rolls(2**12 + 1) == 12
 
-    def test_non_numbers_as_input_are_rejected_inline(self, fake_input):
-        # Users might input non-numbers. We ask again then.
-        fake_input(["no number", "", "1 2"])
-        src = RealDiceRandomSource(argparse.Namespace(inline=True))
-        assert src.choice([i for i in range(1, 37)]) == 2
-
-    def test_choice_input_lower_value_borders_inline(self, fake_input):
-        # choice() does not accept "0" but it accepts "1"
-        fake_input(["0 1", "1 0", "1 1"])
-        src = RealDiceRandomSource(argparse.Namespace(inline=True))
-        sequence = [i for i in range(1, 37)]
-        assert src.choice(sequence) == 1
-
-    def test_choice_num_of_dice_for_seq_len36_inline(self, fake_input):
-        # choice() requires two dice for a sequence len of 6**2
-        fake_input(["1 2"])
-        src = RealDiceRandomSource(argparse.Namespace(inline=True))
-        sequence = list(range(6 ** 2))
-        expected_index = 6 * (1 - 1) + (2 - 1)     # = 6 x roll_1 + roll_2 - 1
-        assert src.choice(sequence) == sequence[expected_index]
-
-    def test_choice_num_of_dice_for_seq_len216_inline(self, fake_input):
-        # choice() requires three dice for a sequence len of 6**3
-        fake_input(["1 2 3"])
-        src = RealDiceRandomSource(argparse.Namespace(inline=True))
-        sequence = list(range(6 ** 3))        # 216
-        # = 6^2 * (roll_1 - 1) + 6^1 * (roll_2 - 1) + (roll_3 - 1)
-        expected_index = 0 + 6 + 3 - 1
-        assert src.choice(sequence) == sequence[expected_index]
-
     def test_main_with_realdice_source(
             self, argv_handler, capsys, fake_input):
         # we can run main with `realdice` source of randomness
