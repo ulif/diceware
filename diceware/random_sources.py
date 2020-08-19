@@ -173,16 +173,22 @@ class RealDiceRandomSource(object):
         repeat = True
         while repeat:
             result = 0
-            for i in range(num_rolls, 0, -1):
-                rolled = None
-                while rolled not in [
-                        str(x) for x in range(1, self.dice_sides + 1)]:
-                    rolled = input_func(
-                        "What number shows dice number %s? " % (
-                            num_rolls - i + 1))
+
+            for i, rolled in self.__get_rolls(num_rolls):
                 result += ((self.dice_sides ** (i - 1)) * (int(rolled) - 1))
             if result < len(sequence):
                 repeat = False
             else:
                 print("Value out of range. Please roll dice again.")
         return sequence[result]
+
+    def __get_rolls(self, num_rolls):
+        """Ask the user for all dice results at once
+        """
+        rolls = []
+        valid_rolls = [str(x) for x in range(1, self.dice_sides + 1)]
+        while len(rolls) != num_rolls or not set(rolls).issubset(valid_rolls):
+            rolls = input_func(
+                "Enter your %d dice results, separated by spaces: "
+                    % num_rolls).split()
+        return [(num_rolls - i, roll) for i, roll in enumerate(rolls)]

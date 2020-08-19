@@ -153,10 +153,11 @@ lib but you can also bring your own dice to create randomness::
 
   $ diceware -r realdice --dice-sides 6
   Please roll 5 dice (or a single dice 5 times).
-  What number shows dice number 1? 2
-  What number shows dice number 2? 3
+  Enter your 5 dice results, separated by spaces: 6 4 2 3 1
+  Please roll 5 dice (or a single dice 5 times).
+  Enter your 5 dice results, separated by spaces: 5 4 3 6 2
   ...
-  DogmaAnyShrikeSageSableHoar
+  UnleveledSimilarlyBackboardMurkyOasisReplay
 
 Normally dice have six sides. And this is also the default in
 `diceware` if you do not use ``--dice-sides``. But if you do, you can
