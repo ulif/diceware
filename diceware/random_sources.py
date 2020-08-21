@@ -214,4 +214,3 @@ class RealDiceRandomSource(object):
                 # i.e. The entry is valid
                 pass
         return [(num_rolls - i, roll) for i, roll in enumerate(rolls)]
-        
