@@ -195,7 +195,7 @@ class RealDiceRandomSource(object):
                 "separated by non-digit characters: "
                     % num_rolls)
             rolls = re.split('\D+', entry)
-            # remove null/empty entries
+            # remove trailing empty entries
             rolls = list(filter(None,rolls))
             if len (rolls) > num_rolls:
                 del rolls[num_rolls:]
