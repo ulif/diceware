@@ -74,6 +74,7 @@ generating a passphrase.
 """
 import math
 import sys
+import re
 from random import SystemRandom
 
 
@@ -188,7 +189,9 @@ class RealDiceRandomSource(object):
         rolls = []
         valid_rolls = [str(x) for x in range(1, self.dice_sides + 1)]
         while len(rolls) != num_rolls or not set(rolls).issubset(valid_rolls):
-            rolls = input_func(
-                "Enter your %d dice results, separated by spaces: "
-                    % num_rolls).split()
+            rolls = re.split(r'\D+', input_func(
+                "Enter your %d dice results, separated by non-digits: "
+                    % num_rolls))
+            # remove leading/trailing Nones
+            rolls = list(filter(None, rolls))
         return [(num_rolls - i, roll) for i, roll in enumerate(rolls)]
