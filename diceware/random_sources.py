@@ -144,14 +144,13 @@ class RealDiceRandomSource(object):
             raise(ValueError)
         if (self.dice_sides ** num_rolls) < len(sequence):
             print(
-                "  Warning: entropy is reduced! Using only first %s of %s "
+                "Warning: entropy is reduced! Using only first %s of %s "
                 "words/items of your wordlist." % (
                     self.dice_sides ** num_rolls, len(sequence)
                 )
             )
         print(
-            "Please roll %s %s-sided dice (or a single %s-sided die "
-            "%s times)." % (
+            "Please roll %s %s-sided dice (or a single %s-sided die %s times)." % (
                 num_rolls, self.dice_sides, self.dice_sides, num_rolls))
         return
 
@@ -191,25 +190,21 @@ class RealDiceRandomSource(object):
         valid_rolls = [str(x) for x in range(1, self.dice_sides + 1)]
         while len(rolls) != num_rolls or not set(rolls).issubset(valid_rolls):
             entry = input_func(
-                "Enter your %d dice results, "
-                "separated by non-digit characters: "
+                "Enter your %d dice results, separated by non-digit characters: "
                     % num_rolls)
             rolls = re.split('\D+', entry)
-            # remove trailing empty entries
-            rolls = list(filter(None,rolls))
             if len (rolls) > num_rolls:
                 del rolls[num_rolls:]
-                print ("  Warning:  Input had too many entries, only using "
-                    "the first %s."     
+                print ("  Warning:  Input had too many entries, only using the first %s." 
                     % num_rolls)
-            if len (rolls) < num_rolls:
-                print ("  Warning:  Input had too few entries.  "
-                    "Please retry...")
-            elif not set(rolls).issubset(valid_rolls):
-                print ("  Warning:  \"%s\" is not a valid entry.  "
-                    "Please retry..." 
+            elif len (rolls) < num_rolls:
+                print ("  Warning:  Input had too few entries.  Please retry...")
+            else:
+                # i.e. the entry is the right length
+                pass
+            if not set(rolls).issubset(valid_rolls):
+                print ("  Warning:  \"%s\" is not a valid entry.  Please retry..." 
                     % entry)
-                print ("    Values must be between 1 and %s" % self.dice_sides)
             else:
                 # i.e. The entry is valid
                 pass
