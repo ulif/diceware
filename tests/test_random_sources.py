@@ -228,7 +228,7 @@ class TestRealDiceRandomSource(object):
         src = RealDiceRandomSource(None)
         src.pre_check(5, ['doesntmatter'])
         out, err = capsys.readouterr()
-        assert "Please roll 5 6-sided dice (or a single 6-sided die 5 times)." in out
+        assert "Please roll 5 dice (or a single dice 5 times)." in out
 
     def test_choice_copes_with_sequence_len_1(self, capsys, fake_input):
         # choice copes with sequences of len 1
@@ -249,14 +249,14 @@ class TestRealDiceRandomSource(object):
             fake_input(["1"])
             picked = src.choice(range(1, choice_length + 1))
             out, err = capsys.readouterr()
-            assert "roll 1 6-sided dice" in out
+            assert "roll 1 dice" in out
             assert picked == 1
         # A length of 4,5 requires 2 rolls
         for choice_length in (4, 5):
             fake_input(["1", "2"])
             picked = src.choice(range(1, choice_length + 1))
             out, err = capsys.readouterr()
-            assert "roll 1 6-sided dice" in out
+            assert "roll 1 dice" in out
             assert picked == 1
 
     def test_choice_distributes_equally_on_short_seq(self, fake_input):
@@ -325,7 +325,7 @@ class TestRealDiceRandomSource(object):
         picked = src.choice(['a', 'b', 'c', 'd'])
         out, err = capsys.readouterr()
         # must throw a coin 2 times to pick one out of 4 items
-        assert "Please roll 2 2-sided dice" in out
+        assert "Please roll 2 dice" in out
         assert picked == 'b'
 
     def test_get_num_rolls(self):
