@@ -158,7 +158,7 @@ class TestRealDiceRandomSource(object):
         # = 6^2 * (roll_1 - 1) + 6^1 * (roll_2 - 1) + (roll_3 - 1)
         expected_index = 0 + 6 + 3 - 1
         assert src.choice(sequence) == sequence[expected_index]
-    
+
     def test_choice_copes_with_non_digit_separators(self, fake_input):
         # choice() requires three dice for a sequence len of 6**3
         fake_input(["1,2,3"])

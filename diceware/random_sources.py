@@ -191,7 +191,7 @@ class RealDiceRandomSource(object):
         while len(rolls) != num_rolls or not set(rolls).issubset(valid_rolls):
             rolls = re.split(r'\D+', input_func(
                 "Enter your %d dice results, separated by non-digits: "
-                    % num_rolls))
+                % num_rolls))
             # remove leading/trailing Nones
             rolls = list(filter(None, rolls))
         return [(num_rolls - i, roll) for i, roll in enumerate(rolls)]
