@@ -9,7 +9,7 @@ from errno import EISDIR
 from diceware import (
     get_wordlists_dir, SPECIAL_CHARS, insert_special_char, get_passphrase,
     handle_options, main, __version__, print_version, get_random_sources,
-    get_wordlist_names
+    get_wordlist_names, insert_special_delimiter
     )
 
 
@@ -85,6 +85,15 @@ class TestHandleOptions(object):
         assert options.delimiter == ' '
         options = handle_options(['-d', 'WOW'])
         assert options.delimiter == 'WOW'
+
+    def test_handle_options_delimiter_special(self):
+        # we can set number of special characters to be used as delimiter
+        options = handle_options([])
+        assert options.delimiter_special == 0
+        options = handle_options(['-D', '3'])
+        assert options.delimiter_special == 3
+        options = handle_options(['--delimiter-special', '1'])
+        assert options.delimiter_special == 1
 
     def test_handle_options_randomsource(self):
         # we can choose the source of randomness
@@ -243,6 +252,37 @@ class TestDicewareModule(object):
         options.delimiter = " "
         phrase = get_passphrase(options)
         assert " " in phrase
+
+    def test_get_passphrase_special_delimiter(self):
+        # delimiter_special overrules delemiter
+        options = handle_options(args=[])
+        options.delimiter = " "
+        options.delimiter_special = 2
+        phrase = get_passphrase(options)
+        assert " " not in phrase
+
+    def test_insert_special_delimiter(self):
+        # we can insert special chars between the words.
+        fake_rnd = FakeRandom()
+        fake_rnd.nums_to_draw = [1, 2, 1,  # (num of chars)-1, char-idx
+                                 0, 1,
+                                 2, 1, 2, 0]
+        words_in = ['aaa', 'bbb', 'ccc', 'ddd']
+        result1 = insert_special_delimiter(words_in, 3,
+                                           specials='!$&', rnd=fake_rnd)
+        assert result1 == ['aaa', '$&!', 'bbb', '$', 'ccc', '&$', 'ddd']
+        assert words_in == ['aaa', 'bbb', 'ccc', 'ddd']  # unchanges
+
+    def test_insert_special_delimiter_defaults(self):
+        # defaults are respected
+        words_in = ['aaa', 'bbb']
+        result1 = insert_special_delimiter(words_in, 2)
+        assert result1[0] == 'aaa'
+        assert result1[2] == 'bbb'
+        assert 1 <= len(result1[1]) <= 2
+        assert result1[1][0] in SPECIAL_CHARS
+        if len(result1[1]) == 2:
+            result1[1][1] in SPECIAL_CHARS
 
     def test_print_version(self, capsys):
         # we can print version infos
