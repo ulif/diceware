@@ -43,7 +43,7 @@ class TestHandleOptions(object):
         assert options.version is False
         assert options.delimiter == ""
         assert options.randomsource == "system"
-        assert options.wordlist == "en_eff"
+        assert options.wordlist == ["en_eff"]
         assert options.verbose == 0
 
     def test_handle_options_infile(self, tmpdir):
@@ -121,9 +121,9 @@ class TestHandleOptions(object):
         wordlist_names = get_wordlist_names()
         for name in wordlist_names:
             options = handle_options(['-w', name])
-            assert options.wordlist == name
+            assert options.wordlist == [name]
             options = handle_options(['--wordlist', name])
-            assert options.wordlist == name
+            assert options.wordlist == [name]
 
     def test_handle_options_wordlist_rejects_invalid(self, capsys):
         # we can choose only existing wordlists

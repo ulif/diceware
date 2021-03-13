@@ -24,6 +24,7 @@ try:
 except ImportError:                                         # pragma: no cover
     from ConfigParser import SafeConfigParser as SafeParser  # Python 2.x
 import os
+import re
 
 
 OPTIONS_DEFAULTS = dict(
@@ -33,9 +34,13 @@ OPTIONS_DEFAULTS = dict(
     delimiter="",
     randomsource="system",
     verbose=0,
-    wordlist="en_eff",
+    wordlist=["en_eff"],
     dice_sides=6,
     )
+
+
+#: valid wordlist names
+RE_WLIST_NAME = re.compile(r'(?![\w\-]+).')
 
 
 def valid_locations():
@@ -60,6 +65,12 @@ def get_configparser(path_list=None):
     parser = SafeParser()
     found = parser.read(path_list)
     return found, parser
+
+
+def string_to_wlist_list(text):
+    """Split string into list of valid wordlist names.
+    """
+    return [name for name in re.split(RE_WLIST_NAME, text) if name != ""]
 
 
 def get_config_dict(
@@ -88,6 +99,8 @@ def get_config_dict(
             result[key] = parser.getboolean(section, key)
         elif isinstance(val, int):
             result[key] = parser.getint(section, key)
+        elif key == "wordlist":
+            result[key] = string_to_wlist_list(parser.get(section, key))
         else:
             result[key] = parser.get(section, key).strip("\"'")
     return result

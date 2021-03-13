@@ -114,8 +114,8 @@ def handle_options(args):
             "Get randomness from this source. Possible values: `%s'. "
             "Default: system" % "', `".join(sorted(random_sources))))
     parser.add_argument(
-        '-w', '--wordlist', default='en_eff', choices=wordlist_names,
-        metavar="NAME",
+        '-w', '--wordlist', default=['en_eff'], choices=wordlist_names,
+        metavar="NAME", nargs='*',
         help=(
             "Use words from this wordlist. Possible values: `%s'. "
             "Wordlists are stored in the folder displayed below. "
@@ -182,12 +182,17 @@ def get_passphrase(options=None):
     """
     if options is None:
         options = handle_options(args=[])
-    if options.infile is None:
-        options.infile = get_wordlist_path(options.wordlist)
-    word_list = WordList(options.infile)
     rnd_source = get_random_sources()[options.randomsource]
     rnd = rnd_source(options)
-    words = [rnd.choice(list(word_list)) for x in range(options.num)]
+
+    words = []
+    paths = [options.infile]
+    if paths == [None]:
+        paths = [get_wordlist_path(x) for x in options.wordlist]
+    wordlists = [list(WordList(path)) for path in paths]
+    for x_ in range(options.num):
+        for wordlist in wordlists:
+            words.append(rnd.choice(wordlist))
     if options.caps:
         words = [x.capitalize() for x in words]
     result = options.delimiter.join(words)
