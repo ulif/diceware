@@ -431,6 +431,7 @@ Wordlists:
 - `Diceware8k list`_ by Arnold G. Reinhold.
 - `Diceware SecureDrop list`_ by `@heartsucker`_.
 - `EFF large list`_ provided by EFF_.
+- `English adjectives and nouns lists`_ provided by `NaturalLanguagePasswords`_.
 
 
 License
@@ -441,10 +442,11 @@ licensed under the GPL v3+. See file LICENSE for details.
 
 "Diceware" is a trademark of Arnold G Reinhold, used with permission.
 
-The copyright for the `Diceware8k list`_ is owned by Arnold G Reinhold.
-The copyright for the the `Diceware SecureDrop list`_ are owned by
-`@heartsucker`_. Copyright for the `EFF large list`_ by `Joseph Bonneau`_ and
-EFF_. See file COPYRIGHT for details.
+The copyright for the `Diceware8k list`_ is owned by Arnold G Reinhold.  The
+copyright for the the `Diceware SecureDrop list`_ are owned by `@heartsucker`_.
+Copyright for the `EFF large list`_ by `Joseph Bonneau`_ and EFF_. Copyright
+for the english adjective and noun lists by `NaturalLanguagePasswords`_. See
+file COPYRIGHT for details.
 
 .. _pip: https://pip.pypa.io/en/latest/
 .. _`@anarcat`: https://github.com/anarcat
@@ -456,9 +458,11 @@ EFF_. See file COPYRIGHT for details.
 .. _`@drebs`: https://github.com/drebs
 .. _`EFF`: https://eff.org/
 .. _`EFF large list`: https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt
+.. _`English adjectives and nouns lists`: https://github.com/NaturalLanguagePasswords/system
 .. _`fork me on github`: http://github.com/ulif/diceware/
 .. _`@heartsucker`: https://github.com/heartsucker/
 .. _`Joseph Bonneau`: https://www.eff.org/about/staff/joseph-bonneau
+.. _`NaturalLanguagePasswords`: https://github.com/NaturalLanguagePasswords
 .. _`prefix code`: https://en.wikipedia.org/wiki/Prefix_code
 .. _`random.SystemRandom`: https://docs.python.org/3.4/library/random.html#random.SystemRandom
 .. _ReStructuredText: http://docutils.sourceforge.net/rst.html
