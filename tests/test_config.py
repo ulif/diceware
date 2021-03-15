@@ -1,7 +1,7 @@
 import os
 from diceware.config import (
-    OPTIONS_DEFAULTS, valid_locations, get_configparser, get_config_dict,
-    SafeParser,
+    OPTIONS_DEFAULTS, valid_locations, get_configparser,
+    string_to_wlist_list, get_config_dict, SafeParser,
     )
 
 
@@ -41,6 +41,12 @@ class TestConfigModule(object):
         config_file.write("\n".join(["[diceware]", "num = 3", ""]))
         found, config = get_configparser()
         assert found == [str(config_file)]
+
+    def test_string_to_wlist_list_returns_lists(self):
+        # we can parse valid wordlists from config strings
+        assert string_to_wlist_list("en_eff") == ["en_eff"]
+        assert string_to_wlist_list("en_eff,en_eff") == ["en_eff", "en_eff"]
+        assert string_to_wlist_list("en_eff en_eff") == ["en_eff", "en_eff"]
 
 
 class TestGetConfigDict(object):
@@ -138,6 +144,13 @@ class TestGetConfigDict(object):
             config_file.write("[diceware]\ndelimiter=%s \n" % string_in_conf)
             conf_dict = get_config_dict()
             assert conf_dict["delimiter"] == expected_parsed
+
+    def test_get_config_dict_returns_wordlists_as_list(self, home_dir):
+        # wordlist settings are returned as lists
+        config_file = home_dir / ".diceware.ini"
+        config_file.write("\n".join(["[diceware]", "wordlist=en_eff", ""]))
+        config_dict = get_config_dict()
+        assert config_dict["wordlist"] == ["en_eff"]
 
 
 class TestSampleIni(object):
