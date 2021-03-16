@@ -1,7 +1,7 @@
 Changes
 =======
 
-0.9.7.dev0 (yet unreleased)
+0.10.dev0 (yet unreleased)
 ---------------------------
 
 - Allow to specify several wordlists in order to create syntactical valid
