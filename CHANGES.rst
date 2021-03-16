@@ -4,7 +4,14 @@ Changes
 0.9.7.dev0 (yet unreleased)
 ---------------------------
 
-(no changes yet)
+- Allow to specify several wordlists in order to create syntactical valid
+  phrases.
+- Also added first wordlists with english adjectives/nouns to generate for
+  instance <adjective-noun> phrases that are easier to memorize.
+- When using real dice, allow entering of several rolls at once. Patch from
+  `Adin Hoyle <alan@alanhoyle.com>`_.
+- Add german wordlists.
+- Added carefully compiled brazilian portugese wordlist. Kudos to @drebs.
 
 0.9.6 (2018-12-19)
 ------------------
