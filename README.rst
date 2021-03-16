@@ -76,9 +76,10 @@ Once installed, use ``--help`` to list all available options::
     -r SOURCE, --randomsource SOURCE
                           Get randomness from this source. Possible values:
                           `realdice', `system'. Default: system
-    -w NAME, --wordlist NAME
-                          Use words from this wordlist. Possible values: `en',
-                          `en_eff', `en_orig', `en_securedrop'. Wordlists are
+    -w [NAME [NAME ...]], --wordlist [NAME [NAME]]
+                          Use words from this wordlist. Possible values: `de',
+                          `de_8k', `en_adjectives', `en_eff', `en_nouns',
+                          `en_orig', `en_securedrop', `pt-br'. Wordlists are
                           stored in the folder displayed below. Default: en_eff
     -v, --verbose         Be verbose. Use several times for increased verbosity.
     --version             output version information and exit.
@@ -182,6 +183,15 @@ You can enable a certain (installed) wordlist with the ``-w`` option::
   YorkNodePrickEchoToriNiobe
 
 See ``diceware --help`` for a list of all installed wordlists.
+
+You can also build phrases from adjectives and nouns (yet in english only)
+using the included `en_adjectives` and `en_nouns` lists. For that you specify
+these two wordlists after each other::
+
+  $ diceware -n 1 -w en_adjectives en_nouns
+  TediousPerimeter
+
+These adjective/noun phrases might be easier to memorize.
 
 If you do not like the wordlists provided, you can use your own
 one. Any `INFILE` provided will be parsed line by line and each line
