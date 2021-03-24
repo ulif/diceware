@@ -59,6 +59,11 @@ Usage
 Once installed, use ``--help`` to list all available options::
 
   $ diceware --help
+  usage: diceware [-h] [-n NUM] [-c | --no-caps] [-s NUM] [-d DELIMITER]
+                  [-r SOURCE] [-w [NAME [NAME ...]]] [--dice-sides N] [-v]
+                  [--version]
+                  [INFILE]
+
   Create a passphrase
 
   positional arguments:
@@ -76,11 +81,12 @@ Once installed, use ``--help`` to list all available options::
     -r SOURCE, --randomsource SOURCE
                           Get randomness from this source. Possible values:
                           `realdice', `system'. Default: system
-    -w [NAME [NAME ...]], --wordlist [NAME [NAME]]
+    -w [NAME [NAME ...]], --wordlist [NAME [NAME ...]]
                           Use words from this wordlist. Possible values: `de',
                           `de_8k', `en_adjectives', `en_eff', `en_nouns',
-                          `en_orig', `en_securedrop', `pt-br'. Wordlists are
-                          stored in the folder displayed below. Default: en_eff
+                          `en_orig', `en_orig', `en_securedrop', `pt-br'.
+                          Wordlists are stored in the folder displayed below.
+                          Default: en_eff
     -v, --verbose         Be verbose. Use several times for increased verbosity.
     --version             output version information and exit.
 
