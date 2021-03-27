@@ -4,6 +4,8 @@ Changes
 0.10.dev0 (yet unreleased)
 ---------------------------
 
+- Officially support for Python 3.8.
+- Remove official support for pypy2, Python 2.6, and Python 3.3.
 - Allow to specify several wordlists in order to create syntactical valid
   phrases.
 - Also added first wordlists with english adjectives/nouns to generate for
