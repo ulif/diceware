@@ -80,9 +80,9 @@ Separate words by DELIMITER. Empty string by default.
 Get randomness from this source. Possible values:
 \fBrealdice\fP, \fBsystem\fP\&. Default: \fBsystem\fP
 .TP
-.B \fB\-w\fP \fINAME\fP, \fB\-\-wordlist\fP \fINAME\fP
-Use words from this wordlist. Possible values: \fIen\fP, \fIen_eff\fP, \fIen_orig\fP,
-\fIen_securedrop\fP\&.  Wordlists are stored in the folder displayed below.
+.B \fB\-w\fP [\fINAME\fP [\fINAME\fP ...]], \fB\-\-wordlist\fP [\fINAME\fP [\fINAME\fP ...]]
+Use words from this wordlist. Possible values: \fIde\fP, \fIde_8k\fP,
+\fIen_adjectives\fP, \fIen_eff\fP, \fIen_nouns\fP, \fIen_orig\fP, \fIen_securedrop\fP\&. \fIpt\-br\fP\&.
 Default: \fBen_eff\fP
 .TP
 .B \fB\-v\fP, \fB\-\-verbose\fP
@@ -146,6 +146,11 @@ Create a passphrase with two special chars spread over the generated
 passphrase and containing words from wordlist "\fBen_orig\fP". This is one of
 the wordlists that come included with \fIdiceware\fP\&. Creates something like:
 "\fBRutt[FanScoldLouiseT*nyThrob\fP".
+.TP
+.B \fBdiceware \-w en_adjectives en_nouns \-n 2\fP
+Create two syntactically meaningful phrases, each one consisting of an
+adjective and a noun. Results in something like:
+"\fBCruelAttendeesCleanCoffee\fP".
 .UNINDENT
 .SH COPYRIGHT
 .sp
@@ -177,6 +182,12 @@ Heartsucker is licensed under the \fIMIT\fP license (see \fI\%http://mit\-licens
 The EFF wordlist (file \fBwordlsts/wordlist_en_eff.txt\fP) is licensed by the
 Electronic Frontier Foundation under the \fICreative Commons CC\-BY 3.0 US\fP
 license (see \fI\%https://creativecommons.org/licenses/by/3.0/us/\fP).
+.sp
+The copyright for the \fIDiceware8k\fP list is owned by Arnold G Reinhold.  The
+copyright for the the \fIDiceware SecureDrop\fP list is owned by \fI@heartsucker\fP\&.
+Copyright for the \fIEFF large\fP list by \fIJoseph Bonneau\fP and \fIEFF\fP\&. Copyright for
+the brazilian portuguese list by \fI@drebs\fP\&. Copyright for the english adjective
+and noun lists by \fINaturalLanguagePasswords\fP\&.
 .sp
 "Diceware" is a trademark of Arnold G Reinhold, used with permission.
 .SH AUTHOR

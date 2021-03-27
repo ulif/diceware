@@ -56,9 +56,9 @@ options
     Get randomness from this source. Possible values:
     ``realdice``, ``system``. Default: ``system``
 
-  ``-w`` `NAME`, ``--wordlist`` `NAME`
-    Use words from this wordlist. Possible values: `en`, `en_eff`, `en_orig`,
-    `en_securedrop`.  Wordlists are stored in the folder displayed below.
+  ``-w`` [`NAME` [`NAME` ...]], ``--wordlist`` [`NAME` [`NAME` ...]]
+    Use words from this wordlist. Possible values: `de`, `de_8k`,
+    `en_adjectives`, `en_eff`, `en_nouns`, `en_orig`, `en_securedrop`. `pt-br`.
     Default: ``en_eff``
 
   ``-v``, ``--verbose``
@@ -117,6 +117,10 @@ examples
     the wordlists that come included with `diceware`. Creates something like:
     "``Rutt[FanScoldLouiseT*nyThrob``".
 
+``diceware -w en_adjectives en_nouns -n 2``
+    Create two syntactically meaningful phrases, each one consisting of an
+    adjective and a noun. Results in something like:
+    "``CruelAttendeesCleanCoffee``".
 
 copyright
 ---------
@@ -149,5 +153,12 @@ Heartsucker is licensed under the `MIT` license (see http://mit-license.org/).
 The EFF wordlist (file ``wordlsts/wordlist_en_eff.txt``) is licensed by the
 Electronic Frontier Foundation under the `Creative Commons CC-BY 3.0 US`
 license (see https://creativecommons.org/licenses/by/3.0/us/).
+
+
+The copyright for the `Diceware8k` list is owned by Arnold G Reinhold.  The
+copyright for the the `Diceware SecureDrop` list is owned by `@heartsucker`.
+Copyright for the `EFF large` list by `Joseph Bonneau` and `EFF`. Copyright for
+the brazilian portuguese list by `@drebs`. Copyright for the english adjective
+and noun lists by `NaturalLanguagePasswords`.
 
 "Diceware" is a trademark of Arnold G Reinhold, used with permission.
