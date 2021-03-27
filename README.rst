@@ -441,7 +441,7 @@ Links
 - The Diceware_ home page. Reading definitely recommended!
 - `fork me on github`_
 
-Wordlists:
+External Wordlists:
 
 - `Diceware standard list`_ by Arnold G. Reinhold.
 - `Diceware8k list`_ by Arnold G. Reinhold.
@@ -461,8 +461,9 @@ licensed under the GPL v3+. See file LICENSE for details.
 The copyright for the `Diceware8k list`_ is owned by Arnold G Reinhold.  The
 copyright for the the `Diceware SecureDrop list`_ are owned by `@heartsucker`_.
 Copyright for the `EFF large list`_ by `Joseph Bonneau`_ and EFF_. Copyright
-for the english adjective and noun lists by `NaturalLanguagePasswords`_. See
-file COPYRIGHT for details.
+for the brazilian portuguese list by `@drebs`_. Copyright for the english
+adjective and noun lists by `NaturalLanguagePasswords`_. See file COPYRIGHT for
+details.
 
 .. _pip: https://pip.pypa.io/en/latest/
 .. _`@anarcat`: https://github.com/anarcat
