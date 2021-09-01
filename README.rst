@@ -253,7 +253,7 @@ The special chars replacing chars of the originally created passphrase
 give some more entropy (the more chars you have, the more additional
 entropy), but not much. For instance, for a sixteen chars phrase you
 have sixteen possibilities to place one of the 36 special chars. That
-makes 36 x 16 possibilitities or an entropy of about 9.17 you can add.
+makes 36 x 16 possibilities or an entropy of about 9.17 you can add.
 To get an entropy increase of at least 10 bits, you have to put a
 special char in a phrase with at least 29 chars (while at the same
 time an additional word would give you 13 bits of extra
@@ -453,7 +453,7 @@ licensed under the GPL v3+. See file LICENSE for details.
 "Diceware" is a trademark of Arnold G Reinhold, used with permission.
 
 The copyright for the `Diceware8k list`_ is owned by Arnold G Reinhold.  The
-copyright for the the `Diceware SecureDrop list`_ are owned by `@heartsucker`_.
+copyright for the `Diceware SecureDrop list`_ are owned by `@heartsucker`_.
 Copyright for the `EFF large list`_ by `Joseph Bonneau`_ and EFF_. Copyright
 for the english adjective and noun lists by `NaturalLanguagePasswords`_. See
 file COPYRIGHT for details.
