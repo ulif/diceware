@@ -9,7 +9,7 @@ Passphrases to remember...
     :target: https://travis-ci.org/ulif/diceware
     :alt: Build Status
 
-.. |bdg-last-release|  image:: https://img.shields.io/pypi/v/diceware.svg
+.. |bdg-last-release| image:: https://img.shields.io/pypi/v/diceware.svg
     :target: https://pypi.python.org/pypi/diceware/
     :alt: Latest Release
 
