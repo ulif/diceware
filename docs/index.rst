@@ -32,5 +32,3 @@ Indices and tables
 .. |bdg-build| image:: https://travis-ci.org/ulif/diceware.png?branch=master
     :target: https://travis-ci.org/ulif/diceware
     :alt: Build Status
-
-

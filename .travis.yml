@@ -2,7 +2,7 @@ language: python
 # use new container infrastructure
 # see: http://docs.travis-ci.com/user/migrating-from-legacy/
 sudo: false
-arch: 
+arch:
  - amd64
  - ppc64le
 

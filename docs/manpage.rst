@@ -99,7 +99,7 @@ examples
     "``wheel-dye-honk``".
 
 ``diceware -r`` `realdice`
-    Use real dice to create a passphrase. The programm will tell you what to do
+    Use real dice to create a passphrase. The program will tell you what to do
     (roll dice and tell what numbers appear) and in the end present a
     passphrase.
 
