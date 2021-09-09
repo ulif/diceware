@@ -4,6 +4,7 @@ Changes
 0.10.dev0 (yet unreleased)
 ---------------------------
 
+- Switch from travis-ci to github actions for automated tests.
 - Officially support for Python 3.8.
 - Remove official support for pypy2, Python 2.6, and Python 3.3.
 - Allow to specify several wordlists in order to create syntactical valid
