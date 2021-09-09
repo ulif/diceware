@@ -8,7 +8,7 @@ Welcome to `diceware` documentation
 
 Version: |version|
 
-|bdg-build|
+|bdg-tests|
 
 
 .. toctree::
@@ -29,6 +29,6 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
-.. |bdg-build| image:: https://travis-ci.org/ulif/diceware.png?branch=master
-    :target: https://travis-ci.org/ulif/diceware
-    :alt: Build Status
+.. |bdg-tests| image:: https://github.com/ulif/diceware/actions/workflows/tests.yml/badge.svg?branch=master
+   :target: https://github.com/ulif/diceware/actions/workflows/tests.yml
+   :alt: Test Status

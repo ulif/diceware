@@ -3,11 +3,11 @@ diceware
 
 Passphrases to remember...
 
-|bdg-build|  | `documentation <https://diceware.readthedocs.io/>`_ | `sources <https://github.com/ulif/diceware>`_ | `issues <https://github.com/ulif/diceware/issues>`_
+|bdg-tests|  | `documentation <https://diceware.readthedocs.io/>`_ | `sources <https://github.com/ulif/diceware>`_ | `issues <https://github.com/ulif/diceware/issues>`_
 
-.. |bdg-build| image:: https://travis-ci.org/ulif/diceware.png?branch=master
-    :target: https://travis-ci.org/ulif/diceware
-    :alt: Build Status
+.. |bdg-tests| image:: https://github.com/ulif/diceware/actions/workflows/tests.yml/badge.svg?branch=master
+   :target: https://github.com/ulif/diceware/actions/workflows/tests.yml
+   :alt: Test Status
 
 .. |bdg-last-release| image:: https://img.shields.io/pypi/v/diceware.svg
     :target: https://pypi.python.org/pypi/diceware/
