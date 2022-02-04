@@ -205,16 +205,6 @@ class TestWordList(object):
         w_list = WordList(in_path)
         assert list(w_list) == ["foo", "bar", "-dash-at-start", "baz"]
 
-    def test_wordlist_en_8k(self):
-        # we can get a list of words out of the reinhold english 8k wordlist.
-        wordlists_dir = get_wordlists_dir()
-        en_src = os.path.join(wordlists_dir, 'wordlist_en_orig.txt')
-        w_list = WordList(en_src)
-        long_list = list(w_list)
-        assert long_list[0] == "a"
-        assert long_list[-1] == "@"
-        assert len(long_list) == 8192
-
     def test_wordlist_en_securedrop(self):
         # we can get a list of words out of securedrop english 8k wordlist.
         wordlists_dir = get_wordlists_dir()
@@ -224,15 +214,6 @@ class TestWordList(object):
         assert long_list[0] == "0"
         assert long_list[-1] == "zurich"
         assert len(long_list) == 8192
-
-    def test_wordlist_en(self):
-        # we can get a list of words out of the original diceware wordlist.
-        wordlists_dir = get_wordlists_dir()
-        en_src = os.path.join(wordlists_dir, 'wordlist_en_orig.asc')
-        w_list = list(WordList(en_src))
-        assert w_list[0] == "a"
-        assert w_list[-1] == "@"
-        assert len(w_list) == 7776
 
     def test_wordlist_en_eff(self):
         # we can get a list of words out of the EFF-maintained wordlist.
@@ -273,16 +254,6 @@ class TestWordList(object):
             os.path.dirname(__file__), "sample_signed_wordlist.asc")
         result = list(WordList(in_path))
         assert ["foo", "bar", "-dash-at-start", "baz"] == result
-
-    def test_get_signed_wordlist_handles_en_orig(self):
-        # we can process the original diceware list from diceware.com
-        wordlists_dir = get_wordlists_dir()
-        wlist_path = os.path.join(wordlists_dir, 'wordlist_en_orig.asc')
-        w_list = WordList(wlist_path)
-        result = list(w_list)
-        assert len(result) == 7776
-        assert "a" == result[0]
-        assert "@" == result[-1]
 
     def test_get_signed_wordlist_ignore_empty_lines(self):
         # we ignore empty lines in wordlists

@@ -15,6 +15,7 @@ Changes
   `Adin Hoyle <alan@alanhoyle.com>`_.
 - Add german wordlists.
 - Added carefully compiled brazilian portugese wordlist. Kudos to @drebs.
+- Remove original diceware wordlists temporarily, for containing bad terms (#85)
 
 0.9.6 (2018-12-19)
 ------------------
