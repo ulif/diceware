@@ -1,3 +1,4 @@
+import math
 import os
 import pytest
 import sys
@@ -223,6 +224,16 @@ class TestWordList(object):
         assert w_list[0] == "abacus"
         assert w_list[-1] == "zoom"
         assert len(w_list) == 7776
+
+    def test_wordlists_len(self):
+        # ensure, all wordlists have an expected length (2^x or 6^x)
+        wordlists_dir = get_wordlists_dir()
+        for name in os.listdir(wordlists_dir):
+            src = os.path.join(wordlists_dir, name)
+            w_list = list(WordList(src))
+            length = len(w_list)
+            log2, log6 = math.log(length, 2), math.log(length, 6)
+            assert (6**int(log6) == length) or (2**int(log2) == length)
 
     def test_get_wordlist_simple(self, tmpdir):
         # simple wordlists can be created
