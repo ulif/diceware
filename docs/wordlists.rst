@@ -8,17 +8,39 @@ words used, the wordlists.
 good choice for usual private use.
 
 .. warning::
-         We do -- by default -- *not* use the `diceware standard wordlist`_,
+         We do *not* use the `diceware standard wordlist`_,
          but the `long EFF wordlist`_ (see below), because it is more secure
          and more comfortable to use.
 
-         But the "original" list is included in diceware as well and you can
-         pick it with the ``-w en_orig`` option.  You *should* pick it when you
-         use real dice as source of randomness.
+Currently (v0.10) we provide the following lists:
 
-Currently we provide the following lists:
+- `de` (7776/6^5 words)
 
-- `en_securedrop` (8192 words)
+  A list of German words, suitable for use with dice. Generated with
+  `diceware-list` based on wordlists from `Institut für Deutsche Sprache`_,
+  Mannheim and filtering blacklists. This list provides the `prefix property`_.
+
+- `de_8k` (8192/2^13 words)
+
+  A longer list of German words, suitable for use with machines, nerds, and
+  other binary-geared entities. Generated with `diceware-list` based on
+  wordlists from `Institut für Deutsche Sprache`_, Mannheim and filtering
+  blacklists. This list provides the `prefix property`_.
+
+- `en_eff` (7776/6^5 words, default)
+
+  This is the `long EFF wordlist`_ as published by the `Electronic Frontier
+  Foundation`_ in mid-2016 and used by default. They put real `scientific
+  effort`_ into the creation of this list which might considerably ease the
+  use of passphrases generated with it. When using real dice (or other
+  six-based randomness generators) use is definitely recommended!
+
+  It was the first list in `diceware` that provided the
+  `prefix property`_. That means it contains no word which is a prefix
+  of another word. Lists without this property might provide a slightly
+  decreased entropy.
+
+- `en_securedrop` (8192/2^13 words)
 
   We provide a hand-crafted `en_securedrop` wordlist provided
   by `@Heartsucker`_. It contains 8,192 english words and
@@ -27,34 +49,70 @@ Currently we provide the following lists:
   https://github.com/heartsucker/diceware for details. The name
   `en_securedrop` refers to the `securedrop`_ project.
 
-- `en` (8192 words)
+- `en_adjectives` (1296/6^4 words)
 
-  Apart from it we also provide the so-called `8k wordlist`_ from
-  Mr. Reinhold as published on http://diceware.com/. It also contains
-  8,192 english words and phrases and is something like the canonical
-  wordlist for use with binary-geared entities like computers or
-  nerds.
+  A list of english adjectives. This list is relatively short and should be
+  used together with other lists -- for instance the `en_nouns` list -- to
+  provide a sufficient security level. List provided from the
+  `NaturalLanguagePasswords`_ project.
 
-- `en_eff` (7776 words, default)
+- `en_nouns` (7776/6^5 words)
 
-  This is the `long EFF wordlist`_ as published by the `Electronic Frontier
-  Foundation`_ in mid-2016 and used by default. They put real `scientific
-  effort`_ into the creation of this list which might considerably ease the
-  use of passphrases generated with it. When using real dice (or other
-  six-based randomness generators) use is definitely recommended!
+  A list of english nouns. Can be used together with other lists -- for
+  instance the `en_adjectives` list to form natural language phrases. List
+  provided from the `NaturalLanguagePasswords`_ project.
 
-  Please note, that this is currently the only list, that provides the
-  `prefix property`_. That means it contains no word which is a prefix
-  of another word. Lists without this property might provide a slightly
-  decreased entropy.
+- `pt-br` (7776/6^5 words)
 
-- `en_orig` (7776 words)
+  A list of brazilian portugese words, carefully crafted by `@drebs`_. This
+  list contains no overshort words. It also provides the `prefix property`_.
+
+
+You can pick wordlists to use with the ``-w`` or ``--wordlist`` option. Lists
+with 7776 words are made for six-sided dice (7776 = 6^5) while lists with 8192
+(2^13) words are made for machines and 2-sided coins.
+
+You can also select several wordlists at once. In that case each "word" of the
+generated passphrase consists of one word from each of the lists in the order
+given.
+
+Example::
+
+   $ diceware -w en_adjectives en_nouns -n 2 -d '-'
+   lax-toast-strong-reason
+
+We get two "words" (`lax-toast` and `strong-reason`) each consisting of a
+leading adjective and a trailing noun.
+If you'd prefer the Yoda style, you could change that order::
+
+   $ diceware -w en_nouns en_adjectives -n 2 -d '-'
+   grains-honest-oxidant-happy
+
+Ich such term (like `oxidant-happy`) provides an entropy of about 23 bits.
+
+
+Retired Wordlists
+-----------------
+
+Some wordlists have been removed from `diceware`, because they contained bad
+language and words, users might be uncomfortable with.
+
+- `en` (8192 words, removed in v0.10)
+
+  The so-called `8k wordlist`_ from Mr. Reinhold as published on
+  http://diceware.com/. It was something like the canonical wordlist for use
+  with binary-geared entities like computers or nerds.
+
+- `en_orig` (7776 words, removed in v0.10)
 
   This is the `diceware standard wordlist`_ as provided by
-  Mr. Reinhold. Something like the canonical list in former times,
-  there are now considerable alternatives.
+  Mr. Reinhold. Something like the canonical list in former times.
+  There are now considerable alternatives.
 
-You can pick another list with the ``-w`` or ``--wordlist`` option.
+None of these lists provide the `prefix property`_. They also provide overshort
+terms, i.e. words that are so short, that they can lead to passphrases that are
+easier to break by checking all char combinations than to try all combinations
+of words in the wordlist.
 
 
 Add Own Wordlists
@@ -188,9 +246,12 @@ automatically done by `diceware`.
 
 .. _`8k wordlist`: http://world.std.com/~reinhold/diceware8k.txt
 .. _`diceware standard wordlist`: http://world.std.com/~reinhold/diceware.wordlist.asc
+.. _`@drebs`: https://github.com/drebs
 .. _`Electronic Frontier Foundation`: https://eff.org/
 .. _`@Heartsucker`: https://github.com/heartsucker/
+.. _`Institut für Deutsche Sprache`: https://www.ids-mannheim.de/derewo
 .. _`long EFF wordlist`: https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt
+.. _`NaturalLanguagePasswords`: https://github.com/NaturalLanguagePasswords
 .. _`prefix property`: https://en.wikipedia.org/wiki/Prefix_code
 .. _`scientific effort`: https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases
 .. _`securedrop`: https://github.com/freedomofpress/securedrop
