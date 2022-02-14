@@ -1,11 +1,11 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: diceware
-Upstream-Contact: Uli Fouquet
+Upstream-Contact: Uli Fouquet <uli@gnufix.de>
 Source: <https://github.com/ulif/diceware/>
 Comment: "Diceware" is a trademark of Arnold G Reinhold, used with permission.
 
 Files: *
-Copyright: 2015-2019, Uli Fouquet
+Copyright: 2015-2022, Uli Fouquet
 License: GPL-3+
 
 Files: diceware/wordlists/wordlist_en_securedrop.asc
@@ -14,10 +14,9 @@ Copyright: 1995-2016 Arnold G. Reinhold <agr@mac.com>
 Source: https://github.com/heartsucker/diceware/blob/develop/wordlists/en_US/wordlist.txt
 License: Expat
 
-Files: diceware/wordlists/wordlist_en.txt
-       diceware/wordlists/wordlist_en_orig.asc
-Copyright: 1995-2016 Arnold G. Reinhold <agr@mac.com>
-Source: http://world.std.com/~reinhold/diceware.html
+Files: diceware/wordlists/wordlist_de.txt
+       diceware/wordlists/wordlist_de_8k.txt
+Copyright: 2021 Uli Fouquet <uli@gnufix.de>
 License: CC-BY-3.0
 
 Files: diceware/wordlsts/wordlist_en_eff.txt
@@ -33,7 +32,8 @@ Comment: This wordlist was crafted for use with `diceware`
 
 Files: diceware/wordlists/wordlist_en_adjectives.txt
        diceware/wordlists/wordlist_en_nouns.txt
-Copyright: 2020 NaturalLaguagePasswords (https://github.com/NaturalLanguagePasswords)
+Source: https://github.com/NaturalLanguagePasswords
+Copyright: 2020 NaturalLaguagePasswords
 License: GPL-3+
 
 License: Expat
