@@ -129,7 +129,7 @@ Create a passphrase without capital words. Creates something like
 "\fBwheel\-dye\-honk\fP".
 .TP
 .B \fBdiceware \-r\fP \fIrealdice\fP
-Use real dice to create a passphrase. The programm will tell you what to do
+Use real dice to create a passphrase. The program will tell you what to do
 (roll dice and tell what numbers appear) and in the end present a
 passphrase.
 .TP
@@ -141,11 +141,12 @@ instead of standard, 6\-sided dice.
 Create a passphrase with words from file "mywordlist.txt". The file should
 contain one word on each line.
 .TP
-.B \fBdiceware \-w en_orig \-s 2\fP
+.B \fBdiceware \-w en_securedrop \-s 2\fP
 Create a passphrase with two special chars spread over the generated
-passphrase and containing words from wordlist "\fBen_orig\fP". This is one of
-the wordlists that come included with \fIdiceware\fP\&. Creates something like:
-"\fBRutt[FanScoldLouiseT*nyThrob\fP".
+passphrase and containing words from wordlist "\fBen_securedrop\fP". This is
+one of the wordlists that come included with \fIdiceware\fP\&. Creates something
+like:
+"\fBPlayaBrigVer{SeesNe\-tsGets\fP".
 .TP
 .B \fBdiceware \-w en_adjectives en_nouns \-n 2\fP
 Create two syntactically meaningful phrases, each one consisting of an
@@ -154,7 +155,7 @@ adjective and a noun. Results in something like:
 .UNINDENT
 .SH COPYRIGHT
 .sp
-Copyright (C) 2015\-2020 Uli Fouquet and contributors
+Copyright (C) 2015\-2022 Uli Fouquet and contributors
 .sp
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU General Public License as published by the Free Software
@@ -171,11 +172,6 @@ this program.  If not, see <\fI\%http://www.gnu.org/licenses/\fP>.
 diceware is a concept invented by Arnold G. Reinhold, Cambridge, Massachusetts
 USA.
 .sp
-The English Diceware Wordlists used with this programme are licensed by Arnold
-G. Reinhold (files \fBwordlists/wordlist_en_orig.asc\fP,
-\fBwordlists/wordlist_en.txt\fP) under the \fICreative Commons CC\-BY 3.0\fP license
-(see \fI\%http://creativecommons.org/licenses/by/3.0/\fP).
-.sp
 The Securedrop wordlist (file \fBwordlists/wordlist_en_securedrop.asc\fP) by
 Heartsucker is licensed under the \fIMIT\fP license (see \fI\%http://mit\-license.org/\fP).
 .sp
@@ -183,8 +179,7 @@ The EFF wordlist (file \fBwordlsts/wordlist_en_eff.txt\fP) is licensed by the
 Electronic Frontier Foundation under the \fICreative Commons CC\-BY 3.0 US\fP
 license (see \fI\%https://creativecommons.org/licenses/by/3.0/us/\fP).
 .sp
-The copyright for the \fIDiceware8k\fP list is owned by Arnold G Reinhold.  The
-copyright for the the \fIDiceware SecureDrop\fP list is owned by \fI@heartsucker\fP\&.
+The copyright for the the \fIDiceware SecureDrop\fP list is owned by \fI@heartsucker\fP\&.
 Copyright for the \fIEFF large\fP list by \fIJoseph Bonneau\fP and \fIEFF\fP\&. Copyright for
 the brazilian portuguese list by \fI@drebs\fP\&. Copyright for the english adjective
 and noun lists by \fINaturalLanguagePasswords\fP\&.

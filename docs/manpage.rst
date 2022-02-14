@@ -111,11 +111,12 @@ examples
     Create a passphrase with words from file "mywordlist.txt". The file should
     contain one word on each line.
 
-``diceware -w en_orig -s 2``
+``diceware -w en_securedrop -s 2``
     Create a passphrase with two special chars spread over the generated
-    passphrase and containing words from wordlist "``en_orig``". This is one of
-    the wordlists that come included with `diceware`. Creates something like:
-    "``Rutt[FanScoldLouiseT*nyThrob``".
+    passphrase and containing words from wordlist "``en_securedrop``". This is
+    one of the wordlists that come included with `diceware`. Creates something
+    like:
+    "``PlayaBrigVer{SeesNe-tsGets``".
 
 ``diceware -w en_adjectives en_nouns -n 2``
     Create two syntactically meaningful phrases, each one consisting of an
@@ -125,7 +126,7 @@ examples
 copyright
 ---------
 
-Copyright (C) 2015-2020 Uli Fouquet and contributors
+Copyright (C) 2015-2022 Uli Fouquet and contributors
 
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU General Public License as published by the Free Software
@@ -142,11 +143,6 @@ this program.  If not, see <http://www.gnu.org/licenses/>.
 diceware is a concept invented by Arnold G. Reinhold, Cambridge, Massachusetts
 USA.
 
-The English Diceware Wordlists used with this programme are licensed by Arnold
-G. Reinhold (files ``wordlists/wordlist_en_orig.asc``,
-``wordlists/wordlist_en.txt``) under the `Creative Commons CC-BY 3.0` license
-(see http://creativecommons.org/licenses/by/3.0/).
-
 The Securedrop wordlist (file ``wordlists/wordlist_en_securedrop.asc``) by
 Heartsucker is licensed under the `MIT` license (see http://mit-license.org/).
 
@@ -155,8 +151,7 @@ Electronic Frontier Foundation under the `Creative Commons CC-BY 3.0 US`
 license (see https://creativecommons.org/licenses/by/3.0/us/).
 
 
-The copyright for the `Diceware8k` list is owned by Arnold G Reinhold.  The
-copyright for the the `Diceware SecureDrop` list is owned by `@heartsucker`.
+The copyright for the the `Diceware SecureDrop` list is owned by `@heartsucker`.
 Copyright for the `EFF large` list by `Joseph Bonneau` and `EFF`. Copyright for
 the brazilian portuguese list by `@drebs`. Copyright for the english adjective
 and noun lists by `NaturalLanguagePasswords`.
