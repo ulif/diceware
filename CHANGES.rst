@@ -5,18 +5,17 @@ Changes
 ---------------------------
 
 - Officially support Python 3.8 and Python 3.9.
-- Switch from travis-ci to github actions for automated tests.
-- Officially support for Python 3.8.
-- Remove official support for pypy2, Python 2.6, and Python 3.3.
+- Removed official support for pypy2, Python 2.6, and Python 3.3.
 - Allow to specify several wordlists in order to create syntactical valid
   phrases.
 - Also added first wordlists with english adjectives/nouns to generate for
   instance <adjective-noun> phrases that are easier to memorize.
 - When using real dice, allow entering of several rolls at once. Patch from
   `Adin Hoyle <alan@alanhoyle.com>`_.
-- Add german wordlists.
+- Added german wordlists.
 - Added carefully compiled brazilian portugese wordlist. Kudos to @drebs.
-- Remove original diceware wordlists temporarily, for containing bad terms (#85)
+- Removed original diceware wordlists temporarily, for containing bad terms (#85)
+
 
 0.9.6 (2018-12-19)
 ------------------
@@ -24,6 +23,7 @@ Changes
 - Officially support Python 3.7.
 - Fixed #51: Fix to formatting of list in Wordlists section. Kudos to `Doug
   Muth <https://github.com/dmuth>`_.
+
 
 0.9.5 (2018-04-07)
 ------------------
