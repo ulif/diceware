@@ -84,7 +84,7 @@ Once installed, use ``--help`` to list all available options::
     -w [NAME [NAME ...]], --wordlist [NAME [NAME ...]]
                           Use words from this wordlist. Possible values: `de',
                           `de_8k', `en_adjectives', `en_eff', `en_nouns',
-                          `en_orig', `en_orig', `en_securedrop', `pt-br'.
+                          `en_securedrop', `pt-br'.
                           Wordlists are stored in the folder displayed below.
                           Default: en_eff
     -v, --verbose         Be verbose. Use several times for increased verbosity.
@@ -182,7 +182,6 @@ Additionally `diceware` comes with an English wordlist provided by
 `@heartsucker`_, which contains 8192 different words. This list is based off
 the original diceware list written by Arnold G. Reinhold.
 
-Both the original and 8k diceware wordlists by Mr. Reinhold are provided.
 You can enable a certain (installed) wordlist with the ``-w`` option::
 
   $ diceware --wordlist en_orig
@@ -345,26 +344,26 @@ Developers want to `fork me on github`_::
 We recommend to create and activate a virtualenv_ first::
 
   $ cd diceware/
-  $ virtualenv -p /usr/bin/python3.4 py34
-  $ source py34/bin/activate
-  (py34) $
+  $ virtualenv -p /usr/bin/python3.8 py38
+  $ source py38/bin/activate
+  (py38) $
 
-We support Python versions 2.6, 2.7, 3.3 to 3.7, and pypy.
+We support Python versions 2.7, 3.4 to 3.9, and pypy.
 
 Now you can create the devel environment::
 
-  (py34) $ python setup.py dev
+  (py38) $ python setup.py dev
 
 This will fetch test packages (py.test_). You should be able to run
 tests now::
 
-  (py34) $ py.test
+  (py38) $ py.test
 
 If you have also different Python versions installed you can use tox_
 for using them all for testing::
 
-  (py34) $ pip install tox   # only once
-  (py34) $ tox
+  (py38) $ pip install tox   # only once
+  (py38) $ tox
 
 Should run tests in all supported Python versions.
 
@@ -375,13 +374,13 @@ Documentation Install
 The docs can be generated with Sphinx_. The needed packages are
 installed via::
 
-  (py34) $ python setup.py docs
+  (py38) $ python setup.py docs
 
 To create HTML you have to go to the ``docs/`` directory and use the
 prepared ``Makefile``::
 
-  (py34) $ cd docs/
-  (py34) $ make
+  (py38) $ cd docs/
+  (py38) $ make
 
 This should generate the docs in ``docs/_build/html/``.
 
@@ -393,7 +392,7 @@ We provide a `ReStructuredTexT`_ template to create a man page. When the
 documentation engine is installed (`Sphinx`_, see above), then you can create a
 manpage doing::
 
-  (py34) $ rst2man.py docs/manpage.rst > diceware.1
+  (py38) $ rst2man.py docs/manpage.rst > diceware.1
 
 The template is mainly provided to ease the job of Debian maintainers.
 Currently, it is not automatically updated. Dates, authors, synopsis, etc. have
