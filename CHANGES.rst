@@ -4,6 +4,7 @@ Changes
 0.10.dev0 (yet unreleased)
 ---------------------------
 
+- Officially support Python 3.8 and Python 3.9.
 - Switch from travis-ci to github actions for automated tests.
 - Officially support for Python 3.8.
 - Remove official support for pypy2, Python 2.6, and Python 3.3.
