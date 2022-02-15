@@ -4,7 +4,7 @@
 :manual_section: 1
 :manual_group: User Commands
 :date: February 2022
-:version: diceware 0.10
+:version: diceware 0.10.1.dev0
 :author: Written by Uli Fouquet and contributors
 
 
