@@ -1,8 +1,8 @@
 Changes
 =======
 
-0.10.dev0 (yet unreleased)
----------------------------
+0.10 (2022-02-15)
+-----------------
 
 - Officially support Python 3.8 and Python 3.9.
 - Removed official support for pypy2, Python 2.6, and Python 3.3.
