@@ -7,8 +7,8 @@ import sys
 from io import StringIO
 from errno import EISDIR
 from diceware import (
-    get_wordlists_dir, SPECIAL_CHARS, DIGIT_CHARS, insert_special_char, insert_digit_char,
-    get_passphrase,
+    get_wordlists_dir, SPECIAL_CHARS, insert_special_char,
+    DIGIT_CHARS, insert_digit_char, get_passphrase,
     handle_options, main, __version__, print_version, get_random_sources,
     get_wordlist_names
     )
@@ -232,7 +232,6 @@ class TestDicewareModule(object):
                 expected_matrix.append(''.join(word))
         for x in range(100):
             assert insert_digit_char('foo') in expected_matrix
-
 
     def test_special_chars_do_not_quote(self):
         # backslashes in SPECIAL_CHAR do not hide away chars

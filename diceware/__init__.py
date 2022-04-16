@@ -164,6 +164,7 @@ def insert_special_char(word, specials=SPECIAL_CHARS, rnd=None):
     char_list[rnd.choice(range(len(char_list)))] = rnd.choice(specials)
     return ''.join(char_list)
 
+
 def insert_digit_char(word, digits=DIGIT_CHARS, rnd=None):
     """Insert a char out of `digits` into `word`.
 
@@ -177,6 +178,7 @@ def insert_digit_char(word, digits=DIGIT_CHARS, rnd=None):
     char_list = list(word)
     char_list[rnd.choice(range(len(char_list)))] = rnd.choice(digits)
     return ''.join(char_list)
+
 
 def get_passphrase(options=None):
     """Get a diceware passphrase.
