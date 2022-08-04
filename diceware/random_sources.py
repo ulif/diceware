@@ -141,7 +141,7 @@ class RealDiceRandomSource(object):
         acceptable range and issue an hint about the procedure.
         """
         if num_rolls == 0:
-            raise(ValueError)
+            raise ValueError
         if (self.dice_sides ** num_rolls) < len(sequence):
             print(
                 "Warning: entropy is reduced! Using only first %s of %s "
