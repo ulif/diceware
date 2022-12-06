@@ -20,7 +20,7 @@ jobs:
         os:
           - ubuntu
         config:
-          - ["2.7", "py27"]
+          #- ["2.7", "py27"]
           #- ["3.5", "py35"]
           #- ["3.6", "py36"]
           #- ["3.7", "py37"]
@@ -30,7 +30,7 @@ jobs:
           - ["pypy-3.7", "pypy3"]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set up Python ${{ matrix.config[0] }}
         uses: actions/setup-python@v2
         with:
