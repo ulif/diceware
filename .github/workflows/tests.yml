@@ -27,7 +27,7 @@ jobs:
           #- ["3.8", "py38"]
           - ["3.9", "flake8,py39,coverage"]
           #- ["pypy-2.7", "pypy"]
-          - ["pypy-3.7", "pypy3"]
+          #- ["pypy-3.7", "pypy3"]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
