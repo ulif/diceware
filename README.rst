@@ -374,10 +374,14 @@ Documentation Install
 The docs can be generated with Sphinx_. The needed packages are
 installed via::
 
-  (py38) $ python setup.py docs
+  (py38) $ pip install -r docs/requirements.txt
 
-To create HTML you have to go to the ``docs/`` directory and use the
-prepared ``Makefile``::
+To create the docs as HTML in a directory of your choice, then run::
+
+   (py38) $ sphinx-build docs/ mydir/
+
+You can also change to the ``docs/`` directory and use the prepared
+``Makefile``::
 
   (py38) $ cd docs/
   (py38) $ make
