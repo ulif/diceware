@@ -1,4 +1,4 @@
-version = "0.9.7.dev0"
+version = "1.0.0.dev0"
 random_sources = {
     'system': 'diceware.random_sources:SystemRandomSource',
     'realdice': 'diceware.random_sources:RealDiceRandomSource',
