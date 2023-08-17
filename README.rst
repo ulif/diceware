@@ -171,9 +171,6 @@ Normally dice have six sides. And this is also the default in
 tell how many sides (all) your dice have. More sides will lead to less
 rolls required.
 
-We support even sources of randomness from other packages. See the
-`documentation <https://diceware.readthedocs.io/>`_ for more details.
-
 `diceware` comes with an English wordlist provided by the EFF_, which will be
 used by default and contains 7776 (=6^5) different words. This list is
 registered as ``en_eff``.

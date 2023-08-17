@@ -1,10 +1,11 @@
 Changes
 =======
 
-0.10.1.dev0 (yet unreleased)
-----------------------------
+1.0.dev0 (yet unreleased)
+-------------------------
 
-- no changes yet
+- Fixed #62: Removed `pkg_resources` dependency. Kudos to @htgoebel!
+  As a side effect no randomness sources from other packages are supported anymore.
 
 
 0.10 (2022-02-15)
