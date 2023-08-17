@@ -6,7 +6,7 @@ import argparse
 from conftest import InputMock
 from io import StringIO
 from itertools import product, chain
-from diceware import main
+from diceware import main, get_random_sources
 from diceware.random_sources import (
     SystemRandomSource, RealDiceRandomSource,
     )
@@ -38,10 +38,7 @@ class TestSystemRandomSource(object):
     def test_registered_as_system(self):
         # The SystemRandomInstance is registered as entry point with
         # name 'system' in group 'diceware_random_sources'
-        sources_dict = dict()
-        for entry_point in pkg_resources.iter_entry_points(
-                group="diceware_random_sources"):
-            sources_dict.update({entry_point.name: entry_point.load()})
+        sources_dict = get_random_sources()
         assert 'system' in sources_dict
         assert sources_dict['system'] == SystemRandomSource
 
@@ -110,10 +107,7 @@ class TestRealDiceRandomSource(object):
     def test_registered_as_realdice(self):
         # The RealDiceRandomSource is registered as entry point with
         # name 'realdice' in group 'diceware_random_sources'
-        sources_dict = dict()
-        for entry_point in pkg_resources.iter_entry_points(
-                group="diceware_random_sources"):
-            sources_dict.update({entry_point.name: entry_point.load()})
+        sources_dict = get_random_sources()
         assert 'realdice' in sources_dict
         assert sources_dict['realdice'] == RealDiceRandomSource
 
