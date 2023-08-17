@@ -15,7 +15,7 @@
 
 import sys
 import os
-import pkg_resources
+import diceware
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -60,7 +60,7 @@ copyright = '2015-2023, Uli Fouquet'
 # built documents.
 #
 # The short X.Y version.
-version = pkg_resources.get_distribution('diceware').version
+version = diceware.__version__
 # The full version, including alpha/beta/rc tags.
 release = version
 
