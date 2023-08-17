@@ -2,8 +2,12 @@ import os
 from setuptools import setup
 
 
-def read(fname):
-    return open(os.path.join(os.path.dirname(__file__), fname)).read()
+def read(*parts):
+    with open(os.path.join(os.path.dirname(__file__), *parts)) as fp:
+        return fp.read()
+
+version = {}
+exec(read("diceware", "__about__.py"), version)
 
 
 setup_requires = [
@@ -27,7 +31,7 @@ docs_require = [
 
 setup(
     name="diceware",
-    version="0.10.1.dev0",
+    version=version["version"],
     author="Uli Fouquet",
     author_email="uli@gnufix.de",
     description=(
@@ -74,11 +78,6 @@ setup(
     entry_points={
         'console_scripts': [
             'diceware = diceware:main',
-        ],
-        'diceware_random_sources': [
-            'system = diceware.random_sources:SystemRandomSource',
-            'realdice = diceware.random_sources:RealDiceRandomSource',
-            # add more sources of randomness here...
         ],
     },
 )

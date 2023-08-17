@@ -15,7 +15,7 @@
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """Sources of randomness.
 
-Please register all sources as entry point in ``setup.py``. Look out for
+Please register all sources as entry point in ``__about__.py``. Look out for
 "SystemRandomSource" for an example.
 
 For developers of interfaces to other sources of randomness: Currently,
@@ -45,21 +45,15 @@ If you want to manage own commandline options with your plugin, you can
 implement a `classmethod` called ``update_argparser(parser)`` which gets
 an `argparse.ArgumentParser` instance  as argument (no pun intended).
 
-Finally, to register the source, add some stanza in `setup.py` of your
-project that looks like::
+Finally, to register the source, add some stanza in `__about__.py`
+that looks like::
 
     # ...
-    setup(
-        # ...
-        entry_points={
-            # console scripts and other entry points...
-            'diceware_random_sources': [
-                'myrandom = mypkg.mymodule:MyRandomSource',
-                'myothersrc = mypkg.mymodule:MyOtherSource',
-            ],
-        },
-        # ...
-    )
+    random_sources' = {
+         # ...
+        'myrandom': 'mypkg.mymodule:MyRandomSource',
+        'myothersrc': 'mypkg.mymodule:MyOtherSource',
+    }
     # ...
 
 Here the `myrandom` and `myothersrc` lines register random sources that

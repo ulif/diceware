@@ -16,22 +16,19 @@
 """diceware -- rememberable passphrases
 """
 import argparse
-import pkg_resources
 import sys
 import logging
 from errno import ENOENT
 from random import SystemRandom
+from .__about__ import version as __version__
 from diceware.config import get_config_dict
 from diceware.logger import configure
 from diceware.wordlist import (
     WordList, get_wordlist_path, get_wordlists_dir, get_wordlist_names,
     )
 
-__version__ = pkg_resources.get_distribution('diceware').version
-
 #: Special chars inserted on demand
 SPECIAL_CHARS = r"~!#$%^&*()-=+[]\{}:;" + r'"' + r"'<>?/0123456789"
-
 
 GPL_TEXT = (
     """
@@ -73,10 +70,16 @@ def get_random_sources():
     that provides a `choice(sequence)` method that works like the
     respective method in the standard Python lib `random` module.
     """
+    from .__about__ import random_sources
     result = dict()
-    for entry_point in pkg_resources.iter_entry_points(
-            group="diceware_random_sources"):
-        result.update({entry_point.name: entry_point.load()})
+    for name, spec in random_sources.items():
+        module, func = spec.split(":")
+        module = __import__(module, fromlist=['__name__'], level=0)
+        try:
+            func = getattr(module, func)
+        except AttributeError as exc:
+            raise ImportError(str(exc))
+        result[name] = func
     return result
 
 
@@ -84,7 +87,7 @@ def handle_options(args):
     """Handle commandline options.
     """
     plugins = get_random_sources()
-    random_sources = plugins.keys()
+    rnd_sources = plugins.keys()
     wordlist_names = get_wordlist_names()
     defaults = get_config_dict()
     parser = argparse.ArgumentParser(
@@ -108,11 +111,11 @@ def handle_options(args):
         '-d', '--delimiter', default='',
         help="Separate words by DELIMITER. Empty string by default.")
     parser.add_argument(
-        '-r', '--randomsource', default='system', choices=random_sources,
+        '-r', '--randomsource', default='system', choices=rnd_sources,
         metavar="SOURCE",
         help=(
             "Get randomness from this source. Possible values: `%s'. "
-            "Default: system" % "', `".join(sorted(random_sources))))
+            "Default: system" % "', `".join(sorted(rnd_sources))))
     parser.add_argument(
         '-w', '--wordlist', default=['en_eff'], choices=wordlist_names,
         metavar="NAME", nargs='*',

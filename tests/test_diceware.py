@@ -180,6 +180,14 @@ class TestDicewareModule(object):
         assert 'system' in sources_dict
         assert isinstance(sources_dict['system'], type)
 
+    def test_get_random_sources_non_existing(self, monkeypatch):
+        import diceware
+        monkeypatch.setattr(
+            diceware.__about__, 'random_sources',
+            {'foo': 'diceware.random_sources:NotExistingSource'})
+        with pytest.raises(ImportError):
+            get_random_sources()
+
     def test_insert_special_char(self):
         # we can insert special chars in words.
         fake_rnd = FakeRandom()
