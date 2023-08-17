@@ -6,6 +6,7 @@ def read(*parts):
     with open(os.path.join(os.path.dirname(__file__), *parts)) as fp:
         return fp.read()
 
+
 version = {}
 exec(read("diceware", "__about__.py"), version)
 
