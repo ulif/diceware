@@ -1,4 +1,5 @@
 import os
+import pytest
 from diceware.config import (
     OPTIONS_DEFAULTS, valid_locations, get_configparser,
     string_to_wlist_list, get_config_dict, SafeParser,
@@ -17,6 +18,11 @@ class TestConfigModule(object):
         assert valid_locations() == [
             str(home_dir / ".diceware.ini")
             ]
+
+    def test_valid_locations_wo_user_home(self, monkeypatch):
+        # w/o a valid home we get an empty list
+        monkeypatch.setattr("os.path.expanduser", lambda x: x)
+        assert valid_locations() == []
 
     def test_get_configparser(self, tmpdir):
         # we can parse simple configs
