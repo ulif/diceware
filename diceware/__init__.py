@@ -108,6 +108,9 @@ def handle_options(args):
         '-s', '--specials', default=0, type=int, metavar='NUM',
         help="Insert NUM special chars into generated word.")
     parser.add_argument(
+        '-m', '--max', default=0, type=int, metavar='NUM',
+        help="Truncate to NUM length.")        
+    parser.add_argument(
         '-d', '--delimiter', default='',
         help="Separate words by DELIMITER. Empty string by default.")
     parser.add_argument(
@@ -201,6 +204,8 @@ def get_passphrase(options=None):
     result = options.delimiter.join(words)
     for _ in range(options.specials):
         result = insert_special_char(result, rnd=rnd)
+    if options.max > 0:
+        result = result[:options.max]
     return result
 
 
