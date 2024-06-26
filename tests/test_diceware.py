@@ -7,7 +7,8 @@ import sys
 from io import StringIO
 from errno import EISDIR
 from diceware import (
-    get_wordlists_dir, SPECIAL_CHARS, insert_special_char, get_passphrase,
+    get_wordlists_dir, SPECIAL_CHARS, insert_special_char,
+    DIGIT_CHARS, insert_digit_char, get_passphrase,
     handle_options, main, __version__, print_version, get_random_sources,
     get_wordlist_names
     )
@@ -214,9 +215,39 @@ class TestDicewareModule(object):
         for x in range(100):
             assert insert_special_char('foo') in expected_matrix
 
+    def test_insert_digit_char(self):
+        # we can insert special chars in words.
+        fake_rnd = FakeRandom()
+        result1 = insert_digit_char('foo', digits='123', rnd=fake_rnd)
+        assert result1 == '1oo'
+        fake_rnd.nums_to_draw = [1, 1]
+        result2 = insert_digit_char('foo', digits='123', rnd=fake_rnd)
+        assert result2 == 'f2o'
+        fake_rnd.nums_to_draw = [2, 2]
+        result3 = insert_digit_char('foo', digits='123', rnd=fake_rnd)
+        assert result3 == 'fo3'
+        fake_rnd.nums_to_draw = [0, 0]
+        result4 = insert_digit_char('foo', rnd=fake_rnd)
+        assert result4 == '0oo'
+
+    def test_insert_digit_char_defaults(self):
+        # defaults are respected
+        expected_matrix = []
+        for i in range(3):
+            for j in range(len(DIGIT_CHARS)):
+                word = list('foo')
+                word[i] = DIGIT_CHARS[j]
+                expected_matrix.append(''.join(word))
+        for x in range(100):
+            assert insert_digit_char('foo') in expected_matrix
+
     def test_special_chars_do_not_quote(self):
         # backslashes in SPECIAL_CHAR do not hide away chars
-        assert len(SPECIAL_CHARS) == 36
+        assert len(SPECIAL_CHARS) == 26
+
+    def test_digit_chars_do_not_quote(self):
+        # confirm that we have all 10 digits
+        assert len(DIGIT_CHARS) == 10
 
     def test_get_passphrase(self):
         # we can get passphrases
@@ -244,6 +275,15 @@ class TestDicewareModule(object):
         specials = [x for x in phrase if x in SPECIAL_CHARS]
         # the 2nd special char position might be equal to 1st.
         assert len(specials) > 0
+
+    def test_get_passphrase_digitchars(self):
+        # we can request special chars in passphrases
+        options = handle_options(args=[])
+        options.digits = 2
+        phrase = get_passphrase(options)
+        digits = [x for x in phrase if x in DIGIT_CHARS]
+        # the 2nd special char position might be equal to 1st.
+        assert len(digits) > 0
 
     def test_get_passphrase_delimiters(self):
         # we can set separators
@@ -362,6 +402,15 @@ class TestDicewareModule(object):
         out, err = capsys.readouterr()
         specials = [x for x in out if x in SPECIAL_CHARS]
         assert len(specials) > 0
+
+    def test_main_digitchars(self, argv_handler, capsys):
+        # number of specialchars is respected in calls to main.
+        sys.stdin = StringIO("word1\n")
+        sys.argv = ['diceware', '-n', '1', '-D', '1', '-']
+        main()
+        out, err = capsys.readouterr()
+        digits = [x for x in out if x in DIGIT_CHARS]
+        assert len(digits) > 0
 
     def test_main_wordlist(self, argv_handler, capsys, wordlists_dir):
         # we can pick the wordlist we prefer
