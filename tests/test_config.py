@@ -1,5 +1,4 @@
 import os
-import pytest
 from diceware.config import (
     OPTIONS_DEFAULTS, valid_locations, get_configparser,
     string_to_wlist_list, get_config_dict, SafeParser,
