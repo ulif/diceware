@@ -25,7 +25,7 @@ jobs:
           #- ["3.6", "py36"]
           #- ["3.7", "py37"]
           #- ["3.8", "py38"]
-          - ["3.9", "flake8,py39,coverage"]
+          - ["3.9", "lint,py39,report"]
           #- ["pypy-2.7", "pypy"]
           #- ["pypy-3.7", "pypy3"]
     runs-on: ubuntu-latest

@@ -341,28 +341,29 @@ Developers want to `fork me on github`_::
 We recommend to create and activate a virtualenv_ first::
 
   $ cd diceware/
-  $ virtualenv -p /usr/bin/python3.8 py38
-  $ source py38/bin/activate
-  (py38) $
+  $ virtualenv -p /usr/bin/python3.11 py311
+  $ source py311/bin/activate
+  (py311) $
 
-We support Python versions 2.7, 3.4 to 3.9, and pypy.
+We support Python versions 2.7, 3.4 to 3.12, and pypy.
 
 Now you can create the devel environment::
 
-  (py38) $ python setup.py dev
+  (py311) $ pip install '.[tests,dev]'
 
-This will fetch test packages (py.test_). You should be able to run
-tests now::
+This will fetch test packages (py.test_), `ruff` as linter, `black` as code
+formatter and `coverage`. You should be able to run tests now::
 
-  (py38) $ py.test
+  (py311) $ pytest
 
 If you have also different Python versions installed you can use tox_
 for using them all for testing::
 
-  (py38) $ pip install tox   # only once
-  (py38) $ tox
+  (py311) $ pip install tox   # only once
+  (py311) $ tox
 
-Should run tests in all supported Python versions.
+Should run tests in all supported Python versions, the linter (`ruff`),
+coverage tests and more.
 
 
 Documentation Install
@@ -371,17 +372,17 @@ Documentation Install
 The docs can be generated with Sphinx_. The needed packages are
 installed via::
 
-  (py38) $ pip install -r docs/requirements.txt
+  (py311) $ pip install -r docs/requirements.txt
 
 To create the docs as HTML in a directory of your choice, then run::
 
-   (py38) $ sphinx-build docs/ mydir/
+   (py311) $ sphinx-build docs/ mydir/
 
 You can also change to the ``docs/`` directory and use the prepared
 ``Makefile``::
 
-  (py38) $ cd docs/
-  (py38) $ make
+  (py311) $ cd docs/
+  (py311) $ make
 
 This should generate the docs in ``docs/_build/html/``.
 
@@ -393,7 +394,7 @@ We provide a `ReStructuredTexT`_ template to create a man page. When the
 documentation engine is installed (`Sphinx`_, see above), then you can create a
 manpage doing::
 
-  (py38) $ rst2man.py docs/manpage.rst > diceware.1
+  (py311) $ rst2man.py docs/manpage.rst > diceware.1
 
 The template is mainly provided to ease the job of Debian maintainers.
 Currently, it is not automatically updated. Dates, authors, synopsis, etc. have
@@ -453,7 +454,7 @@ External Wordlists:
 License
 -------
 
-This Python implementation of Diceware, (C) 2015-2022 Uli Fouquet, is
+This Python implementation of Diceware, (C) 2015-2024 Uli Fouquet, is
 licensed under the GPL v3+. See file LICENSE for details.
 
 "Diceware" is a trademark of Arnold G Reinhold, used with permission.

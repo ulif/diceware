@@ -1,0 +1,71 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "diceware"
+dynamic = ["version", "readme"]
+authors = [
+  { name="Uli Fouquet", email="uli@gnufix.de" },
+]
+description = "Passphrases you will remember"
+keywords = ["diceware", "password", "passphrase"]
+requires-python = ">=2.7"
+license = { file = "LICENSE" }
+classifiers = [
+    "Operating System :: OS Independent",
+        "Development Status :: 3 - Alpha",
+        "Environment :: Console",
+        "Intended Audience :: End Users/Desktop",
+        "Intended Audience :: System Administrators",
+        "Topic :: Utilities",
+        "Topic :: Security :: Cryptography",
+        "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+        "Operating System :: POSIX :: Linux",
+        "Programming Language :: Python :: 2",
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.4",
+        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: Implementation :: CPython",
+        "Programming Language :: Python :: Implementation :: PyPy",
+]
+
+
+[project.urls]
+"Homepage" = "https://github.com/ulif/diceware"
+"Bug Tracker" = "https://github.com/ulif/diceware/issues"
+"Documentation" = "https://diceware.readthedocs.io/"
+
+
+[project.scripts]
+diceware = "diceware:main"
+
+
+[project.entry-points."diceware_source_of_randomness"]
+system = "diceware.random_sources:SystemRandomSource"
+
+
+[project.optional-dependencies]
+tests = ["pytest>=2.8.3", "pytest-cov", "coverage"]
+docs = ["Sphinx", "sphinx_rtd_theme"]
+dev = ["black", "ruff"]
+
+
+[tool.setuptools]
+packages = ["diceware", "diceware.wordlists" ]
+
+
+[tool.setuptools.package-data]
+"diceware.wordlists" = ["*.txt", "*.asc"]
+
+
+[tool.setuptools.dynamic]
+version = {attr = "diceware.__version__"}
+readme = {file = ["README.rst", "CHANGES.rst"]}
+
