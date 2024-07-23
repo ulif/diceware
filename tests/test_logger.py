@@ -1,15 +1,5 @@
 import logging
-from diceware.logger import logger, configure, NullHandler
-
-
-def test_null_handler_removable():
-    # the self-made NullHander is removable under py2.6
-    my_logger = logging.getLogger('foo')
-    handler = NullHandler()
-    my_logger.addHandler(handler)
-    assert len(my_logger.handlers) == 1
-    my_logger.removeHandler(handler)
-    assert len(my_logger.handlers) == 0
+from diceware.logger import logger, configure
 
 
 def test_logger_exists():

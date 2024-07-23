@@ -26,33 +26,11 @@ do. Other components might add other handlers.
 
 """
 import logging
-try:
-    from logging import NullHandler
-except ImportError:  # NOQA  # pragma: no cover
-    class NullHandler(object):
-        """Replacement for `logging.NullHandler` from py3.x standard lib.
-        """
-        level = None
-
-        def emit(self, record):
-            pass
-
-        def handle(self, record):
-            pass
-
-        def createLock(self):
-            pass
-
-        def acquire(self):
-            pass
-
-        def release(self):
-            pass
 
 
 #: Logger that can be used for all diceware related messages.
 logger = logging.getLogger("ulif.diceware")
-logger.addHandler(NullHandler())
+logger.addHandler(logging.NullHandler())
 
 
 def configure(verbosity=None):
