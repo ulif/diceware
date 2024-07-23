@@ -272,10 +272,10 @@ class TestDicewareModule(object):
         # we can get a passphrase
         main([])  # call with default options in place
         out, err = capsys.readouterr()
-        assert err == ''               # we got no errors
-        assert out[-1] == '\n'         # output ends with liebreak
-        assert not ('\n' in out[:-1])  # we get one line
-        assert len(out) > 5            # we get at least some chars
+        assert err == ''             # we got no errors
+        assert out[-1] == '\n'       # output ends with liebreak
+        assert '\n' not in out[:-1]  # we get one line
+        assert len(out) > 5          # we get at least some chars
 
     def test_main_help(self, argv_handler, capsys):
         # we can get help
