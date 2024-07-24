@@ -372,7 +372,7 @@ Documentation Install
 The docs can be generated with Sphinx_. The needed packages are
 installed via::
 
-  (py311) $ pip install -r docs/requirements.txt
+  (py311) $ pip install '.[docs]'
 
 To create the docs as HTML in a directory of your choice, then run::
 
