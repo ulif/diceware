@@ -19,12 +19,9 @@
 direct API calls.
 
 """
-try:
-    from configparser import ConfigParser as SafeParser      # Python 3.x
-except ImportError:                                         # pragma: no cover
-    from ConfigParser import SafeConfigParser as SafeParser  # Python 2.x
 import os
 import re
+from configparser import ConfigParser as SafeParser
 
 
 OPTIONS_DEFAULTS = dict(
