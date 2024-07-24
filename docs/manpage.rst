@@ -3,8 +3,8 @@
 :subtitle: create passphrases
 :manual_section: 1
 :manual_group: User Commands
-:date: July 2023
-:version: diceware 0.10.1.dev0
+:date: July 2024
+:version: diceware 1.0.dev0
 :author: Written by Uli Fouquet and contributors
 
 
@@ -57,9 +57,9 @@ options
     ``realdice``, ``system``. Default: ``system``
 
   ``-w`` [`NAME` [`NAME` ...]], ``--wordlist`` [`NAME` [`NAME` ...]]
-    Use words from this wordlist. Possible values: `de`, `de_8k`,
-    `en_adjectives`, `en_eff`, `en_nouns`, `en_orig`, `en_securedrop`. `pt-br`.
-    Default: ``en_eff``
+    Use words from this wordlist. Possible values: `ca`, `de`, `de_8k`, `en`,
+    `en_8k`, `en_adjectives`, `en_eff`, `en_nouns`, `en_orig`, `en_securedrop`.
+    `es`, `it`, `pt-br`. Default: ``en_eff``
 
   ``-v``, ``--verbose``
     Be verbose. Use several times for increased verbosity.
@@ -126,7 +126,7 @@ examples
 copyright
 ---------
 
-Copyright (C) 2015-2022 Uli Fouquet and contributors
+Copyright (C) 2015-2024 Uli Fouquet and contributors
 
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU General Public License as published by the Free Software
