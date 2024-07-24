@@ -74,7 +74,7 @@ from random import SystemRandom
 
 input_func = input
 if sys.version[0] < "3":
-    input_func = raw_input
+    input_func = raw_input  # NOQA: F821  # defined in python 2 only.
 
 
 class SystemRandomSource(object):
