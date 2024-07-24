@@ -1,6 +1,9 @@
 # This workflow will install Python dependencies, run tests and lint with different versions of Python
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
+# As github support for Python2.7 has gone to meet its maker, we cannot
+# run successful coverage tests here.
+
 name: tests
 
 on:
@@ -19,28 +22,19 @@ jobs:
       matrix:
         os:
           - ubuntu-latest
-        config:
-          #- [ "2.7", "py27"]
-          #- [ "3.5", "py35"]
-          #- [ "3.6", "py36"]
-          #- [ "3.7", "py37"]
-          #- [ "3.8", "py38"]
-          - [ "3.9", "lint,clean,py27,py39,report"]
-          #- [ "pypy-2.7", "pypy"]
-          #- [ "pypy-3.7", "pypy3"]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python ${{ matrix.config[0] }}
+      - name: Set up Python (3.9)
         uses: actions/setup-python@v5
         with:
+          # We can give multiple python versions, but no py2.x any more
           python-version: |
-              "2.7"
-              ${{ matrix.config[0] }}
+            "3.9"
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install tox
       - name: Test with tox
         run: |
-          tox -e ${{ matrix.config[1] }}
+          tox run -e "lint,py39"
