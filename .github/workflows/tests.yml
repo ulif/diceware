@@ -20,19 +20,19 @@ jobs:
         os:
           - ubuntu
         config:
-          #- ["2.7", "py27"]
-          #- ["3.5", "py35"]
-          #- ["3.6", "py36"]
-          #- ["3.7", "py37"]
-          #- ["3.8", "py38"]
-          - ["3.9", "lint,clean,py27,py39,report"]
-          #- ["pypy-2.7", "pypy"]
-          #- ["pypy-3.7", "pypy3"]
+          #- [ ["2.7"], "py27"]
+          #- [ ["3.5"], "py35"]
+          #- [ ["3.6"], "py36"]
+          #- [ ["3.7"], "py37"]
+          #- [ ["3.8"], "py38"]
+          - [ ["2.7", "3.9"], "lint,clean,py27,py39,report"]
+          #- [ ["pypy-2.7"], "pypy"]
+          #- [ ["pypy-3.7"], "pypy3"]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.config[0] }}
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v5
         with:
           python-version:  ${{ matrix.config[0] }}
       - name: Install dependencies
