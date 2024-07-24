@@ -5,7 +5,7 @@ Source: <https://github.com/ulif/diceware/>
 Comment: "Diceware" is a trademark of Arnold G Reinhold, used with permission.
 
 Files: *
-Copyright: 2015-2022, Uli Fouquet
+Copyright: 2015-2024, Uli Fouquet
 License: GPL-3+
 
 Files: diceware/wordlists/wordlist_en_securedrop.asc
