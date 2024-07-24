@@ -74,7 +74,7 @@ from random import SystemRandom
 
 input_func = input
 if sys.version[0] < "3":
-    input_func = raw_input  # NOQA  # pragma: no cover
+    input_func = raw_input
 
 
 class SystemRandomSource(object):
