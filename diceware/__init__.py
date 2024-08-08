@@ -28,7 +28,8 @@ from diceware.wordlist import (
     )
 
 #: Special chars inserted on demand
-SPECIAL_CHARS = r"~!#$%^&*()-=+[]\{}:;" + r'"' + r"'<>?/0123456789"
+SPECIAL_CHARS = r"~!#$%^&*()-=+[]\{}:;" + r'"' + r"'<>?/"
+DIGIT_CHARS = r"0123456789"
 
 GPL_TEXT = (
     """
@@ -108,6 +109,9 @@ def handle_options(args):
         '-s', '--specials', default=0, type=int, metavar='NUM',
         help="Insert NUM special chars into generated word.")
     parser.add_argument(
+        '-D', '--digits', default=0, type=int, metavar='NUM',
+        help="Insert NUM digit chars into generated word.")
+    parser.add_argument(
         '-d', '--delimiter', default='',
         help="Separate words by DELIMITER. Empty string by default.")
     parser.add_argument(
@@ -164,6 +168,21 @@ def insert_special_char(word, specials=SPECIAL_CHARS, rnd=None):
     return ''.join(char_list)
 
 
+def insert_digit_char(word, digits=DIGIT_CHARS, rnd=None):
+    """Insert a char out of `digits` into `word`.
+
+    `rnd`, if passed in, will be used as a (pseudo) random number
+    generator. We use `.choice()` only.
+
+    Returns the modified word.
+    """
+    if rnd is None:
+        rnd = SystemRandom()
+    char_list = list(word)
+    char_list[rnd.choice(range(len(char_list)))] = rnd.choice(digits)
+    return ''.join(char_list)
+
+
 def get_passphrase(options=None):
     """Get a diceware passphrase.
 
@@ -201,6 +220,8 @@ def get_passphrase(options=None):
     result = options.delimiter.join(words)
     for _ in range(options.specials):
         result = insert_special_char(result, rnd=rnd)
+    for _ in range(options.digits):
+        result = insert_digit_char(result, rnd=rnd)
     return result
 
 
