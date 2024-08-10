@@ -345,7 +345,7 @@ We recommend to create and activate a virtualenv_ first::
   $ source py311/bin/activate
   (py311) $
 
-We support Python versions 2.7, 3.4 to 3.12, and pypy.
+We support Python versions 2.7, 3.4 to 3.12, and pypy3.
 
 Now you can create the devel environment::
 

@@ -8,6 +8,7 @@ Major overhaul of the whole project. We introduce more modern approaches in
 project layout (like `pyproject`), use new linters and other tools while we
 still support all Python versions from 2.7 up to current 3.12.
 
+- Officially support Python 3.10 to 3.12.
 - Use `ruff` as linter, drop `flake8`.
 - Renew `tox` configuration.
 - Switch to `pyproject`-based project layout, away from using `setup.py`.
