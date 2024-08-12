@@ -13,15 +13,41 @@ class TestConfigModule(object):
         assert OPTIONS_DEFAULTS is not None
 
     def test_valid_locations(self, home_dir):
-        # we look for config files in user home and local dir
-        assert valid_locations() == [
-            str(home_dir / ".diceware.ini")
-            ]
+        # we look for config files in "~/.diceware.ini"
+        locations = valid_locations()
+        assert locations == [
+            "/etc/xdg/diceware/diceware.ini",
+            str(home_dir / ".config" / "diceware" / "diceware.ini"),
+            str(home_dir / ".diceware.ini"),
+        ]
 
     def test_valid_locations_wo_user_home(self, monkeypatch):
-        # w/o a valid home we get an empty list
+        # w/o a valid home we get at least a system-wide default location
         monkeypatch.setattr("os.path.expanduser", lambda x: x)
-        assert valid_locations() == []
+        monkeypatch.delenv("HOME")
+        locations = valid_locations()
+        assert locations == ["/etc/xdg/diceware/diceware.ini"]
+
+    def test_valid_locations_considers_xdg_config_home(self, monkeypatch, home_dir):
+        # we consider the $XDG_CONFIG_HOME env var
+        monkeypatch.setenv("XDG_CONFIG_HOME", "/foo")
+        locations = valid_locations()
+        assert locations == [
+            "/etc/xdg/diceware/diceware.ini",
+            "/foo/diceware/diceware.ini",
+            str(home_dir / ".diceware.ini"),
+        ]
+
+    def test_valid_locations_considers_xdg_config_dirs(self, monkeypatch, home_dir):
+        # we consider the $XDG_CONFIG_DIRS env var
+        monkeypatch.setenv("XDG_CONFIG_DIRS", "/foo:/bar")
+        locations = valid_locations()
+        assert locations == [
+            "/bar/diceware/diceware.ini",
+            "/foo/diceware/diceware.ini",
+            str(home_dir / ".config" / "diceware" / "diceware.ini"),
+            str(home_dir / ".diceware.ini"),
+        ]
 
     def test_get_configparser(self, tmpdir):
         # we can parse simple configs

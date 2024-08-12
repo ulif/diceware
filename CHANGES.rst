@@ -8,7 +8,14 @@ Major overhaul of the whole project. We introduce more modern approaches in
 project layout (like `pyproject`), use new linters and other tools while we
 still support all Python versions from 2.7 up to current 3.12.
 
+We now follow the XDG base directory specification, that tells where config
+(and other) files for an application can be found. You now can also use
+`${XDG_CONFIG_HOME}/diceware/diceware.ini`, or, if the given var is emtpy or
+unset, `${HOME}/.config/diceware/diceware.ini`. The traditional location
+`${HOME}/.diceware.ini` is still supported.
+
 - Officially support Python 3.10 to 3.12.
+- Fixed #86: Follow `XDG`_ base directory specification.
 - Use `ruff` as linter, drop `flake8`.
 - Renew `tox` configuration.
 - Switch to `pyproject`-based project layout, away from using `setup.py`.

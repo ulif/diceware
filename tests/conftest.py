@@ -78,8 +78,13 @@ def change_home(monkeypatch, tmpdir):
     If the user running tests has an own .diceware.ini in his home, then
     this will influence tests. Therefore we set the user home to some
     empty dir while tests are running.
+
+    The same applies for XDG-based config files, that might be set on the host
+    running and point to real config files not related to testing.
     """
     monkeypatch.setenv("HOME", str(tmpdir))
+    monkeypatch.delenv("XDG_CONFIG_DIRS", raising=False)
+    monkeypatch.delenv("XDG_CONFIG_HOME", raising=False)
     return tmpdir
 
 

@@ -42,11 +42,37 @@ RE_WLIST_NAME = re.compile(r'(?![\w\-]+).')
 
 def valid_locations():
     """The list of valid paths we look up for config files.
+
+    We search for config files in the following locations (in that order):
+        1a) dirs in colon-separated var $XDG_CONFIG_DIRS
+        1b) /etc/xdg/diceware/diceware.ini  # if $XDG_CONFIG_DIRS is undefined
+        2a) $XDG_CONFIG_HOME/diceware/diceware.ini  # if $XDG_CONFIG_HOME
+                                                    # is defined
+        2b) $HOME/.config/diceware/diceware.ini  # if $HOME is defined
+                                                 # but not $XDG_CONFIG_HOME
+    Finally we look also for
+        3) ~/.diceware.ini
+
+    Later read configs override prior ones. Therefore an existing
+    `~/.diceware.ini` contains values that cannot be overridden, except on
+    commandline.
+
     """
-    user_home = os.path.expanduser("~")
     result = []
+    user_home = os.path.expanduser("~")
     if user_home != "~":
-        result = [os.path.join(user_home, ".diceware.ini"), ]
+        result.append(os.path.join(user_home, ".diceware.ini"))
+    xdg_dirs = os.getenv("XDG_CONFIG_DIRS", os.path.normcase("/etc/xdg"))
+    if os.getenv("XDG_CONFIG_HOME") or os.getenv("HOME"):
+        xdg_dirs = (
+            os.getenv("XDG_CONFIG_HOME", os.path.join(os.getenv("HOME", ""), ".config"))
+            + ":"
+            + xdg_dirs
+        )
+    result.extend(
+        [os.path.join(x, "diceware", "diceware.ini") for x in xdg_dirs.split(":")]
+    )
+    result.reverse()
     return result
 
 

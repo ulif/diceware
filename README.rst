@@ -212,9 +212,14 @@ In custom wordlists we take each line for a valid word and ignore
 empty lines (i.e. lines containing whitespace characters only). Oh,
 and we handle even PGP-signed wordlists.
 
-You can set customized default values in a configuration file
-``.diceware.ini`` (note the leading dot) placed in your home
-directory. This file could look like this::
+You can set customized default values in a configuration file ``.diceware.ini``
+(note the leading dot) placed in your home directory. Since version 1.0 you can
+also use ``${XDG_CONFIG_HOME}/diceware/diceware.ini`` or
+``${HOME}/.config/diceware/diceware.ini`` (if ``${XDG_CONFIG_HOME}`` is
+undefined, see XDG_ for details).
+
+
+This file could look like this::
 
   [diceware]
   num = 7
@@ -432,6 +437,7 @@ People that helped spotting bugs, providing solutions, etc.:
  - `Simon Fondrie-Teitler <https://github.com/simonft>`_ contributed a
    machine-readable copyright file, with improvements from `@anarcat`_
  - `Doug Muth <https://github.com/dmuth>`_ fixed formatting in docs.
+ - `@kmille`_ suggested support for XDG config file locations.
 
 Many thanks to all of them!
 
@@ -480,6 +486,7 @@ details.
 .. _`fork me on github`: http://github.com/ulif/diceware/
 .. _`@heartsucker`: https://github.com/heartsucker/
 .. _`Joseph Bonneau`: https://www.eff.org/about/staff/joseph-bonneau
+.. _`@kmille`: https://github.com/kmille
 .. _`NaturalLanguagePasswords`: https://github.com/NaturalLanguagePasswords
 .. _`prefix code`: https://en.wikipedia.org/wiki/Prefix_code
 .. _`random.SystemRandom`: https://docs.python.org/3.4/library/random.html#random.SystemRandom
@@ -488,3 +495,4 @@ details.
 .. _py.test: https://pytest.org/
 .. _tox: https://tox.testrun.org/
 .. _Sphinx: https://sphinx-doc.org/
+.. _`XDG`: https://specifications.freedesktop.org/basedir-spec/latest/
