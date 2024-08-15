@@ -56,7 +56,7 @@ def wordlists_dir(request, monkeypatch, tmpdir):
     """This fixture provides a temporary wordlist dir.
     """
     monkeypatch.setattr(
-            "diceware.wordlist.get_wordlists_dir", lambda: str(tmpdir))
+        "diceware.wordlist.get_wordlist_dirs", lambda: [str(tmpdir)])
     return tmpdir
 
 
@@ -85,6 +85,8 @@ def change_home(monkeypatch, tmpdir):
     monkeypatch.setenv("HOME", str(tmpdir))
     monkeypatch.delenv("XDG_CONFIG_DIRS", raising=False)
     monkeypatch.delenv("XDG_CONFIG_HOME", raising=False)
+    monkeypatch.delenv("XDG_DATA_DIRS", raising=False)
+    monkeypatch.delenv("XDG_DATA_HOME", raising=False)
     return tmpdir
 
 

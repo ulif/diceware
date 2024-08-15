@@ -39,6 +39,37 @@ RE_VALID_WORDLIST_FILENAME = re.compile(
     r'^wordlist_([\w-]+)\.[\w][\w\.]+[\w]+$')
 
 
+def get_wordlist_dirs():
+    """Get the directories in which wordlists can be stored.
+
+    We look into the following dirs (in that order):
+        (1) Local `wordlists` dir (part of install)
+        (2a) ${XDG_DATA_HOME}/diceware/      (if $XDG_DATA_HOME is defined)
+        (2b) ${HOME}/.local/share/diceware/  (else)
+        (3a) `<DIR>/diceware/` for each <DIR> in ${XDG_DATA_DIRS}
+             (if ${XDG_DATA_DIRS} is defined)
+        (3b) /usr/local/share/diceware/, /usr/share/diceware/
+             (else)
+    """
+    xdg_data_dirs = os.getenv("XDG_DATA_DIRS")
+    if not xdg_data_dirs:  # unset or empty string
+        xdg_data_dirs = "/usr/local/share:/usr/share"
+    user_home = os.path.expanduser("~")
+    xdg_data_home = os.getenv("XDG_DATA_HOME", "")
+    if (xdg_data_home == "") and (user_home != "~"):
+        xdg_data_home = os.path.join(user_home, ".local", "share")
+    if xdg_data_home:
+        xdg_data_dirs = "%s:%s" % (xdg_data_home, xdg_data_dirs)
+    local_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "wordlists"))
+    result = [local_dir] + list(
+        [
+            os.path.join(os.path.abspath(path), "diceware")
+            for path in xdg_data_dirs.split(":")
+        ]
+    )
+    return result
+
+
 def get_wordlists_dir():
     """Get the directory in which word lists are stored.
     """
@@ -50,15 +81,18 @@ def get_wordlist_names():
     """Get a all names of wordlists stored locally.
     """
     result = []
-    wordlists_dir = get_wordlists_dir()
-    filenames = os.listdir(wordlists_dir)
-    for filename in filenames:
-        if not os.path.isfile(os.path.join(wordlists_dir, filename)):
+    # wordlists_dir = get_wordlists_dir()
+    for wordlists_dir in get_wordlist_dirs():
+        if not os.path.isdir(wordlists_dir):
             continue
-        match = RE_VALID_WORDLIST_FILENAME.match(filename)
-        if not match:
-            continue
-        result.append(match.groups()[0])
+        filenames = os.listdir(wordlists_dir)
+        for filename in filenames:
+            if not os.path.isfile(os.path.join(wordlists_dir, filename)):
+                continue
+            match = RE_VALID_WORDLIST_FILENAME.match(filename)
+            if not match:
+                continue
+            result.append(match.groups()[0])
     return sorted(result)
 
 
@@ -74,13 +108,15 @@ def get_wordlist_path(name):
     """
     if not RE_WORDLIST_NAME.match(name):
         raise ValueError("Not a valid wordlist name: %s" % name)
-    wordlists_dir = get_wordlists_dir()
-    for filename in os.listdir(wordlists_dir):
-        if not os.path.isfile(os.path.join(wordlists_dir, filename)):
+    for wordlists_dir in get_wordlist_dirs():
+        if not os.path.isdir(wordlists_dir):
             continue
-        match = RE_VALID_WORDLIST_FILENAME.match(filename)
-        if match and match.groups()[0] == name:
-            return os.path.join(wordlists_dir, filename)
+        for filename in os.listdir(wordlists_dir):
+            if not os.path.isfile(os.path.join(wordlists_dir, filename)):
+                continue
+            match = RE_VALID_WORDLIST_FILENAME.match(filename)
+            if match and match.groups()[0] == name:
+                return os.path.join(wordlists_dir, filename)
 
 
 class WordList(object):

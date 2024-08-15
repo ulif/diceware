@@ -4,9 +4,9 @@ import pytest
 import sys
 from io import StringIO
 from diceware.wordlist import (
-    get_wordlists_dir, RE_WORDLIST_NAME, RE_NUMBERED_WORDLIST_ENTRY,
-    RE_VALID_WORDLIST_FILENAME, get_wordlist_path, get_wordlist_names,
-    WordList,
+    get_wordlist_dirs, get_wordlists_dir, RE_WORDLIST_NAME,
+    RE_NUMBERED_WORDLIST_ENTRY, RE_VALID_WORDLIST_FILENAME, get_wordlist_path,
+    get_wordlist_names, WordList,
 )
 
 
@@ -21,6 +21,32 @@ def wordlist(request, tmpdir):
 
 
 class TestWordlistModule(object):
+
+    def test_get_wordlist_dirs(self, home_dir):
+        # We can get a list of valid wordlist dirs even w/o home
+        mydir = os.path.abspath(os.path.dirname(__file__))
+        local_wlist_dir = os.path.join(os.path.dirname(mydir), "diceware", "wordlists")
+        assert get_wordlist_dirs() == [
+            local_wlist_dir,
+            str(home_dir / ".local" / "share" / "diceware"),
+            "/usr/local/share/diceware",
+            "/usr/share/diceware",
+        ]
+
+    def test_get_wordlist_dirs_considers_xdg_data_home(self, home_dir, monkeypatch):
+        # We consider $XDG_DATA_HOME when determining dirs
+        monkeypatch.setenv("XDG_DATA_HOME", str(home_dir))
+        wlists = get_wordlist_dirs()
+        assert str(home_dir / "diceware") in wlists
+        assert str(home_dir / ".local" / "share" / "diceware") not in wlists
+
+    def test_get_wordlist_dirs_considers_xdg_data_dirs(self, home_dir, monkeypatch):
+        # We consider $XDG_DATA_DIRS when determining dirs
+        monkeypatch.setenv("XDG_DATA_DIRS", "/foo:/bar")
+        wlists = get_wordlist_dirs()
+        assert "/usr/share/diceware" not in wlists
+        assert "/foo/diceware" == wlists[-2]
+        assert "/bar/diceware" == wlists[-1]
 
     def test_re_wordlist_name(self):
         # RE_WORDLIST_NAME really works
@@ -128,6 +154,15 @@ class TestWordlistModule(object):
             get_wordlist_path('../../tmp')
         assert exc_info.value.args[0].startswith(
             'Not a valid wordlist name')
+
+    def test_get_wordlist_path_copes_w_nonexistant_dirs(self, wordlists_dir, monkeypatch):
+        path1 = wordlists_dir.join("wordlist_foo.txt")
+        path1.write("foo\n")
+        assert get_wordlist_path("foo") == path1
+        # now we remove the wordlist and its path
+        path1.remove()
+        wordlists_dir.remove()
+        assert get_wordlist_path("foo") is None
 
     def test_get_wordlist_names(self, wordlists_dir):
         # we can get wordlist names also if directory is empty.
