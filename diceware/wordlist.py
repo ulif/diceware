@@ -43,13 +43,13 @@ def get_wordlist_dirs():
     """Get the directories in which wordlists can be stored.
 
     We look into the following dirs (in that order):
-        (1) Local `wordlists` dir (part of install)
-        (2a) ${XDG_DATA_HOME}/diceware/      (if $XDG_DATA_HOME is defined)
-        (2b) ${HOME}/.local/share/diceware/  (else)
-        (3a) `<DIR>/diceware/` for each <DIR> in ${XDG_DATA_DIRS}
-             (if ${XDG_DATA_DIRS} is defined)
-        (3b) /usr/local/share/diceware/, /usr/share/diceware/
-             (else)
+    (1) Local `wordlists` dir (part of install)
+    (2a) ${XDG_DATA_HOME}/diceware/      (if $XDG_DATA_HOME is defined)
+    (2b) ${HOME}/.local/share/diceware/  (else)
+    if ${XDG_DATA_DIRS} is defined
+    (3a) `<DIR>/diceware/` for each <DIR> in ${XDG_DATA_DIRS}
+    else
+    (3b) /usr/local/share/diceware/, /usr/share/diceware/
     """
     xdg_data_dirs = os.getenv("XDG_DATA_DIRS")
     if not xdg_data_dirs:  # unset or empty string
