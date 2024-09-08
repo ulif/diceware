@@ -85,15 +85,16 @@ Once installed, use ``--help`` to list all available options::
                           Use words from this wordlist. Possible values: `de',
                           `de_8k', `en_adjectives', `en_eff', `en_nouns',
                           `en_securedrop', `pt-br'.
-                          Wordlists are stored in the folder displayed below.
+                          Wordlists are stored in the folders displayed below.
                           Default: en_eff
     -v, --verbose         Be verbose. Use several times for increased verbosity.
     --version             output version information and exit.
+    --show-wordlist-dirs  Output directories we look up to find wordlists and exit.
 
   Arguments related to `realdice' randomsource:
     --dice-sides N        Number of sides of dice. Default: 6
 
-  Wordlists are stored in <WORDLISTS-DIR>
+  Use --show-wordlist-dirs to list directories where you can store custom wordlists.
 
 With ``-n`` you can tell how many words are supposed to be picked for
 your new passphrase::
@@ -493,6 +494,6 @@ details.
 .. _ReStructuredText: http://docutils.sourceforge.net/rst.html
 .. _virtualenv: https://virtualenv.pypa.io/
 .. _py.test: https://pytest.org/
-.. _tox: https://tox.testrun.org/
+.. _tox: https://tox.wiki/
 .. _Sphinx: https://sphinx-doc.org/
 .. _`XDG`: https://specifications.freedesktop.org/basedir-spec/latest/
