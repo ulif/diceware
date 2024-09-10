@@ -129,12 +129,12 @@ between the words generated::
 By default we use the empty string as delimiter, which is good for
 copying via double click on Linux systems. But other delimiters might
 make your passphrases more readable (and more secure, see
-`Security Traps <#sec-traps>`_ below).
+`Security Traps <#security-traps>`_ below).
 
 By default the single phrase words are capitalized, i.e. the first
 char of each word is made uppercase. This does not necessarily give
 better entropy (but protects against entropy loss due to non `prefix
-code`_, see `Security Traps <#sec-traps>`_ below), and it might
+code`_, see `Security Traps <#security-traps>`_ below), and it might
 improve phrase readability.
 
 You can nevertheless disable caps with the ``--no-caps`` option::
