@@ -47,16 +47,92 @@ Please note, that all options must be set within a section
 ``[diceware]``.
 
 
-Config File Name and Path
--------------------------
+Config Files Name and Path
+--------------------------
 
-Currently, we look for configuration files only in the calling users'
-home directory. The file must be called::
+Prior to version 1.0 we looked for a single configuration file in the calling
+users' home directory only. The file had to be called::
 
  .diceware.ini
 
-(please note the leading dot). If such a file is missing, build-in
-defaults apply.
+(please note the leading dot). If such a file were missing, buildt-in
+defaults applied.
+
+Since version 1.0 we look into several additional locations, but values set in
+``.diceware.ini`` still always override settings from other configuration files
+found.
+
+In order of precedence (with highest priority first) we look into the following
+paths::
+
+    ${HOME}/.diceware.ini
+
+Values set here override settings in any of the following files. If
+``${XDG_CONFIG_HOME}`` is defined and not empty, we then look into
+
+::
+
+    ${XDG_CONFIG_HOME}/diceware/diceware.ini
+
+
+or otherwise into
+
+::
+
+    ${HOME}/.config/diceware/diceware.ini
+
+Finally, if a colon-separated and not empty list of directories is set
+in
+
+::
+
+    ${XDG_CONFIG_DIRS}
+
+we look up any directory in this list, appended by
+
+::
+
+    /diceware/diceware.ini
+
+
+If none of the above files exist, default settings apply. Using this scheme we
+follow the `XDG Base Directory Specification
+<https://specifications.freedesktop.org/basedir-spec/latest/>`_.
+
+
+Examples
+........
+
+If you set the environment variable ``${XDG_CONFIG_DIRS}`` to ``/foo:/etc``,
+and then create a file ``diceware.ini`` in directory
+``/foo/diceware/`` with contents like this::
+
+    [diceware]
+    num = 2
+
+then `diceware` will create passphrases with two terms, except other
+configuration files or commandline options overrule this setting.
+
+Precedence of paths in ``${XDG_CONFIG_DIRS}`` is from least to highest
+priority. Therefore, if you create a file ``/etc/diceware/diceware.ini`` with
+content
+
+::
+
+    [diceware]
+    num = 4
+
+then this setting will override ``num = 2`` from the file above. Still any
+setting in ``${XDG_CONFIG_HOME}/diceware/diceware.ini`` or
+``${HOME}/.config/diceware/diceware.ini`` as explained above will take
+precedence while options set in ``${HOME}/.diceware.ini`` or on the commandline
+like
+
+::
+
+    diceware -n 6
+
+will still have highest priority.
 
 
 Option Values

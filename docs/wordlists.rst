@@ -12,7 +12,13 @@ good choice for usual private use.
          but the `long EFF wordlist`_ (see below), because it is more secure
          and more comfortable to use.
 
-Currently (v0.10) we provide the following lists:
+Currently (v1.0) we provide the following lists:
+
+- `ca` (8192/2^13 words)
+
+  A list of Catalan words. Compiled by `@jawlenskys`_ from Debian dict file for
+  Catalan and a selection of most used Catalan Wikipedia words. This list
+  provides the `prefix property`_.
 
 - `de` (7776/6^5 words)
 
@@ -54,17 +60,35 @@ Currently (v0.10) we provide the following lists:
   A list of english adjectives. This list is relatively short and should be
   used together with other lists -- for instance the `en_nouns` list -- to
   provide a sufficient security level. List provided from the
-  `NaturalLanguagePasswords`_ project.
+  `NaturalLanguagePasswords`_ project. This list got lots of short terms (good
+  for comfort, bad for security) and does *not* provide the `prefix property`_.
 
 - `en_nouns` (7776/6^5 words)
 
   A list of english nouns. Can be used together with other lists -- for
   instance the `en_adjectives` list to form natural language phrases. List
-  provided from the `NaturalLanguagePasswords`_ project.
+  provided from the `NaturalLanguagePasswords`_ project. This list got lots of
+  short terms (good for comfort, bad for security) and does *not* provide the
+  `prefix property`_.
+
+- `es` (8192/2^13 words)
+
+  A list of Spanish words, carefully crafted by `@jawlenskys`_ from Debian dict
+  file for Spanish and a selection of most used Spanish words from `Corpus de
+  Referencia del Español Actual (CREA)`_. This list provides the `prefix
+  property`_.
+
+- `it` (8192/2^13 words)
+
+  A list of Italian words, Compiled by `@jawlenskys`_ from Debian dict file for
+  Italian and an `Italian frequency list
+  <https://en.wiktionary.org/wiki/User:Matthias_Buchmeier#Italian_frequency_list>`
+  generated from TV and movie subtitles.  This list provides the `prefix
+  property`_.
 
 - `pt-br` (7776/6^5 words)
 
-  A list of brazilian portugese words, carefully crafted by `@drebs`_. This
+  A list of Brazilian Portugese words, carefully crafted by `@drebs`_. This
   list contains no overshort words. It also provides the `prefix property`_.
 
 
@@ -115,8 +139,8 @@ easier to break by checking all char combinations than to try all combinations
 of words in the wordlist.
 
 
-Add Own Wordlists
------------------
+Using Custom Wordlists
+----------------------
 
 You can use any wordlist you like. Simply give the filename and it
 will be used::
@@ -127,7 +151,7 @@ will be used::
 You can even pipe-in dynamic wordlists. Just use the dash ``-`` as
 filename::
 
-  $ cat mywordgenerator.sh | diceware -
+  $ mywordgenerator.sh | diceware -
   HiHiHelloHiHiHello
 
 for instance.
@@ -137,18 +161,22 @@ to `diceware`.
 
 But, if you want to store a wordlist persistently, you can do so too.
 
-The wordlists we offer for use with `diceware` are all stored in a
-single folder. The exact location is output by ``--help`` at the very
-end::
+The built-in wordlists we offer for use with `diceware` are all stored in a
+single directory. The exact location is output by ``--show-wordlist-dirs`` as
+first entry::
 
-  $ diceware --help
+  $ diceware --show-wordlist-dirs
+  /path/to/some/directory
+  /path/to/other/directory
   ...
-  Wordlists are stored in /some/path/to/folder
 
-Just put your own wordlists into this folder (here:
-``/some/path/to/folder``) and rename the file to something like
-``wordlist_MY_SPECIAL_NAME.txt``. Afterwards you can pick your
-wordlist by running::
+But also all the other directories listed by this command are looked up for
+wordlist files (if they exist).
+
+You can put your own wordlists into one of these folders (here:
+``/path/to/some/directory``, ``/path/to/other/directory``) and rename the file
+to something like ``wordlist_MY_SPECIAL_NAME.txt``. Afterwards you can pick
+your wordlist by running::
 
   $ diceware -w MY_SPECIAL_NAME
 
@@ -168,8 +196,48 @@ funny characters. In fact we accept regular letters, dashes, numbers,
 and underscores only. Files that do not follow these naming convention
 are ignored.
 
-A list of all available wordlist names can also be retrieved with
-``--help``. See the ``--wordlist`` explanation.
+A list of all available wordlist names can be retrieved with ``--help``. See
+the ``--wordlist`` explanation.
+
+
+Where Wordlists are Looked Up
+-----------------------------
+
+Starting with version 1.0 wordlists can be stored in several directories.  We
+look for wordlists in certain directories only.  The list of these directories
+depends partly on environment variables. It can be shown with::
+
+    $ diceware --show-wordlist-dirs
+    /some/installdir/diceware/wordlists
+    /home/user/.local/share/diceware
+    /usr/local/share/diceware
+    /usr/share/diceware
+
+and may be different on your machine. Wordlist directories are looked up in the
+order listed by ``--show-wordlist-dirs``. Wordlists in former directories
+override same-named in latter ones.  So, with the order given above, a wordlist
+named ``wordlist_foo.txt`` in ``/some/installdir/diceware/wordlists`` will have
+precedence over a same-named wordfile located in ``/usr/share/diceware``.
+
+The ``wordlists/`` directory of the Python package itself is always the first
+we look into.
+
+Afterwards we look up ``${XDG_DATA_HOME}/diceware/`` or, if this environment
+variable is not set or empty, ``${HOME}/.local/share/diceware``.
+
+At the end we look into each of the directories listed in the
+colon-separated list in ``${XDG_DATA_DIRS}``, appended by ``/diceware``. So, if
+``${XDG_DATA_DIRS}`` is set to ``/foo:/bar:/etc/foo``, we will look into
+``/foo/diceware``, ``/bar/diceware`` and ``/etc/foo/diceware`` (in that order)
+for wordlists.
+
+In case the environment variable ``${XDG_DATA_DIRS}`` is not set or empty, we
+look into ``/usr/local/share/diceware`` and ``/usr/share/diceware`` instead.
+
+Under all circumstances we stop looking up wordlist directories, when the first
+match (with a given wordlist name) happened.
+
+All these rules try to follow the `XDG Base Directory Specification`_.
 
 
 Plain Wordlists
@@ -243,15 +311,17 @@ automatically done by `diceware`.
 .. warning:: Diceware does *not* automatically verify PGP-signed
              files.
 
-
 .. _`8k wordlist`: http://world.std.com/~reinhold/diceware8k.txt
+.. _`Corpus de Referencia del Español Actual (CREA)`: https://corpus.rae.es/lfrecuencias.html
 .. _`diceware standard wordlist`: http://world.std.com/~reinhold/diceware.wordlist.asc
 .. _`@drebs`: https://github.com/drebs
 .. _`Electronic Frontier Foundation`: https://eff.org/
 .. _`@Heartsucker`: https://github.com/heartsucker/
 .. _`Institut für Deutsche Sprache`: https://www.ids-mannheim.de/derewo
+.. _`@jawlenskys`: https://github.com/jawlenskys
 .. _`long EFF wordlist`: https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt
 .. _`NaturalLanguagePasswords`: https://github.com/NaturalLanguagePasswords
 .. _`prefix property`: https://en.wikipedia.org/wiki/Prefix_code
 .. _`scientific effort`: https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases
 .. _`securedrop`: https://github.com/freedomofpress/securedrop
+.. _`XDG Base Directory Specification`: https://specifications.freedesktop.org/basedir-spec/latest/

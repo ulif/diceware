@@ -24,7 +24,7 @@ from .__about__ import version as __version__
 from diceware.config import get_config_dict
 from diceware.logger import configure
 from diceware.wordlist import (
-    WordList, get_wordlist_path, get_wordlists_dir, get_wordlist_names,
+    WordList, get_wordlist_path, get_wordlist_dirs, get_wordlist_names,
     )
 
 #: Special chars inserted on demand
@@ -60,6 +60,13 @@ def print_version():
     print(GPL_TEXT)
 
 
+def print_wordlist_dirs():
+    """Output all dirs we look up for wordlists.
+    """
+    for entry in get_wordlist_dirs():
+        print(entry)
+
+
 def get_random_sources():
     """Get a dictionary of all entry points called diceware_random_source.
 
@@ -92,7 +99,7 @@ def handle_options(args):
     defaults = get_config_dict()
     parser = argparse.ArgumentParser(
         description="Create a passphrase",
-        epilog="Wordlists are stored in %s" % get_wordlists_dir()
+        epilog="Use --show-wordlist-dirs to list directories where you can store custom wordlists."
         )
     parser.add_argument(
         '-n', '--num', default=6, type=int,
@@ -121,7 +128,7 @@ def handle_options(args):
         metavar="NAME", nargs='*',
         help=(
             "Use words from this wordlist. Possible values: `%s'. "
-            "Wordlists are stored in the folder displayed below. "
+            "Wordlists are stored in the folders displayed below. "
             "Default: en_eff" % "', `".join(wordlist_names)))
     realdice_group = parser.add_argument_group(
         "Arguments related to `realdice' randomsource",
@@ -139,7 +146,11 @@ def handle_options(args):
         help='Be verbose. Use several times for increased verbosity.')
     parser.add_argument(
         '--version', action='store_true',
-        help='output version information and exit.',
+        help='Output version information and exit.',
+        )
+    parser.add_argument(
+        '--show-wordlist-dirs', action='store_true',
+        help='Output directories we look up to find wordlists and exit.',
         )
     for plugin in plugins.values():
         if hasattr(plugin, "update_argparser"):
@@ -218,6 +229,9 @@ def main(args=None):
     configure(options.verbose)
     if options.version:
         print_version()
+        raise SystemExit(0)
+    elif options.show_wordlist_dirs:
+        print_wordlist_dirs()
         raise SystemExit(0)
     try:
         print(get_passphrase(options))

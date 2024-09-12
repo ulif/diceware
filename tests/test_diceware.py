@@ -7,7 +7,7 @@ import sys
 from io import StringIO
 from errno import EISDIR
 from diceware import (
-    get_wordlists_dir, SPECIAL_CHARS, insert_special_char, get_passphrase,
+    SPECIAL_CHARS, insert_special_char, get_passphrase,
     handle_options, main, __version__, print_version, get_random_sources,
     get_wordlist_names
     )
@@ -139,6 +139,13 @@ class TestHandleOptions(object):
         assert options.dice_sides == 6
         options = handle_options(['--dice-sides', '21'])
         assert options.dice_sides == 21
+
+    def test_handle_options_show_wordlist_dirs(self):
+        # we can request to show the wordlist dirs
+        options = handle_options([])
+        assert options.show_wordlist_dirs is False
+        options = handle_options(['--show-wordlist-dirs'])
+        assert options.show_wordlist_dirs is True
 
     def test_handle_options_considers_configfile(self, home_dir):
         # defaults from a local configfile are respected
@@ -288,10 +295,8 @@ class TestDicewareModule(object):
             os.path.dirname(__file__), 'exp_help_output.txt')
         with open(expected_path, 'r') as fd:
             expected_output = fd.read()
-        wordlists_dir = get_wordlists_dir()
         expected_output = expected_output.replace("\n", "")
         out = expected_output.replace("\n", "")
-        out = out.replace(wordlists_dir, "<WORDLISTS-DIR>")
         assert out == expected_output
 
     def test_main_version(self, argv_handler, capsys):
@@ -371,3 +376,12 @@ class TestDicewareModule(object):
         main()
         out, err = capsys.readouterr()
         assert out == 'FooFooFooFooFooFoo\n'
+
+    def test_main_can_show_wordlists(self, argv_handler, capsys, wordlists_dir):
+        # we can list the wordlist dirs
+        sys.argv = ['diceware', '--show-wordlist-dirs']
+        with pytest.raises(SystemExit) as exc_info:
+            main()
+        assert exc_info.value.code == 0
+        out, err = capsys.readouterr()
+        assert str(wordlists_dir) in out

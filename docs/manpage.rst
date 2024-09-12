@@ -3,7 +3,7 @@
 :subtitle: create passphrases
 :manual_section: 1
 :manual_group: User Commands
-:date: July 2024
+:date: September 2024
 :version: diceware 1.0.dev0
 :author: Written by Uli Fouquet and contributors
 
@@ -73,15 +73,116 @@ options
     Number of sides of dice. Default: 6
 
 
+environment variables
+---------------------
+
+``XDG_CONFIG_HOME``
+    If set and not empty, this variable determines the directory to use for
+    user-local configuration files. We then lookup
+    `${XDG_CONFIG_HOME}/diceware/diceware.ini` and values set here override
+    system-wide config files.
+
+``XDG_CONFIG_DIRS``
+    If set and not empty, this variable is interpreted as colon-separated list
+    of directories, that might contain system-wide configuration files. We
+    lookup `<DIR>/diceware/diceware.ini` for each directory set in
+    `$XDG_CONFIG_DIRS`.
+
+``XDG_DATA_HOME``
+    If set and not empty, this variable determines a directory to search for
+    additional wordlists. We then lookup `${XDG_DATA_HOME}/diceware` for any
+    existing wordlist files.
+
+ ``XDG_DATA_DIRS``
+    If set and not empty, this variable is interpreted as colon-separated list
+    of directories, that might contain additional wordlist files. See below. We
+    lookup `<DIR>/diceware/` then for each directory set in the list.
+
+
 files
 -----
 
+Depending on environment variables set (or not set) we lookup certain
+directories for configuration files called ``diceware.ini`` and for wordlist
+files.
+
+CONFIGURATION FILES
+...................
+
+Configuration settings for ``diceware`` can be spread over several
+configuration files. We parse configuration values from the files given below,
+but values set in former files take precedence over values set in latter ones.
+
 `~/.diceware.ini`
-    Your personal diceware configuration file.
+    Your personal diceware configuration file. Values set here override values
+    from any other configuration file.
 
-``diceware`` also comes with a set of wordlists. The path where these lists are
-stored is showed with ``--help``.
+`$XDG_CONFIG_HOME/diceware/diceware.ini`
+    Additional location for your personal diceware configuration. Values set
+    here will override any system-wide valid values but can be overridden by
+    `~/.diceware.ini`.
 
+`$HOME/.config/diceware/diceware.ini`
+    Alternative location for diceware configuration, only used if
+    `${XDG_CONFIG_HOME}` is empty or unset.
+
+
+`/etc/xdg/diceware/diceware.ini`
+    If ``$XDG_CONFIG_DIRS`` is not set or empty, we look here for a system-wide
+    configuration file. Values set here take least precedence.
+
+
+WORDLIST FILES AND WORDLIST DIRECTORIES:
+........................................
+
+``diceware`` comes with a set of wordlists but enables you to add new wordlists
+by putting them into certain directories. The paths where the lists are stored
+(including the built-in ones) is shown using ``--show-wordlist-dirs``.
+
+Wordlist files are expected to contain lines with one term on each
+line and they must have a certain filenames to be found.
+
+Wordlist filenames have to follow the pattern: ``wordlist_<NAME>.txt``
+where ``<NAME>`` can be any name consisting of letters, numbers, underscores and
+hyphens. For instance ``wordlist_en_eff.txt`` is the filename of the EFF
+(electronic frontier foundation) word list. ``en_eff`` is the name of this list.
+
+We support ``.txt`` and ``.asc`` as filename extensions for wordlists, where
+``.txt`` files are expected to be plain wordlists and ``.asc`` files should
+provide a PGP-signature.
+
+If wordlists with the same name are found in different directories then the one
+in the directory with the highest precedence is taken only. The following
+locations are ordered by precedence (highest first). Therefore built-in
+wordlists cannot be overridden by custom wordlists. You can, however, use
+custom wordlists with a different name.
+
+Directories we look up that do not exist (in part or completely) are silently
+skipped when searching for wordlist files.
+
+`<INSTALL-DIR>/wordlists/`
+    The directory containing the built-in wordlists as part of the
+    installation. These are the wordlists that are always available, regardless
+    of configuration values and their exact location depends on the
+    installation location of the ``diceware`` package.
+
+`$XDG_DATA_HOME/diceware/`
+    If $XDG_DATA_HOME is set and not empty, we look in this directory for
+    wordlists.
+
+`$HOME/.local/share/diceware/`
+    If $XDG_DATA_HOME is unset or empty, we look  into this directory for
+    wordlists.
+
+`<DIR>/diceware` from `$XDG_DATA_DIRS`
+    If $XDG_DATA_DIR is set and not empty, it is interpreted as a
+    colon-separated list of directories with `/diceware` appended. So,
+    `/foo/bar:/baz` will make us look into `/foo/bar/diceware/` and
+    `/baz/diceware/` in that order.
+
+`/usr/local/share/diceware/`, `/usr/share/diceware`
+    If $XDG_DATA_DIRS is unset or empty, we look into these two directories for
+    wordlists.
 
 examples
 --------

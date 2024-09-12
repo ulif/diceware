@@ -14,8 +14,16 @@ We now follow the XDG base directory specification, that tells where config
 unset, `${HOME}/.config/diceware/diceware.ini`. The traditional location
 `${HOME}/.diceware.ini` is still supported.
 
+Furthermore we read `${XDG_DATA_HOME}/diceware/` (or
+`${HOME}/.local/share/diceware/` if `${XDG_DATA_HOME}` is empty or unset) to
+lookup further wordlists.
+
+New option `--show-wordlist-dirs` lists all directory locations we search for
+contained wordlists.
+
 - Officially support Python 3.10 to 3.12.
-- Fixed #86: Follow `XDG`_ base directory specification.
+- Fixed #86: Follow `XDG <https://specifications.freedesktop.org/basedir-spec/latest/>`_ base directory specification.
+- Fixed #84: Allow to store wordlists also in custom directories.
 - Use `ruff` as linter, drop `flake8`.
 - Renew `tox` configuration.
 - Switch to `pyproject`-based project layout, away from using `setup.py`.
