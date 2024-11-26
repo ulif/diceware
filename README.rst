@@ -82,9 +82,9 @@ Once installed, use ``--help`` to list all available options::
                           Get randomness from this source. Possible values:
                           `realdice', `system'. Default: system
     -w [NAME [NAME ...]], --wordlist [NAME [NAME ...]]
-                          Use words from this wordlist. Possible values: `de',
-                          `de_8k', `en_adjectives', `en_eff', `en_nouns',
-                          `en_securedrop', `pt-br'.
+                          Use words from this wordlist. Possible values: `ca`,
+                          `de', `de_8k', `en_adjectives', `en_eff', `en_nouns',
+                          `en_securedrop', `es`, `fr`, `it`, `pt-br'.
                           Wordlists are stored in the folders displayed below.
                           Default: en_eff
     -v, --verbose         Be verbose. Use several times for increased verbosity.
@@ -439,6 +439,8 @@ People that helped spotting bugs, providing solutions, etc.:
    machine-readable copyright file, with improvements from `@anarcat`_
  - `Doug Muth <https://github.com/dmuth>`_ fixed formatting in docs.
  - `@kmille`_ suggested support for XDG config file locations.
+ - `Tango` provided the french wordlist, also provided for `Tails OS`_ and the
+   `Tor Project`_.
 
 Many thanks to all of them!
 
@@ -491,6 +493,8 @@ details.
 .. _`NaturalLanguagePasswords`: https://github.com/NaturalLanguagePasswords
 .. _`prefix code`: https://en.wikipedia.org/wiki/Prefix_code
 .. _`random.SystemRandom`: https://docs.python.org/3.4/library/random.html#random.SystemRandom
+.. _`Tails OS`: https://tails.net/
+.. _`Tor Project`: https://torproject.org/
 .. _ReStructuredText: http://docutils.sourceforge.net/rst.html
 .. _virtualenv: https://virtualenv.pypa.io/
 .. _py.test: https://pytest.org/

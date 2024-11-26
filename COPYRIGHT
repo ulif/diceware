@@ -25,6 +25,11 @@ Source: https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt
 License: CC-BY-3.0
 Comment: License comes from eff.org/copyright
 
+Files: diceware/wordlists/wordlist_fr.txt
+Copyright: 2024 Tango <tango.tails@proton.me>
+License: CC0-1.0
+Comment: This wordlist was crafted for use with `diceware`, `Tails` and the `Tor Project`
+
 Files: diceware/wordlists/wordlist_pt-br.txt
 Copyright: 2019 drebs <drebs@riseup.net>
 License: CC-BY-3.0

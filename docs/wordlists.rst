@@ -78,6 +78,11 @@ Currently (v1.0) we provide the following lists:
   Referencia del Español Actual (CREA)`_. This list provides the `prefix
   property`_.
 
+- `fr` (7776/6^5 words)
+
+  A list of french words, compiled by @Tango for Tails OS and Tor. Handcrafted
+  to avoid offensive and rare words. This list provides the `prefix property`_.
+
 - `it` (8192/2^13 words)
 
   A list of Italian words, Compiled by `@jawlenskys`_ from Debian dict file for
