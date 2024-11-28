@@ -41,6 +41,12 @@ Source: https://github.com/NaturalLanguagePasswords
 Copyright: 2020 NaturalLaguagePasswords
 License: GPL-3+
 
+Files: diceware/wordlists/wordlist_ca.txt
+       diceware/wordlists/wordlist_es.txt
+       diceware/wordlists/wordlist_it.txt
+Copyright: 2024 victordargallo <victordargallo@disroot.org>
+License: CC-BY-4.0
+
 License: Expat
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this data (the "Data"), to deal in the Data without
