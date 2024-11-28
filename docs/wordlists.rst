@@ -76,7 +76,7 @@ Currently (v1.0) we provide the following lists:
   A list of Spanish words, carefully crafted by `@jawlenskys`_ from Debian dict
   file for Spanish and a selection of most used Spanish words from `Corpus de
   Referencia del Español Actual (CREA)`_. This list provides the `prefix
-  property`_.
+  property`_ and is.
 
 - `fr` (7776/6^5 words)
 
@@ -117,7 +117,7 @@ If you'd prefer the Yoda style, you could change that order::
    $ diceware -w en_nouns en_adjectives -n 2 -d '-'
    grains-honest-oxidant-happy
 
-Ich such term (like `oxidant-happy`) provides an entropy of about 23 bits.
+Each such term (like `oxidant-happy`) provides an entropy of about 23 bits.
 
 
 Retired Wordlists
