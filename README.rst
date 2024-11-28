@@ -441,6 +441,8 @@ People that helped spotting bugs, providing solutions, etc.:
  - `@kmille`_ suggested support for XDG config file locations.
  - `Tango` provided the french wordlist, also provided for `Tails OS`_ and the
    `Tor Project`_.
+ - `@jawlenskys`_ provided the catalan, spanish and italian wordlists, also
+   provided for `Tails OS`_ and the `Tor Project`_.
 
 Many thanks to all of them!
 
@@ -488,6 +490,7 @@ details.
 .. _`English adjectives and nouns lists`: https://github.com/NaturalLanguagePasswords/system
 .. _`fork me on github`: http://github.com/ulif/diceware/
 .. _`@heartsucker`: https://github.com/heartsucker/
+.. _`@jawlenskys`: https://github.com/jawlenskys
 .. _`Joseph Bonneau`: https://www.eff.org/about/staff/joseph-bonneau
 .. _`@kmille`: https://github.com/kmille
 .. _`NaturalLanguagePasswords`: https://github.com/NaturalLanguagePasswords
