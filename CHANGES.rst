@@ -30,6 +30,7 @@ contained wordlists.
 - Fixed #62: Removed `pkg_resources` dependency. Kudos to @htgoebel!
   As a side effect no randomness sources from other packages are supported anymore.
 - Added French wordlist. Many thanks for the good work go to Tango.
+- Added Catalan, Spanish and Italian wordlists.
 
 
 0.10 (2022-02-15)
