@@ -1,8 +1,8 @@
 Changes
 =======
 
-1.0.dev0 (yet unreleased)
--------------------------
+1.0 (2024-12-24)
+----------------
 
 Major overhaul of the whole project. We introduce more modern approaches in
 project layout (like `pyproject`), use new linters and other tools while we
