@@ -1,10 +1,13 @@
 Changes
 =======
 
-1.0.1.dev0 (yet unreleased)
----------------------------
+1.0.1 (2024-12-24)
+------------------
 
-- Update dependency list for generating docs.
+Security Upgrade.
+
+- Update dependency list for generating docs. The old dependencies required
+  an unsafe version of `jinja2`.
 
 
 1.0 (2024-12-24)
