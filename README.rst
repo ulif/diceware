@@ -75,7 +75,8 @@ Once installed, use ``--help`` to list all available options::
     -c, --caps            Capitalize words. This is the default.
     --no-caps             Turn off capitalization.
     -s NUM, --specials NUM
-                          Insert NUM special chars into generated word.
+                          Append NUM special chars at the end of the generated
+                          passphrase.
     -d DELIMITER, --delimiter DELIMITER
                           Separate words by DELIMITER. Empty string by default.
     -r SOURCE, --randomsource SOURCE
@@ -100,26 +101,27 @@ With ``-n`` you can tell how many words are supposed to be picked for
 your new passphrase::
 
   $ diceware -n 1
-  Thud
+  Runny
 
   $ diceware -n 2
-  KnitMargo
+  GroovyPostbox
 
-You can `diceware` additionally let generate special chars to replace
-characters in the 'normal' passphrase.  The number of special chars
+You can `diceware` additionally let generate special chars, that will be
+appended  to the 'normal' passphrase.  The number of special chars
 generated can be determined with the ``-s`` option (*default is zero*)::
 
   $ diceware -s 2
-  Heroic%unkLon#DmLewJohns
+  VioletParadoxImaginaryWheneverHarddiskOutburst%5
 
-Here ``"%"`` and ``"#"`` are the special chars.
+Here ``"%"`` and ``"5"`` are the special chars.
 
-Special chars are taken from the following list::
+Special chars are randomly taken from the following list::
 
   ~!#$%^&*()-=+[]\{}:;\"'<>?/0123456789
 
-Please note that several special chars might replace the same original
-char, resulting in a passphrase with less special chars than requested.
+Changed in: version 1.1.0. Until then the special chars were spread over the
+generated passphrase, rendering it glibberish and harder to read and harder to
+memorize.
 
 With ``-d`` you can advise `diceware` to put a delimiter string
 between the words generated::

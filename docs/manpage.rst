@@ -3,8 +3,8 @@
 :subtitle: create passphrases
 :manual_section: 1
 :manual_group: User Commands
-:date: December 2024
-:version: diceware 1.0.2.dev0
+:date: March 2025
+:version: diceware 1.1.0.dev0
 :author: Written by Uli Fouquet and contributors
 
 
@@ -47,7 +47,7 @@ options
     Turn off capitalization.
 
   ``-s`` `NUM`, ``--specials`` `NUM`
-    Insert NUM special chars into generated word.
+    Append NUM special chars at the end of the generated word.
 
   ``-d`` `DELIMITER`, ``--delimiter`` `DELIMITER`
     Separate words by DELIMITER. Empty string by default.
@@ -213,11 +213,11 @@ examples
     contain one word on each line.
 
 ``diceware -w en_securedrop -s 2``
-    Create a passphrase with two special chars spread over the generated
-    passphrase and containing words from wordlist "``en_securedrop``". This is
-    one of the wordlists that come included with `diceware`. Creates something
-    like:
-    "``PlayaBrigVer{SeesNe-tsGets``".
+    Create a passphrase with two special chars appended at the end of the
+    generated passphrase and containing words from wordlist
+    "``en_securedrop``". This is one of the wordlists that come included with
+    `diceware`. Creates something like:
+    "``PlayaBrigVertSeesNestsGets{-``".
 
 ``diceware -w en_adjectives en_nouns -n 2``
     Create two syntactically meaningful phrases, each one consisting of an
@@ -227,7 +227,7 @@ examples
 copyright
 ---------
 
-Copyright (C) 2015-2024 Uli Fouquet and contributors
+Copyright (C) 2015-2025 Uli Fouquet and contributors
 
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU General Public License as published by the Free Software
