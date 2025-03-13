@@ -7,7 +7,7 @@ import sys
 from io import StringIO
 from errno import EISDIR
 from diceware import (
-    SPECIAL_CHARS, insert_special_char, get_passphrase,
+    SPECIAL_CHARS, append_special_char, get_passphrase,
     handle_options, main, __version__, print_version, get_random_sources,
     get_wordlist_names
     )
@@ -196,30 +196,28 @@ class TestDicewareModule(object):
             get_random_sources()
 
     def test_insert_special_char(self):
-        # we can insert special chars in words.
+        # we can append special chars to words.
         fake_rnd = FakeRandom()
-        result1 = insert_special_char('foo', specials='bar', rnd=fake_rnd)
-        assert result1 == 'boo'
-        fake_rnd.nums_to_draw = [1, 1]
-        result2 = insert_special_char('foo', specials='bar', rnd=fake_rnd)
-        assert result2 == 'fao'
+        result1 = append_special_char('foo', specials='bar', rnd=fake_rnd)
+        assert result1 == 'foob'
+        fake_rnd.nums_to_draw = [1, 0]
+        result2 = append_special_char('foo', specials='bar', rnd=fake_rnd)
+        assert result2 == 'fooa'
         fake_rnd.nums_to_draw = [2, 2]
-        result3 = insert_special_char('foo', specials='bar', rnd=fake_rnd)
-        assert result3 == 'for'
+        result3 = append_special_char('foo', specials='bar', rnd=fake_rnd)
+        assert result3 == 'foor'
         fake_rnd.nums_to_draw = [0, 0]
-        result4 = insert_special_char('foo', rnd=fake_rnd)
-        assert result4 == '~oo'
+        result4 = append_special_char('foo', rnd=fake_rnd)
+        assert result4 == 'foo~'
 
     def test_insert_special_char_defaults(self):
         # defaults are respected
         expected_matrix = []
-        for i in range(3):
-            for j in range(len(SPECIAL_CHARS)):
-                word = list('foo')
-                word[i] = SPECIAL_CHARS[j]
-                expected_matrix.append(''.join(word))
+        for i in range(len(SPECIAL_CHARS)):
+            word = 'foo' + SPECIAL_CHARS[i]
+            expected_matrix.append(word)
         for x in range(100):
-            assert insert_special_char('foo') in expected_matrix
+            assert append_special_char('foo') in expected_matrix
 
     def test_special_chars_do_not_quote(self):
         # backslashes in SPECIAL_CHAR do not hide away chars

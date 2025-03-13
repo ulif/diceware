@@ -1,5 +1,5 @@
 #  diceware -- passphrases to remember
-#  Copyright (C) 2015-2022  Uli Fouquet
+#  Copyright (C) 2015-2025  Uli Fouquet
 #
 #  This program is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -52,7 +52,7 @@ def print_version():
     """Output current version and other infos.
     """
     print("diceware %s" % __version__)
-    print("Copyright (C) 2015-2024 Uli Fouquet")
+    print("Copyright (C) 2015-2025 Uli Fouquet")
     print("diceware is based on suggestions of Arnold G. Reinhold.")
     print("See http://diceware.com for details.")
     print("'Diceware' is a trademark of Arnold G Reinhold,"
@@ -113,7 +113,7 @@ def handle_options(args):
         help='Turn off capitalization.')
     parser.add_argument(
         '-s', '--specials', default=0, type=int, metavar='NUM',
-        help="Insert NUM special chars into generated word.")
+        help="Append NUM special chars at the end of the generated passphrase.")
     parser.add_argument(
         '-d', '--delimiter', default='',
         help="Separate words by DELIMITER. Empty string by default.")
@@ -160,8 +160,8 @@ def handle_options(args):
     return args
 
 
-def insert_special_char(word, specials=SPECIAL_CHARS, rnd=None):
-    """Insert a char out of `specials` into `word`.
+def append_special_char(word, specials=SPECIAL_CHARS, rnd=None):
+    """Append a char out of `specials` at `word`.
 
     `rnd`, if passed in, will be used as a (pseudo) random number
     generator. We use `.choice()` only.
@@ -170,9 +170,7 @@ def insert_special_char(word, specials=SPECIAL_CHARS, rnd=None):
     """
     if rnd is None:
         rnd = SystemRandom()
-    char_list = list(word)
-    char_list[rnd.choice(range(len(char_list)))] = rnd.choice(specials)
-    return ''.join(char_list)
+    return ''.join([word, rnd.choice(specials)])
 
 
 def get_passphrase(options=None):
@@ -211,7 +209,7 @@ def get_passphrase(options=None):
         words = [x.capitalize() for x in words]
     result = options.delimiter.join(words)
     for _ in range(options.specials):
-        result = insert_special_char(result, rnd=rnd)
+        result = append_special_char(result, rnd=rnd)
     return result
 
 

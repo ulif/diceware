@@ -1,10 +1,13 @@
 Changes
 =======
 
-1.0.2.dev0 (yet unreleased)
+1.1.0.dev0 (yet unreleased)
 ---------------------------
 
-No changes yet.
+- Change special-char-behaviour: instead of pouring special chars over the
+  generated passphrase and thus rendering it glibberish and unreadable (and
+  harder to remember), we now append them always at the end of the
+  passphrase. Fixed #116.
 
 
 1.0.1 (2024-12-24)
