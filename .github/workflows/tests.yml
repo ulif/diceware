@@ -22,17 +22,19 @@ jobs:
       matrix:
         os:
           - ['ubuntu-latest']
+        pyver:
+          - ['3.12', 'lint,py312']
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python (3.9)
+      - name: Set up Python (${{ matrix.pyver[0] }})
         uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
+          python-version: ${{ matrix.pyver[0] }}
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install tox
       - name: Test with tox
         run: |
-          tox run -e 'lint,py39'
+          tox run -e ${{ matrix.pyver[1] }}
