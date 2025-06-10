@@ -9,6 +9,8 @@ Changes
   harder to remember), we now append them always at the end of the
   passphrase. Fixed #116.
 
+- Update dependency list for generating docs.
+
 
 1.0.1 (2024-12-24)
 ------------------
