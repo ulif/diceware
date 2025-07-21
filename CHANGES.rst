@@ -18,36 +18,36 @@ Changes
 Security Upgrade.
 
 - Update dependency list for generating docs. The old dependencies required
-  an unsafe version of `jinja2`.
+  an unsafe version of ``jinja2``.
 
 
 1.0 (2024-12-24)
 ----------------
 
 Major overhaul of the whole project. We introduce more modern approaches in
-project layout (like `pyproject`), use new linters and other tools while we
+project layout (like ``pyproject``), use new linters and other tools while we
 still support all Python versions from 2.7 up to current 3.12.
 
 We now follow the XDG base directory specification, that tells where config
 (and other) files for an application can be found. You now can also use
-`${XDG_CONFIG_HOME}/diceware/diceware.ini`, or, if the given var is emtpy or
-unset, `${HOME}/.config/diceware/diceware.ini`. The traditional location
-`${HOME}/.diceware.ini` is still supported.
+``${XDG_CONFIG_HOME}/diceware/diceware.ini``, or, if the given var is emtpy or
+unset, ``${HOME}/.config/diceware/diceware.ini``. The traditional location
+``${HOME}/.diceware.ini`` is still supported.
 
-Furthermore we read `${XDG_DATA_HOME}/diceware/` (or
-`${HOME}/.local/share/diceware/` if `${XDG_DATA_HOME}` is empty or unset) to
+Furthermore we read ``${XDG_DATA_HOME}/diceware/`` (or
+``${HOME}/.local/share/diceware/`` if ``${XDG_DATA_HOME}`` is empty or unset) to
 lookup further wordlists.
 
-New option `--show-wordlist-dirs` lists all directory locations we search for
+New option ``--show-wordlist-dirs`` lists all directory locations we search for
 contained wordlists.
 
 - Officially support Python 3.10 to 3.12.
 - Fixed #86: Follow `XDG <https://specifications.freedesktop.org/basedir-spec/latest/>`_ base directory specification.
 - Fixed #84: Allow to store wordlists also in custom directories.
-- Use `ruff` as linter, drop `flake8`.
-- Renew `tox` configuration.
-- Switch to `pyproject`-based project layout, away from using `setup.py`.
-- Fixed #62: Removed `pkg_resources` dependency. Kudos to @htgoebel!
+- Use ``ruff`` as linter, drop ``flake8``.
+- Renew ``tox`` configuration.
+- Switch to ``pyproject``-based project layout, away from using ``setup.py``.
+- Fixed #62: Removed ``pkg_resources`` dependency. Kudos to @htgoebel!
   As a side effect no randomness sources from other packages are supported anymore.
 - Added French wordlist. Many thanks for the good work go to Tango.
 - Added Catalan, Spanish and Italian wordlists.
@@ -107,14 +107,14 @@ contained wordlists.
 0.9.2 (2017-09-14)
 ------------------
 
-- Fixed #33. Make `en_eff` the new default wordlist. This results in slightly
+- Fixed #33. Make ``en_eff`` the new default wordlist. This results in slightly
   decreased entropy per word (12.92 bits instead of 13.0), but provides prefix
   code and better memorizable words. Thanks to @anarcat for the suggestion.
-- Fixed #35. Make `realdice` source of randomness provide an equal distribution
+- Fixed #35. Make ``realdice`` source of randomness provide an equal distribution
   of roll numbers even for sequences shorter than number of dice sides.
 - Added a man page.
 - Support Python 3.6.
-- Import `ConfigParser` instead of `SafeConfigParser` if the latter is an alias
+- Import ``ConfigParser`` instead of ``SafeConfigParser`` if the latter is an alias
   of the former.
 - Fixed #37. Ensure file descriptors are closed properly.
 - Fixed #38. Get wordlists dir by function (instead of const) to allow
@@ -126,18 +126,18 @@ contained wordlists.
 
 - Fixed #32, in docs tell that ``--no-caps`` option does not generate
   lower-case terms.
-- Fixed #31, broken `realdice` source of randomness. `argparse` related bug,
+- Fixed #31, broken ``realdice`` source of randomness. ``argparse`` related bug,
   Bug was discovered and fixed by @LogosOfJ, thanks a lot!
 - Fixed #29. Tell about code prefix problem in README.
-- Activated logging. Using `verbose` will result in additional output.
+- Activated logging. Using ``verbose`` will result in additional output.
 
 
 0.9 (2016-09-14)
 ----------------
 
-- Added `--dice-sides` option to tell how many sides used dices
+- Added ``--dice-sides`` option to tell how many sides used dices
   provide.
-- Changed API interface of `get_config_dict()` to allow more flexible
+- Changed API interface of ``get_config_dict()`` to allow more flexible
   handling of config files.
 - Support different verbosity levels.
 - Added new wordlist ``en_eff``. It is a 7776-terms list provided by
@@ -155,13 +155,13 @@ contained wordlists.
 - Closed #23. @dwcoder provided a fix that allows use of
   whitespace-only values in diceware config files if they are enclosed
   in quotes.
-- Fixed #21. @dwcoder revealed and fixed (again!). This time `--caps`
-  and `--no-caps` settings did not work properly when set in CLI or in
-  `.diceware.ini` config file.
+- Fixed #21. @dwcoder revealed and fixed (again!). This time ``--caps``
+  and ``--no-caps`` settings did not work properly when set in CLI or in
+  ``.diceware.ini`` config file.
 - Shortened real-dice randomness source.
 - Added logger as common interface to send messages to users.
-- New dependency: `sphinx_rtd_theme` for generating docs. This theme
-  was formerly a dependency of `Sphinx`.
+- New dependency: ``sphinx_rtd_theme`` for generating docs. This theme
+  was formerly a dependency of ``Sphinx``.
 
 
 0.7.1 (2016-04-21)
@@ -194,7 +194,7 @@ contained wordlists.
 ----------------
 
 - Officially support Python 3.5.
-- Tests do not depend on `pytest-cov`, `pytest-xdist` anymore.
+- Tests do not depend on ``pytest-cov``, ``pytest-xdist`` anymore.
 - Support configuration files. You can set different defaults in a
   file called ``.diceware.ini`` in your home directory.
 - Renamed wordlist ``en_8k`` to ``en`` as it serves as the default
@@ -210,11 +210,11 @@ contained wordlists.
   default) and ``realdice``, which allows use of real dice.
 - New option ``-w``, ``--wordlist``. We now provide several wordlists
   for users to choose from. Own wordlists could already be fed to
-  `diceware` before. By default we still use the 8192 words list from
+  ``diceware`` before. By default we still use the 8192 words list from
   http://diceware.com.
-- Rename `SRC_DIR` to `WORDLISTS_DIR` (reflecting what it stands for).
+- Rename ``SRC_DIR`` to ``WORDLISTS_DIR`` (reflecting what it stands for).
 - Use also flake8 with tox.
-- Pass `options` to `get_passphrase()` instead of a bunch of single args.
+- Pass ``options`` to ``get_passphrase()`` instead of a bunch of single args.
 - Output wordlists dir in help output.
 
 
@@ -227,10 +227,10 @@ contained wordlists.
 0.3.1 (2015-03-29)
 ------------------
 
-- Turned former `diceware` module into a Python package. This is to
+- Turned former ``diceware`` module into a Python package. This is to
   fix `bug #1 Wordlists aren't included during installation
   <https://github.com/ulif/diceware/issues/1>`_, this time really.
-  Wordlists will from now on be stored inside the `diceware` package.
+  Wordlists will from now on be stored inside the ``diceware`` package.
   Again many thanks to `conorsch <https://github.com/conorsch>`_ who
   digged deep into the matter and also came up with a very considerable
   solution.
