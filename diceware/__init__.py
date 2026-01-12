@@ -1,5 +1,5 @@
 #  diceware -- passphrases to remember
-#  Copyright (C) 2015-2025  Uli Fouquet
+#  Copyright (C) 2015-2026  Uli Fouquet
 #
 #  This program is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -16,6 +16,7 @@
 """diceware -- rememberable passphrases
 """
 import argparse
+import os
 import sys
 import logging
 from errno import ENOENT
@@ -98,6 +99,7 @@ def handle_options(args):
     wordlist_names = get_wordlist_names()
     defaults = get_config_dict()
     parser = argparse.ArgumentParser(
+        prog=os.path.basename(sys.argv[0]),
         description="Create a passphrase",
         epilog="Use --show-wordlist-dirs to list directories where you can store custom wordlists."
         )

@@ -4,11 +4,12 @@ Changes
 1.1.0.dev0 (yet unreleased)
 ---------------------------
 
+- Set prog name for `ArgumentParser` explicitly to work around difficult to
+  predict programme-name computation changed in Python3.14. Fixed #122.
 - Change special-char-behaviour: instead of pouring special chars over the
   generated passphrase and thus rendering it glibberish and unreadable (and
   harder to remember), we now append them always at the end of the
   passphrase. Fixed #116.
-
 - Update dependency list for generating docs.
 
 
