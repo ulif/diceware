@@ -27,7 +27,7 @@ level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .\" new: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .in \\n[rst2man-indent\\n[rst2man-indent-level]]u
 ..
-.TH "DICEWARE" "1" "December 2024" "diceware 1.0.2.dev0" "User Commands"
+.TH "DICEWARE" "1" "January 2026" "diceware 1.1.0.dev0" "User Commands"
 .SH NAME
 diceware \- create passphrases
 .SH SYNOPSIS
@@ -71,7 +71,7 @@ Capitalize words. This is the default.
 Turn off capitalization.
 .TP
 .B \fB\-s\fP \fINUM\fP, \fB\-\-specials\fP \fINUM\fP
-Insert NUM special chars into generated word.
+Append NUM special chars at the end of the generated word.
 .TP
 .B \fB\-d\fP \fIDELIMITER\fP, \fB\-\-delimiter\fP \fIDELIMITER\fP
 Separate words by DELIMITER. Empty string by default.
@@ -245,11 +245,11 @@ Create a passphrase with words from file \(dqmywordlist.txt\(dq. The file should
 contain one word on each line.
 .TP
 .B \fBdiceware \-w en_securedrop \-s 2\fP
-Create a passphrase with two special chars spread over the generated
-passphrase and containing words from wordlist \(dq\fBen_securedrop\fP\(dq. This is
-one of the wordlists that come included with \fIdiceware\fP\&. Creates something
-like:
-\(dq\fBPlayaBrigVer{SeesNe\-tsGets\fP\(dq.
+Create a passphrase with two special chars appended at the end of the
+generated passphrase and containing words from wordlist
+\(dq\fBen_securedrop\fP\(dq. This is one of the wordlists that come included with
+\fIdiceware\fP\&. Creates something like:
+\(dq\fBPlayaBrigVertSeesNestsGets{\-\fP\(dq.
 .TP
 .B \fBdiceware \-w en_adjectives en_nouns \-n 2\fP
 Create two syntactically meaningful phrases, each one consisting of an
@@ -258,7 +258,7 @@ adjective and a noun. Results in something like:
 .UNINDENT
 .SH COPYRIGHT
 .sp
-Copyright (C) 2015\-2024 Uli Fouquet and contributors
+Copyright (C) 2015\-2026 Uli Fouquet and contributors
 .sp
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU General Public License as published by the Free Software

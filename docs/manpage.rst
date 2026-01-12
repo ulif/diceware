@@ -3,7 +3,7 @@
 :subtitle: create passphrases
 :manual_section: 1
 :manual_group: User Commands
-:date: March 2025
+:date: January 2026
 :version: diceware 1.1.0.dev0
 :author: Written by Uli Fouquet and contributors
 
@@ -227,7 +227,7 @@ examples
 copyright
 ---------
 
-Copyright (C) 2015-2025 Uli Fouquet and contributors
+Copyright (C) 2015-2026 Uli Fouquet and contributors
 
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU General Public License as published by the Free Software
