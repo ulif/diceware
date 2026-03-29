@@ -67,6 +67,8 @@ packages = ["diceware", "diceware.wordlists" ]
 [tool.setuptools.package-data]
 "diceware.wordlists" = ["*.txt", "*.asc"]
 
+[tool.setuptools.data-files]
+"share/man/man1" = ["*.1"]
 
 [tool.setuptools.dynamic]
 version = {attr = "diceware.__version__"}
