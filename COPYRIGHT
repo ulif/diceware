@@ -47,6 +47,11 @@ Files: diceware/wordlists/wordlist_ca.txt
 Copyright: 2024 victordargallo <victordargallo@disroot.org>
 License: CC-BY-4.0
 
+Files: diceware/wordlists/wordlist_se.txt
+Source: https://github.com/wytrych/swedish-diceware
+Copyright 2026 Marcin Wolniewicz <marcin@enkellabs.om>
+License: CC-BY-4.0
+
 License: Expat
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this data (the "Data"), to deal in the Data without

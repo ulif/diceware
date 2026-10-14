@@ -85,7 +85,7 @@ Once installed, use ``--help`` to list all available options::
     -w [NAME [NAME ...]], --wordlist [NAME [NAME ...]]
                           Use words from this wordlist. Possible values: `ca`,
                           `de', `de_8k', `en_adjectives', `en_eff', `en_nouns',
-                          `en_securedrop', `es`, `fr`, `it`, `pt-br'.
+                          `en_securedrop', `es`, `fr`, `it`, `pt-br', `se`.
                           Wordlists are stored in the folders displayed below.
                           Default: en_eff
     -v, --verbose         Be verbose. Use several times for increased verbosity.

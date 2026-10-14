@@ -96,6 +96,10 @@ Currently (v1.0) we provide the following lists:
   A list of Brazilian Portugese words, carefully crafted by `@drebs`_. This
   list contains no overshort words. It also provides the `prefix property`_.
 
+- `se` (7776/6^5 words)
+
+  A list of Swedish words, compiled and vetted by `@wytrych` based on
+  `SALDO <https://spraakbanken.gu.se/resurser/saldo>`.
 
 You can pick wordlists to use with the ``-w`` or ``--wordlist`` option. Lists
 with 7776 words are made for six-sided dice (7776 = 6^5) while lists with 8192
