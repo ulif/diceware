@@ -23,12 +23,15 @@ import os
 import re
 from configparser import ConfigParser as SafeParser
 
+SPECIAL_CHARS = r"~!#$%^&*()-=+[]\{}:;" + r'"' + r"'<>?/0123456789"
+
 OPTIONS_DEFAULTS = {
     'num': 6,
     'caps': True,
     'specials': 0,
     'delimiter':"",
     'randomsource': "system",
+    'special_chars_list': SPECIAL_CHARS,
     'verbose': 0,
     'wordlist': ["en_eff"],
     'dice_sides': 6,

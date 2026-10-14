@@ -122,6 +122,12 @@ def handle_options(args):
         '-s', '--specials', default=0, type=int, metavar='NUM',
         help="Append NUM special chars at the end of the generated passphrase.")
     parser.add_argument(
+        '--special-chars-list', default=SPECIAL_CHARS, metavar='CHARS',
+        dest='special_chars_list',
+        help=("Use chars from CHARS as the pool of special chars. "
+              # argparse %-expands help strings, so literal % must be doubled
+              "Default: {}".format(SPECIAL_CHARS.replace("%", "%%"))))
+    parser.add_argument(
         '-d', '--delimiter', default='',
         help="Separate words by DELIMITER. Empty string by default.")
     parser.add_argument(
@@ -216,7 +222,8 @@ def get_passphrase(options=None):
         words = [x.capitalize() for x in words]
     result = options.delimiter.join(words)
     for _ in range(options.specials):
-        result = append_special_char(result, rnd=rnd)
+        # result = append_special_char(result, rnd=rnd)
+        result = append_special_char(result, specials=options.special_chars_list, rnd=rnd)
     return result
 
 
