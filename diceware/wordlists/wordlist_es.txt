@@ -10,8 +10,10 @@ abatida
 abatir
 abdomen
 abdul
+abedul
 abeja
 abelardo
+abeto
 abierta
 abierto
 abismal
@@ -58,7 +60,6 @@ aburre
 aburrida
 aburrido
 aburto
-abusado
 abusiva
 abusivo
 acabada
@@ -130,6 +131,7 @@ actriz
 actuado
 actuara
 actuaron
+acuarela
 acuario
 acudan
 acuden
@@ -299,6 +301,7 @@ alarmas
 alaska
 alava
 alavesa
+albahaca
 albania
 albar
 alberca
@@ -340,6 +343,7 @@ alfabeto
 alfalfa
 alfares
 alfaro
+alfombra
 alfonso
 alfredo
 algas
@@ -367,6 +371,7 @@ almagro
 almas
 almeja
 almendra
+almendro
 almohada
 almorzar
 almuerzo
@@ -374,6 +379,7 @@ almunia
 alojan
 alojar
 alonso
+alpaca
 alpes
 alpino
 alquiler
@@ -423,6 +429,7 @@ amapola
 amargas
 amargos
 amargura
+amarillo
 amarrar
 amarras
 amarre
@@ -602,6 +609,7 @@ arcos
 ardanza
 arden
 arder
+ardilla
 ardor
 ardua
 arduo
@@ -794,6 +802,7 @@ avales
 avance
 avaro
 avelino
+avellana
 avena
 avenue
 aviaco
@@ -851,6 +860,7 @@ bahamas
 bailaban
 bailado
 bailando
+bailar
 baile
 bajaban
 bajada
@@ -877,6 +887,7 @@ balboa
 balcones
 balde
 baldosa
+ballena
 ballet
 balones
 balsa
@@ -939,7 +950,6 @@ baste
 basto
 basura
 batalla
-batasuna
 batata
 baten
 bateo
@@ -1153,6 +1163,7 @@ brenda
 breton
 brevedad
 breves
+brezo
 brigada
 brillo
 brinco
@@ -1277,6 +1288,7 @@ cajas
 cajero
 cajita
 cajones
+calabaza
 calado
 calcio
 calcular
@@ -1387,7 +1399,7 @@ captura
 capucha
 carabina
 caracas
-carajo
+caracol
 caramba
 caras
 carazo
@@ -1433,6 +1445,7 @@ caronte
 carora
 caros
 carpa
+carpeta
 carpio
 carrera
 carrero
@@ -1514,6 +1527,7 @@ cazo
 cazuela
 cebada
 cebolla
+cebra
 ceca
 cecilia
 cecilio
@@ -1607,6 +1621,7 @@ chano
 chao
 chapas
 chapuza
+chaqueta
 charca
 charco
 charito
@@ -1653,7 +1668,6 @@ chita
 chivos
 choclo
 chofer
-chola
 chon
 chopin
 choque
@@ -1666,7 +1680,6 @@ chueca
 chulo
 chupar
 churro
-chusma
 cianuro
 cicatriz
 ciclismo
@@ -1730,6 +1743,7 @@ claudia
 claudio
 clavada
 clavar
+clavel
 clavero
 claves
 clavo
@@ -1768,9 +1782,6 @@ codazo
 codo
 cofre
 cogen
-coger
-cogida
-cogido
 cogote
 cohecho
 cohetes
@@ -1778,7 +1789,6 @@ cohorte
 coja
 cojera
 cojines
-cojones
 colaba
 colada
 colador
@@ -1816,6 +1826,7 @@ coloso
 colpisa
 cols
 columna
+columpio
 comadre
 comando
 comarcal
@@ -1847,7 +1858,6 @@ comuna
 comunes
 conato
 conceda
-concha
 concisa
 concluir
 concluya
@@ -1914,6 +1924,7 @@ cortejo
 corten
 cortical
 cortijo
+cortina
 corto
 cosa
 cosechar
@@ -1988,6 +1999,7 @@ cruenta
 cruise
 crujido
 crujir
+cuaderno
 cuadras
 cuadros
 cuajada
@@ -2011,6 +2023,8 @@ cubitos
 cubos
 cubran
 cubren
+cuchara
+cuchillo
 cuco
 cuecen
 cuela
@@ -2042,7 +2056,6 @@ cuide
 cuido
 culata
 cullell
-culo
 culpar
 culpas
 culta
@@ -2249,6 +2262,7 @@ desgana
 desgano
 deshizo
 desidia
+desierto
 designe
 deslizan
 desmayo
@@ -2378,6 +2392,7 @@ dolly
 dolores
 domador
 domine
+domingo
 donado
 donaldo
 donantes
@@ -2452,6 +2467,7 @@ durango
 durante
 duraron
 duras
+durazno
 dureza
 duros
 duvet
@@ -2517,6 +2533,7 @@ eladio
 elba
 elche
 electos
+elefante
 elegir
 elena
 elenco
@@ -2560,6 +2577,7 @@ emita
 emiten
 emotiva
 empacho
+empanada
 empaque
 empates
 empeorar
@@ -2657,6 +2675,7 @@ erguido
 erica
 erige
 erigido
+erizo
 ermita
 ermua
 ernesto
@@ -2673,8 +2692,10 @@ esbozo
 escalada
 escalar
 escalas
+escalera
 escamas
 escape
+escarcha
 escasas
 escasez
 escasos
@@ -2690,6 +2711,7 @@ escort
 escote
 escozor
 escribes
+escribir
 escribo
 escucho
 escudos
@@ -2721,6 +2743,7 @@ espesura
 espiaba
 espiar
 espigas
+espinaca
 espinal
 espinas
 espinet
@@ -2742,6 +2765,7 @@ estados
 estafas
 estamos
 estando
+estante
 estarlo
 estarse
 estas
@@ -2768,6 +2792,7 @@ estoy
 estrada
 estrado
 estragos
+estrella
 estuche
 estufa
 estupor
@@ -2775,7 +2800,6 @@ estuve
 estuvo
 etanol
 etapas
-etarras
 eternas
 eternos
 etica
@@ -2860,7 +2884,6 @@ fajardo
 fajas
 fajo
 falacia
-falange
 falaz
 faldas
 fallaba
@@ -2870,7 +2893,6 @@ fallaron
 fallas
 fallida
 fallos
-falo
 falsas
 falsos
 faltado
@@ -2886,7 +2908,6 @@ fanny
 fans
 faraday
 faraiso
-farc
 fardos
 farolas
 faroles
@@ -2921,6 +2942,7 @@ felipe
 felisa
 feliu
 felix
+feliz
 fellini
 felsom
 femoral
@@ -3021,6 +3043,7 @@ fito
 flacas
 flacos
 flagelo
+flamenco
 flancos
 flandes
 flashes
@@ -3059,7 +3082,6 @@ fogueo
 foix
 folios
 follaje
-follar
 folletos
 fomento
 fonda
@@ -3129,6 +3151,7 @@ frialdad
 fricka
 frida
 frieda
+frijol
 friso
 fritas
 fritos
@@ -3175,7 +3198,6 @@ funesta
 funesto
 furia
 furor
-fusilar
 fusiles
 fusta
 fuster
@@ -3188,7 +3210,6 @@ gaby
 gacel
 gaceta
 gacha
-gadafi
 gaditano
 gafas
 gafe
@@ -3215,6 +3236,8 @@ galileo
 galindo
 gallegas
 gallery
+galleta
+gallina
 gallos
 galones
 galope
@@ -3244,6 +3267,7 @@ ganso
 gante
 garaje
 garay
+garbanzo
 garbo
 garcia
 gardel
@@ -3276,7 +3300,6 @@ gaulle
 gauss
 gaviria
 gaya
-gays
 gaza
 gemas
 gemelas
@@ -3291,6 +3314,7 @@ genes
 genios
 genoma
 gentes
+gentil
 georges
 georgia
 gerald
@@ -3333,9 +3357,8 @@ girona
 giros
 giscard
 gisela
-gitana
-gitanos
 glacial
+glaciar
 gladys
 glamour
 glasgow
@@ -3410,7 +3433,6 @@ granjas
 granma
 granos
 grant
-grapo
 grasas
 grasos
 gratis
@@ -3432,7 +3454,6 @@ grietas
 griffith
 grifos
 grillos
-gringos
 gripe
 grises
 gritado
@@ -3446,6 +3467,7 @@ group
 grove
 gruesas
 gruesos
+grulla
 grumos
 grupales
 grupos
@@ -3476,6 +3498,7 @@ guinda
 guinea
 guiones
 guisos
+guitarra
 gula
 gusanos
 gustaban
@@ -3530,7 +3553,6 @@ halley
 hallo
 halo
 hamacas
-hamas
 hambre
 hamlet
 hampa
@@ -3578,6 +3600,7 @@ hegel
 heinz
 heladas
 helados
+helecho
 helena
 hellen
 helms
@@ -3649,7 +3672,6 @@ himnos
 hinchas
 hingis
 hirieron
-hitler
 hitos
 hits
 hizo
@@ -3682,13 +3704,13 @@ horaria
 horas
 horca
 horda
+hormiga
 hornear
 hornos
 horrendo
 hortera
 hosco
 hostal
-hostias
 hoteles
 hotmail
 house
@@ -3796,7 +3818,6 @@ imputan
 imss
 incapaz
 incas
-incesto
 incidir
 incierta
 inciso
@@ -3812,7 +3833,6 @@ indias
 indice
 indico
 indigno
-indios
 indique
 inducen
 inducir
@@ -4001,21 +4021,18 @@ jiang
 jimena
 jimmy
 jinetes
+jirafa
 jirones
 joan
 joao
 joaquim
 jockey
-jodas
-joder
-jodido
 joel
 jofresa
 joglars
 johnny
 johnson
 joint
-jomeini
 jonathan
 jones
 jonet
@@ -4165,6 +4182,7 @@ ladrar
 ladridos
 ladrones
 lady
+lagarto
 lagos
 lagunas
 laica
@@ -4274,6 +4292,7 @@ lena
 lenguas
 lennon
 lentas
+lenteja
 lentes
 lentitud
 lentos
@@ -4398,6 +4417,7 @@ llamo
 llanos
 llantas
 llantos
+llanura
 llaves
 llegaban
 llegadas
@@ -4649,6 +4669,7 @@ mantos
 mantuve
 mantuvo
 manuela
+manzana
 manzano
 mapas
 mapfre
@@ -4682,6 +4703,7 @@ marilyn
 marinas
 marines
 marinos
+mariposa
 marisa
 marisol
 marlene
@@ -4714,17 +4736,8 @@ massieu
 massimo
 masters
 masticar
-mataban
-matando
-mataran
-matarla
-matarle
-matarme
-mataron
-matarse
 matas
 match
-maten
 mateos
 materno
 mates
@@ -4757,12 +4770,10 @@ mazda
 mazo
 mcenroe
 mclaren
-mear
 meca
 mecenas
 mecha
 mechero
-meco
 mediada
 medianas
 mediar
@@ -4806,6 +4817,7 @@ menorca
 menores
 menotti
 mensajes
+menta
 mentes
 mentido
 mentir
@@ -4871,7 +4883,6 @@ miel
 mienten
 mientes
 miento
-mierda
 migajas
 migas
 mijail
@@ -4938,7 +4949,6 @@ mitre
 miura
 mixtas
 mixtos
-mobutu
 mochila
 mockus
 mocos
@@ -5068,7 +5078,6 @@ moyano
 mozart
 mozas
 mozos
-mrta
 mubarak
 muchas
 muchos
@@ -5098,8 +5107,6 @@ mugre
 mujeres
 mujica
 mulas
-mulata
-mulatos
 muletas
 muller
 mulo
@@ -5194,9 +5201,6 @@ negaron
 negarse
 negras
 negrete
-negrita
-negrito
-negros
 negrura
 neil
 neira
@@ -5321,6 +5325,7 @@ nupcial
 nupcias
 nuria
 nutren
+nutria
 nutrida
 nutrido
 nutrir
@@ -5333,7 +5338,6 @@ obedecer
 obelisco
 obesa
 obesos
-obiang
 obiols
 obispos
 objetar
@@ -5479,7 +5483,6 @@ orense
 orestes
 orfeo
 organo
-orgasmo
 orgullo
 oria
 oriente
@@ -5592,6 +5595,7 @@ palito
 palizas
 palmar
 palmas
+palmera
 palmira
 palmo
 palomar
@@ -5689,12 +5693,14 @@ pasemos
 pasen
 paseos
 pases
+pasillo
 pasivas
 pasivos
 pasmosa
 pasos
 pasqual
 pastas
+pastel
 pasteur
 pastos
 patadas
@@ -5740,7 +5746,6 @@ pedidos
 pedimos
 pedirme
 pedirte
-pedos
 pedraza
 pedrito
 pedrosa
@@ -5777,7 +5782,6 @@ peludo
 pelvis
 penales
 penas
-pendejos
 penelas
 penia
 penoso
@@ -5822,7 +5826,6 @@ peritos
 perlas
 permito
 perote
-perras
 perrito
 perros
 persas
@@ -5891,11 +5894,11 @@ pileta
 pillado
 pillaje
 pilotos
+pimiento
 pinamar
 pinares
 pinceles
 pinchar
-pinche
 pineda
 pingajo
 pinilla
@@ -5925,6 +5928,7 @@ pisar
 piscis
 pisco
 pisos
+pistacho
 pistas
 pita
 pitcheo
@@ -5950,12 +5954,14 @@ planeaba
 planeada
 planear
 planes
+planeta
 planos
 plantar
 plantas
 plantee
 planteo
 plasmar
+plateado
 platense
 platino
 platos
@@ -6028,7 +6034,6 @@ popular
 poquito
 porche
 porcino
-porno
 porotos
 porque
 porras
@@ -6063,6 +6068,7 @@ poza
 pozos
 pozuelo
 prada
+pradera
 prados
 praga
 prato
@@ -6167,7 +6173,6 @@ publica
 publico
 pubs
 puccini
-pucha
 pude
 pudiera
 pudimos
@@ -6225,9 +6230,7 @@ pusiese
 pusimos
 pusiste
 puso
-putas
 putin
-puto
 putumayo
 puzzle
 pymes
@@ -6292,7 +6295,6 @@ rabillo
 rabino
 rabiosa
 rabioso
-rabo
 rachas
 racimos
 racing
@@ -6333,7 +6335,6 @@ ranura
 raoul
 rapaces
 rapaz
-rape
 raphael
 rapidez
 rapto
@@ -6456,7 +6457,6 @@ rehacer
 rehenes
 rehogar
 rehuir
-reich
 reinaba
 reinado
 reinar
@@ -6809,9 +6809,7 @@ sacos
 sacro
 sacude
 sacudir
-sadam
 sadat
-saddam
 sade
 sadismo
 safari
@@ -6852,6 +6850,7 @@ salomon
 salones
 salsas
 saltado
+saltar
 saltos
 saludos
 salvas
@@ -6865,6 +6864,8 @@ sanas
 sanchez
 sanchis
 sancho
+sandalia
+sandia
 sandino
 sandra
 sandro
@@ -7113,10 +7114,10 @@ soltero
 soltura
 somalia
 sombras
+sombrero
 someta
 someten
 somos
-somoza
 sonaban
 sonado
 sonando
@@ -7173,7 +7174,6 @@ spanish
 spencer
 spinoza
 sprint
-stalin
 stanley
 stanton
 stark
@@ -7448,7 +7448,7 @@ tesis
 tesoros
 testigos
 tests
-tetas
+tetera
 texas
 textos
 texturas
@@ -7504,7 +7504,6 @@ tire
 tiritas
 tirones
 tiros
-tiroteo
 tirso
 titanic
 tito
@@ -7593,6 +7592,7 @@ torres
 torrija
 torso
 tortas
+tortilla
 tortosa
 tortuga
 tosca
@@ -7654,6 +7654,7 @@ tribunas
 tribune
 tribus
 trienio
+trigal
 trigo
 trillo
 trino
@@ -7664,6 +7665,7 @@ trizas
 trofeos
 tromba
 trompas
+trompeta
 trompo
 troncos
 trono
@@ -7705,6 +7707,7 @@ turbo
 turcas
 turcos
 turnos
+turquesa
 tutelar
 tutores
 tuve
@@ -7938,6 +7941,7 @@ versos
 versus
 verter
 vesical
+vestido
 vestir
 vetar
 vetas
@@ -7961,7 +7965,6 @@ viciosa
 vicioso
 vidal
 vidas
-videla
 videos
 vidrios
 viedma
@@ -8003,7 +8006,6 @@ viniese
 vinimos
 viniste
 vinos
-violada
 violeta
 violines
 viraje
@@ -8118,7 +8120,6 @@ yale
 yamaha
 yang
 yankees
-yanquis
 yardas
 yasir
 yasser
@@ -8133,7 +8134,6 @@ yerbas
 yergue
 yerno
 yeso
-yihad
 yodo
 yoga
 yogur
