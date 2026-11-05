@@ -5970,7 +5970,6 @@ plexo
 pliegos
 plinio
 plomo
-plra
 plumaje
 plumas
 plumazo
