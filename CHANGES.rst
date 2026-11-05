@@ -12,6 +12,9 @@ Changes
   passphrase. Fixed #116.
 - Update dependency list for generating docs.
 - Plenty of reformatting to keep `ruff` happy.
+- Replace 74 vulgar, derogatory, violent and extremist words in the spanish
+  wordlist with neutral everyday words. The list keeps its 8192 entries and
+  the prefix property.
 
 
 1.0.1 (2024-12-24)
