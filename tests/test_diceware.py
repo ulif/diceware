@@ -142,6 +142,16 @@ class TestHandleOptions(object):
         assert out == ''
         assert "invalid choice" in err
 
+    def test_handle_options_wordlist_rejects_empty(self, capsys):
+        # a bare -w names no wordlist and would silently generate an
+        # empty passphrase; require at least one wordlist name.
+        with pytest.raises(SystemExit) as exc_info:
+            handle_options(['-w'])
+        assert exc_info.value.code == 2
+        out, err = capsys.readouterr()
+        assert out == ''
+        assert 'expected at least one argument' in err
+
     def test_handle_options_dice_sides(self):
         # we can set the number of dice sides.
         options = handle_options([])

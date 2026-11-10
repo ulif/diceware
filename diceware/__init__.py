@@ -132,7 +132,7 @@ def handle_options(args):
             "Default: system".format("', `".join(sorted(rnd_sources)))))
     parser.add_argument(
         '-w', '--wordlist', default=['en_eff'], choices=wordlist_names,
-        metavar="NAME", nargs='*',
+        metavar="NAME", nargs='+',
         help=(
             "Use words from this wordlist. Possible values: `{}'. "
             "Wordlists are stored in the folders displayed below. "
